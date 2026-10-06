@@ -1,0 +1,276 @@
+{
+  "data": "06/10/2026",
+  "gerado_utc": "2026-10-06T11:01:44.961066+00:00",
+  "projetos": [
+    {
+      "nome": "CASST",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation",
+      "existe": true,
+      "head": "046e7c62359220aaf6ab30832f0fbff5b6f675f0",
+      "branch": "codex/reconcile-crm-casst-20260828",
+      "alteracoes_git": 377,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "Vikings",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS",
+      "existe": true,
+      "head": "b13140e16465585f37c6933b865666082883b7b9",
+      "branch": "main",
+      "alteracoes_git": 0,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "EBT institucional",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT ENTERPRISE SITE",
+      "existe": true,
+      "head": null,
+      "branch": "master",
+      "alteracoes_git": 16,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "CRP aplicação",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-09-25\\CRP_SITE\\site",
+      "existe": true,
+      "head": "12d496749c0f01a4f03f64af776b31ea5c55dfbe",
+      "branch": "codex/crp-site-institucional",
+      "alteracoes_git": 194,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "CRP materiais",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\CRP MANUTENÇÃO",
+      "existe": true,
+      "head": null,
+      "branch": "master",
+      "alteracoes_git": 21,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "Nutrição",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO",
+      "existe": true,
+      "head": "ce57413cbf18dda264221e2ea93a5cb97df3ec41",
+      "branch": "codex/metodo-corpo-dos-sonhos",
+      "alteracoes_git": 203,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "Disparador CASST",
+      "path": "C:\\Users\\Ivair Silva\\Desktop\\CASST_DISPARADOR_CORRIGIDO",
+      "existe": true,
+      "head": null,
+      "branch": null,
+      "alteracoes_git": null,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "Power Apps três apps",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_V11_2_3_APPS",
+      "existe": true,
+      "head": null,
+      "branch": null,
+      "alteracoes_git": null,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    },
+    {
+      "nome": "Power Apps Portal Free",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CASST_PORTAL_FREE_V88_SRC",
+      "existe": true,
+      "head": null,
+      "branch": null,
+      "alteracoes_git": null,
+      "nivel": "inventário/inspeção estática; sem execução nova de suíte"
+    }
+  ],
+  "referencias": [
+    {
+      "id": "F01",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\AGENTS.md",
+      "exists": true,
+      "sha256": "d8fae895b8fef87abc2204188e2f028b2af06b0a93481b0f6650525ce8ac122e",
+      "modified_utc": "2026-10-05T03:48:35.521912+00:00"
+    },
+    {
+      "id": "F02",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\docs\\BASE_REUTILIZAVEL_GESTAO.md",
+      "exists": true,
+      "sha256": "5cc9512d571ac4313684a43126c031d777470923a89e21f4e221ce3967d893c6",
+      "modified_utc": "2026-10-05T03:48:35.523925+00:00"
+    },
+    {
+      "id": "F03",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\PASSO_A_PASSO_MELHORIAS_OPERACIONAIS_2026-10-06.md",
+      "exists": true,
+      "sha256": "70f59b3a377a0fa9a11a8fa164240dca67c33f620471600063efa51db7701a9b",
+      "modified_utc": "2026-10-06T04:14:37.082207+00:00"
+    },
+    {
+      "id": "F04",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\src\\frontend\\src\\api\\http.ts",
+      "exists": true,
+      "sha256": "306e293000c6efe8b92f83020eb4f6638893768f118cd5a1359bec72e0e74ba2",
+      "modified_utc": "2026-10-06T03:28:28.560583+00:00"
+    },
+    {
+      "id": "F05",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\src\\frontend\\src\\api\\contracts.ts",
+      "exists": true,
+      "sha256": "f70dc89e1864fbccc38ecf71e7c1a62ddcf57384959d15c25a5d1006115ad9d4",
+      "modified_utc": "2026-10-05T05:40:04.090142+00:00"
+    },
+    {
+      "id": "F06",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\src\\backend\\CrmCasst.Api\\Authorization\\TenantPolicies.cs",
+      "exists": true,
+      "sha256": "567d7b8c446db4a4849501bd2a21aa04e372e8ddab11cf533ccf0f64aa304f7d",
+      "modified_utc": "2026-09-24T18:45:38.630468+00:00"
+    },
+    {
+      "id": "F07",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\outputs\\melhorias-operacionais-2026-10-05\\testes-backend\\infra-sql-conclusivo.trx",
+      "exists": true,
+      "sha256": "9177dbbe26ec7e8eacf1e740365ff8732299b476a73a090ccfdc3fcd0e321626",
+      "modified_utc": "2026-10-06T04:09:43.691046+00:00"
+    },
+    {
+      "id": "F08",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\outputs\\melhorias-operacionais-2026-10-05\\e2e-quarta.log",
+      "exists": true,
+      "sha256": "c78b79fc23b22ab09f382828f15e1add91a87f106193579bf98a9a4d33107163",
+      "modified_utc": "2026-10-06T04:14:39.722761+00:00"
+    },
+    {
+      "id": "F09",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation\\outputs\\melhorias-operacionais-2026-10-05\\e2e-hardening-final.log",
+      "exists": true,
+      "sha256": "67f2bf766a03eb9dee4357c3bc23ba7a14ea04228060108e2fb173a0836a6bfe",
+      "modified_utc": "2026-10-06T04:02:06.348321+00:00"
+    },
+    {
+      "id": "F10",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\README.md",
+      "exists": true,
+      "sha256": "23e1e972981716dcb42c5b268f91690655ad336cfa48d2791947bff408f88d4c",
+      "modified_utc": "2026-10-06T10:40:50.148955+00:00"
+    },
+    {
+      "id": "F11",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\docs\\09_REMAPEAMENTO_V19_V25.md",
+      "exists": true,
+      "sha256": "f3acae2cc73df6c27474d122b4c896b6208aefec9cf675c5c0be6cc08ad675c6",
+      "modified_utc": "2026-10-06T10:40:50.136047+00:00"
+    },
+    {
+      "id": "F12",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\docs\\10_REVISAO_FRONTEND_APOS_V25.md",
+      "exists": true,
+      "sha256": "7e136fc97053357b22c53363a05c755aece9caf6d403565d1aedf05bd54d2b0f",
+      "modified_utc": "2026-10-06T10:41:49.877855+00:00"
+    },
+    {
+      "id": "F13",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\evidencias\\inventario_projetos.json",
+      "exists": true,
+      "sha256": "3d7381a2606c072ff4a69ea9fa22255ec08a5b0b26d8375eb3d32fb3245b5323",
+      "modified_utc": "2026-10-06T05:07:36.723998+00:00"
+    },
+    {
+      "id": "F14",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\src\\VikingsSst.Api\\Program.cs",
+      "exists": true,
+      "sha256": "79440a9b47a6bfbaccd10ccf57cec223aa852d969f0cb774ec69f57f9400b310",
+      "modified_utc": "2026-10-06T10:36:47.389467+00:00"
+    },
+    {
+      "id": "F15",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\src\\VikingsSst.Api\\Data\\SstDbContext.cs",
+      "exists": true,
+      "sha256": "a4b3160f9eca2ad3e9ace8540822043960681062e9d78a9f3b174b4d9b5b491c",
+      "modified_utc": "2026-10-06T10:36:47.332787+00:00"
+    },
+    {
+      "id": "F16",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS\\.github\\workflows\\ci.yml",
+      "exists": true,
+      "sha256": "dd3d5797fb1f11ea98384235be793ac4eb00089d45e800580ca58eaa5d9cc767",
+      "modified_utc": "2026-10-06T10:36:47.305108+00:00"
+    },
+    {
+      "id": "F17",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT ENTERPRISE SITE\\PLANEJAMENTO_EBT_SITE_E_OFERTAS.md",
+      "exists": true,
+      "sha256": "1ee7a7946b1f72ed2f9106762aa39e58f0584c9ba3b5e4b949dc8a671d7f89af",
+      "modified_utc": "2026-10-01T19:29:08.627368+00:00"
+    },
+    {
+      "id": "F18",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT ENTERPRISE SITE\\qa\\shared-host-20261006\\online-results.json",
+      "exists": true,
+      "sha256": "b068ae4826c8d18919fc16a019fd6b45ea89a5158b2681074e585d7ab045bbca",
+      "modified_utc": "2026-10-06T03:55:45.379835+00:00"
+    },
+    {
+      "id": "F19",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-09-25\\CRP_SITE\\site\\README.md",
+      "exists": true,
+      "sha256": "17f6052c3f4bfe6eaa0b4fae70bef5d1b66bfdd20a6729716e75823b516a7daf",
+      "modified_utc": "2026-09-29T19:57:34.263691+00:00"
+    },
+    {
+      "id": "F20",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-09-25\\CRP_SITE\\site\\docs\\VERIFICACAO_CRM_PUBLICACAO_2026-10-01.md",
+      "exists": true,
+      "sha256": "700113ffbde8bcdd8fe45339b84e8175b0bd6af163827b8ee9f1ec9dc0c2345e",
+      "modified_utc": "2026-10-01T12:47:03.774886+00:00"
+    },
+    {
+      "id": "F21",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO\\docs\\PROGRESSO_IMPLEMENTACAO.md",
+      "exists": true,
+      "sha256": "2c6579d67b4f38c24e2d49270b8565e6f634919305165214c33205d580d8d961",
+      "modified_utc": "2026-10-03T09:15:24.515733+00:00"
+    },
+    {
+      "id": "F22",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO\\docs\\ABERTURA_CONTROLADA_PORTAL_CRM_2026-10-03.md",
+      "exists": true,
+      "sha256": "40d545d98af83919f6384d73322cdff79d0592504147fae1b96e032797ec8aaa",
+      "modified_utc": "2026-10-03T11:33:55.777846+00:00"
+    },
+    {
+      "id": "F23",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO\\web\\backend\\PlanApproval.cs",
+      "exists": true,
+      "sha256": "3b07d3d5857b5c240b12387785d458e5dc6dbb68b688e4aab2d356fea27ea2d5",
+      "modified_utc": "2026-10-03T10:33:32.542583+00:00"
+    },
+    {
+      "id": "F24",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO\\web\\backend\\BlobPersistence.cs",
+      "exists": true,
+      "sha256": "3b8c7f0fe46b71ba5fed80601d86b141f5b8f68360b5d382b7ad5deb1b91efd0",
+      "modified_utc": "2026-10-06T05:43:59.857690+00:00"
+    },
+    {
+      "id": "F25",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO\\output\\azure-audit-2026-10-06\\thaiane-backup-verification.json",
+      "exists": true,
+      "sha256": "b7dbef27e4d9da1e87f2aad182489542d780cda356526d8344171abf4b6b946f",
+      "modified_utc": "2026-10-06T06:46:17.238051+00:00"
+    },
+    {
+      "id": "F26",
+      "path": "C:\\Users\\Ivair Silva\\Downloads\\EBT_Planejamento_Codigo_Plataforma.pdf",
+      "exists": true,
+      "sha256": "840c5d637d21847043ea800b5cf76ac21a12fbef24ea9ff53322da62a89fabb1",
+      "modified_utc": "2026-10-06T10:45:48.611256+00:00"
+    }
+  ],
+  "limites": [
+    "Não é auditoria de todas as linhas de código.",
+    "Resultados existentes não certificam alterações futuras.",
+    "Sem teste autenticado ou publicação nova dos produtos."
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "consultado_utc": "2026-10-06T11:01:43.079203+00:00",
+  "principal": [
+    {
+      "conclusion": "success",
+      "databaseId": 37451503397,
+      "headSha": "b13140e16465585f37c6933b865666082883b7b9",
+      "status": "completed",
+      "url": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37451503397"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 37440882054,
+      "headSha": "8d352e9b1300bf1348e3c967f63dd9ee073af3a4",
+      "status": "completed",
+      "url": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37440882054"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 37439739390,
+      "headSha": "95358fe98d7da8fcf2c413de9ab7880ad2372856",
+      "status": "completed",
+      "url": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37439739390"
+    }
+  ],
+  "prs": [
+    {
+      "headRefName": "codex/v19-rh-postos-consolidacao",
+      "isDraft": true,
+      "number": 71,
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "detailsUrl": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37453651496/job/112235894856",
+          "name": "backend",
+          "startedAt": "2026-10-06T11:01:33Z",
+          "status": "IN_PROGRESS",
+          "workflowName": "CI"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "detailsUrl": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37453651496/job/112235895098",
+          "name": "frontend",
+          "startedAt": "2026-10-06T11:01:33Z",
+          "status": "IN_PROGRESS",
+          "workflowName": "CI"
+        }
+      ],
+      "title": "V19 consolidada: RH, vínculos e postos persistentes"
+    },
+    {
+      "headRefName": "feature/vikings-rh-connector-v19",
+      "isDraft": true,
+      "number": 70,
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-06T10:28:03Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37449889023/job/112223619888",
+          "name": "backend",
+          "startedAt": "2026-10-06T10:27:25Z",
+          "status": "COMPLETED",
+          "workflowName": "CI"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-06T10:27:41Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37449889023/job/112223620252",
+          "name": "frontend",
+          "startedAt": "2026-10-06T10:27:26Z",
+          "status": "COMPLETED",
+          "workflowName": "CI"
+        }
+      ],
+      "title": "V19: conector RH desacoplado e reconciliação"
+    },
+    {
+      "headRefName": "feature/vikings-rh-sync-v19-foundation",
+      "isDraft": true,
+      "number": 13,
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-06T10:15:30Z",
+          "conclusion": "FAILURE",
+          "detailsUrl": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37448450203/job/112218849818",
+          "name": "backend",
+          "startedAt": "2026-10-06T10:14:28Z",
+          "status": "COMPLETED",
+          "workflowName": "CI"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-06T10:14:44Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/98erickgarcia-maker/grupo-vikings-sst/actions/runs/37448450203/job/112218849525",
+          "name": "frontend",
+          "startedAt": "2026-10-06T10:14:27Z",
+          "status": "COMPLETED",
+          "workflowName": "CI"
+        }
+      ],
+      "title": "RH sync V19 foundation: reconciliação e conflitos revisáveis"
+    }
+  ]
+}

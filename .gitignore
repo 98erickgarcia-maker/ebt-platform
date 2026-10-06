@@ -1,0 +1,11 @@
+tmp/
+__pycache__/
+*.pyc
+.env
+.env.*
+!*example
+*.db
+*.sqlite*
+node_modules/
+bin/
+obj/
