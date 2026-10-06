@@ -4,12 +4,15 @@ from datetime import datetime, timezone
 import hashlib,json,re,os,sys
 from catalogo_organizacao import PHASE_CONTEXT,details
 from conteudo_organizacao import DOCUMENTS,TEMPLATES
-from pacotes_codex import WORKFLOW,TEMPLATE,AUTOMATION,emit_packages
+from pacotes_codex import WORKFLOW,TEMPLATE,AUTOMATION,NORMAL_CHAT,HANDOFF_TEMPLATE,emit_packages
 
 DOCUMENTS['docs/execucao/EXECUCAO_PELO_CODEX.md']=WORKFLOW
+DOCUMENTS['docs/execucao/EXECUCAO_PELO_CODEX.md']+='\n## Continuidade no próprio Codex\n\nRegra expressa do usuário: se já estiver no Codex, seguir normalmente com implementação autorizada, revisão, testes e navegador disponíveis. Não exigir outro chat ou retorno ao Codex por rotina. Sinal de passagem só quando faltar ferramenta/acesso à próxima prova; impedimento real mantém os gates e permite trabalho independente.\n'
+DOCUMENTS['docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md']=NORMAL_CHAT
 DOCUMENTS['docs/qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md']=AUTOMATION
 DOCUMENTS['docs/execucao/EXECUCAO_PELO_CODEX.md']+='\n## Revisão online por código\n\nA rodada online será principalmente automatizada por testes de API e navegador contra a homologação, separados do código funcional. Conferência visual e aceite de negócio complementam os testes. Ver [especificação de revisão local/online](../qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md). Preparar a estrutura/comandos da suíte na fundação e acrescentar os casos pertinentes junto aos módulos. Essa suíte não foi criada pela revisão documental.\n'
 TEMPLATES['PACOTE_CODEX.md']=TEMPLATE
+TEMPLATES['PASSAGEM_CHATGPT_CODEX.md']=HANDOFF_TEMPLATE
 DOCUMENTS['docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md']+='\n## Pacotes maiores, decisão 1.2\n\nPara execução pelo Codex, acompanhar [17 pacotes](PACOTES_CODEX.md) e aplicar o [ciclo de revisão e continuidade](EXECUCAO_PELO_CODEX.md). Os mesmos 72 tickets continuam sendo checkpoints internos; as 180h incluem revisão/verificação/registro e a reserva permanece 20h. Começar pelo PAC-01 quando a implementação for solicitada.\n'
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -124,6 +127,8 @@ def main():
 
     emit('CONTINUAR_EM_OUTRO_CHAT.md',GENERATED['CONTINUAR_EM_OUTRO_CHAT.md'].replace('começar P01-01, consultar a ficha e preservar fontes','começar PAC-01 (P01-01 a P01-06), ler docs/execucao/PACOTES_CODEX.md e docs/execucao/EXECUCAO_PELO_CODEX.md, consultar as fichas e preservar fontes').replace('PDF principal reúne a baseline e o manual de organização.','PDF 1.1 reúne a baseline e o manual de organização; o complemento 1.2 organiza 17 pacotes e o método Codex nos documentos de execução.'))
     emit('docs/CHANGELOG.md',GENERATED['docs/CHANGELOG.md'].replace('# Registro de versões do planejamento\n\n','# Registro de versões do planejamento\n\n## 1.2 | 06/10/2026\n\nDecisão do usuário: pacotes maiores e revisão mais profunda mantendo 200h. As mesmas 72 entregas foram agrupadas em 17 pacotes de 8–12h, com saída integrada, foco de revisão, dependências e continuidade. Nono template registra fechamento de pacote. Desenvolvimento/verificação local primeiro e homologação online posterior, sem dispensar gates ou prova de fronteira. Orçamento, status, critérios e PDF 1.1 preservados; nenhum módulo implementado nesta revisão.\n\n',1))
+    emit('docs/CHANGELOG.md',GENERATED['docs/CHANGELOG.md'].replace('## 1.1 | 06/10/2026','Complemento 1.2: fluxo único ChatGPT/Codex com instrução de revisão, sinais de passagem para execução/navegador e décimo template de continuidade. Não configura transferência automática ou execução ilimitada.\n\n## 1.1 | 06/10/2026',1))
+    emit('CONTINUAR_EM_OUTRO_CHAT.md',GENERATED['CONTINUAR_EM_OUTRO_CHAT.md']+'\nPara o fluxo único ChatGPT/Codex, ler docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md. O sinal informa quando a próxima prova exige execução ou navegador; um relatório não comprova que a etapa foi executada.\n')
     readme='''# EBT Platform | Projeto organizado para execução incremental
 
 **Planejamento finalizado. Implementação dos módulos ainda planejada.**
@@ -138,6 +143,7 @@ def main():
 - [17 pacotes maiores para executar pelo Codex](docs/execucao/PACOTES_CODEX.md).
 - [Ciclo de implementação, revisão e continuidade](docs/execucao/EXECUCAO_PELO_CODEX.md).
 - [Revisão automatizada local e online](docs/qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md).
+- [ChatGPT normal: proposta, revisão e passagem ao Codex](docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md).
 - [Dependências e gates](docs/execucao/DEPENDENCIAS.md).
 - [Backlog resumido](docs/BACKLOG_200_HORAS.md).
 - [PDF consolidado com manual detalhado](output/pdf/EBT_Plano_Primeiras_200_Horas.pdf).
@@ -165,7 +171,7 @@ def main():
 | docs/execucao/entregas | 77 fichas individuais com passos e cenários específicos |
 | docs/qualidade | Matriz de casos e níveis de evidência |
 | docs/operacao | Configuração, migration, restore, release, acesso e incidente |
-| templates | Nove registros reutilizáveis, incluindo fechamento de pacote Codex |
+| templates | Dez registros reutilizáveis, incluindo pacote e passagem ChatGPT/Codex |
 | planejamento | Fonte do orçamento/status e catálogos estruturados derivados |
 | evidencias | Provas históricas da revisão e verificações documentais atuais |
 | output/pdf | Documento principal para leitura/compartilhamento |
@@ -192,7 +198,7 @@ O gerador histórico scripts/planejar.py fica protegido para não apagar a organ
     index='# Índice geral do projeto EBT Platform\n\nVersão de organização 1.2. Navegação completa para consulta, execução futura e continuidade. 17 pacotes agrupam 72 entregas + cinco reservas, 200h; nenhum módulo de produto declarado executado. PDF 1.1 preservado; complemento 1.2 nos documentos de execução pelo Codex.\n\n'
     sections=[('Base e orçamento',['docs/PLANO_200_HORAS.md','docs/BACKLOG_200_HORAS.md','docs/REVISAO_BASES.md','docs/VALIDACAO_E_GATES.md','docs/FONTES_E_LIMITES.md','docs/CHANGELOG.md']),
         ('Gestão',[p for p in DOCUMENTS if '/gestao/' in p]),('Arquitetura e decisões',[p for p in DOCUMENTS if '/arquitetura/' in p]),
-        ('Produtos',[p for p in DOCUMENTS if '/produtos/' in p]),('Execução',['docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md','docs/execucao/DEPENDENCIAS.md','docs/execucao/PACOTES_CODEX.md','docs/execucao/EXECUCAO_PELO_CODEX.md']),
+        ('Produtos',[p for p in DOCUMENTS if '/produtos/' in p]),('Execução',['docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md','docs/execucao/DEPENDENCIAS.md','docs/execucao/PACOTES_CODEX.md','docs/execucao/EXECUCAO_PELO_CODEX.md','docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md']),
         ('Qualidade',['docs/qualidade/ESTRATEGIA_DE_EVIDENCIAS.md','docs/qualidade/MATRIZ_CENARIOS.md','docs/qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md']),('Operação',[p for p in DOCUMENTS if '/operacao/' in p]),
         ('Templates',['templates/'+n for n in TEMPLATES])]
     for title,paths in sections:

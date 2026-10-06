@@ -5,19 +5,19 @@
   "arquivos_gerados": [
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
-      "sha256": "bdc96be27769e535e50f856b54ef9d1617ce2b630fa1ddd22611c3dfbb65a09a"
+      "sha256": "6b8fbf2ed7a1b719ac8aea76155a95877c8f8572253d63f06497c75046f50e12"
     },
     {
       "path": "README.md",
-      "sha256": "f1fd0fb75c56651fb7ba25946f936451b8939103d4cd861aefda42da79c020a7"
+      "sha256": "86e7a32ab9d54c891b4fb5d102d76e38eaf1364ac9ea5086fdc5148c5e3bb200"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "sha256": "77dd5195075b7f1cffe3b5d7ec1cc53f599a67f48f0d84d1ce20b8e91abbff10"
+      "sha256": "b0d2d0eeca3f1104e5ae2a22b9d8585a0c90cdb164d1d69c2b578c8be1c38e5d"
     },
     {
       "path": "docs/INDICE_GERAL.md",
-      "sha256": "009310df13d31ad22a1e4ac22a0025e0f6fd06138164c2f78545218212727125"
+      "sha256": "61f067ef7357845083d60a52b92f6abe515291c26a03786c273b4aaa4d2bedd5"
     },
     {
       "path": "docs/arquitetura/ARQUITETURA_E_FRONTEIRAS.md",
@@ -52,6 +52,10 @@
       "sha256": "b471722885c9412f7ab9fe92ece583769ec3c26500f97d2e1095a2f60d3e4968"
     },
     {
+      "path": "docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md",
+      "sha256": "9f958f3d29304513756499162c8ee1b267c3e43b6e3a49405d1a8c621ebe1bc1"
+    },
+    {
       "path": "docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md",
       "sha256": "d49ee6eeb4f6f9145d3485d5bfcbb69fa4849de9dc9abda435e27964788677e8"
     },
@@ -61,7 +65,7 @@
     },
     {
       "path": "docs/execucao/EXECUCAO_PELO_CODEX.md",
-      "sha256": "b1c2389e8f2a7f86aa53e41aa47ccddc8b9e38b7004dc1f14b547c5efde2504e"
+      "sha256": "659a210a5c5b0b2fd90590e332994408357fd4bc7fd68690a09db99145155b2a"
     },
     {
       "path": "docs/execucao/PACOTES_CODEX.md",
@@ -608,6 +612,10 @@
       "sha256": "d1fc48313199aaa04b99438f2a6ed8fbf20561febd617e8d8f92e30cd447d468"
     },
     {
+      "path": "templates/PASSAGEM_CHATGPT_CODEX.md",
+      "sha256": "df3536873e55522cc6c089a95aa8faed8f660a75d6d789b90949c250fc484049"
+    },
+    {
       "path": "templates/RELEASE.md",
       "sha256": "f922febec9dd1d723ccdc4be77975934feb24884637bed88c5bdade7fcab452f"
     }
@@ -627,11 +635,11 @@
     },
     {
       "path": "scripts/organizar_projeto.py",
-      "sha256": "82d12cb3ceea8bfce45c58da21053296f9e7edb20ee04f7aca3d6aa651eaa28b"
+      "sha256": "cab49c3f5ee73180e314da1d8acf166a2e4f10619bcbce5b5e243b0cb8aac457"
     },
     {
       "path": "scripts/pacotes_codex.py",
-      "sha256": "332ff799dd3a5b258d8b9dfe93fb670f4a3199e87b5f540e1cf110052f3143e6"
+      "sha256": "ffbe2a7b9a2e22d701e3c4a3194bb79544f495f151ea0dd8fe1aab247b8522cf"
     }
   ],
   "total_tickets": 77,

@@ -57,6 +57,10 @@ Este exemplo é conteúdo documental; sua presença não inicia implementação.
 
 A sequência de critérios explícitos, revisão, correção, validação e registro foi adaptada ao nosso orçamento. A documentação oficial exemplifica [ciclos de revisão e reparo com contrato claro](https://developers.openai.com/cookbook/examples/codex/build_iterative_repair_loops_with_codex) e [marcos verificáveis com estado persistido em arquivos](https://developers.openai.com/blog/run-long-horizon-tasks-with-codex). São referências de método; não certificam os nossos módulos nem estimam seu prazo.
 
+## Continuidade no próprio Codex
+
+Regra expressa do usuário: se já estiver no Codex, seguir normalmente com implementação autorizada, revisão, testes e navegador disponíveis. Não exigir outro chat ou retorno ao Codex por rotina. Sinal de passagem só quando faltar ferramenta/acesso à próxima prova; impedimento real mantém os gates e permite trabalho independente.
+
 ## Revisão online por código
 
 A rodada online será principalmente automatizada por testes de API e navegador contra a homologação, separados do código funcional. Conferência visual e aceite de negócio complementam os testes. Ver [especificação de revisão local/online](../qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md). Preparar a estrutura/comandos da suíte na fundação e acrescentar os casos pertinentes junto aos módulos. Essa suíte não foi criada pela revisão documental.

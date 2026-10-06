@@ -43,6 +43,7 @@ Versão de organização 1.2. Navegação completa para consulta, execução fut
 - [DEPENDENCIAS](execucao/DEPENDENCIAS.md).
 - [PACOTES CODEX](execucao/PACOTES_CODEX.md).
 - [EXECUCAO PELO CODEX](execucao/EXECUCAO_PELO_CODEX.md).
+- [CHATGPT NORMAL E PASSAGEM CODEX](execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md).
 
 ## Qualidade
 
@@ -69,6 +70,7 @@ Versão de organização 1.2. Navegação completa para consulta, execução fut
 - [RELEASE](../templates/RELEASE.md).
 - [ESFORCO](../templates/ESFORCO.md).
 - [PACOTE CODEX](../templates/PACOTE_CODEX.md).
+- [PASSAGEM CHATGPT CODEX](../templates/PASSAGEM_CHATGPT_CODEX.md).
 
 ## Pacotes maiores para o Codex
 

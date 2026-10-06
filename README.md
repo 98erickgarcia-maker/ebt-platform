@@ -12,6 +12,7 @@
 - [17 pacotes maiores para executar pelo Codex](docs/execucao/PACOTES_CODEX.md).
 - [Ciclo de implementação, revisão e continuidade](docs/execucao/EXECUCAO_PELO_CODEX.md).
 - [Revisão automatizada local e online](docs/qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md).
+- [ChatGPT normal: proposta, revisão e passagem ao Codex](docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md).
 - [Dependências e gates](docs/execucao/DEPENDENCIAS.md).
 - [Backlog resumido](docs/BACKLOG_200_HORAS.md).
 - [PDF consolidado com manual detalhado](output/pdf/EBT_Plano_Primeiras_200_Horas.pdf).
@@ -39,7 +40,7 @@
 | docs/execucao/entregas | 77 fichas individuais com passos e cenários específicos |
 | docs/qualidade | Matriz de casos e níveis de evidência |
 | docs/operacao | Configuração, migration, restore, release, acesso e incidente |
-| templates | Nove registros reutilizáveis, incluindo fechamento de pacote Codex |
+| templates | Dez registros reutilizáveis, incluindo pacote e passagem ChatGPT/Codex |
 | planejamento | Fonte do orçamento/status e catálogos estruturados derivados |
 | evidencias | Provas históricas da revisão e verificações documentais atuais |
 | output/pdf | Documento principal para leitura/compartilhamento |
