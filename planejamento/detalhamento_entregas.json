@@ -1,0 +1,2772 @@
+{
+  "versao_organizacao": "1.1",
+  "fonte_orcamento": "planejamento/backlog_200_horas.json",
+  "itens": [
+    {
+      "id": "P01-01",
+      "fase": "P01",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "gestao",
+      "documento": "docs/execucao/entregas/P01-01.md",
+      "entrada": "Árvore local CASST, inventário de fontes e relatórios históricos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03",
+        "F10",
+        "F11",
+        "F13",
+        "F17",
+        "F19",
+        "F21",
+        "F26"
+      ],
+      "dependencias": [],
+      "saida_concreta": "Manifesto da árvore-fonte do recorte",
+      "passos": [
+        "Confirmar checkout e status",
+        "selecionar arquivos produtores/consumidores",
+        "registrar hash, commit e diferença local"
+      ],
+      "cenarios": [
+        "P01-01-C01",
+        "P01-01-C02",
+        "P01-01-C03"
+      ],
+      "falha_a_evitar": "HEAD sozinho omite alterações locais",
+      "fora_do_escopo": "Não executar migração, deploy, envio ou cópia de banco de cliente.",
+      "gate": "G0",
+      "registro_previsto": "evidencias/execucao/P01-01/registro.md"
+    },
+    {
+      "id": "P01-02",
+      "fase": "P01",
+      "horas": 2,
+      "trilha": "R1",
+      "status": "planejado",
+      "produto": "gestao",
+      "documento": "docs/execucao/entregas/P01-02.md",
+      "entrada": "Árvore local CASST, inventário de fontes e relatórios históricos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03",
+        "F10",
+        "F11",
+        "F13",
+        "F17",
+        "F19",
+        "F21",
+        "F26"
+      ],
+      "dependencias": [
+        "P01-01"
+      ],
+      "saida_concreta": "Tabela capacidade/prova/limite por fonte",
+      "passos": [
+        "Ler resultado e horário dos logs",
+        "separar reteste conclusivo de falhas anteriores",
+        "atribuir local/CI/piloto/produção ao cenário correto"
+      ],
+      "cenarios": [
+        "P01-02-C01",
+        "P01-02-C02",
+        "P01-02-C03"
+      ],
+      "falha_a_evitar": "Nome final do arquivo usado como certificado",
+      "fora_do_escopo": "Não executar migração, deploy, envio ou cópia de banco de cliente.",
+      "gate": "G0",
+      "registro_previsto": "evidencias/execucao/P01-02/registro.md"
+    },
+    {
+      "id": "P01-03",
+      "fase": "P01",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "gestao",
+      "documento": "docs/execucao/entregas/P01-03.md",
+      "entrada": "Árvore local CASST, inventário de fontes e relatórios históricos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03",
+        "F10",
+        "F11",
+        "F13",
+        "F17",
+        "F19",
+        "F21",
+        "F26"
+      ],
+      "dependencias": [
+        "P01-02"
+      ],
+      "saida_concreta": "Ficha do fluxo CRM de entrada",
+      "passos": [
+        "Escolher cadastro/histórico/próxima ação",
+        "listar perfis e eventos",
+        "fechar campos mínimos e itens fora do pacote"
+      ],
+      "cenarios": [
+        "P01-03-C01",
+        "P01-03-C02",
+        "P01-03-C03"
+      ],
+      "falha_a_evitar": "Fluxo inicial expande para toda a CASST",
+      "fora_do_escopo": "Não executar migração, deploy, envio ou cópia de banco de cliente.",
+      "gate": "G0",
+      "registro_previsto": "evidencias/execucao/P01-03/registro.md"
+    },
+    {
+      "id": "P01-04",
+      "fase": "P01",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "gestao",
+      "documento": "docs/execucao/entregas/P01-04.md",
+      "entrada": "Árvore local CASST, inventário de fontes e relatórios históricos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03",
+        "F10",
+        "F11",
+        "F13",
+        "F17",
+        "F19",
+        "F21",
+        "F26"
+      ],
+      "dependencias": [
+        "P01-03"
+      ],
+      "saida_concreta": "Mapa tela -> API -> regra -> dados",
+      "passos": [
+        "Localizar contratos e endpoints",
+        "registrar ID de origem e vínculo",
+        "identificar invalidação de cache e efeitos posteriores"
+      ],
+      "cenarios": [
+        "P01-04-C01",
+        "P01-04-C02",
+        "P01-04-C03"
+      ],
+      "falha_a_evitar": "UI parecida consome recurso diferente",
+      "fora_do_escopo": "Não executar migração, deploy, envio ou cópia de banco de cliente.",
+      "gate": "G0",
+      "registro_previsto": "evidencias/execucao/P01-04/registro.md"
+    },
+    {
+      "id": "P01-05",
+      "fase": "P01",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "gestao",
+      "documento": "docs/execucao/entregas/P01-05.md",
+      "entrada": "Árvore local CASST, inventário de fontes e relatórios históricos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03",
+        "F10",
+        "F11",
+        "F13",
+        "F17",
+        "F19",
+        "F21",
+        "F26"
+      ],
+      "dependencias": [
+        "P01-04"
+      ],
+      "saida_concreta": "Matriz de origem e permissão de uso",
+      "passos": [
+        "Relacionar fonte/autoria/licença do componente",
+        "conferir assets e dependências",
+        "marcar permissão pendente com impedimento específico"
+      ],
+      "cenarios": [
+        "P01-05-C01",
+        "P01-05-C02",
+        "P01-05-C03"
+      ],
+      "falha_a_evitar": "Código disponível confundido com direito comercial",
+      "fora_do_escopo": "Não executar migração, deploy, envio ou cópia de banco de cliente.",
+      "gate": "G0",
+      "registro_previsto": "evidencias/execucao/P01-05/registro.md"
+    },
+    {
+      "id": "P01-06",
+      "fase": "P01",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "gestao",
+      "documento": "docs/execucao/entregas/P01-06.md",
+      "entrada": "Árvore local CASST, inventário de fontes e relatórios históricos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03",
+        "F10",
+        "F11",
+        "F13",
+        "F17",
+        "F19",
+        "F21",
+        "F26"
+      ],
+      "dependencias": [
+        "P01-05"
+      ],
+      "saida_concreta": "Registro G0 e fila de PRs",
+      "passos": [
+        "Conferir manifesto/escopo/provas",
+        "separar copia segura de extração nova",
+        "escrever ordem e critérios dos primeiros PRs"
+      ],
+      "cenarios": [
+        "P01-06-C01",
+        "P01-06-C02",
+        "P01-06-C03"
+      ],
+      "falha_a_evitar": "Generalização inicia sem baseline recuperável",
+      "fora_do_escopo": "Não executar migração, deploy, envio ou cópia de banco de cliente.",
+      "gate": "G0",
+      "registro_previsto": "evidencias/execucao/P01-06/registro.md"
+    },
+    {
+      "id": "P02-01",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-01.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P01-GATE"
+      ],
+      "saida_concreta": "ADR do recorte e fronteiras",
+      "passos": [
+        "Comparar desenho com fonte",
+        "decidir monólito modular mínimo",
+        "registrar serviços compartilhados e limites de stack"
+      ],
+      "cenarios": [
+        "P02-01-C01",
+        "P02-01-C02",
+        "P02-01-C03"
+      ],
+      "falha_a_evitar": "Arquitetura força reescrita integral",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-01/registro.md"
+    },
+    {
+      "id": "P02-02",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-02.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-01"
+      ],
+      "saida_concreta": "Guia de clone e build",
+      "passos": [
+        "Definir solução e diretórios necessários",
+        "documentar ferramentas/versões reais",
+        "testar comandos a partir de clone de QA"
+      ],
+      "cenarios": [
+        "P02-02-C01",
+        "P02-02-C02",
+        "P02-02-C03"
+      ],
+      "falha_a_evitar": "Comando referencia solução inexistente",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-02/registro.md"
+    },
+    {
+      "id": "P02-03",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-03.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-02"
+      ],
+      "saida_concreta": "Esquema de configuração por ambiente",
+      "passos": [
+        "Listar nomes de opções sem valores privados",
+        "validar ausência de opção obrigatória",
+        "excluir segredos de código/log"
+      ],
+      "cenarios": [
+        "P02-03-C01",
+        "P02-03-C02",
+        "P02-03-C03"
+      ],
+      "falha_a_evitar": "Fallback conecta banco de outro cliente",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-03/registro.md"
+    },
+    {
+      "id": "P02-04",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-04.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-03"
+      ],
+      "saida_concreta": "Massa A/B documentada",
+      "passos": [
+        "Criar perfis de empresa fictícios",
+        "gerar contatos e usuários sintéticos permitidos/proibidos",
+        "anotar IDs e casos de conflito"
+      ],
+      "cenarios": [
+        "P02-04-C01",
+        "P02-04-C02",
+        "P02-04-C03"
+      ],
+      "falha_a_evitar": "Massa dá prova falsa de isolamento",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-04/registro.md"
+    },
+    {
+      "id": "P02-05",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-05.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-04"
+      ],
+      "saida_concreta": "Mapa QA banco/storage",
+      "passos": [
+        "Definir destinos exclusivos",
+        "configurar provisionamento de teste",
+        "registrar modo de destruir/recriar só o QA autorizado"
+      ],
+      "cenarios": [
+        "P02-05-C01",
+        "P02-05-C02",
+        "P02-05-C03"
+      ],
+      "falha_a_evitar": "Script de teste toca ambiente existente",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-05/registro.md"
+    },
+    {
+      "id": "P02-06",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-06.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-05"
+      ],
+      "saida_concreta": "Cliente HTTP do recorte",
+      "passos": [
+        "Comparar contratos e CSRF de origem",
+        "reusar tratamento de 401/erro/download",
+        "preservar formulário em falha"
+      ],
+      "cenarios": [
+        "P02-06-C01",
+        "P02-06-C02",
+        "P02-06-C03"
+      ],
+      "falha_a_evitar": "Nova chamada ignora cliente autenticado",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-06/registro.md"
+    },
+    {
+      "id": "P02-07",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-07.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-06"
+      ],
+      "saida_concreta": "CI do recorte e diagnóstico",
+      "passos": [
+        "Montar build/typecheck/testes relevantes",
+        "documentar health e correlação",
+        "impedir dados sensíveis em logs"
+      ],
+      "cenarios": [
+        "P02-07-C01",
+        "P02-07-C02",
+        "P02-07-C03"
+      ],
+      "falha_a_evitar": "Health verde mascara dependência crítica",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-07/registro.md"
+    },
+    {
+      "id": "P02-08",
+      "fase": "P02",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "fundacao",
+      "documento": "docs/execucao/entregas/P02-08.md",
+      "entrada": "G0 e componentes selecionados; ambiente EBT sintético.",
+      "fontes": [
+        "F02",
+        "F04",
+        "F05",
+        "F06",
+        "F14",
+        "F16"
+      ],
+      "dependencias": [
+        "P02-07"
+      ],
+      "saida_concreta": "Demonstração e ficha G1",
+      "passos": [
+        "Iniciar QA com massa própria",
+        "salvar e reler um registro",
+        "registrar comandos, resultado e limitações"
+      ],
+      "cenarios": [
+        "P02-08-C01",
+        "P02-08-C02",
+        "P02-08-C03"
+      ],
+      "falha_a_evitar": "Build apresentado como demonstração completa",
+      "fora_do_escopo": "Não construir infraestrutura distribuída, Redis ou filas sem necessidade medida.",
+      "gate": "G1",
+      "registro_previsto": "evidencias/execucao/P02-08/registro.md"
+    },
+    {
+      "id": "P03-01",
+      "fase": "P03",
+      "horas": 2,
+      "trilha": "R1",
+      "status": "planejado",
+      "produto": "site",
+      "documento": "docs/execucao/entregas/P03-01.md",
+      "entrada": "G0/G1, marca sintética e base de site escolhida.",
+      "fontes": [
+        "F17",
+        "F18",
+        "F19",
+        "F20"
+      ],
+      "dependencias": [
+        "P01-GATE",
+        "P02-GATE"
+      ],
+      "saida_concreta": "Ficha de seleção EBT ou CRP",
+      "passos": [
+        "Comparar páginas/canal/admin existente",
+        "escolher uma base para este pacote",
+        "registrar justificativa e diferenças"
+      ],
+      "cenarios": [
+        "P03-01-C01",
+        "P03-01-C02",
+        "P03-01-C03"
+      ],
+      "falha_a_evitar": "Mesclar bases incompatíveis por aparência",
+      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
+      "gate": "G-SITE",
+      "registro_previsto": "evidencias/execucao/P03-01/registro.md"
+    },
+    {
+      "id": "P03-02",
+      "fase": "P03",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "site",
+      "documento": "docs/execucao/entregas/P03-02.md",
+      "entrada": "G0/G1, marca sintética e base de site escolhida.",
+      "fontes": [
+        "F17",
+        "F18",
+        "F19",
+        "F20"
+      ],
+      "dependencias": [
+        "P03-01"
+      ],
+      "saida_concreta": "Configuração de marca do site",
+      "passos": [
+        "Centralizar nome/logo/canais/serviços",
+        "usar duas marcas fictícias",
+        "conferir origem de texto e foto"
+      ],
+      "cenarios": [
+        "P03-02-C01",
+        "P03-02-C02",
+        "P03-02-C03"
+      ],
+      "falha_a_evitar": "Foto ou contato real de cliente permanece no template",
+      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
+      "gate": "G-SITE",
+      "registro_previsto": "evidencias/execucao/P03-02/registro.md"
+    },
+    {
+      "id": "P03-03",
+      "fase": "P03",
+      "horas": 2,
+      "trilha": "R1",
+      "status": "planejado",
+      "produto": "site",
+      "documento": "docs/execucao/entregas/P03-03.md",
+      "entrada": "G0/G1, marca sintética e base de site escolhida.",
+      "fontes": [
+        "F17",
+        "F18",
+        "F19",
+        "F20"
+      ],
+      "dependencias": [
+        "P03-02"
+      ],
+      "saida_concreta": "Cinco páginas conectadas",
+      "passos": [
+        "Reusar templates e menus",
+        "ajustar home/serviços/sobre/contato/privacidade",
+        "manter estados e links existentes"
+      ],
+      "cenarios": [
+        "P03-03-C01",
+        "P03-03-C02",
+        "P03-03-C03"
+      ],
+      "falha_a_evitar": "Quantidade de páginas gera páginas vazias",
+      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
+      "gate": "G-SITE",
+      "registro_previsto": "evidencias/execucao/P03-03/registro.md"
+    },
+    {
+      "id": "P03-04",
+      "fase": "P03",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "site",
+      "documento": "docs/execucao/entregas/P03-04.md",
+      "entrada": "G0/G1, marca sintética e base de site escolhida.",
+      "fontes": [
+        "F17",
+        "F18",
+        "F19",
+        "F20"
+      ],
+      "dependencias": [
+        "P03-03"
+      ],
+      "saida_concreta": "Contrato de confirmação de contato",
+      "passos": [
+        "Identificar se é link manual ou formulário servidor",
+        "testar confirmação somente após registro",
+        "preservar campos em falha"
+      ],
+      "cenarios": [
+        "P03-04-C01",
+        "P03-04-C02",
+        "P03-04-C03"
+      ],
+      "falha_a_evitar": "Mensagem enviada declarada por abertura de link",
+      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
+      "gate": "G-SITE",
+      "registro_previsto": "evidencias/execucao/P03-04/registro.md"
+    },
+    {
+      "id": "P03-05",
+      "fase": "P03",
+      "horas": 2,
+      "trilha": "R1",
+      "status": "planejado",
+      "produto": "site",
+      "documento": "docs/execucao/entregas/P03-05.md",
+      "entrada": "G0/G1, marca sintética e base de site escolhida.",
+      "fontes": [
+        "F17",
+        "F18",
+        "F19",
+        "F20"
+      ],
+      "dependencias": [
+        "P03-04"
+      ],
+      "saida_concreta": "Relatório visual focal do site",
+      "passos": [
+        "Conferir páginas alteradas em celular/computador",
+        "testar foco e contraste",
+        "verificar proteção de painel existente"
+      ],
+      "cenarios": [
+        "P03-05-C01",
+        "P03-05-C02",
+        "P03-05-C03"
+      ],
+      "falha_a_evitar": "Revisão visual ignora rota administrativa",
+      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
+      "gate": "G-SITE",
+      "registro_previsto": "evidencias/execucao/P03-05/registro.md"
+    },
+    {
+      "id": "P03-06",
+      "fase": "P03",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "site",
+      "documento": "docs/execucao/entregas/P03-06.md",
+      "entrada": "G0/G1, marca sintética e base de site escolhida.",
+      "fontes": [
+        "F17",
+        "F18",
+        "F19",
+        "F20"
+      ],
+      "dependencias": [
+        "P03-05"
+      ],
+      "saida_concreta": "Pacote site e manual",
+      "passos": [
+        "Reunir fontes/config/assets licenciados",
+        "registrar conteúdo e canal escolhidos",
+        "documentar implantação e retorno no ambiente que será definido"
+      ],
+      "cenarios": [
+        "P03-06-C01",
+        "P03-06-C02",
+        "P03-06-C03"
+      ],
+      "falha_a_evitar": "Pacote preparado confundido com site novo online",
+      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
+      "gate": "G-SITE",
+      "registro_previsto": "evidencias/execucao/P03-06/registro.md"
+    },
+    {
+      "id": "P04-01",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-01.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P02-GATE"
+      ],
+      "saida_concreta": "Matriz de acesso candidato",
+      "passos": [
+        "Definir admin/operador/consulta",
+        "mapear ação e recurso",
+        "explicitar empresa/carteira e apoio técnico"
+      ],
+      "cenarios": [
+        "P04-01-C01",
+        "P04-01-C02",
+        "P04-01-C03"
+      ],
+      "falha_a_evitar": "Role amplo substitui escopo do recurso",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-01/registro.md"
+    },
+    {
+      "id": "P04-02",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-02.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-01"
+      ],
+      "saida_concreta": "Jornada de sessão reaproveitada",
+      "passos": [
+        "Identificar cookie/token da fonte",
+        "manter estratégia equivalente",
+        "conferir logout, expiração e modo Dev"
+      ],
+      "cenarios": [
+        "P04-02-C01",
+        "P04-02-C02",
+        "P04-02-C03"
+      ],
+      "falha_a_evitar": "Autenticação de desenvolvimento ativa fora de Dev",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-02/registro.md"
+    },
+    {
+      "id": "P04-03",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-03.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-02"
+      ],
+      "saida_concreta": "Resolução de empresa confiável",
+      "passos": [
+        "Resolver tenant por identidade/vínculo ativo",
+        "recusar tentativa de alteração via cliente",
+        "usar contexto único em serviços"
+      ],
+      "cenarios": [
+        "P04-03-C01",
+        "P04-03-C02",
+        "P04-03-C03"
+      ],
+      "falha_a_evitar": "TenantId vindo do formulário governa acesso",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-03/registro.md"
+    },
+    {
+      "id": "P04-04",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-04.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-03"
+      ],
+      "saida_concreta": "Consultas/gravações com escopo",
+      "passos": [
+        "Aplicar filtros/autorização no servidor",
+        "verificar inserts/updates",
+        "revisar jobs ou exportações existentes no recorte"
+      ],
+      "cenarios": [
+        "P04-04-C01",
+        "P04-04-C02",
+        "P04-04-C03"
+      ],
+      "falha_a_evitar": "Filtro na UI serve como fronteira de segurança",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-04/registro.md"
+    },
+    {
+      "id": "P04-05",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-05.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-04"
+      ],
+      "saida_concreta": "Migration e índices do recorte",
+      "passos": [
+        "Mapear unicidades globais",
+        "incluir tenant onde a regra exigir",
+        "gerar migration sem reescrever histórico"
+      ],
+      "cenarios": [
+        "P04-05-C01",
+        "P04-05-C02",
+        "P04-05-C03"
+      ],
+      "falha_a_evitar": "Novo índice invalida cadastro existente",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-05/registro.md"
+    },
+    {
+      "id": "P04-06",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-06.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-05"
+      ],
+      "saida_concreta": "Prova SQL de isolamento",
+      "passos": [
+        "Usar banco QA real e fixtures controladas",
+        "rodar leitura/gravação A/B",
+        "separar erro de fixture de regra do produto"
+      ],
+      "cenarios": [
+        "P04-06-C01",
+        "P04-06-C02",
+        "P04-06-C03"
+      ],
+      "falha_a_evitar": "Erro de setup é contado como proteção funcionando",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-06/registro.md"
+    },
+    {
+      "id": "P04-07",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-07.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-06"
+      ],
+      "saida_concreta": "Autorização por recurso",
+      "passos": [
+        "Verificar tenant e escopo do registro carregado",
+        "aplicar a download/exportação/consulta",
+        "usar resposta que não exponha conteúdo"
+      ],
+      "cenarios": [
+        "P04-07-C01",
+        "P04-07-C02",
+        "P04-07-C03"
+      ],
+      "falha_a_evitar": "Rota de download contorna listagem protegida",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-07/registro.md"
+    },
+    {
+      "id": "P04-08",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-08.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-07"
+      ],
+      "saida_concreta": "Cache contextual e limpeza",
+      "passos": [
+        "Incluir empresa/usuário/perfil em cache pertinente",
+        "limpar em mudança de identidade",
+        "conferir corrida de resposta antiga"
+      ],
+      "cenarios": [
+        "P04-08-C01",
+        "P04-08-C02",
+        "P04-08-C03"
+      ],
+      "falha_a_evitar": "Cache faz vazamento apesar de SQL protegido",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-08/registro.md"
+    },
+    {
+      "id": "P04-09",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-09.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-08"
+      ],
+      "saida_concreta": "Evento de auditoria seguro",
+      "passos": [
+        "Reusar evento e identidade do ator",
+        "registrar operação/vínculo/correlação",
+        "limitar conteúdo antes/depois"
+      ],
+      "cenarios": [
+        "P04-09-C01",
+        "P04-09-C02",
+        "P04-09-C03"
+      ],
+      "falha_a_evitar": "Log duplica dado sensível ou omite autor",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-09/registro.md"
+    },
+    {
+      "id": "P04-10",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-10.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-09"
+      ],
+      "saida_concreta": "Conferência de sessão e CSRF",
+      "passos": [
+        "Aplicar controles compatíveis com estratégia escolhida",
+        "testar expiração/revogação",
+        "conferir cookies ou validação do token"
+      ],
+      "cenarios": [
+        "P04-10-C01",
+        "P04-10-C02",
+        "P04-10-C03"
+      ],
+      "falha_a_evitar": "Misturar requisitos de cookie e JWT sem desenho",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-10/registro.md"
+    },
+    {
+      "id": "P04-11",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-11.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-10"
+      ],
+      "saida_concreta": "Onboarding do recorte aprovado",
+      "passos": [
+        "Reproduzir ativação e destino após termo/senha",
+        "localizar produtor da navegação/estado",
+        "corrigir causa no recorte e testar negativas"
+      ],
+      "cenarios": [
+        "P04-11-C01",
+        "P04-11-C02",
+        "P04-11-C03"
+      ],
+      "falha_a_evitar": "Onboarding vermelho escondido por espera maior",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-11/registro.md"
+    },
+    {
+      "id": "P04-12",
+      "fase": "P04",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "seguranca",
+      "documento": "docs/execucao/entregas/P04-12.md",
+      "entrada": "G1, massa A/B e contrato de identidade do recorte.",
+      "fontes": [
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F14",
+        "F15"
+      ],
+      "dependencias": [
+        "P04-11"
+      ],
+      "saida_concreta": "Ficha G-SEG A/B",
+      "passos": [
+        "Executar matriz de sessão/tenant/perfil",
+        "reconciliar SQL e navegador",
+        "registrar bloqueios por consumidor"
+      ],
+      "cenarios": [
+        "P04-12-C01",
+        "P04-12-C02",
+        "P04-12-C03"
+      ],
+      "falha_a_evitar": "Prova unitária substitui teste da fronteira real",
+      "fora_do_escopo": "Não usar header fornecido pelo cliente como autoridade de tenant; não migrar identidade dos produtos originais.",
+      "gate": "G-SEG",
+      "registro_previsto": "evidencias/execucao/P04-12/registro.md"
+    },
+    {
+      "id": "P05-01",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-01.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P04-GATE"
+      ],
+      "saida_concreta": "Contrato canônico de cadastro",
+      "passos": [
+        "Escolher ID interno existente",
+        "distinguir pessoa/organização/contato",
+        "registrar vínculo por empresa e fontes externas quando existirem"
+      ],
+      "cenarios": [
+        "P05-01-C01",
+        "P05-01-C02",
+        "P05-01-C03"
+      ],
+      "falha_a_evitar": "Pessoa global une clientes sem política",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-01/registro.md"
+    },
+    {
+      "id": "P05-02",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-02.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-01"
+      ],
+      "saida_concreta": "Cadastro idempotente do recorte",
+      "passos": [
+        "Reusar normalização/validação",
+        "delimitar regra de duplicidade por tenant",
+        "conferir repetição e resposta perdida"
+      ],
+      "cenarios": [
+        "P05-02-C01",
+        "P05-02-C02",
+        "P05-02-C03"
+      ],
+      "falha_a_evitar": "Normalização gera união automática incorreta",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-02/registro.md"
+    },
+    {
+      "id": "P05-03",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R1",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-03.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-02"
+      ],
+      "saida_concreta": "Lista e busca contratadas",
+      "passos": [
+        "Reusar tabela/filtros/paginação",
+        "ligar contrato existente",
+        "conferir estados e exportação já incluída"
+      ],
+      "cenarios": [
+        "P05-03-C01",
+        "P05-03-C02",
+        "P05-03-C03"
+      ],
+      "falha_a_evitar": "R1 mantido apesar de alteração em filtro/autorização",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-03/registro.md"
+    },
+    {
+      "id": "P05-04",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-04.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-03"
+      ],
+      "saida_concreta": "Histórico persistido com autoria",
+      "passos": [
+        "Reusar escrita/lista",
+        "separar nota interna e contato",
+        "preservar data informada e ordem do histórico"
+      ],
+      "cenarios": [
+        "P05-04-C01",
+        "P05-04-C02",
+        "P05-04-C03"
+      ],
+      "falha_a_evitar": "Nota interna contada como conversa comercial",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-04/registro.md"
+    },
+    {
+      "id": "P05-05",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-05.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-04"
+      ],
+      "saida_concreta": "Responsável e próxima ação",
+      "passos": [
+        "Validar responsável ativo/no escopo",
+        "persistir prazo e descrição",
+        "invalidar dados afetados nas telas"
+      ],
+      "cenarios": [
+        "P05-05-C01",
+        "P05-05-C02",
+        "P05-05-C03"
+      ],
+      "falha_a_evitar": "Salvar atualiza só a tela atual",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-05/registro.md"
+    },
+    {
+      "id": "P05-06",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-06.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-05"
+      ],
+      "saida_concreta": "Funil fixo de até cinco etapas",
+      "passos": [
+        "Configurar rótulos sem mudar enums da fonte",
+        "persistir mudança/histórico",
+        "usar token de versão"
+      ],
+      "cenarios": [
+        "P05-06-C01",
+        "P05-06-C02",
+        "P05-06-C03"
+      ],
+      "falha_a_evitar": "Duas pessoas sobrescrevem histórico de etapa",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-06/registro.md"
+    },
+    {
+      "id": "P05-07",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-07.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-06"
+      ],
+      "saida_concreta": "Tela configurável de referência",
+      "passos": [
+        "Aplicar identidade/menu/textos de estado",
+        "manter APIs/IDs",
+        "conferir representação e impressão incluída"
+      ],
+      "cenarios": [
+        "P05-07-C01",
+        "P05-07-C02",
+        "P05-07-C03"
+      ],
+      "falha_a_evitar": "Troca visual renomeia propriedade persistida",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-07/registro.md"
+    },
+    {
+      "id": "P05-08",
+      "fase": "P05",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-08.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-07"
+      ],
+      "saida_concreta": "Segundo consumidor do CRM",
+      "passos": [
+        "Usar mesmo serviço e componente",
+        "configurar empresa sintética diferente",
+        "rodar contratos/fluxo e escopo"
+      ],
+      "cenarios": [
+        "P05-08-C01",
+        "P05-08-C02",
+        "P05-08-C03"
+      ],
+      "falha_a_evitar": "Duas cópias passam como Core reutilizável",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-08/registro.md"
+    },
+    {
+      "id": "P05-09",
+      "fase": "P05",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-09.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-08"
+      ],
+      "saida_concreta": "Importação fixa de até 100 contatos QA",
+      "passos": [
+        "Definir um layout",
+        "validar área de preparação",
+        "confirmar commit explícito e chave de repetição"
+      ],
+      "cenarios": [
+        "P05-09-C01",
+        "P05-09-C02",
+        "P05-09-C03"
+      ],
+      "falha_a_evitar": "Planilha real importada por inferência",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-09/registro.md"
+    },
+    {
+      "id": "P05-10",
+      "fase": "P05",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "crm",
+      "documento": "docs/execucao/entregas/P05-10.md",
+      "entrada": "G-SEG, cadastro e fluxo comercial mínimo congelados.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F19",
+        "F21"
+      ],
+      "dependencias": [
+        "P05-09"
+      ],
+      "saida_concreta": "Ficha G-CRM e instrução de uso",
+      "passos": [
+        "Demonstrar login/cadastro/histórico/próxima ação",
+        "registrar source/config",
+        "escrever limites e entrada do cliente"
+      ],
+      "cenarios": [
+        "P05-10-C01",
+        "P05-10-C02",
+        "P05-10-C03"
+      ],
+      "falha_a_evitar": "Demo sintética vira aceite de cliente",
+      "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
+      "gate": "G-CRM",
+      "registro_previsto": "evidencias/execucao/P05-10/registro.md"
+    },
+    {
+      "id": "P06-01",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-01.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P04-GATE",
+        "P05-GATE"
+      ],
+      "saida_concreta": "Ficha da categoria documental",
+      "passos": [
+        "Escolher documento comercial e entidade de origem",
+        "definir acesso/revisão/versão",
+        "delimitar tipo e tamanho conforme ambiente"
+      ],
+      "cenarios": [
+        "P06-01-C01",
+        "P06-01-C02",
+        "P06-01-C03"
+      ],
+      "falha_a_evitar": "Regra clínica inserida no GED comercial",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-01/registro.md"
+    },
+    {
+      "id": "P06-02",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-02.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-01"
+      ],
+      "saida_concreta": "Metadado documentado e persistido",
+      "passos": [
+        "Reusar identidade e referência de storage",
+        "gravar hash/MIME/tamanho/autor",
+        "vincular entidade no tenant"
+      ],
+      "cenarios": [
+        "P06-02-C01",
+        "P06-02-C02",
+        "P06-02-C03"
+      ],
+      "falha_a_evitar": "Hash calculado não corresponde ao binário final",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-02/registro.md"
+    },
+    {
+      "id": "P06-03",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-03.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-02"
+      ],
+      "saida_concreta": "Upload com estado pendente",
+      "passos": [
+        "Validar tipo/tamanho e nome seguro",
+        "armazenar em destino privado",
+        "confirmar só após resposta persistida"
+      ],
+      "cenarios": [
+        "P06-03-C01",
+        "P06-03-C02",
+        "P06-03-C03"
+      ],
+      "falha_a_evitar": "Arquivo recém-enviado fica público",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-03/registro.md"
+    },
+    {
+      "id": "P06-04",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-04.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-03"
+      ],
+      "saida_concreta": "Download autorizado por recurso",
+      "passos": [
+        "Resolver metadado no tenant",
+        "conferir direito ao documento",
+        "autorizar acesso temporário apenas após verificação"
+      ],
+      "cenarios": [
+        "P06-04-C01",
+        "P06-04-C02",
+        "P06-04-C03"
+      ],
+      "falha_a_evitar": "Chave do storage vira autorização",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-04/registro.md"
+    },
+    {
+      "id": "P06-05",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-05.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-04"
+      ],
+      "saida_concreta": "Revisão e versão imutável",
+      "passos": [
+        "Separar arquivo/versão da decisão",
+        "registrar ator/motivo",
+        "nova versão exige nova revisão"
+      ],
+      "cenarios": [
+        "P06-05-C01",
+        "P06-05-C02",
+        "P06-05-C03"
+      ],
+      "falha_a_evitar": "Edição silenciosa altera documento aprovado",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-05/registro.md"
+    },
+    {
+      "id": "P06-06",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-06.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-05"
+      ],
+      "saida_concreta": "Falha/retry/conflito do GED",
+      "passos": [
+        "Injetar resposta perdida e falha de storage em QA",
+        "testar idempotência",
+        "simular revisão concorrente"
+      ],
+      "cenarios": [
+        "P06-06-C01",
+        "P06-06-C02",
+        "P06-06-C03"
+      ],
+      "falha_a_evitar": "Registro órfão apresentado como upload concluído",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-06/registro.md"
+    },
+    {
+      "id": "P06-07",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-07.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-06"
+      ],
+      "saida_concreta": "Restore documental isolado",
+      "passos": [
+        "Capturar banco/arquivos/chaves necessários",
+        "recuperar em destino novo",
+        "comparar metadados/hash e testar acesso"
+      ],
+      "cenarios": [
+        "P06-07-C01",
+        "P06-07-C02",
+        "P06-07-C03",
+        "P06-07-C04"
+      ],
+      "falha_a_evitar": "Backup apenas de banco é chamado recuperação completa",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-07/registro.md"
+    },
+    {
+      "id": "P06-08",
+      "fase": "P06",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "documentos",
+      "documento": "docs/execucao/entregas/P06-08.md",
+      "entrada": "G-SEG/G-CRM, categoria comercial e storage privado de QA.",
+      "fontes": [
+        "F03",
+        "F14",
+        "F15",
+        "F22",
+        "F23",
+        "F24",
+        "F25"
+      ],
+      "dependencias": [
+        "P06-07"
+      ],
+      "saida_concreta": "Ficha G-GED A/B",
+      "passos": [
+        "Demonstrar upload/revisão/liberação/download",
+        "repetir com segunda configuração",
+        "reconciliar negativo e restore"
+      ],
+      "cenarios": [
+        "P06-08-C01",
+        "P06-08-C02",
+        "P06-08-C03",
+        "P06-08-C04"
+      ],
+      "falha_a_evitar": "Aprovação interna apresentada como assinatura digital",
+      "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
+      "gate": "G-GED",
+      "registro_previsto": "evidencias/execucao/P06-08/registro.md"
+    },
+    {
+      "id": "P07-01",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-01.md",
+      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P05-GATE",
+        "P06-GATE"
+      ],
+      "saida_concreta": "Contrato da tarefa vinculada",
+      "passos": [
+        "Mapear tipo de origem e ID",
+        "reusar responsável/prazo/estado",
+        "definir fechamento e vínculo de empresa"
+      ],
+      "cenarios": [
+        "P07-01-C01",
+        "P07-01-C02",
+        "P07-01-C03"
+      ],
+      "falha_a_evitar": "Tarefa gera segundo cadastro para armazenar contexto",
+      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-01/registro.md"
+    },
+    {
+      "id": "P07-02",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R1",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-02.md",
+      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-01"
+      ],
+      "saida_concreta": "Lista de tarefas por escopo",
+      "passos": [
+        "Reusar criação/filtros",
+        "ligar contrato",
+        "conferir prazo/responsável nos estados de lista"
+      ],
+      "cenarios": [
+        "P07-02-C01",
+        "P07-02-C02",
+        "P07-02-C03"
+      ],
+      "falha_a_evitar": "Mudança funcional passa como ajuste visual",
+      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-02/registro.md"
+    },
+    {
+      "id": "P07-03",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-03.md",
+      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-02"
+      ],
+      "saida_concreta": "Fechamento/cancelamento auditado",
+      "passos": [
+        "Exigir resultado ou motivo pertinente",
+        "preservar transições",
+        "conferir retry do comando"
+      ],
+      "cenarios": [
+        "P07-03-C01",
+        "P07-03-C02",
+        "P07-03-C03"
+      ],
+      "falha_a_evitar": "Fechar apaga histórico da pendência",
+      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-03/registro.md"
+    },
+    {
+      "id": "P07-04",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-04.md",
+      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-03"
+      ],
+      "saida_concreta": "Regra temporal de atraso",
+      "passos": [
+        "Persistir instante sem ambiguidade",
+        "exibir Brasília",
+        "usar relógio controlado e prazo opcional explícito"
+      ],
+      "cenarios": [
+        "P07-04-C01",
+        "P07-04-C02",
+        "P07-04-C03"
+      ],
+      "falha_a_evitar": "Data local armazenada sem fuso muda vencimento",
+      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-04/registro.md"
+    },
+    {
+      "id": "P07-05",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-05.md",
+      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-04"
+      ],
+      "saida_concreta": "Próxima ação dentro da aplicação",
+      "passos": [
+        "Exibir pendência por usuário",
+        "ligar origem e estado",
+        "separar comunicação de anotação local"
+      ],
+      "cenarios": [
+        "P07-05-C01",
+        "P07-05-C02",
+        "P07-05-C03"
+      ],
+      "falha_a_evitar": "Indicador de notificação implica mensagem enviada",
+      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-05/registro.md"
+    },
+    {
+      "id": "P07-06",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-06.md",
+      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-05"
+      ],
+      "saida_concreta": "Ficha G-TASK e contador reconciliado",
+      "passos": [
+        "Definir numerador/período/escopo",
+        "comparar lista e cartão",
+        "testar alteração autorizada"
+      ],
+      "cenarios": [
+        "P07-06-C01",
+        "P07-06-C02",
+        "P07-06-C03"
+      ],
+      "falha_a_evitar": "Métrica conta registros fora da vigência",
+      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-06/registro.md"
+    },
+    {
+      "id": "P08-01",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-01.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P04-GATE",
+        "P06-GATE",
+        "P07-GATE"
+      ],
+      "saida_concreta": "Especificação do protocolo piloto",
+      "passos": [
+        "Fixar um tipo/ano/tenant",
+        "listar campos e transições",
+        "definir ator para cada mudança"
+      ],
+      "cenarios": [
+        "P08-01-C01",
+        "P08-01-C02",
+        "P08-01-C03"
+      ],
+      "falha_a_evitar": "Protótipo recebe requisitos de workflow completo",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-01/registro.md"
+    },
+    {
+      "id": "P08-02",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-02.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-01"
+      ],
+      "saida_concreta": "Abertura transacional idempotente",
+      "passos": [
+        "Criar índice/regra de sequência SQL",
+        "serializar incremento conforme desenho",
+        "vincular chave de operação ao protocolo"
+      ],
+      "cenarios": [
+        "P08-02-C01",
+        "P08-02-C02",
+        "P08-02-C03"
+      ],
+      "falha_a_evitar": "Numeração calcula max+1 sem proteção",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-02/registro.md"
+    },
+    {
+      "id": "P08-03",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-03.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-02"
+      ],
+      "saida_concreta": "Vínculos de interessado/anexo/responsável",
+      "passos": [
+        "Validar cadastros existentes",
+        "ligar documento do tenant",
+        "guardar IDs sem duplicar entidade"
+      ],
+      "cenarios": [
+        "P08-03-C01",
+        "P08-03-C02",
+        "P08-03-C03"
+      ],
+      "falha_a_evitar": "Vínculo contorna fronteira entre módulos",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-03/registro.md"
+    },
+    {
+      "id": "P08-04",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-04.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-03"
+      ],
+      "saida_concreta": "Consulta e linha de movimentações",
+      "passos": [
+        "Listar por perfil e sigilo",
+        "mostrar detalhes/histórico",
+        "manter ator/origem/destino e instante"
+      ],
+      "cenarios": [
+        "P08-04-C01",
+        "P08-04-C02",
+        "P08-04-C03"
+      ],
+      "falha_a_evitar": "Consulta detalhada expõe registro oculto na listagem",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-04/registro.md"
+    },
+    {
+      "id": "P08-05",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-05.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-04"
+      ],
+      "saida_concreta": "Transição aberto -> em análise",
+      "passos": [
+        "Validar ator e versão esperada",
+        "gravar estado e histórico atomicamente",
+        "recusar transição fora da tabela"
+      ],
+      "cenarios": [
+        "P08-05-C01",
+        "P08-05-C02",
+        "P08-05-C03"
+      ],
+      "falha_a_evitar": "Gravar histórico e estado em operações divergentes",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-05/registro.md"
+    },
+    {
+      "id": "P08-06",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-06.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-05"
+      ],
+      "saida_concreta": "Encerramento com resultado",
+      "passos": [
+        "Exigir resultado e versão vigente",
+        "tornar repetição segura",
+        "preservar encerramento para consulta"
+      ],
+      "cenarios": [
+        "P08-06-C01",
+        "P08-06-C02",
+        "P08-06-C03"
+      ],
+      "falha_a_evitar": "Segunda pessoa altera encerramento confirmado",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-06/registro.md"
+    },
+    {
+      "id": "P08-07",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-07.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-06"
+      ],
+      "saida_concreta": "Regressão SQL do fluxo",
+      "passos": [
+        "Executar sucesso/negativo/retry",
+        "disputar versão em duas sessões",
+        "conferir reload/restart e transação"
+      ],
+      "cenarios": [
+        "P08-07-C01",
+        "P08-07-C02",
+        "P08-07-C03",
+        "P08-07-C04"
+      ],
+      "falha_a_evitar": "Teste em memória substitui concorrência SQL",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-07/registro.md"
+    },
+    {
+      "id": "P08-08",
+      "fase": "P08",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "flow",
+      "documento": "docs/execucao/entregas/P08-08.md",
+      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P08-07"
+      ],
+      "saida_concreta": "Ficha G-FLOW do fluxo fixo",
+      "passos": [
+        "Demonstrar abertura/anexo/tramitação/conclusão",
+        "mostrar histórico e negativa",
+        "declarar recursos excluídos"
+      ],
+      "cenarios": [
+        "P08-08-C01",
+        "P08-08-C02",
+        "P08-08-C03"
+      ],
+      "falha_a_evitar": "Piloto anunciado como Workflow profissional",
+      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
+      "gate": "G-FLOW",
+      "registro_previsto": "evidencias/execucao/P08-08/registro.md"
+    },
+    {
+      "id": "P09-01",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-01.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P03-GATE",
+        "P05-GATE",
+        "P06-GATE",
+        "P07-GATE",
+        "P08-GATE"
+      ],
+      "saida_concreta": "Manifesto único do candidato",
+      "passos": [
+        "Relacionar commit/arquivos/config",
+        "associar cenário ao relatório",
+        "registrar resultado e ressalvas por módulo"
+      ],
+      "cenarios": [
+        "P09-01-C01",
+        "P09-01-C02",
+        "P09-01-C03"
+      ],
+      "falha_a_evitar": "Relatório de um módulo certifica pacote inteiro",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-01/registro.md"
+    },
+    {
+      "id": "P09-02",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-02.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-01"
+      ],
+      "saida_concreta": "Jornada site -> canal/registro QA",
+      "passos": [
+        "Usar base e canal escolhidos",
+        "abrir fluxo a partir da página",
+        "conferir resultado efetivo quando servidor existir"
+      ],
+      "cenarios": [
+        "P09-02-C01",
+        "P09-02-C02",
+        "P09-02-C03"
+      ],
+      "falha_a_evitar": "Canal alternativo mascara perda silenciosa do formulário",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-02/registro.md"
+    },
+    {
+      "id": "P09-03",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-03.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-02"
+      ],
+      "saida_concreta": "Jornada CRM com consumidores A/B",
+      "passos": [
+        "Logar nos perfis",
+        "cadastrar/interagir/tarefar",
+        "conferir negativa/cadastro único/contrato"
+      ],
+      "cenarios": [
+        "P09-03-C01",
+        "P09-03-C02",
+        "P09-03-C03"
+      ],
+      "falha_a_evitar": "Só usuário admin serve como homologação",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-03/registro.md"
+    },
+    {
+      "id": "P09-04",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-04.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-03"
+      ],
+      "saida_concreta": "Jornada Flow + GED integrada",
+      "passos": [
+        "Abrir protocolo e anexar documento",
+        "tramitar e concluir",
+        "tentar consultar/baixar de B"
+      ],
+      "cenarios": [
+        "P09-04-C01",
+        "P09-04-C02",
+        "P09-04-C03"
+      ],
+      "falha_a_evitar": "Composição amplia permissão concedida pelo GED",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-04/registro.md"
+    },
+    {
+      "id": "P09-05",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-05.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-04"
+      ],
+      "saida_concreta": "Ensaio de atualização e retorno",
+      "passos": [
+        "Migrar snapshot sintético anterior",
+        "comparar IDs/contagens/invariantes",
+        "executar caminho de recuperação escolhido"
+      ],
+      "cenarios": [
+        "P09-05-C01",
+        "P09-05-C02",
+        "P09-05-C03"
+      ],
+      "falha_a_evitar": "Downgrade destrutivo usado sem recuperar dados",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-05/registro.md"
+    },
+    {
+      "id": "P09-06",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-06.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-05"
+      ],
+      "saida_concreta": "Ensaio restore e incidente QA",
+      "passos": [
+        "Restaurar banco/arquivo/chave em destino separado",
+        "iniciar candidato restaurado",
+        "emitir diagnóstico sanitizado"
+      ],
+      "cenarios": [
+        "P09-06-C01",
+        "P09-06-C02",
+        "P09-06-C03"
+      ],
+      "falha_a_evitar": "Backup íntegro sem aplicação iniciar é dado como suficiente",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-06/registro.md"
+    },
+    {
+      "id": "P09-07",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-07.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-06"
+      ],
+      "saida_concreta": "Manual e ficha de aceite preparada",
+      "passos": [
+        "Registrar escopo/responsáveis/config",
+        "instruir operação/retorno",
+        "criar campos de aceite do usuário real"
+      ],
+      "cenarios": [
+        "P09-07-C01",
+        "P09-07-C02",
+        "P09-07-C03"
+      ],
+      "falha_a_evitar": "Ficha preparada confundida com aceite obtido",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-07/registro.md"
+    },
+    {
+      "id": "P09-08",
+      "fase": "P09",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "release",
+      "documento": "docs/execucao/entregas/P09-08.md",
+      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "fontes": [
+        "F07",
+        "F08",
+        "F18",
+        "F20",
+        "F22",
+        "F25",
+        "F26"
+      ],
+      "dependencias": [
+        "P09-07"
+      ],
+      "saida_concreta": "Fechamento do ciclo e próximo backlog",
+      "passos": [
+        "Reconciliar resultados e esforço",
+        "listar blocos que passaram e faltantes",
+        "registrar candidato e próximas prioridades"
+      ],
+      "cenarios": [
+        "P09-08-C01",
+        "P09-08-C02",
+        "P09-08-C03"
+      ],
+      "falha_a_evitar": "Fim do orçamento tratado como produto completo",
+      "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
+      "gate": "G-RC",
+      "registro_previsto": "evidencias/execucao/P09-08/registro.md"
+    },
+    {
+      "id": "P10-01",
+      "fase": "P10",
+      "horas": 4,
+      "trilha": "RES",
+      "status": "planejado",
+      "produto": "reserva",
+      "documento": "docs/execucao/entregas/P10-01.md",
+      "entrada": "Defeito/impedimento comprovado em qualquer fase.",
+      "fontes": [
+        "F02",
+        "F07",
+        "F08",
+        "F25"
+      ],
+      "dependencias": [
+        "defeito comprovado no recorte afetado"
+      ],
+      "saida_concreta": "Registro condicional de correção onboarding",
+      "passos": [
+        "Apontar incidente/caso falho",
+        "consumir horas só após trabalho",
+        "repetir cenário afetado"
+      ],
+      "cenarios": [
+        "P10-01-C01",
+        "P10-01-C02",
+        "P10-01-C03"
+      ],
+      "falha_a_evitar": "Aumento de timeout oculta defeito",
+      "fora_do_escopo": "Não usar reserva para ampliar o contrato; manter registro de consumo real.",
+      "gate": "CONDICIONAL",
+      "registro_previsto": "evidencias/execucao/P10-01/registro.md"
+    },
+    {
+      "id": "P10-02",
+      "fase": "P10",
+      "horas": 4,
+      "trilha": "RES",
+      "status": "planejado",
+      "produto": "reserva",
+      "documento": "docs/execucao/entregas/P10-02.md",
+      "entrada": "Defeito/impedimento comprovado em qualquer fase.",
+      "fontes": [
+        "F02",
+        "F07",
+        "F08",
+        "F25"
+      ],
+      "dependencias": [
+        "defeito comprovado no recorte afetado"
+      ],
+      "saida_concreta": "Registro condicional de correção SQL/tenant",
+      "passos": [
+        "Isolar caso/fixture/ambiente",
+        "corrigir causa no recorte",
+        "provar A/B e preservar snapshot"
+      ],
+      "cenarios": [
+        "P10-02-C01",
+        "P10-02-C02",
+        "P10-02-C03"
+      ],
+      "falha_a_evitar": "Retirar teste de segurança para caber no prazo",
+      "fora_do_escopo": "Não usar reserva para ampliar o contrato; manter registro de consumo real.",
+      "gate": "CONDICIONAL",
+      "registro_previsto": "evidencias/execucao/P10-02/registro.md"
+    },
+    {
+      "id": "P10-03",
+      "fase": "P10",
+      "horas": 4,
+      "trilha": "RES",
+      "status": "planejado",
+      "produto": "reserva",
+      "documento": "docs/execucao/entregas/P10-03.md",
+      "entrada": "Defeito/impedimento comprovado em qualquer fase.",
+      "fontes": [
+        "F02",
+        "F07",
+        "F08",
+        "F25"
+      ],
+      "dependencias": [
+        "defeito comprovado no recorte afetado"
+      ],
+      "saida_concreta": "Registro condicional de desacoplamento",
+      "passos": [
+        "Identificar hard-code/regra copiada",
+        "ajustar contrato e config",
+        "repetir consumidores A/B"
+      ],
+      "cenarios": [
+        "P10-03-C01",
+        "P10-03-C02",
+        "P10-03-C03"
+      ],
+      "falha_a_evitar": "Fork por cliente vira solução de reserva",
+      "fora_do_escopo": "Não usar reserva para ampliar o contrato; manter registro de consumo real.",
+      "gate": "CONDICIONAL",
+      "registro_previsto": "evidencias/execucao/P10-03/registro.md"
+    },
+    {
+      "id": "P10-04",
+      "fase": "P10",
+      "horas": 4,
+      "trilha": "RES",
+      "status": "planejado",
+      "produto": "reserva",
+      "documento": "docs/execucao/entregas/P10-04.md",
+      "entrada": "Defeito/impedimento comprovado em qualquer fase.",
+      "fontes": [
+        "F02",
+        "F07",
+        "F08",
+        "F25"
+      ],
+      "dependencias": [
+        "defeito comprovado no recorte afetado"
+      ],
+      "saida_concreta": "Registro condicional de recuperação/storage",
+      "passos": [
+        "Diagnosticar binário/metadado/chave/ambiente",
+        "corrigir mínimo",
+        "repetir restore/download com hash"
+      ],
+      "cenarios": [
+        "P10-04-C01",
+        "P10-04-C02",
+        "P10-04-C03"
+      ],
+      "falha_a_evitar": "Trocar provedor por inferência sem homologação",
+      "fora_do_escopo": "Não usar reserva para ampliar o contrato; manter registro de consumo real.",
+      "gate": "CONDICIONAL",
+      "registro_previsto": "evidencias/execucao/P10-04/registro.md"
+    },
+    {
+      "id": "P10-05",
+      "fase": "P10",
+      "horas": 4,
+      "trilha": "RES",
+      "status": "planejado",
+      "produto": "reserva",
+      "documento": "docs/execucao/entregas/P10-05.md",
+      "entrada": "Defeito/impedimento comprovado em qualquer fase.",
+      "fontes": [
+        "F02",
+        "F07",
+        "F08",
+        "F25"
+      ],
+      "dependencias": [
+        "defeito comprovado no recorte afetado"
+      ],
+      "saida_concreta": "Registro condicional de rodada adicional",
+      "passos": [
+        "Selecionar casos afetados por correção",
+        "repetir e comparar",
+        "registrar aceite pendente e reserva restante"
+      ],
+      "cenarios": [
+        "P10-05-C01",
+        "P10-05-C02",
+        "P10-05-C03"
+      ],
+      "falha_a_evitar": "Sobra de hora vira nova funcionalidade sem escopo",
+      "fora_do_escopo": "Não usar reserva para ampliar o contrato; manter registro de consumo real.",
+      "gate": "CONDICIONAL",
+      "registro_previsto": "evidencias/execucao/P10-05/registro.md"
+    }
+  ]
+}

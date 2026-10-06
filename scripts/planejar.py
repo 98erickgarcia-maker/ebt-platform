@@ -525,6 +525,8 @@ def build_pdf(tasks):
         title='EBT Platform - Primeiras 200 Horas',author='EBT Enterprise').build(story,onFirstPage=page,onLaterPages=page)
 
 def main():
+    if (ROOT/'planejamento/manifesto_organizacao.json').exists():
+        raise SystemExit('Baseline histórica preservada. Use organizar_projeto.py para a organização atual; não recrie o orçamento/status por este gerador inicial.')
     tasks=build_tasks()
     inventory,evidence,snapshot=collect()
     ref=DOCS/'referencias/EBT_Planejamento_Codigo_Plataforma.pdf'

@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     data=json.loads((ROOT/'planejamento/backlog_200_horas.json').read_text(encoding='utf-8'))
     items=data['itens']; phases=data['fases']; ids=[x['id'] for x in items]
+    permitted={'planejado','em_execucao','em_verificacao','demonstrado_qa','homologado_usuario','liberado','bloqueado'}
     errors=[]
     def check(ok,message):
         if not ok: errors.append(message)
@@ -19,7 +20,12 @@ def main():
     seen=set();elapsed=0
     for t in items:
         check(1<=t['horas']<=4,f"Timebox fora do limite: {t['id']}")
-        check(t['status']=='planejado',f"Status indevidamente concluído: {t['id']}")
+        check(t['status'] in permitted,f"Estado inválido: {t['id']}")
+        if t['status'] in {'demonstrado_qa','homologado_usuario','liberado'}:
+            proof=t.get('evidencia_execucao')
+            target=(ROOT/proof).resolve() if proof else None
+            check(bool(target) and target.is_relative_to(ROOT/'evidencias/execucao') and target.is_file(),f"Estado exige prova de execução local sanitizada: {t['id']}")
+        if t['status']=='bloqueado': check(bool(t.get('motivo_bloqueio')),f"Bloqueio sem causa: {t['id']}")
         check(t['inicio_h']==elapsed and t['fim_h']==elapsed+t['horas'],f"Janela inconsistente: {t['id']}")
         check(sum(t[x] for x in ['implementacao_h','verificacao_h','registro_h','reserva_h'])==t['horas'],f"Composição inválida: {t['id']}")
         check(bool(t['criterio_aceite']) and bool(t['evidencia_esperada']),f"Aceite/evidência ausente: {t['id']}")
@@ -58,6 +64,12 @@ def main():
         pdf_sha256=hashlib.sha256(pdf.read_bytes()).hexdigest(),
         verification_scope='integridade documental, orçamento, dependências, links e conteúdo PDF; não testa aplicações',
         visual_review='Conferir separadamente as páginas renderizadas antes de entregar o PDF.')
+    old_report=ROOT/'evidencias/verificacao_plano.json'
+    if old_report.exists():
+        previous=json.loads(old_report.read_text(encoding='utf-8'))
+        if previous.get('pdf_sha256')==report['pdf_sha256']:
+            for key in ('visual_review','visual_review_passed','layout_bounds_issues','credential_pattern_hits','files_checked'):
+                if key in previous: report[key]=previous[key]
     (ROOT/'evidencias/verificacao_plano.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if errors: raise SystemExit(1)

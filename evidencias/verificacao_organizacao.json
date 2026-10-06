@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "errors": [],
+  "versao_organizacao": "1.1",
+  "total_h": 200,
+  "entregas_h": 180,
+  "reserva_h": 20,
+  "total_tickets": 77,
+  "total_cenarios": 234,
+  "casos_nao_executados": 234,
+  "total_fases": 10,
+  "total_gates": 10,
+  "fichas_individuais": 77,
+  "templates": 8,
+  "markdown_files": 132,
+  "local_links_checked": 980,
+  "generated_files": 130,
+  "hashes_checked": 134,
+  "product_states": {
+    "planejado": 77
+  },
+  "verification_scope": "documentos, orçamento, dependências, fichas, casos e hashes; não verifica funcionamento das aplicações"
+}

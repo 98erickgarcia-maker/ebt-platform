@@ -1,0 +1,242 @@
+{
+  "versao": "1.1",
+  "gates": [
+    {
+      "alias": "P01-GATE",
+      "gate": "G0",
+      "fase": "P01",
+      "dependencias": [],
+      "tickets": [
+        "P01-01",
+        "P01-02",
+        "P01-03",
+        "P01-04",
+        "P01-05",
+        "P01-06"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Mapa de fontes congeladas e primeiro fluxo escolhido",
+      "reserva": false
+    },
+    {
+      "alias": "P02-GATE",
+      "gate": "G1",
+      "fase": "P02",
+      "dependencias": [
+        "P01"
+      ],
+      "tickets": [
+        "P02-01",
+        "P02-02",
+        "P02-03",
+        "P02-04",
+        "P02-05",
+        "P02-06",
+        "P02-07",
+        "P02-08"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Ambiente EBT isolado e verificações automatizadas",
+      "reserva": false
+    },
+    {
+      "alias": "P03-GATE",
+      "gate": "G-SITE",
+      "fase": "P03",
+      "dependencias": [
+        "P01",
+        "P02"
+      ],
+      "tickets": [
+        "P03-01",
+        "P03-02",
+        "P03-03",
+        "P03-04",
+        "P03-05",
+        "P03-06"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Pacote de site pronto para demonstração e implantação delimitada",
+      "reserva": false
+    },
+    {
+      "alias": "P04-GATE",
+      "gate": "G-SEG",
+      "fase": "P04",
+      "dependencias": [
+        "P02"
+      ],
+      "tickets": [
+        "P04-01",
+        "P04-02",
+        "P04-03",
+        "P04-04",
+        "P04-05",
+        "P04-06",
+        "P04-07",
+        "P04-08",
+        "P04-09",
+        "P04-10",
+        "P04-11",
+        "P04-12"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Base segura para primeiro CRM em dois contextos sintéticos",
+      "reserva": false
+    },
+    {
+      "alias": "P05-GATE",
+      "gate": "G-CRM",
+      "fase": "P05",
+      "dependencias": [
+        "P04"
+      ],
+      "tickets": [
+        "P05-01",
+        "P05-02",
+        "P05-03",
+        "P05-04",
+        "P05-05",
+        "P05-06",
+        "P05-07",
+        "P05-08",
+        "P05-09",
+        "P05-10"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "CRM demonstrável com cadastro único e próxima ação",
+      "reserva": false
+    },
+    {
+      "alias": "P06-GATE",
+      "gate": "G-GED",
+      "fase": "P06",
+      "dependencias": [
+        "P04",
+        "P05"
+      ],
+      "tickets": [
+        "P06-01",
+        "P06-02",
+        "P06-03",
+        "P06-04",
+        "P06-05",
+        "P06-06",
+        "P06-07",
+        "P06-08"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Um fluxo de documento com versão, permissão e histórico",
+      "reserva": false
+    },
+    {
+      "alias": "P07-GATE",
+      "gate": "G-TASK",
+      "fase": "P07",
+      "dependencias": [
+        "P05",
+        "P06"
+      ],
+      "tickets": [
+        "P07-01",
+        "P07-02",
+        "P07-03",
+        "P07-04",
+        "P07-05",
+        "P07-06"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Pendências internas com responsável e histórico",
+      "reserva": false
+    },
+    {
+      "alias": "P08-GATE",
+      "gate": "G-FLOW",
+      "fase": "P08",
+      "dependencias": [
+        "P04",
+        "P06",
+        "P07"
+      ],
+      "tickets": [
+        "P08-01",
+        "P08-02",
+        "P08-03",
+        "P08-04",
+        "P08-05",
+        "P08-06",
+        "P08-07",
+        "P08-08"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Flow piloto com um tipo de protocolo e um fluxo fixo",
+      "reserva": false
+    },
+    {
+      "alias": "P09-GATE",
+      "gate": "G-RC",
+      "fase": "P09",
+      "dependencias": [
+        "P03",
+        "P05",
+        "P06",
+        "P07",
+        "P08"
+      ],
+      "tickets": [
+        "P09-01",
+        "P09-02",
+        "P09-03",
+        "P09-04",
+        "P09-05",
+        "P09-06",
+        "P09-07",
+        "P09-08"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Release candidato do recorte, sem alegar produção",
+      "reserva": false
+    },
+    {
+      "alias": "P10-GATE",
+      "gate": "CONDICIONAL",
+      "fase": "P10",
+      "dependencias": [
+        "P01"
+      ],
+      "tickets": [
+        "P10-01",
+        "P10-02",
+        "P10-03",
+        "P10-04",
+        "P10-05"
+      ],
+      "estado": "pendente",
+      "evidencia": null,
+      "criterio": "Capacidade para corrigir e homologar sem aumentar escopo",
+      "reserva": true
+    }
+  ],
+  "ordem_padrao": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P09",
+    "P10"
+  ],
+  "regra": "Grafo funcional não pressupõe equipe paralela; janelas são esforço."
+}

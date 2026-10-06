@@ -7,13 +7,13 @@
   "total_itens": 77,
   "entregas": 72,
   "reservas": 5,
-  "local_links": 12,
-  "pdf_pages": 18,
-  "pdf_sha256": "c4b52db767ca6ed57ace0ffa5b67902b9beaae5943494669c468bc44e9ebe186",
+  "local_links": 156,
+  "pdf_pages": 40,
+  "pdf_sha256": "31eb859ae71989765fc7bff93fc2c866d82bf405ccc5f736cc98528008bd7b35",
   "verification_scope": "integridade documental, orçamento, dependências, links e conteúdo PDF; não testa aplicações",
-  "visual_review": "18 páginas renderizadas e inspecionadas; sem corte, sobreposição, página vazia ou tabela fora dos limites.",
+  "visual_review": "40 páginas renderizadas e inspecionadas; sem corte, sobreposição, página vazia ou tabela fora dos limites.",
   "visual_review_passed": true,
   "layout_bounds_issues": [],
   "credential_pattern_hits": [],
-  "files_checked": 17
+  "files_checked": 156
 }

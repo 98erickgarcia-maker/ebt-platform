@@ -1,0 +1,25 @@
+{
+  "versao": "1.1",
+  "total_h": 200,
+  "entregas_h": 180,
+  "reserva_h": 20,
+  "unidade": "horas-pessoa",
+  "estados_permitidos": [
+    "planejado",
+    "em_execucao",
+    "em_verificacao",
+    "demonstrado_qa",
+    "homologado_usuario",
+    "liberado",
+    "bloqueado"
+  ],
+  "estados_exigem_evidencia": [
+    "demonstrado_qa",
+    "homologado_usuario",
+    "liberado"
+  ],
+  "source": "planejamento/backlog_200_horas.json",
+  "organizar_nao_executa_modulos": true,
+  "pessoas_responsaveis_confirmadas": false,
+  "implantacao_producao_confirmada": false
+}
