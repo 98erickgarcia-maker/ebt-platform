@@ -9,6 +9,9 @@
 - [Índice geral de todos os documentos](docs/INDICE_GERAL.md).
 - [Plano executivo e primeiras entregas](docs/PLANO_200_HORAS.md).
 - [Roteiro para executar e continuar](docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md).
+- [17 pacotes maiores para executar pelo Codex](docs/execucao/PACOTES_CODEX.md).
+- [Ciclo de implementação, revisão e continuidade](docs/execucao/EXECUCAO_PELO_CODEX.md).
+- [Revisão automatizada local e online](docs/qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md).
 - [Dependências e gates](docs/execucao/DEPENDENCIAS.md).
 - [Backlog resumido](docs/BACKLOG_200_HORAS.md).
 - [PDF consolidado com manual detalhado](output/pdf/EBT_Plano_Primeiras_200_Horas.pdf).
@@ -36,7 +39,7 @@
 | docs/execucao/entregas | 77 fichas individuais com passos e cenários específicos |
 | docs/qualidade | Matriz de casos e níveis de evidência |
 | docs/operacao | Configuração, migration, restore, release, acesso e incidente |
-| templates | Oito registros reutilizáveis, sem resultados preenchidos |
+| templates | Nove registros reutilizáveis, incluindo fechamento de pacote Codex |
 | planejamento | Fonte do orçamento/status e catálogos estruturados derivados |
 | evidencias | Provas históricas da revisão e verificações documentais atuais |
 | output/pdf | Documento principal para leitura/compartilhamento |
@@ -54,5 +57,7 @@ A verificação estrutural usa Python 3.12+ e sua biblioteca padrão. A conferê
 ## Fonte de verdade e edição
 
 Horas/IDs/status: planejamento/backlog_200_horas.json. Conteúdo específico das fichas: scripts/catalogo_organizacao.py. Documentos de organização: scripts/conteudo_organizacao.py. Gerar com scripts/organizar_projeto.py; o manifesto detecta alterações manuais em gerados e impede sobrescrita silenciosa. Atualizações planejadas devem ser revisadas pelo diff.
+
+Organização 1.2: 17 pacotes de 8–12h estimadas, derivados das mesmas 72 tarefas e sem acréscimo ao orçamento. Catálogo/método em scripts/pacotes_codex.py e planejamento/pacotes_codex.json. Revisão do conjunto, verificações locais e homologação final fazem parte da capacidade prevista. O PDF permanece na versão 1.1, com 40 páginas; o complemento 1.2 está nos documentos de pacotes e execução pelo Codex.
 
 O gerador histórico scripts/planejar.py fica protegido para não apagar a organização posterior. Fontes CASST/Vikings/EBT/CRP/Nutrição permanecem nos repositórios originais. Configuração candidata não é módulo implementado; prova histórica não certifica extração futura. Reuso comprovado recebe conferência focal e nova fronteira de segurança/schema/contrato/storage recebe validação maior.

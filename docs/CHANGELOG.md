@@ -1,5 +1,9 @@
 # Registro de versões do planejamento
 
+## 1.2 | 06/10/2026
+
+Decisão do usuário: pacotes maiores e revisão mais profunda mantendo 200h. As mesmas 72 entregas foram agrupadas em 17 pacotes de 8–12h, com saída integrada, foco de revisão, dependências e continuidade. Nono template registra fechamento de pacote. Desenvolvimento/verificação local primeiro e homologação online posterior, sem dispensar gates ou prova de fronteira. Orçamento, status, critérios e PDF 1.1 preservados; nenhum módulo implementado nesta revisão.
+
 ## 1.1 | 06/10/2026
 
 Organização completa: índice, escopo, responsabilidades propostas, decisões/riscos, quatro pacotes e candidato, arquitetura/contratos/dados/permissões, quatro ADRs, dez fases, 77 fichas, cenários rastreáveis, gates, seis temas de continuidade/operação e oito templates. Horas e status de produto preservados. Verificação documental automatizada e proteção contra sobrescrita de gerados. Manual detalhado acrescentado ao PDF principal; versão anterior preservada no histórico.

@@ -1,23 +1,23 @@
 {
-  "versao": "1.1",
+  "versao": "1.2",
   "origem": "geração documental a partir do backlog existente",
   "hash_mode": "SHA-256 de texto UTF-8 com quebras LF; binários preservados",
   "arquivos_gerados": [
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
-      "sha256": "8343eabe59d951ec7d39f0b19149180f15bdbbf2afd6c04eef732e40f0b8bb83"
+      "sha256": "bdc96be27769e535e50f856b54ef9d1617ce2b630fa1ddd22611c3dfbb65a09a"
     },
     {
       "path": "README.md",
-      "sha256": "4c56ce71abcc6d9c797e1857d6e38e3da4939d23112f76210677ff30360ede96"
+      "sha256": "f1fd0fb75c56651fb7ba25946f936451b8939103d4cd861aefda42da79c020a7"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "sha256": "8e4e5b0735aa3deeb36b56171e6da5f09db9dbd8b1b75b32d18a6fe433cb1681"
+      "sha256": "77dd5195075b7f1cffe3b5d7ec1cc53f599a67f48f0d84d1ce20b8e91abbff10"
     },
     {
       "path": "docs/INDICE_GERAL.md",
-      "sha256": "b22a4b2ae4a523e6c3b9035afa76fe638a656338ed10fb76fae6b418d4d7e152"
+      "sha256": "009310df13d31ad22a1e4ac22a0025e0f6fd06138164c2f78545218212727125"
     },
     {
       "path": "docs/arquitetura/ARQUITETURA_E_FRONTEIRAS.md",
@@ -53,11 +53,19 @@
     },
     {
       "path": "docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md",
-      "sha256": "2e9700f446e04b7bdef17d270c13a7478f0b25cd99765351f5a1b40b402462c9"
+      "sha256": "d49ee6eeb4f6f9145d3485d5bfcbb69fa4849de9dc9abda435e27964788677e8"
     },
     {
       "path": "docs/execucao/DEPENDENCIAS.md",
       "sha256": "641327f153802ef84cf00ab237ff525c2614d0b98c269c62548d938c83918440"
+    },
+    {
+      "path": "docs/execucao/EXECUCAO_PELO_CODEX.md",
+      "sha256": "b1c2389e8f2a7f86aa53e41aa47ccddc8b9e38b7004dc1f14b547c5efde2504e"
+    },
+    {
+      "path": "docs/execucao/PACOTES_CODEX.md",
+      "sha256": "fb4f7f096dba25a752deb1a84170d1c9d4f95d71584b41fe7b761c9afaa12878"
     },
     {
       "path": "docs/execucao/entregas/P01-01.md",
@@ -369,43 +377,111 @@
     },
     {
       "path": "docs/execucao/fases/P01.md",
-      "sha256": "657b69439f4ef52e7f198e676b20f7de3e9c107694327e8cf5f7331159473bd3"
+      "sha256": "b4274f5ce0e9ffd513c11d6ac088272559a59b6060f6b4430a6396cdf94952c0"
     },
     {
       "path": "docs/execucao/fases/P02.md",
-      "sha256": "c4aa86bedb3d9506fcd34a3aa376c56187878aa69dc593fd87388db3ebc6da49"
+      "sha256": "7edf5b0b0d56fd14cf2c4091994c1ea9f1b58a8cd38e26507e712cff374b24ef"
     },
     {
       "path": "docs/execucao/fases/P03.md",
-      "sha256": "20945a5d1392078178d51ce7a9de6c5b3ab25586cae9a99e19aab34295a0f87f"
+      "sha256": "c97d33c618f7595bc92ba72661e979e695648739533c854fbf5ccaf774604ff9"
     },
     {
       "path": "docs/execucao/fases/P04.md",
-      "sha256": "7a541b34978bdf4fa3832a088ad14896f748583ca1960d8fc17835fefd09964b"
+      "sha256": "ba8a6f5e9dc40c38b1c137c7cac50bc3e2b0dcb993e331b383cbc893d8228b99"
     },
     {
       "path": "docs/execucao/fases/P05.md",
-      "sha256": "ce2877b6fcb21cf3423fe68e15661abb4d5f80fb97b3d5a811ce179e064829b7"
+      "sha256": "424e572f28a68c2279d0004eddb40d0164667c4270fdf3abe9f642151f8c60ec"
     },
     {
       "path": "docs/execucao/fases/P06.md",
-      "sha256": "6f0afefc3dd9e6cb24c373722632366fe71ef7cb5fbb48f3d20ab11f3302c8b9"
+      "sha256": "c8066d3bbe55b51364ecdf7b164d45e8fcd5d2d229ecf37e10fe1f325f30c842"
     },
     {
       "path": "docs/execucao/fases/P07.md",
-      "sha256": "dcc528dc1d63362893d2d16211012346e22698c93e29031f2fd0a16f868cfb00"
+      "sha256": "101b8ef975289c224b59a7e50f9b14383941ba7b742c414c603edbd1212a9e7a"
     },
     {
       "path": "docs/execucao/fases/P08.md",
-      "sha256": "bfa730d750b2d375de1d4e8ef069657ae0ab4f2dd01023bec22dfe8c856d76a6"
+      "sha256": "7ac1f7f39a57ee0b47d57bb39b396e1f9b4267369e3cc7b529717251515a0b00"
     },
     {
       "path": "docs/execucao/fases/P09.md",
-      "sha256": "14eaafc05a5b2d39f7be2061a76e3b8433bb040eb9c316d9dc642fd29cbec61a"
+      "sha256": "42b3dde8f52d4d33e0de5ecc83f107cba59c276ce8af0444782033bd52eb0f36"
     },
     {
       "path": "docs/execucao/fases/P10.md",
       "sha256": "55c598661fe5d12f115ceb72362436c0c618bdfb184a1aeafd197246ab92a025"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-01.md",
+      "sha256": "c6adb1d898760754df4b231b50a1df505be63a343095363b38319c1e717bbc68"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-02.md",
+      "sha256": "0513fb7d76cd02d7cc1f45051676eed7a9de0d5ba20df8fcd8ede909fa97760d"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-03.md",
+      "sha256": "667234c7dda441fd86df1b4919aa15245e111ac17ec00aba0d49ec86b9e1b86d"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-04.md",
+      "sha256": "c56e3a7ff3571f97e5a08efa7c21e6b1bc924f2d6adbdaa1738f87ab563a8c9d"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-05.md",
+      "sha256": "838e9f664d498296df6b30e99698b4c6c012f8e1f447f864fe84601f63677e7a"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-06.md",
+      "sha256": "7f4f5743cc04957c529c9a2577f2c94c46522ef498b0d10e39b856602916beaa"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-07.md",
+      "sha256": "0375d287c3cb9d2f05aae8cbeba8106c18262209a579c0be0a20ed22d401de1a"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-08.md",
+      "sha256": "0a33cd43bc2a239b7ce5adde4cc95a7381ac27f091ae0c306d3bc1293dab424e"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-09.md",
+      "sha256": "62da0ecff684d46a12500961771f0973b0b979eec9d699a88998804ca3567151"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-10.md",
+      "sha256": "7c9edf6d53271172b31aa2d8c1d3120648c632c6679e655cf5aa998ca084adff"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-11.md",
+      "sha256": "f9b4f5fd848cc6633302e23d3a132e7f742e6dc5a63762218a9e8b8b0662186f"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-12.md",
+      "sha256": "7eef3d8b01d8db0973abeb5263fbbfc4663511611e52aff91ea1c3a501fb32a6"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-13.md",
+      "sha256": "4783f10811d8277bd93c5d7930739ea3f5e8744c783bcd83a6e716d4033c6e07"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-14.md",
+      "sha256": "50db8a066f3191dbdf465cce19889c1285ae86d2f25ef9f383542320ffa06748"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-15.md",
+      "sha256": "8a0348726c31131af7c9559bc01286119a645cbcca3afecef90b6c2d2ba512b8"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-16.md",
+      "sha256": "1982cfafa551f13acbb3e548629650aebe5b743ce1e7fd53957cfae03dfd1b8d"
+    },
+    {
+      "path": "docs/execucao/pacotes/PAC-17.md",
+      "sha256": "255ab8a4efc6a20094a2983b65da3490944f7f750a297ee5b1642079da1875f1"
     },
     {
       "path": "docs/gestao/DECISOES_PENDENTES.md",
@@ -472,24 +548,32 @@
       "sha256": "4f705bfacdcd2c66806fb0b574f67fc12490030503d5906434889a8771a4a261"
     },
     {
+      "path": "docs/qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md",
+      "sha256": "30124c858be99f89ad9c2a5328e3da22e62923cf6f8c687cddaeaca6b1d04ca1"
+    },
+    {
       "path": "evidencias/execucao/README.md",
       "sha256": "439bc4215cf06b4dcb697c2013e01e9ad867a229ce6398c0a1270b4b3b1e6b0a"
     },
     {
       "path": "planejamento/cenarios_verificacao.json",
-      "sha256": "29bbdf0fa156010cac8dae05f54471b9378088ce2624a0ded5ea42df16c6a45d"
+      "sha256": "453b8566a76800e52895555e25c5bd7a3a4117246b2fc2afb9710d1efbf136b0"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
-      "sha256": "89c796a74016c0f65b3893db4d4886451f81a1d5eb7e4cb51635a71d68ba70d1"
+      "sha256": "3eac1526fb0691659ef1fc11c668a75737a6e22be7e5d17fd08e14b740d3cd34"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
-      "sha256": "f176719717e101fa0423a29435fbda9862db5034484cce55f441d742a85a797c"
+      "sha256": "e8e8e8827272e26fe3258c64d7f4c80489079a8bebc73d1e83206290152850a8"
     },
     {
       "path": "planejamento/governanca.json",
-      "sha256": "b0740af31a8c7686d5359bb5b47a23240fb108cb962f987ae7b5b5c64a13fd95"
+      "sha256": "db63b9f923e35cf829d2bbb022e36fb857aa5b5adb2071438c0d125775bdae1d"
+    },
+    {
+      "path": "planejamento/pacotes_codex.json",
+      "sha256": "dc93ff5e421b517cdf6fce5df32d1e745870e9370be3c34e798445b9c56e06c3"
     },
     {
       "path": "templates/ACEITE_PILOTO.md",
@@ -520,6 +604,10 @@
       "sha256": "9ec7b782da135a234311c3041f87528a8205397016a81e4cb3c539fde25423d8"
     },
     {
+      "path": "templates/PACOTE_CODEX.md",
+      "sha256": "d1fc48313199aaa04b99438f2a6ed8fbf20561febd617e8d8f92e30cd447d468"
+    },
+    {
       "path": "templates/RELEASE.md",
       "sha256": "f922febec9dd1d723ccdc4be77975934feb24884637bed88c5bdade7fcab452f"
     }
@@ -539,11 +627,16 @@
     },
     {
       "path": "scripts/organizar_projeto.py",
-      "sha256": "6f3466ddb435dffa51c6254c1e04a2b11baf00f6598a1ee78cb394c38d1cf991"
+      "sha256": "82d12cb3ceea8bfce45c58da21053296f9e7edb20ee04f7aca3d6aa651eaa28b"
+    },
+    {
+      "path": "scripts/pacotes_codex.py",
+      "sha256": "332ff799dd3a5b258d8b9dfe93fb670f4a3199e87b5f540e1cf110052f3143e6"
     }
   ],
   "total_tickets": 77,
   "total_cenarios": 234,
+  "total_pacotes": 17,
   "total_h": 200,
   "entregas_h": 180,
   "reserva_h": 20

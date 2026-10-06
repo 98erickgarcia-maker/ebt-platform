@@ -39,3 +39,7 @@ Os comandos verificam documentos e dados do planejamento; não constroem, testam
 ## Troca de chat ou colaborador
 
 Enviar caminho/repositório, commit, ticket ativo, gate, fonte congelada, o que passou, falha/bloqueio, prova, horas reais, reserva consumida e próximo passo. Consulte CONTINUAR_EM_OUTRO_CHAT.md. Ler apenas o README não substitui a ficha do ticket e as instruções da fonte.
+
+## Pacotes maiores, decisão 1.2
+
+Para execução pelo Codex, acompanhar [17 pacotes](PACOTES_CODEX.md) e aplicar o [ciclo de revisão e continuidade](EXECUCAO_PELO_CODEX.md). Os mesmos 72 tickets continuam sendo checkpoints internos; as 180h incluem revisão/verificação/registro e a reserva permanece 20h. Começar pelo PAC-01 quando a implementação for solicitada.

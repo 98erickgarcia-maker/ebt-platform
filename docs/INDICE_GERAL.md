@@ -1,6 +1,6 @@
 # Índice geral do projeto EBT Platform
 
-Versão de organização 1.1. Navegação completa para consulta, execução futura e continuidade. 72 entregas + cinco reservas, 200h; nenhum módulo de produto declarado executado.
+Versão de organização 1.2. Navegação completa para consulta, execução futura e continuidade. 17 pacotes agrupam 72 entregas + cinco reservas, 200h; nenhum módulo de produto declarado executado. PDF 1.1 preservado; complemento 1.2 nos documentos de execução pelo Codex.
 
 ## Base e orçamento
 
@@ -41,11 +41,14 @@ Versão de organização 1.1. Navegação completa para consulta, execução fut
 
 - [COMO EXECUTAR E CONTINUAR](execucao/COMO_EXECUTAR_E_CONTINUAR.md).
 - [DEPENDENCIAS](execucao/DEPENDENCIAS.md).
+- [PACOTES CODEX](execucao/PACOTES_CODEX.md).
+- [EXECUCAO PELO CODEX](execucao/EXECUCAO_PELO_CODEX.md).
 
 ## Qualidade
 
 - [ESTRATEGIA DE EVIDENCIAS](qualidade/ESTRATEGIA_DE_EVIDENCIAS.md).
 - [MATRIZ CENARIOS](qualidade/MATRIZ_CENARIOS.md).
+- [REVISAO AUTOMATIZADA LOCAL E ONLINE](qualidade/REVISAO_AUTOMATIZADA_LOCAL_E_ONLINE.md).
 
 ## Operação
 
@@ -65,6 +68,27 @@ Versão de organização 1.1. Navegação completa para consulta, execução fut
 - [ACEITE PILOTO](../templates/ACEITE_PILOTO.md).
 - [RELEASE](../templates/RELEASE.md).
 - [ESFORCO](../templates/ESFORCO.md).
+- [PACOTE CODEX](../templates/PACOTE_CODEX.md).
+
+## Pacotes maiores para o Codex
+
+- [PAC-01 | Baseline e contrato do primeiro recorte](execucao/pacotes/PAC-01.md) (12h).
+- [PAC-02 | Estrutura, configuração e dados sintéticos](execucao/pacotes/PAC-02.md) (8h).
+- [PAC-03 | Banco, storage, diagnóstico e CI](execucao/pacotes/PAC-03.md) (8h).
+- [PAC-04 | Site essencial completo](execucao/pacotes/PAC-04.md) (12h).
+- [PAC-05 | Identidade e escopo de tenant](execucao/pacotes/PAC-05.md) (12h).
+- [PAC-06 | SQL, autorização por recurso e cache](execucao/pacotes/PAC-06.md) (12h).
+- [PAC-07 | Auditoria, proteção da sessão e onboarding](execucao/pacotes/PAC-07.md) (12h).
+- [PAC-08 | Cadastro único, busca e paginação](execucao/pacotes/PAC-08.md) (9h).
+- [PAC-09 | Histórico, próxima ação e funil](execucao/pacotes/PAC-09.md) (9h).
+- [PAC-10 | Segundo consumidor, importação e fechamento do CRM](execucao/pacotes/PAC-10.md) (10h).
+- [PAC-11 | Documento privado e acesso autorizado](execucao/pacotes/PAC-11.md) (12h).
+- [PAC-12 | Versões, concorrência e recuperação documental](execucao/pacotes/PAC-12.md) (12h).
+- [PAC-13 | Tarefas vinculadas e prazos](execucao/pacotes/PAC-13.md) (12h).
+- [PAC-14 | Protocolo, numeração e consulta](execucao/pacotes/PAC-14.md) (12h).
+- [PAC-15 | Tramitação e encerramento do Flow](execucao/pacotes/PAC-15.md) (12h).
+- [PAC-16 | Reconciliação e jornadas integradas](execucao/pacotes/PAC-16.md) (8h).
+- [PAC-17 | Migration, restore, operação e candidato](execucao/pacotes/PAC-17.md) (8h).
 
 ## Dez fases e todas as fichas
 
@@ -182,6 +206,7 @@ Versão de organização 1.1. Navegação completa para consulta, execução fut
 - [cenarios_verificacao.json](../planejamento/cenarios_verificacao.json).
 - [gates_e_dependencias.json](../planejamento/gates_e_dependencias.json).
 - [governanca.json](../planejamento/governanca.json).
+- [pacotes_codex.json](../planejamento/pacotes_codex.json).
 - [manifesto_organizacao.json](../planejamento/manifesto_organizacao.json).
 - [inventario_fontes.json](../evidencias/inventario_fontes.json).
 - [github_vikings_snapshot.json](../evidencias/github_vikings_snapshot.json).

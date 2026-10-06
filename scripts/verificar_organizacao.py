@@ -20,6 +20,8 @@ def main():
     gates=load('planejamento/gates_e_dependencias.json')['gates']
     manifest=load('planejamento/manifesto_organizacao.json')
     governance=load('planejamento/governanca.json')
+    package_registry=load('planejamento/pacotes_codex.json')
+    packages=package_registry['pacotes']
     sources={r['id'] for r in load('evidencias/inventario_fontes.json')['referencias']}
     items={t['id']:t for t in baseline['itens']}
     phases={p['id']:p for p in baseline['fases']}
@@ -32,6 +34,37 @@ def main():
     check(sum(t['horas'] for t in items.values() if t['trilha']!='RES')==180,'Entregas alteradas')
     check(sum(t['horas'] for t in items.values() if t['trilha']=='RES')==20,'Reserva alterada')
     check(governance['total_h']==200 and governance['entregas_h']==180 and governance['reserva_h']==20,'Governança diverge das horas')
+    check(package_registry['total_h']==200 and package_registry['entregas_h']==180 and package_registry['reserva_h']==20,'Pacotes alteram orçamento')
+    pack_ids={p['id'] for p in packages}
+    flat=[tid for p in packages for tid in p['tickets']]
+    normal={tid for tid,t in items.items() if t['trilha']!='RES'}
+    check(len(packages)==len(pack_ids)==17,'17 pacotes únicos devem existir')
+    check(len(flat)==len(set(flat))==72 and set(flat)==normal,'Pacotes devem cobrir cada uma das 72 entregas uma vez')
+    check(set(package_registry['reservas'])==set(items)-normal,'Reservas foram removidas ou absorvidas por pacote')
+    check(sum(p['horas'] for p in packages)==180,'Soma dos pacotes difere de 180h')
+    owner={tid:p['id'] for p in packages for tid in p['tickets']}
+    for p in packages:
+        ids=p['tickets']
+        check(all(tid in items for tid in ids),f"Ticket ausente em pacote: {p['id']}")
+        if not all(tid in items for tid in ids): continue
+        phase=phases[p['fase']]
+        check(all(items[tid]['fase']==p['fase'] and items[tid]['trilha']!='RES' for tid in ids),f"Pacote mistura fase/reserva: {p['id']}")
+        check(8<=p['horas']<=12 and p['horas']==sum(items[tid]['horas'] for tid in ids),f"Horas incoerentes: {p['id']}")
+        for field in ['implementacao_h','verificacao_h','registro_h']:
+            check(abs(p[field]-sum(items[tid][field] for tid in ids))<1e-8,f"Composição altera horas: {p['id']}/{field}")
+        external={dep for tid in ids for dep in items[tid]['dependencias'] if dep not in ids}
+        check(set(p['dependencias_tickets_gates'])==external,f"Pacote perdeu dependência: {p['id']}")
+        expected=set()
+        for dep in external:
+            if dep in owner: expected.add(owner[dep])
+            elif dep.endswith('-GATE') and dep[:3] in phases:
+                final=phases[dep[:3]]['tickets'][-1]
+                if final in owner: expected.add(owner[final])
+        expected.discard(p['id'])
+        check(set(p['dependencias_pacotes'])==expected,f"Dependência de pacote incoerente: {p['id']}")
+        check(p['gate_fase']==phase['gate'] and p['fecha_gate_fase']==(phase['tickets'][-1] in ids),f"Gate antecipado/divergente: {p['id']}")
+        check(p['estado']=='planejado' and p['evidencia'] is None,f"Pacote fabrica execução: {p['id']}")
+        check((ROOT/p['documento']).is_file(),f"Ficha de pacote ausente: {p['id']}")
     for d in details:
         t=items[d['id']]
         check(d['horas']==t['horas'] and d['trilha']==t['trilha'] and d['status']==t['status'],f"Metadados divergentes: {d['id']}")
@@ -82,6 +115,7 @@ def main():
             check(resolved.exists(),f"Link quebrado: {rel} -> {path}")
     index=(ROOT/'docs/INDICE_GERAL.md').read_text(encoding='utf-8')
     for d in details: check(d['id'] in index,f"Ficha não indexada: {d['id']}")
+    for p in packages: check(p['id'] in index,f"Pacote não indexado: {p['id']}")
     generated_paths=[x['path'] for x in manifest['arquivos_gerados']]
     check(len(set(generated_paths))==len(generated_paths),'Manifesto repete arquivo')
     for entry in manifest['arquivos_gerados']+manifest['entradas']:
@@ -92,10 +126,11 @@ def main():
     workflow=(ROOT/'.github/workflows/validar-planejamento.yml').read_text(encoding='utf-8')
     check('verificar_organizacao.py --no-write' in workflow,'CI documental ausente')
     check('contents: read' in workflow and 'deploy' not in workflow.lower(),'CI amplia permissão ou implanta produto')
-    report=dict(passed=not errors,errors=errors,versao_organizacao='1.1',
+    report=dict(passed=not errors,errors=errors,versao_organizacao='1.2',
         total_h=200,entregas_h=180,reserva_h=20,total_tickets=77,
         total_cenarios=len(cases),casos_nao_executados=len(cases),total_fases=len(phases),
-        total_gates=len(gates),fichas_individuais=len(details),templates=8,
+        total_gates=len(gates),fichas_individuais=len(details),total_pacotes=len(packages),
+        templates=len(list((ROOT/'templates').glob('*.md'))),
         markdown_files=len(markdown),local_links_checked=links,
         generated_files=len(generated_paths),hashes_checked=len(manifest['arquivos_gerados'])+len(manifest['entradas']),
         product_states=dict(Counter(t['status'] for t in items.values())),

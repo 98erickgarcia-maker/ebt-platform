@@ -1,7 +1,7 @@
 {
   "passed": true,
   "errors": [],
-  "versao_organizacao": "1.1",
+  "versao_organizacao": "1.2",
   "total_h": 200,
   "entregas_h": 180,
   "reserva_h": 20,
@@ -11,11 +11,12 @@
   "total_fases": 10,
   "total_gates": 10,
   "fichas_individuais": 77,
-  "templates": 8,
-  "markdown_files": 132,
-  "local_links_checked": 980,
-  "generated_files": 130,
-  "hashes_checked": 134,
+  "total_pacotes": 17,
+  "templates": 9,
+  "markdown_files": 153,
+  "local_links_checked": 1201,
+  "generated_files": 152,
+  "hashes_checked": 157,
   "product_states": {
     "planejado": 77
   },
