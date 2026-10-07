@@ -63,8 +63,8 @@ public sealed class QaIntegrationTests
             var health = await client.GetAsync("/health");
             Assert.Equal(HttpStatusCode.OK, health.StatusCode);
             var healthBody = await health.Content.ReadAsStringAsync();
-            Assert.Contains(""qaDatabase":"healthy"", healthBody, StringComparison.Ordinal);
-            Assert.Contains(""qaStorage":"healthy"", healthBody, StringComparison.Ordinal);
+            Assert.Contains("\"qaDatabase\":\"healthy\"", healthBody, StringComparison.Ordinal);
+            Assert.Contains("\"qaStorage\":\"healthy\"", healthBody, StringComparison.Ordinal);
             Assert.DoesNotContain(databaseFile, healthBody, StringComparison.OrdinalIgnoreCase);
             Assert.DoesNotContain(storageRoot, healthBody, StringComparison.OrdinalIgnoreCase);
             Assert.DoesNotContain("demo.invalid", healthBody, StringComparison.OrdinalIgnoreCase);

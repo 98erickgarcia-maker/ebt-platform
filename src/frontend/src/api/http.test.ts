@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { ApiError, downloadFile, requestJson } from './http'
+import { downloadFile, requestJson } from './http'
 
 describe('cliente HTTP EBT', () => {
   it('trata 401 sem transformar falha em sucesso', async () => {
@@ -31,12 +31,11 @@ describe('cliente HTTP EBT', () => {
       headers: { 'x-trace-id': 'trace-500' },
     }))
 
-    await expect(requestJson('/save', { method: 'POST' }, fetcher)).rejects.toEqual(
-      expect.objectContaining<ApiError>({
-        status: 500,
-        traceId: 'trace-500',
-      }),
-    )
+    await expect(requestJson('/save', { method: 'POST' }, fetcher)).rejects.toMatchObject({
+      name: 'ApiError',
+      status: 500,
+      traceId: 'trace-500',
+    })
   })
 
   it('recusa download com payload de erro disfarçado de sucesso', async () => {
