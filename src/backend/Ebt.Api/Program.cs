@@ -17,25 +17,23 @@ builder.Services
         "A configuração base da EBT Platform está incompleta.")
     .ValidateOnStart();
 
+builder.Services
+    .AddOptions<QaInfrastructureOptions>()
+    .Bind(builder.Configuration.GetSection(QaInfrastructureOptions.SectionName));
+
 builder.Services.AddSingleton<IEbtConsumerCatalog, SyntheticConsumerCatalog>();
-
-var qaOptions = builder.Configuration
-    .GetSection(QaInfrastructureOptions.SectionName)
-    .Get<QaInfrastructureOptions>() ?? new QaInfrastructureOptions();
-
-if (qaOptions.Enabled)
-{
-    QaInfrastructureGuard.Validate(qaOptions, builder.Environment.EnvironmentName);
-    builder.Services.AddSingleton(qaOptions);
-    builder.Services.AddSingleton<IQaProbeService, QaProbeService>();
-}
+builder.Services.AddSingleton<IQaProbeService>(services =>
+    new QaProbeService(
+        services.GetRequiredService<IOptions<QaInfrastructureOptions>>().Value));
 
 var app = builder.Build();
 var options = app.Services.GetRequiredService<IOptions<EbtPlatformOptions>>().Value;
+var qaOptions = app.Services.GetRequiredService<IOptions<QaInfrastructureOptions>>().Value;
 PrivateConfigurationGuard.Validate(options, Environment.GetEnvironmentVariable);
 
 if (qaOptions.Enabled)
 {
+    QaInfrastructureGuard.Validate(qaOptions, app.Environment.EnvironmentName);
     var qaProbe = app.Services.GetRequiredService<IQaProbeService>();
     await qaProbe.InitializeAsync();
 }
