@@ -35,3 +35,5 @@ Peça uma etapa por vez. Exemplo aqui: “Prepare somente o Pedido 2 para a Emer
 O desenho reduz a dependência de créditos/IA na operação repetitiva ao reutilizar templates, regras, base importada, banco e hospedagem. Não há porcentagem garantida de economia sem comparar a fatura atual; Meta, Microsoft 365, infraestrutura e manutenção continuam no cálculo.
 
 Os resultados e suas versões ficam em evidence/VALIDACAO.json e no workflow. Testes sintéticos aprovados não ativam Microsoft/Meta nem comprovam funcionamento dentro da Emergent. A integração real e o teste controlado são a etapa seguinte. A baseline original de 180h de entregas e 20h de reserva foi preservada.
+
+Validação final do código `8a5bdac`: **45 testes de backend**, incluindo MongoDB real, e **5 testes de interface** aprovados no [CI desta versão](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37696164436). Build e auditoria de dependências também passaram. A documentação posterior preserva os mesmos arquivos de código testados.

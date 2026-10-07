@@ -24,7 +24,7 @@ Deduplicação concorrente e retomada depois de queda; limite mensal não pode s
 - [x] Implementar backend/domain.py (normalização, pontuação, links), service.py (MongoDB, receitas, contatos), router.py (contratos HTTP e autorização), outlook.py (conexão automática, OAuth alternativo, rascunho/envio e reconciliação).
 - [x] Criar frontend/ProspectingArea.jsx e CSS com início, contatos, automações, templates e custos; verificar integração consumidor/produtor por E2E.
 - [x] Acrescentar adaptador install.py, worker com ciclo durável, conversor CSV de dados oficiais e instruções Emergent.
-- [x] Validar backend (36 aprovados, 1 MongoDB real ignorado localmente), Playwright (4 aprovados), build, dependências de produção e prompts. Registrar em evidence/VALIDACAO.json.
-- [ ] Publicar o branch e revisar o CI MongoDB real; empacotar para Emergent. Integração/autenticação real permanece pendente.
+- [x] Validar backend (43 aprovados, 2 MongoDB real ignorados localmente), Playwright (5 aprovados), build, dependências de produção e prompts. Registrar em evidence/VALIDACAO.json.
+- [x] Publicar o branch e revisar o CI MongoDB real (45 backend + 5 E2E aprovados); empacotar para Emergent. Integração/autenticação real permanece pendente.
 
 O pacote é isolado na pasta entregas; não será cometido junto das alterações acumuladas do repositório.

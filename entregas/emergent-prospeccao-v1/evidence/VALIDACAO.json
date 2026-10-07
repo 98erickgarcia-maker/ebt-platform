@@ -3,7 +3,7 @@
   "verified_at": "2026-10-07",
   "local": {
     "backend": {
-      "passed": 42,
+      "passed": 43,
       "skipped": 2,
       "skipped_reason": "Dois testes MongoDB real indisponiveis localmente; CI executa servico MongoDB 8.0 isolado."
     },
@@ -23,12 +23,23 @@
     }
   },
   "github_ci": {
-    "status": "pending_for_corrections",
-    "previous_verified_commit": "616d2e94937569ce2a36641ee35094eda05b1025",
-    "previous_verified_run": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37693826282",
-    "previous_backend_passed": 37,
-    "previous_playwright_passed": 4,
-    "workflow": ".github/workflows/prospecting-extension.yml"
+    "status": "success",
+    "code_commit": "8a5bdaca9c92775ffac071d17128f869078d90a6",
+    "run_url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37696164436",
+    "backend": {
+      "passed": 45,
+      "skipped": 0,
+      "mongodb": "8.0 isolado; dois cenarios reais"
+    },
+    "playwright": {
+      "passed": 5,
+      "failed": 0
+    },
+    "build": "passed",
+    "npm_audit": {
+      "vulnerabilities": 0
+    },
+    "scenario": "Dados sinteticos, provedores externos simulados; sem envio real."
   },
   "real_connections": {
     "microsoft": "not_activated",
@@ -38,6 +49,7 @@
   "evidence": "Registros API e testes; nenhum envio real executado.",
   "review": {
     "issues_found": 5,
-    "corrections": "GraphID preservado, identidade WhatsApp pelo payload transmitido, orçamento conservador, webhook antecipado/replay e retomada explícita de resultados seguramente anteriores ao envio."
+    "corrections": "GraphID preservado, identidade WhatsApp pelo payload transmitido, orçamento conservador, webhook antecipado/replay e retomada explícita de resultados seguramente anteriores ao envio.",
+    "status": "Correcoes revisadas; nenhum impedimento restante identificado no fechamento focal."
   }
 }

@@ -79,3 +79,7 @@ Para o navegador local, em um terminal: `EP_QA_ONLY=1 python -m uvicorn qa_serve
 Leia [o roteiro de pedidos à Emergent](docs/PEDIDOS_EMERGENT.md), [a pesquisa e a revisão](docs/PESQUISA_E_REVISAO.md) e [o guia WhatsApp/COREN](docs/WHATSAPP_E_COREN.md).
 
 Para começar, leia [o documento de entrega com os links GitHub e próximas automações](docs/ENTREGA.md).
+
+## Retorno à versão anterior
+
+Antes de integrar, registre o commit do aplicativo real e guarde sua configuração. Para reverter, primeiro desative os envios `EP_*`, pare o worker da extensão, retire `install_prospecting` do startup/lifespan e o item de navegação/componente. Reverta somente o diff de integração. Preserve as coleções `ebt_p_*` e as evidências; não execute limpeza global nem altere credenciais ou banco do disparador existente. A remoção do middleware também retira seu bloqueio de rotas temporárias: mantenha essas rotas excluídas do aplicativo de produção.
