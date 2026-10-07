@@ -1,0 +1,49 @@
+name: Validar fundação EBT
+
+on:
+  pull_request:
+    paths:
+      - "global.json"
+      - "Directory.Build.props"
+      - "EBT.Platform.sln"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/validar-aplicacao-fundacao.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - run: dotnet restore EBT.Platform.sln --nologo
+      - run: dotnet build EBT.Platform.sln --no-restore --nologo
+      - run: dotnet test EBT.Platform.sln --no-build --no-restore --nologo
+      - run: dotnet list EBT.Platform.sln package --vulnerable --include-transitive
+      - run: git diff --check
+
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: src/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+          cache: npm
+          cache-dependency-path: src/frontend/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test -- --run
+      - run: npm run lint
+      - run: npm run build
+      - run: npm audit --audit-level=high
