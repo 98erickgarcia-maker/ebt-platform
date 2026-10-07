@@ -1,0 +1,132 @@
+name: Validar persistência QA EBT
+
+on:
+  pull_request:
+    paths:
+      - "src/backend/**"
+      - "tests/Ebt.Foundation.Tests/**"
+      - ".github/workflows/validar-qa-persistencia.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa-persistence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_PID: "Developer"
+          MSSQL_SA_PASSWORD: "EbtQa_2026!Only"
+        ports:
+          - 1433:1433
+
+      azurite:
+        image: mcr.microsoft.com/azure-storage/azurite:3.37.0
+        ports:
+          - 10000:10000
+          - 10001:10001
+          - 10002:10002
+
+    env:
+      ASPNETCORE_ENVIRONMENT: QA
+      EBT_QA_E2E: "1"
+      EBT_QA_SQL_PASSWORD: "EbtQa_2026!Only"
+      EBT_QA_BLOB_CONNECTION: "UseDevelopmentStorage=true"
+      QaPersistence__Enabled: "true"
+      QaPersistence__SqlHost: "127.0.0.1"
+      QaPersistence__SqlPort: "1433"
+      QaPersistence__SqlUser: "sa"
+      QaPersistence__DatabaseName: "EbtQa_${{ github.run_id }}"
+      QaPersistence__BlobContainerName: "ebt-qa-${{ github.run_id }}"
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+
+      - name: Restaurar e compilar
+        run: |
+          dotnet restore EBT.Platform.sln --nologo
+          dotnet build EBT.Platform.sln --no-restore --nologo
+
+      - name: Provar SQL e Blob reais de QA
+        run: dotnet test EBT.Platform.sln --no-build --no-restore --nologo --filter "Category=QaPersistence"
+
+      - name: Demonstrar API QA, health e salvar/reler
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          dotnet run             --project src/backend/Ebt.Api/Ebt.Api.csproj             --no-build             --no-restore             --urls http://127.0.0.1:5080             > /tmp/ebt-api.log 2>&1 &
+
+          api_pid=$!
+          trap 'kill "$api_pid" >/dev/null 2>&1 || true' EXIT
+
+          ready=0
+          for attempt in $(seq 1 40); do
+            if curl -fsS -D /tmp/health.headers               http://127.0.0.1:5080/health/ready               -o /tmp/health.json; then
+              ready=1
+              break
+            fi
+
+            if ! kill -0 "$api_pid" >/dev/null 2>&1; then
+              cat /tmp/ebt-api.log
+              exit 1
+            fi
+
+            sleep 2
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/ebt-api.log
+            exit 1
+          fi
+
+          jq -e '.status == "healthy"
+            and .dependencies.sql == "healthy"
+            and .dependencies.blob == "healthy"
+            and (.traceId | length) > 0' /tmp/health.json
+
+          grep -qi '^x-trace-id:' /tmp/health.headers
+
+          if grep -Eqi 'password|connectionstring|EbtQa_2026|UseDevelopmentStorage' /tmp/health.json; then
+            echo "Health expôs configuração sensível ou interna."
+            exit 1
+          fi
+
+          attachment=$(printf 'EBT QA G1' | base64 -w0)
+
+          payload=$(jq -n             --arg tenantKey "orbe"             --arg title "Registro sintético via API"             --arg fileName "prova-api.txt"             --arg contentType "text/plain"             --arg content "$attachment"             '{
+              tenantKey: $tenantKey,
+              title: $title,
+              attachmentFileName: $fileName,
+              attachmentContentType: $contentType,
+              attachmentBase64: $content
+            }')
+
+          created=$(curl -fsS             -H 'content-type: application/json'             -d "$payload"             http://127.0.0.1:5080/api/foundation/records/)
+
+          id=$(printf '%s' "$created" | jq -er '.id')
+          printf '%s' "$created" | jq -e '.tenantKey == "orbe"
+            and .title == "Registro sintético via API"
+            and .attachment.fileName == "prova-api.txt"
+            and .attachment.length == 9'
+
+          curl -fsS             "http://127.0.0.1:5080/api/foundation/records/$id"             | jq -e '.id != null and .title == "Registro sintético via API"'
+
+          curl -fsS             "http://127.0.0.1:5080/api/foundation/records/$id/attachment"             -o /tmp/prova-api.txt
+
+          test "$(cat /tmp/prova-api.txt)" = "EBT QA G1"
+
+      - name: Auditar dependências e diff
+        run: |
+          dotnet list EBT.Platform.sln package --vulnerable --include-transitive
+          git diff --check

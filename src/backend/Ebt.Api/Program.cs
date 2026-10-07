@@ -1,6 +1,8 @@
+using Ebt.Api;
 using Ebt.Application.Configuration;
 using Ebt.Application.Foundation;
 using Ebt.Infrastructure.Foundation;
+using Ebt.Infrastructure.Persistence;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,18 +19,92 @@ builder.Services
     .ValidateOnStart();
 
 builder.Services.AddSingleton<IEbtConsumerCatalog, SyntheticConsumerCatalog>();
+builder.Services.AddQaPersistence(builder.Configuration);
 
 var app = builder.Build();
 var options = app.Services.GetRequiredService<IOptions<EbtPlatformOptions>>().Value;
-PrivateConfigurationGuard.Validate(options, Environment.GetEnvironmentVariable);
+var qaOptions = app.Services.GetRequiredService<IOptions<QaPersistenceOptions>>().Value;
 
-app.MapGet("/health", () => Results.Ok(new
+PrivateConfigurationGuard.Validate(options, Environment.GetEnvironmentVariable);
+QaTargetGuard.ValidatePrivateConfiguration(qaOptions, Environment.GetEnvironmentVariable);
+
+if (qaOptions.Enabled)
+    await app.Services.GetRequiredService<QaPersistenceInitializer>().InitializeAsync();
+
+app.Use(async (context, next) =>
+{
+    var traceId = SafeDiagnostics.CreateTraceId();
+    context.Items[SafeDiagnostics.TraceItemKey] = traceId;
+    context.Response.Headers["X-Trace-Id"] = traceId;
+
+    try
+    {
+        await next();
+    }
+    catch (Exception error)
+    {
+        if (context.Response.HasStarted)
+            throw;
+
+        var logger = context.RequestServices
+            .GetRequiredService<ILoggerFactory>()
+            .CreateLogger("Ebt.SafeDiagnostics");
+
+        logger.LogError(
+            "Falha não tratada do tipo {ExceptionType}. TraceId {TraceId}.",
+            error.GetType().Name,
+            traceId);
+
+        context.Response.Clear();
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        context.Response.ContentType = "application/problem+json";
+
+        await context.Response.WriteAsJsonAsync(new
+        {
+            type = "https://ebt.invalid/problems/internal-error",
+            title = "Erro interno.",
+            status = StatusCodes.Status500InternalServerError,
+            traceId
+        });
+    }
+});
+
+app.MapGet("/health", (HttpContext context) => Results.Ok(new
 {
     status = "healthy",
     product = options.ProductName,
     platform = options.PlatformName,
-    environment = options.EnvironmentName
+    environment = options.EnvironmentName,
+    traceId = SafeDiagnostics.GetTraceId(context)
 }));
+
+app.MapGet("/health/live", (HttpContext context) => Results.Ok(new
+{
+    status = "healthy",
+    traceId = SafeDiagnostics.GetTraceId(context)
+}));
+
+app.MapGet("/health/ready", async (
+    QaReadinessProbe probe,
+    HttpContext context,
+    CancellationToken cancellationToken) =>
+{
+    var readiness = await probe.CheckAsync(cancellationToken);
+    var payload = new
+    {
+        status = readiness.IsHealthy ? "healthy" : "unhealthy",
+        dependencies = new
+        {
+            sql = readiness.SqlHealthy ? "healthy" : "unhealthy",
+            blob = readiness.BlobHealthy ? "healthy" : "unhealthy"
+        },
+        traceId = SafeDiagnostics.GetTraceId(context)
+    };
+
+    return readiness.IsHealthy
+        ? Results.Ok(payload)
+        : Results.Json(payload, statusCode: StatusCodes.Status503ServiceUnavailable);
+});
 
 app.MapGet("/api/foundation/consumers", (IEbtConsumerCatalog catalog) =>
 {
@@ -49,6 +125,8 @@ app.MapGet("/api/foundation/consumers/{key}", (string key, IEbtConsumerCatalog c
 
     return Results.Ok(consumer);
 });
+
+app.MapFoundationRecordEndpoints();
 
 app.Run();
 
