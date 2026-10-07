@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "verified_at": "2026-10-07",
+  "local": {
+    "backend": {
+      "passed": 36,
+      "skipped": 1,
+      "skipped_reason": "MongoDB real indisponivel localmente; workflow usa mongo:8.0 isolado"
+    },
+    "playwright": {
+      "passed": 4,
+      "failed": 0,
+      "data": "sinteticos; WhatsApp interceptado sem envio"
+    },
+    "frontend_build": "passed",
+    "npm_audit_production": {
+      "vulnerabilities": 0
+    },
+    "prompt_lint_strict": "PASS P000",
+    "original_sources": {
+      "checked": 68,
+      "changed": 0
+    }
+  },
+  "github_ci": {
+    "status": "pending",
+    "workflow": ".github/workflows/prospecting-extension.yml"
+  },
+  "real_connections": {
+    "microsoft": "not_activated",
+    "meta": "not_activated",
+    "emergent_integration": "pending"
+  },
+  "evidence": "Registros API e testes; nenhum envio real executado."
+}

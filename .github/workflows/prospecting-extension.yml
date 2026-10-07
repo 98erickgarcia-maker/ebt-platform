@@ -1,0 +1,53 @@
+name: Prospecção econômica EBT
+on:
+  push:
+    paths: ['entregas/emergent-prospeccao-v1/**', '.github/workflows/prospecting-extension.yml']
+  pull_request:
+    paths: ['entregas/emergent-prospeccao-v1/**', '.github/workflows/prospecting-extension.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:8.0
+        ports: ['27017:27017']
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping:1})'"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    defaults:
+      run:
+        working-directory: entregas/emergent-prospeccao-v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Backend e MongoDB real isolado
+        env:
+          EP_TEST_MONGO_URL: mongodb://127.0.0.1:27017
+        run: |
+          python -m pip install -r backend/requirements-test.txt
+          cd backend
+          python -m pytest -q --junitxml=../evidence/ci-backend.xml
+      - name: Interface, dependências e navegador
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+          npm audit --omit=dev
+          npx playwright install --with-deps chromium
+          cd ../backend
+          EP_QA_ONLY=1 python -m uvicorn qa_server:app --app-dir tests --host 127.0.0.1 --port 5198 > /tmp/ep-qa.log 2>&1 &
+          cd ../frontend
+          npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prospecting-test-evidence
+          path: entregas/emergent-prospeccao-v1/evidence
+          retention-days: 7
