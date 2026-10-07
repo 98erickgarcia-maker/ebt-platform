@@ -27,6 +27,13 @@ jobs:
       - run: dotnet build EBT.Platform.sln --no-restore --nologo
       - run: dotnet test EBT.Platform.sln --no-build --no-restore --nologo
       - run: dotnet list EBT.Platform.sln package --vulnerable --include-transitive
+      - name: Verificar padrões de segredo rastreados
+        shell: bash
+        run: |
+          if git grep -n -E '(AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|sk-[A-Za-z0-9_-]{20,}|(Password|Pwd)=[^;[:space:]]{4,})'; then
+            echo "Padrão de segredo potencial encontrado em arquivo rastreado."
+            exit 1
+          fi
       - run: git diff --check
 
   frontend:
