@@ -106,4 +106,26 @@ describe('isolamento de geração de sessão', () => {
     await refreshSession()
     expect(sessionBoundary.getIdentity()).toBeNull()
   })
+
+  it('refresh automático não descarta logout enfileirado', async () => {
+    sessionBoundary.replace(orbe)
+    let complete!: (response: Response) => void
+    const fetchMock = vi.fn()
+      .mockImplementationOnce(() => new Promise<Response>(resolve => { complete = resolve }))
+      .mockResolvedValueOnce(new Response(null, { status: 204 }))
+      .mockResolvedValueOnce(json({}, 401))
+    vi.stubGlobal('fetch', fetchMock)
+    const initial = refreshSession()
+    const stale = expect(initial).rejects.toMatchObject({ name: 'SessionChangedError' })
+    await vi.waitFor(() => expect(complete).toBeTypeOf('function'))
+    const logout = signOut()
+    const superseded = expect(logout).rejects.toMatchObject({ name: 'SessionChangedError' })
+    const refresh = refreshSession()
+    complete(json(orbe))
+    await stale
+    await superseded
+    await refresh
+    expect(fetchMock.mock.calls.map(call => call[0])).toEqual(['/api/auth/me', '/api/auth/logout', '/api/auth/me'])
+    expect(sessionBoundary.getIdentity()).toBeNull()
+  })
 })

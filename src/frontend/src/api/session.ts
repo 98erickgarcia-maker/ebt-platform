@@ -16,7 +16,6 @@ function authOperation(task: () => Promise<SessionIdentity | null>): Promise<Ses
   const operation = ++latestOperation
   sessionBoundary.invalidate() // clear private state immediately, including queued logout
   const result = authQueue.then(async () => {
-    if (operation !== latestOperation) throw new SessionChangedError()
     const identity = await task()
     if (operation !== latestOperation) throw new SessionChangedError()
     sessionBoundary.replace(identity)
