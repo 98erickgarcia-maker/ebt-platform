@@ -1,5 +1,6 @@
 using Ebt.Application.Configuration;
 using Ebt.Application.Foundation;
+using Ebt.Application.Security;
 using Ebt.Domain.Foundation;
 using Microsoft.Extensions.Options;
 
@@ -10,8 +11,11 @@ public static class FoundationRecordEndpoints
     public static IEndpointRouteBuilder MapFoundationRecordEndpoints(
         this IEndpointRouteBuilder endpoints)
     {
-        var group = endpoints.MapGroup("/api/foundation/records");
+        var group = endpoints
+            .MapGroup("/api/foundation/records")
+            .RequireAuthorization();
 
+        group.MapGet("/", ListAsync);
         group.MapPost("/", SaveAsync);
         group.MapGet("/{id:guid}", GetAsync);
         group.MapGet("/{id:guid}/attachment", DownloadAsync);
@@ -19,14 +23,40 @@ public static class FoundationRecordEndpoints
         return endpoints;
     }
 
+    private static async Task<IResult> ListAsync(
+        IServiceProvider services,
+        IEbtTenantContext tenantContext,
+        IOptions<EbtPlatformOptions> platformOptions,
+        IOptions<QaPersistenceOptions> persistenceOptions,
+        CancellationToken cancellationToken)
+    {
+        var identity = tenantContext.Current;
+        var access = Authorize(identity, EbtPermission.FoundationRecordRead);
+        if (access is not null)
+            return access;
+
+        if (!IsEnabled(platformOptions.Value, persistenceOptions.Value))
+            return Results.NotFound();
+
+        var service = services.GetRequiredService<FoundationRecordService>();
+        var items = await service.ListAsync(identity!.TenantKey!, cancellationToken);
+        return Results.Ok(items.Select(ToResponse));
+    }
+
     private static async Task<IResult> SaveAsync(
         CreateFoundationRecordRequest request,
         IServiceProvider services,
+        IEbtTenantContext tenantContext,
         IOptions<EbtPlatformOptions> platformOptions,
         IOptions<QaPersistenceOptions> persistenceOptions,
         HttpContext context,
         CancellationToken cancellationToken)
     {
+        var identity = tenantContext.Current;
+        var access = Authorize(identity, EbtPermission.FoundationRecordWrite);
+        if (access is not null)
+            return access;
+
         if (!IsEnabled(platformOptions.Value, persistenceOptions.Value))
             return Results.NotFound();
 
@@ -52,7 +82,7 @@ public static class FoundationRecordEndpoints
         {
             var record = await service.SaveAsync(
                 new FoundationRecordDraft(
-                    request.TenantKey,
+                    identity!.TenantKey!,
                     request.Title,
                     request.AttachmentFileName,
                     request.AttachmentContentType,
@@ -72,15 +102,21 @@ public static class FoundationRecordEndpoints
     private static async Task<IResult> GetAsync(
         Guid id,
         IServiceProvider services,
+        IEbtTenantContext tenantContext,
         IOptions<EbtPlatformOptions> platformOptions,
         IOptions<QaPersistenceOptions> persistenceOptions,
         CancellationToken cancellationToken)
     {
+        var identity = tenantContext.Current;
+        var access = Authorize(identity, EbtPermission.FoundationRecordRead);
+        if (access is not null)
+            return access;
+
         if (!IsEnabled(platformOptions.Value, persistenceOptions.Value))
             return Results.NotFound();
 
         var service = services.GetRequiredService<FoundationRecordService>();
-        var record = await service.GetAsync(id, cancellationToken);
+        var record = await service.GetAsync(id, identity!.TenantKey!, cancellationToken);
         return record is null
             ? Results.NotFound()
             : Results.Ok(ToResponse(record));
@@ -89,15 +125,21 @@ public static class FoundationRecordEndpoints
     private static async Task<IResult> DownloadAsync(
         Guid id,
         IServiceProvider services,
+        IEbtTenantContext tenantContext,
         IOptions<EbtPlatformOptions> platformOptions,
         IOptions<QaPersistenceOptions> persistenceOptions,
         CancellationToken cancellationToken)
     {
+        var identity = tenantContext.Current;
+        var access = Authorize(identity, EbtPermission.FoundationAttachmentDownload);
+        if (access is not null)
+            return access;
+
         if (!IsEnabled(platformOptions.Value, persistenceOptions.Value))
             return Results.NotFound();
 
         var service = services.GetRequiredService<FoundationRecordService>();
-        var download = await service.DownloadAsync(id, cancellationToken);
+        var download = await service.DownloadAsync(id, identity!.TenantKey!, cancellationToken);
         return download is null
             ? Results.NotFound()
             : Results.File(
@@ -105,6 +147,21 @@ public static class FoundationRecordEndpoints
                 download.ContentType,
                 download.FileName,
                 enableRangeProcessing: false);
+    }
+
+    private static IResult? Authorize(
+        EbtIdentityProfile? identity,
+        EbtPermission permission)
+    {
+        if (identity is null)
+            return Results.Unauthorized();
+
+        if (identity.TenantId is null
+            || string.IsNullOrWhiteSpace(identity.TenantKey)
+            || !EbtAccessMatrix.Allows(identity.Role, permission))
+            return Results.Forbid();
+
+        return null;
     }
 
     private static bool IsEnabled(
@@ -137,7 +194,7 @@ public static class FoundationRecordEndpoints
 }
 
 public sealed record CreateFoundationRecordRequest(
-    string TenantKey,
+    string? TenantKey,
     string Title,
     string? AttachmentFileName,
     string? AttachmentContentType,

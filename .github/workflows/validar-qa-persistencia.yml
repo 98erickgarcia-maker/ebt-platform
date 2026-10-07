@@ -38,6 +38,7 @@ jobs:
       EBT_QA_E2E: "1"
       EBT_QA_SQL_PASSWORD: "EbtQa_${{ github.run_id }}!X"
       EBT_QA_BLOB_CONNECTION: "UseDevelopmentStorage=true"
+      EBT_QA_LOGIN_CODE: "EbtQaLogin_${{ github.run_id }}!X"
       QaPersistence__Enabled: "true"
       QaPersistence__SqlHost: "127.0.0.1"
       QaPersistence__SqlPort: "1433"
@@ -102,6 +103,24 @@ jobs:
             exit 1
           fi
 
+          login_payload=$(jq -n \
+            --arg email "admin.orbe@demo.invalid" \
+            --arg code "$EBT_QA_LOGIN_CODE" \
+            '{email: $email, code: $code}')
+
+          curl -fsS \
+            -c /tmp/orbe.cookies \
+            -H 'content-type: application/json' \
+            -d "$login_payload" \
+            http://127.0.0.1:5080/api/auth/qa-login \
+            -o /dev/null
+
+          curl -fsS \
+            -b /tmp/orbe.cookies \
+            -H 'X-EBT-TENANT: nexo' \
+            http://127.0.0.1:5080/api/auth/me \
+            | jq -e '.tenantKey == "orbe" and .role == "Administrator"'
+
           attachment=$(printf 'EBT QA G1' | base64 -w0)
 
           payload=$(jq -n             --arg tenantKey "orbe"             --arg title "Registro sintético via API"             --arg fileName "prova-api.txt"             --arg contentType "text/plain"             --arg content "$attachment"             '{
@@ -112,7 +131,11 @@ jobs:
               attachmentBase64: $content
             }')
 
-          created=$(curl -fsS             -H 'content-type: application/json'             -d "$payload"             http://127.0.0.1:5080/api/foundation/records/)
+          created=$(curl -fsS \
+            -b /tmp/orbe.cookies \
+            -H 'content-type: application/json' \
+            -d "$payload" \
+            http://127.0.0.1:5080/api/foundation/records/)
 
           id=$(printf '%s' "$created" | jq -er '.id')
           printf '%s' "$created" | jq -e '.tenantKey == "orbe"
@@ -120,11 +143,40 @@ jobs:
             and .attachment.fileName == "prova-api.txt"
             and .attachment.length == 9'
 
-          curl -fsS             "http://127.0.0.1:5080/api/foundation/records/$id"             | jq -e '.id != null and .title == "Registro sintético via API"'
+          curl -fsS \
+            -b /tmp/orbe.cookies \
+            "http://127.0.0.1:5080/api/foundation/records/$id" \
+            | jq -e '.id != null and .tenantKey == "orbe" and .title == "Registro sintético via API"'
 
-          curl -fsS             "http://127.0.0.1:5080/api/foundation/records/$id/attachment"             -o /tmp/prova-api.txt
+          curl -fsS \
+            -b /tmp/orbe.cookies \
+            "http://127.0.0.1:5080/api/foundation/records/$id/attachment" \
+            -o /tmp/prova-api.txt
 
           test "$(cat /tmp/prova-api.txt)" = "EBT QA G1"
+
+          nexo_login=$(jq -n \
+            --arg email "admin.nexo@demo.invalid" \
+            --arg code "$EBT_QA_LOGIN_CODE" \
+            '{email: $email, code: $code}')
+
+          curl -fsS \
+            -c /tmp/nexo.cookies \
+            -H 'content-type: application/json' \
+            -d "$nexo_login" \
+            http://127.0.0.1:5080/api/auth/qa-login \
+            -o /dev/null
+
+          status=$(curl -sS -o /tmp/cross-tenant.json -w '%{http_code}' \
+            -b /tmp/nexo.cookies \
+            "http://127.0.0.1:5080/api/foundation/records/$id")
+
+          test "$status" = "404"
+
+          curl -fsS \
+            -b /tmp/nexo.cookies \
+            http://127.0.0.1:5080/api/foundation/records/ \
+            | jq -e 'length == 0'
 
       - name: Auditar dependências e diff
         run: |
