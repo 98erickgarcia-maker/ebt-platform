@@ -22,7 +22,7 @@ jobs:
         env:
           ACCEPT_EULA: "Y"
           MSSQL_PID: "Developer"
-          MSSQL_SA_PASSWORD: "EbtQa_2026!Only"
+          MSSQL_SA_PASSWORD: "EbtQa_${{ github.run_id }}!X"
         ports:
           - 1433:1433
 
@@ -36,7 +36,7 @@ jobs:
     env:
       ASPNETCORE_ENVIRONMENT: QA
       EBT_QA_E2E: "1"
-      EBT_QA_SQL_PASSWORD: "EbtQa_2026!Only"
+      EBT_QA_SQL_PASSWORD: "EbtQa_${{ github.run_id }}!X"
       EBT_QA_BLOB_CONNECTION: "UseDevelopmentStorage=true"
       QaPersistence__Enabled: "true"
       QaPersistence__SqlHost: "127.0.0.1"
@@ -97,7 +97,7 @@ jobs:
 
           grep -qi '^x-trace-id:' /tmp/health.headers
 
-          if grep -Eqi 'password|connectionstring|EbtQa_2026|UseDevelopmentStorage' /tmp/health.json; then
+          if grep -Eqi 'password|connectionstring|MSSQL_SA_PASSWORD|EBT_QA_SQL_PASSWORD|UseDevelopmentStorage' /tmp/health.json; then
             echo "Health expôs configuração sensível ou interna."
             exit 1
           fi
