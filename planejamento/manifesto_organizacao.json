@@ -17,7 +17,7 @@
     },
     {
       "path": "docs/INDICE_GERAL.md",
-      "sha256": "61f067ef7357845083d60a52b92f6abe515291c26a03786c273b4aaa4d2bedd5"
+      "sha256": "b3522ae1d42c371278f08d62253c081e172549638adbb4bb79f164f317dd716a"
     },
     {
       "path": "docs/arquitetura/ARQUITETURA_E_FRONTEIRAS.md",
@@ -169,19 +169,19 @@
     },
     {
       "path": "docs/execucao/entregas/P04-05.md",
-      "sha256": "18e0454d9ed33d574405b5747e4cf193e45e774776cd12f411d9dc12e50ac8f0"
+      "sha256": "1b5b57c858b0f6f1f7098cfb2a651faa1ea9c8cf7173abaa8ff8abec44f8d5b1"
     },
     {
       "path": "docs/execucao/entregas/P04-06.md",
-      "sha256": "70b5036f23a5c45452ece9847f99185d041fdd24b5c6acfbcb205f2f0b6ab44d"
+      "sha256": "65fcccd1303aee41833c4395a6402086deae068ac5c798f220ed74d5e009c90b"
     },
     {
       "path": "docs/execucao/entregas/P04-07.md",
-      "sha256": "c90cc62aebe9ea3ad6801729359e5d25e75f5655d0e777bcdd6508971470f431"
+      "sha256": "aaa3f433a818275785d311672cbd378e128cae177c832b01bf9d532b4a7160a8"
     },
     {
       "path": "docs/execucao/entregas/P04-08.md",
-      "sha256": "b558e7374dc690890cc491f86462a41956996fbf45e4db8535ac90c520060cee"
+      "sha256": "83edbc4bda8706aba99e732c1bddf9306d0478a98ba5ff43c7a2dd5da10d6936"
     },
     {
       "path": "docs/execucao/entregas/P04-09.md",
@@ -393,7 +393,7 @@
     },
     {
       "path": "docs/execucao/fases/P04.md",
-      "sha256": "ba8a6f5e9dc40c38b1c137c7cac50bc3e2b0dcb993e331b383cbc893d8228b99"
+      "sha256": "d134974d74a705181baf65873308b813bd5f053a9afcc574cf8c2789c92d5467"
     },
     {
       "path": "docs/execucao/fases/P05.md",
@@ -441,7 +441,7 @@
     },
     {
       "path": "docs/execucao/pacotes/PAC-06.md",
-      "sha256": "7f4f5743cc04957c529c9a2577f2c94c46522ef498b0d10e39b856602916beaa"
+      "sha256": "2eff6cefe6f863aad9be19f34676eacad0f41f763d6cab95cef352b364e0b4dd"
     },
     {
       "path": "docs/execucao/pacotes/PAC-07.md",

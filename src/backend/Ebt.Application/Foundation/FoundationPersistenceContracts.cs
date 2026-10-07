@@ -1,4 +1,5 @@
 using Ebt.Domain.Foundation;
+using Ebt.Application.Security;
 
 namespace Ebt.Application.Foundation;
 
@@ -7,7 +8,8 @@ public sealed record FoundationRecordDraft(
     string Title,
     string? AttachmentFileName = null,
     string? AttachmentContentType = null,
-    byte[]? AttachmentContent = null);
+    byte[]? AttachmentContent = null,
+    Guid? OwnerUserId = null);
 
 public sealed record FoundationDownload(
     string FileName,
@@ -18,7 +20,7 @@ public interface IFoundationRecordRepository
 {
     Task AddAsync(FoundationStoredRecord record, CancellationToken cancellationToken = default);
     Task<FoundationStoredRecord?> FindAsync(Guid id, string tenantKey, CancellationToken cancellationToken = default);
-    Task<IReadOnlyList<FoundationStoredRecord>> ListAsync(string tenantKey, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<FoundationStoredRecord>> ListAsync(string tenantKey, CancellationToken cancellationToken = default, Guid? ownerUserId = null);
     Task<bool> CanConnectAsync(CancellationToken cancellationToken = default);
     Task EnsureCreatedAsync(CancellationToken cancellationToken = default);
 }
@@ -42,6 +44,45 @@ public sealed class FoundationRecordService(
     IFoundationRecordRepository repository,
     IFoundationBinaryStore binaryStore)
 {
+    public Task<FoundationStoredRecord> SaveForIdentityAsync(
+        FoundationRecordDraft draft, EbtIdentityProfile identity, CancellationToken cancellationToken = default)
+    {
+        if (!EbtResourceAccess.HasTenantAccess(identity, EbtPermission.FoundationRecordWrite))
+            throw new UnauthorizedAccessException();
+        return SaveAsync(draft with { TenantKey = identity.TenantKey!, OwnerUserId = identity.UserId }, cancellationToken);
+    }
+
+    public async Task<FoundationStoredRecord?> GetForIdentityAsync(
+        Guid id, EbtIdentityProfile identity, CancellationToken cancellationToken = default)
+    {
+        if (!EbtResourceAccess.HasTenantAccess(identity, EbtPermission.FoundationRecordRead))
+            return null;
+        var record = await GetAsync(id, identity.TenantKey!, cancellationToken);
+        return record is not null && EbtResourceAccess.CanRead(identity, record) ? record : null;
+    }
+
+    public async Task<IReadOnlyList<FoundationStoredRecord>> ListForIdentityAsync(
+        EbtIdentityProfile identity, CancellationToken cancellationToken = default)
+    {
+        if (!EbtResourceAccess.HasTenantAccess(identity, EbtPermission.FoundationRecordRead))
+            return [];
+        var records = await repository.ListAsync(NormalizeTenantKey(identity.TenantKey), cancellationToken,
+            identity.Role == EbtRole.Operator ? identity.UserId : null);
+        return records.Where(record => EbtResourceAccess.CanRead(identity, record)).ToArray();
+    }
+
+    public async Task<FoundationDownload?> DownloadForIdentityAsync(
+        Guid id, EbtIdentityProfile identity, CancellationToken cancellationToken = default)
+    {
+        if (!EbtResourceAccess.HasTenantAccess(identity, EbtPermission.FoundationAttachmentDownload))
+            return null;
+        var record = await GetForIdentityAsync(id, identity, cancellationToken);
+        if (record?.Attachment is null) return null;
+        var binary = await binaryStore.DownloadAsync(record.Attachment.BlobName, cancellationToken);
+        return binary is null ? null : new FoundationDownload(
+            record.Attachment.FileName, record.Attachment.ContentType, binary);
+    }
+
     public async Task<FoundationStoredRecord> SaveAsync(
         FoundationRecordDraft draft,
         CancellationToken cancellationToken = default)
@@ -52,10 +93,10 @@ public sealed class FoundationRecordService(
         var title = draft.Title?.Trim();
 
         if (string.IsNullOrWhiteSpace(title))
-            throw new ArgumentException("Título obrigatório.", nameof(draft));
+            throw new ArgumentException("TÃ­tulo obrigatÃ³rio.", nameof(draft));
 
         if (title.Length > 200)
-            throw new ArgumentException("Título excede o limite permitido.", nameof(draft));
+            throw new ArgumentException("TÃ­tulo excede o limite permitido.", nameof(draft));
 
         var id = Guid.NewGuid();
         FoundationAttachmentMetadata? attachment = null;
@@ -81,7 +122,8 @@ public sealed class FoundationRecordService(
                 tenantKey,
                 title,
                 attachment,
-                DateTimeOffset.UtcNow);
+                DateTimeOffset.UtcNow,
+                draft.OwnerUserId);
 
             await repository.AddAsync(record, cancellationToken);
             return record;
@@ -144,7 +186,7 @@ public sealed class FoundationRecordService(
             || tenantKey.Length > 64
             || tenantKey.Any(character =>
                 !char.IsAsciiLetterOrDigit(character) && character is not '-' and not '_'))
-            throw new ArgumentException("Identificador de consumidor inválido.", nameof(value));
+            throw new ArgumentException("Identificador de consumidor invÃ¡lido.", nameof(value));
 
         return tenantKey;
     }

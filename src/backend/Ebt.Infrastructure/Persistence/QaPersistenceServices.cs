@@ -33,6 +33,7 @@ public static class QaPersistenceServices
         {
             var settings = provider.GetRequiredService<QaConnectionSettingsProvider>().Get();
 
+            options.AddInterceptors(new SqlTenantConnectionInterceptor());
             options.UseSqlServer(
                 settings.SqlConnectionString,
                 sql => sql.EnableRetryOnFailure(

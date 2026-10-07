@@ -1,6 +1,6 @@
 # PAC-06 | SQL, autorização por recurso e cache
 
-Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 52-64h.
+Estado: demonstrado em QA no recorte em 07/10/2026; [registro](../../../evidencias/execucao/PAC-06/registro.md). G-SEG permanece aberto. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 52-64h.
 
 ## Resultado integrado
 
@@ -19,7 +19,7 @@ Tickets/gates externos: P04-04. As dependências originais são mantidas; ordena
 | [P04-05](../entregas/P04-05.md) | Criar índices e migration do recorte | 3h | N |
 | [P04-06](../entregas/P04-06.md) | Conferir SQL/RLS do recorte com banco real | 3h | N |
 | [P04-07](../entregas/P04-07.md) | Implementar autorização por recurso | 3h | N |
-| [P04-08](../entregas/P04-08.md) | Isolar cache, sessão e troca de perfil | 3h | R2 |
+| [P04-08](../entregas/P04-08.md) | Isolar cache, sessão e troca de perfil | 3h | N (promovido de R2) |
 
 Ler e cumprir os critérios/cenários de cada ficha. A saída integrada complementa os aceites individuais.
 

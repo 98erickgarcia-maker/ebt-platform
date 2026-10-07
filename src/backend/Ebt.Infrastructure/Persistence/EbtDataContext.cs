@@ -5,6 +5,18 @@ namespace Ebt.Infrastructure.Persistence;
 
 public sealed class EbtDataContext(DbContextOptions<EbtDataContext> options) : DbContext(options)
 {
+    public string? TenantScope { get; private set; }
+
+    // A context belongs to exactly one trusted tenant; it cannot be rebound.
+    public void BindTenant(string tenantKey)
+    {
+        if (TenantScope is not null || Database.GetDbConnection().State != System.Data.ConnectionState.Closed
+            || string.IsNullOrWhiteSpace(tenantKey) || tenantKey.Length > 64
+            || tenantKey.Any(c => !char.IsAsciiLetterOrDigit(c) && c is not '-' and not '_'))
+            throw new InvalidOperationException("Contexto SQL de tenant inválido.");
+        TenantScope = tenantKey;
+    }
+
     public DbSet<FoundationRecordEntity> FoundationRecords => Set<FoundationRecordEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -12,7 +24,9 @@ public sealed class EbtDataContext(DbContextOptions<EbtDataContext> options) : D
         var record = modelBuilder.Entity<FoundationRecordEntity>();
 
         record.ToTable("FoundationRecords");
-        record.HasKey(item => item.Id);
+        record.HasKey(item => new { item.TenantKey, item.Id });
+        record.Property(item => item.Id).ValueGeneratedNever();
+        record.Property(item => item.OwnerUserId);
         record.Property(item => item.TenantKey).HasMaxLength(64).IsRequired();
         record.Property(item => item.Title).HasMaxLength(200).IsRequired();
         record.Property(item => item.CreatedAtUtc).IsRequired();
@@ -20,12 +34,14 @@ public sealed class EbtDataContext(DbContextOptions<EbtDataContext> options) : D
         record.Property(item => item.FileName).HasMaxLength(120);
         record.Property(item => item.ContentType).HasMaxLength(120);
         record.HasIndex(item => new { item.TenantKey, item.CreatedAtUtc });
+        record.HasIndex(item => new { item.TenantKey, item.OwnerUserId, item.CreatedAtUtc });
     }
 }
 
 public sealed class FoundationRecordEntity
 {
     public Guid Id { get; set; }
+    public Guid? OwnerUserId { get; set; }
     public string TenantKey { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
     public DateTimeOffset CreatedAtUtc { get; set; }
@@ -55,13 +71,15 @@ public sealed class FoundationRecordEntity
             TenantKey,
             Title,
             attachment,
-            CreatedAtUtc);
+            CreatedAtUtc,
+            OwnerUserId);
     }
 
     public static FoundationRecordEntity FromDomain(FoundationStoredRecord record) =>
         new()
         {
             Id = record.Id,
+            OwnerUserId = record.OwnerUserId,
             TenantKey = record.TenantKey,
             Title = record.Title,
             CreatedAtUtc = record.CreatedAtUtc,

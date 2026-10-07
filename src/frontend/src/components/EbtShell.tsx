@@ -48,6 +48,7 @@ export function EbtShell() {
           </section>
           <section className="nav-group">
             <h2>Configuração</h2>
+            <NavLink className={navClass} to="/seguranca-qa" onClick={() => setOpen(false)}><Settings /><span>Sessão QA</span></NavLink>
             <button className="nav-link nav-link--disabled" type="button" disabled><Settings /><span>Configurações</span></button>
           </section>
         </nav>

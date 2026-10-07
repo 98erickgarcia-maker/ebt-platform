@@ -74,6 +74,22 @@ app.Use(async (context, next) =>
     }
 });
 
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/api/auth")
+        || context.Request.Path.StartsWithSegments("/api/foundation/records"))
+    {
+        // OnStarting also covers errors that clear the response and 401/403/404.
+        context.Response.OnStarting(() =>
+        {
+            context.Response.Headers.CacheControl = "no-store, private";
+            context.Response.Headers.Pragma = "no-cache";
+            return Task.CompletedTask;
+        });
+    }
+    await next();
+});
+
 app.UseAuthentication();
 app.UseAuthorization();
 

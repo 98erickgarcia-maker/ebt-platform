@@ -6,6 +6,14 @@ afterEach(() => {
 })
 
 describe('cliente HTTP EBT', () => {
+  it('não permite cache HTTP das requisições do cliente', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response('{}', {
+      headers: { 'content-type': 'application/json' },
+    }))
+    vi.stubGlobal('fetch', fetchMock)
+    await requestJson('/api/private')
+    expect(fetchMock.mock.calls[0][1]).toMatchObject({ cache: 'no-store', credentials: 'same-origin' })
+  })
   it('trata 401 como expiração sem declarar sucesso', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(
       JSON.stringify({ detail: 'Não autorizado.', traceId: 'trace-401' }),

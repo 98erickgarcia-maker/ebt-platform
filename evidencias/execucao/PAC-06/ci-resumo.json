@@ -1,0 +1,35 @@
+{
+  "date_utc": "2026-10-07",
+  "functional_sha": "904a087edab46cb50d5eb787f17859af1ad83a79",
+  "repository": "https://github.com/98erickgarcia-maker/ebt-platform",
+  "pull_request": "https://github.com/98erickgarcia-maker/ebt-platform/pull/7",
+  "base_pull_request": 6,
+  "environment": "GitHub Actions Ubuntu; SQL Server 2022 Developer + Azurite efemeros; massa sintetica",
+  "runs": {
+    "planning": {
+      "id": 37701191611,
+      "conclusion": "success"
+    },
+    "foundation": {
+      "id": 37701191579,
+      "conclusion": "success",
+      "unit_backend_passed": 23,
+      "qa_cases_skipped_in_unit_job": 5,
+      "frontend_passed": 28,
+      "lint": "success",
+      "build": "success",
+      "audit": "no vulnerable packages / npm 0 vulnerabilities"
+    },
+    "sql_blob": {
+      "id": 37701191593,
+      "conclusion": "success",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "authenticated_api_smoke": "success"
+    }
+  },
+  "gate": "G-SEG remains open until PAC-07",
+  "scope": "QA only; no production deployment; no operational user acceptance",
+  "raw_logs": "Not committed; only sanitized summary and links"
+}

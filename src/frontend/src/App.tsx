@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { SecurityQaPage } from './pages/SecurityQaPage'
 import { EbtShell } from './components/EbtShell'
 import {
   AgendaPage,
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/pipeline" element={<PipelinePage />} />
         <Route path="/agenda" element={<AgendaPage />} />
         <Route path="/relatorios" element={<ReportsPage />} />
+        <Route path="/seguranca-qa" element={<SecurityQaPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

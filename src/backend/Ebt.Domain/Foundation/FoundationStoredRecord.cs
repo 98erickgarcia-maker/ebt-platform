@@ -11,4 +11,5 @@ public sealed record FoundationStoredRecord(
     string TenantKey,
     string Title,
     FoundationAttachmentMetadata? Attachment,
-    DateTimeOffset CreatedAtUtc);
+    DateTimeOffset CreatedAtUtc,
+    Guid? OwnerUserId = null);
