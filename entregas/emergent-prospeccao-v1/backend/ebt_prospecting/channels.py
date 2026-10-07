@@ -108,9 +108,11 @@ class WhatsAppCloud:
             raise ValueError("Número ou template inválido.")
         if not self.base.startswith("https://graph.facebook.com/v"):
             raise ValueError("Use o endpoint oficial da Meta.")
+        if len(parameters) > 20 or any(not isinstance(p, str) or len(p) > 1024 for p in parameters):
+            raise ValueError("Parâmetros devem preservar exatamente o texto aprovado e ter até 1024 caracteres.")
         payload = {"messaging_product": "whatsapp", "to": phone, "type": "template", "template": {"name": name, "language": {"code": language}}}
         if parameters:
-            payload["template"]["components"] = [{"type": "body", "parameters": [{"type": "text", "text": str(p)[:1024]} for p in parameters]}]
+            payload["template"]["components"] = [{"type": "body", "parameters": [{"type": "text", "text": p} for p in parameters]}]
         async with httpx.AsyncClient(transport=self.transport, timeout=20, follow_redirects=False) as client:
             try:
                 response = await client.post(f"{self.base}/{self.phone_id}/messages", headers={"Authorization": f"Bearer {self.token}"}, json=payload)

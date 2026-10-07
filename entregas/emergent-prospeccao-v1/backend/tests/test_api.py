@@ -225,3 +225,11 @@ async def test_whatsapp_explicit_resume_only_for_conclusive_unsent_state(api, mo
     assert (await client.post(path)).status_code == 409
     await s.db.ebt_p_wa_outbox.update_one({"space": "A", "id": "resume-operation-1"}, {"$set": {"status": "unknown", "provider_id": ""}})
     assert (await client.post(path)).status_code == 409
+
+
+async def test_whatsapp_oversized_parameter_rejected_before_outbox_or_provider(api):
+    client, s, cfg = api
+    for suffix in ("0", "1"):
+        response = await client.post('/api/prospecting/contacts/synthetic/whatsapp-template', json={"operation_id": "oversized-operation-"+suffix, "name": "approved_template", "parameters": ["A"*1024+suffix], "opt_in_evidence": "Consentimento sintético registrado", "confirmation_phone": "5511999999999"})
+        assert response.status_code == 422
+    assert await s.db.ebt_p_wa_outbox.count_documents({}) == 0

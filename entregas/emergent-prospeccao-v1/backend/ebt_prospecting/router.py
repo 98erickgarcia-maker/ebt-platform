@@ -6,7 +6,7 @@ import re
 import secrets
 from datetime import datetime
 from decimal import Decimal, ROUND_CEILING, ROUND_FLOOR
-from typing import Literal
+from typing import Annotated, Literal
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from fastapi.responses import RedirectResponse
 from fastapi.encoders import jsonable_encoder
@@ -85,7 +85,7 @@ class Reason(StrictModel):
 class WhatsappRequest(StrictModel):
     name: str = Field(pattern=r"^[a-z0-9_]{1,512}$")
     language: str = Field(default="pt_BR", pattern=r"^[a-z]{2}(?:_[A-Z]{2})?$")
-    parameters: list[str] = Field(default_factory=list, max_length=20)
+    parameters: list[Annotated[str, Field(max_length=1024)]] = Field(default_factory=list, max_length=20)
     opt_in_evidence: str = Field(min_length=10, max_length=1000)
     confirmation_phone: str = Field(pattern=r"^\d{10,15}$")
     operation_id: str = Field(pattern=r"^[a-zA-Z0-9_-]{10,80}$")
