@@ -61,7 +61,7 @@ public sealed class FoundationRecordService(
 
         try
         {
-            if (draft.AttachmentContent is { Length: > 0 } content)
+            if (draft.AttachmentContent is { Length: > 0 } binary)
             {
                 var fileName = NormalizeFileName(draft.AttachmentFileName);
                 var contentType = NormalizeContentType(draft.AttachmentContentType);
@@ -71,7 +71,7 @@ public sealed class FoundationRecordService(
                     blobName,
                     fileName,
                     contentType,
-                    content,
+                    binary,
                     cancellationToken);
             }
 
@@ -88,7 +88,16 @@ public sealed class FoundationRecordService(
         catch
         {
             if (attachment is not null)
-                await binaryStore.DeleteIfExistsAsync(attachment.BlobName, cancellationToken);
+            {
+                try
+                {
+                    await binaryStore.DeleteIfExistsAsync(attachment.BlobName, cancellationToken);
+                }
+                catch
+                {
+                    // Preserve the original persistence failure.
+                }
+            }
 
             throw;
         }
@@ -107,14 +116,14 @@ public sealed class FoundationRecordService(
         if (record?.Attachment is null)
             return null;
 
-        var content = await binaryStore.DownloadAsync(record.Attachment.BlobName, cancellationToken);
-        if (content is null)
+        var binary = await binaryStore.DownloadAsync(record.Attachment.BlobName, cancellationToken);
+        if (binary is null)
             return null;
 
         return new FoundationDownload(
             record.Attachment.FileName,
             record.Attachment.ContentType,
-            content);
+            binary);
     }
 
     private static string NormalizeTenantKey(string? value)
@@ -145,9 +154,8 @@ public sealed class FoundationRecordService(
         var contentType = value?.Trim();
         if (string.IsNullOrWhiteSpace(contentType)
             || contentType.Length > 120
-            || contentType.Contains('')
-            || contentType.Contains('
-'))
+            || contentType.Contains((char)13)
+            || contentType.Contains((char)10))
             return "application/octet-stream";
 
         return contentType;
