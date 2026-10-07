@@ -62,7 +62,8 @@ public static class AuthEndpoints
             Secure = context.Request.IsHttps,
             Path = "/"
         });
-        return Results.NoContent();
+        context.Response.StatusCode = StatusCodes.Status204NoContent;
+        return Results.Empty;
     }
 
     private static IResult Me(IEbtTenantContext tenantContext)
