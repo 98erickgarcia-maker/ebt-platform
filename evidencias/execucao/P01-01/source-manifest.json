@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-07",
+  "target": {
+    "repository": "98erickgarcia-maker/ebt-platform",
+    "baselineCommit": "4c185f761b2b5e212800464f4b450167a26c1b88"
+  },
+  "sources": [
+    {
+      "role": "crm-contract-reference",
+      "repository": "98erickgarcia-maker/crm-casst-web",
+      "commit": "ce14f567ff2b529953e14e09b0a74b72a7cbeb6b",
+      "allowedUse": "reference-and-selective-adaptation-only",
+      "files": {
+        "src/frontend/src/api/contracts.ts": "c2752b76638170700458ef246f4b939fe2c74ceb",
+        "src/frontend/src/pages/ProspectsPage.tsx": "30fb87bfec7e067cef412aac0cd110c84102dcd2",
+        "src/frontend/src/components/ProspectWorkspaceDrawer.tsx": "e55d23191df8ede2a3b306b6a12d453da447df36",
+        "src/frontend/src/components/QuickInteractionDialog.tsx": "0d18972018f30705442d39ffc62042c89593664d",
+        "src/backend/CrmCasst.Api/Endpoints/ProspectEndpoints.cs": "7bfad713f13628f2cd99ae9b25286cd8c644d33e",
+        "src/backend/CrmCasst.Api/Endpoints/PeopleEndpoints.cs": "525653d83d35a8f77fdaef8e0a54f78796870887",
+        "src/backend/CrmCasst.Api/Endpoints/CommercialInteractionEndpoints.cs": "615ea5ddff5f02b3a46f6ec483ed9cd5b76decf3",
+        "src/backend/CrmCasst.Api/Endpoints/OpportunityEndpoints.cs": "c0719f421de58c5df088fb7e01c2e13f3b0fa0ce",
+        "src/backend/CrmCasst.Application/Prospecting/ProspectContracts.cs": "388c29d41565991b7d7061b5cab2b190d48ab990",
+        "src/backend/CrmCasst.Application/Interactions/CommercialInteractionContracts.cs": "b24e69948a90edfb63fb9da147ef1a6d78d83092",
+        "src/backend/CrmCasst.Domain/Prospecting/Prospect.cs": "9987a2abd4d1897135d43ce7e8395dbd4674514c",
+        "src/backend/CrmCasst.Domain/Interactions/CommercialInteraction.cs": "adc900b0c9ccd1e9a24b1c9e26eca4e2679396d9",
+        "tests/CrmCasst.Api.Tests/Prospecting/ProspectEndpointTests.cs": "77556c38d0928cadc9617638631d6aad2695e43f",
+        "tests/CrmCasst.Api.Tests/Interactions/CommercialInteractionEndpointTests.cs": "cbef32baf8dec8df230a76f0953e74a48c7c9c6e",
+        "src/frontend/package.json": "905c113489de75b3f4a81d4d4ec8d80e5f505679"
+      },
+      "ci": {
+        "runId": 37453203674,
+        "backend": "success",
+        "frontendTestsLintBuild": "success",
+        "frontendAudit": "failure",
+        "sqlE2e": "cancelled"
+      }
+    },
+    {
+      "role": "ebt-brand-reference",
+      "repository": "98erickgarcia-maker/ebt-enterprise-site",
+      "commit": "9c5e12c84f7dd7dff8aeb99314ce9ff505d5d4f7",
+      "files": {
+        "site/public/assets/styles.css": "6b835c7476429e33011b7970a6689f1786c5b999",
+        "site/public/assets/ebt-logo-oficial.png": "684556cbf1c924191bb73419161ece096a8b6dfb"
+      }
+    },
+    {
+      "role": "secondary-architecture-reference",
+      "repository": "98erickgarcia-maker/grupo-vikings-sst",
+      "commit": "b13140e16465585f37c6933b865666082883b7b9"
+    }
+  ],
+  "excluded": [
+    "untracked local files not present in frozen refs",
+    "real customer data",
+    "secrets and credentials",
+    "legacy branding in the EBT product",
+    "legacy package lockfiles",
+    "third-party assets without explicit right of use"
+  ]
+}
