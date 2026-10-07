@@ -2,48 +2,52 @@
 
 Data: 07/10/2026.
 
-Status: **em verificação**.
+Status: **implementado e validado no CI de fundação**.
 
-## Resultado pretendido
+Versão funcional validada: `03e0928d2670fe14fa7d96c20037efee0ddbcab7`.
 
-Criar a primeira árvore executável da EBT Platform com:
+Workflow de aplicação: run `37671307509` — **success**.
+
+Workflow documental: run `37671307545` — **success**.
+
+## Resultado demonstrado
+
+A EBT Platform agora possui uma primeira árvore executável com:
 
 1. solution .NET real;
-2. API mínima com health;
-3. configuração sem segredos;
-4. dois consumidores sintéticos reproduzíveis;
-5. frontend React/Vite;
+2. API mínima e health;
+3. configuração sem segredo versionado;
+4. dois consumidores sintéticos determinísticos;
+5. frontend React/TypeScript/Vite;
 6. Design System EBT aplicado às nove rotas-base;
-7. CI próprio de backend e frontend.
+7. testes de fundação;
+8. CI próprio de backend/frontend;
+9. auditoria de dependências;
+10. verificação automática de padrões de segredo rastreados.
 
 ## Arquitetura
 
 Ver `docs/arquitetura/adr/ADR-005_CORE_INICIAL_EBT.md`.
 
-## Consumidores sintéticos
+A decisão continua sendo monólito modular mínimo. SQL é a próxima fronteira, não uma capacidade simulada nesta fase.
 
-Dois perfis completamente fictícios são definidos no backend:
+## Consumidores sintéticos
 
 - `orbe` — Orbe Industrial Demo;
 - `nexo` — Nexo Serviços Demo.
 
-IDs são determinísticos e diferentes. Os e-mails demonstrativos do frontend usam o domínio reservado `.invalid`.
-
-Esses perfis não provam isolamento SQL; servem para testar configuração e impedir dependência de cadastro real antes do pacote de tenant/persistência.
+Nenhum cadastro real é necessário para executar a fundação.
 
 ## Configuração
 
-Arquivos versionados:
-
-- `appsettings.json`: base sem segredo;
-- `appsettings.Development.json`: habilita dados sintéticos;
-- `appsettings.Production.json`: desabilita dados sintéticos e exige configuração privada.
-
-A chave de ambiente esperada em produção é nomeada, mas nenhum valor é versionado.
+- base sem segredo;
+- Development com massa sintética;
+- Production sem massa sintética e com configuração privada obrigatória;
+- ausência de configuração privada falha com mensagem segura.
 
 ## Frontend
 
-Rotas-base:
+Rotas-base validadas por teste de montagem:
 
 - `/login`;
 - `/dashboard`;
@@ -55,39 +59,45 @@ Rotas-base:
 - `/agenda`;
 - `/relatorios`.
 
-Controles sem backend real aparecem desabilitados. A fundação não simula persistência ou notificações.
+O teste também impede a marca do produto-fonte de aparecer nessas rotas.
 
-## Comandos de validação
+Controles que ainda não possuem backend real permanecem desabilitados.
 
-Backend:
+## Resultados do CI
 
-```bash
-dotnet restore EBT.Platform.sln --nologo
-dotnet build EBT.Platform.sln --no-restore --nologo
-dotnet test EBT.Platform.sln --no-build --no-restore --nologo
-dotnet list EBT.Platform.sln package --vulnerable --include-transitive
-```
+### Backend
 
-Frontend:
+- restore: aprovado;
+- build: aprovado com **0 warnings / 0 errors**;
+- testes: **3 passed / 0 failed**;
+- auditoria de pacotes: nenhum vulnerável reportado;
+- varredura de padrões de segredo: aprovada;
+- `git diff --check`: aprovado.
 
-```bash
-cd src/frontend
-npm ci --ignore-scripts
-npm test -- --run
-npm run lint
-npm run build
-npm audit --audit-level=high
-```
+### Frontend
 
-Nesta sessão, o ambiente local não possui .NET e o acesso do npm à rede não está confiável. A prova será obtida pelo workflow `Validar fundação EBT` no GitHub Actions. Nenhum comando será declarado aprovado antes do resultado do CI.
+- `npm ci`: aprovado;
+- testes: **11 passed / 0 failed**;
+- lint: **0 warnings / 0 errors**;
+- build: aprovado;
+- `npm audit --audit-level=high`: **0 vulnerabilities**.
 
-## Critérios P02
+## Estado dos tickets
 
-- P02-01: ADR registra monólito modular mínimo e limites.
-- P02-02: solution e frontend possuem comandos reais de build.
-- P02-03: config de produção falha sem segredo e não vaza valor/nome no erro.
-- P02-04: dois consumidores sintéticos têm IDs próprios, reproduzíveis e nenhum dado de cliente real.
+- P02-01: validado — ADR e limites.
+- P02-02: validado — estrutura e builds reproduzíveis no CI.
+- P02-03: validado — configuração/segredos da fundação.
+- P02-04: validado — massa sintética A/B.
 
-## Limites
+## O que não foi validado
 
-G1 continua pendente até PAC-03, quando SQL, diagnóstico e CI integrado da persistência serão tratados.
+- banco SQL;
+- row-level security;
+- autenticação real;
+- isolamento real por tenant;
+- storage;
+- integrações externas;
+- deploy/produção;
+- teste visual em navegador real.
+
+Essas fronteiras permanecem bloqueadas para os pacotes próprios. **G1 ainda não está fechado**, porque PAC-03 precisa provar persistência/diagnóstico/CI de dados.
