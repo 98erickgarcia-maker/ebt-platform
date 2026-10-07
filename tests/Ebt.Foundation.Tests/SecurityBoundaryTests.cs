@@ -89,6 +89,36 @@ public sealed class SecurityBoundaryTests
     }
 
     [Fact]
+    public async Task Qa_login_is_not_exposed_in_production()
+    {
+        const string loginCode = "synthetic-login-code";
+        var previous = Environment.GetEnvironmentVariable("EBT_QA_LOGIN_CODE");
+        Environment.SetEnvironmentVariable("EBT_QA_LOGIN_CODE", loginCode);
+
+        try
+        {
+            await using var factory = new SecurityApiFactory("Production");
+            using var client = factory.CreateClient(new WebApplicationFactoryClientOptions
+            {
+                AllowAutoRedirect = false,
+                HandleCookies = false
+            });
+
+            using var response = await client.PostAsJsonAsync("/api/auth/qa-login", new
+            {
+                email = "admin.orbe@demo.invalid",
+                code = loginCode
+            });
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+        finally
+        {
+            Environment.SetEnvironmentVariable("EBT_QA_LOGIN_CODE", previous);
+        }
+    }
+
+    [Fact]
     public async Task Debug_headers_do_not_authenticate_anonymous_request()
     {
         await using var factory = new SecurityApiFactory();
@@ -114,18 +144,18 @@ public sealed class SecurityBoundaryTests
         Guid? TenantId,
         string? TenantKey);
 
-    private sealed class SecurityApiFactory : WebApplicationFactory<Program>
+    private sealed class SecurityApiFactory(string environment = "Development") : WebApplicationFactory<Program>
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.UseEnvironment("Development");
+            builder.UseEnvironment(environment);
             builder.ConfigureAppConfiguration((_, configuration) =>
             {
                 configuration.AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     ["Ebt:ProductName"] = "EBT Connect",
                     ["Ebt:PlatformName"] = "EBT Platform",
-                    ["Ebt:EnvironmentName"] = "Development",
+                    ["Ebt:EnvironmentName"] = environment,
                     ["Ebt:DefaultConsumerKey"] = "orbe",
                     ["Ebt:SyntheticDataEnabled"] = "true",
                     ["Ebt:RequirePrivateConfiguration"] = "false",
