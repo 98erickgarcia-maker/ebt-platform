@@ -2,6 +2,10 @@
 
 Estado: planejado. 12h estimadas (8h implementação, 3h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 64-76h.
 
+## Plano detalhado para a próxima execução
+
+[Plano PAC-07: auditoria, sessão e onboarding](../PLANO_PAC07_AUDITORIA_SESSAO_ONBOARDING.md). Documento preparado em 07/10/2026; os módulos e os casos deste pacote continuam planejados/não executados. [Controle estruturado](../../../planejamento/plano_pac07.json). G-SEG permanece aberto.
+
 ## Resultado integrado
 
 Onboarding e trilha de auditoria fecham o gate de segurança.
