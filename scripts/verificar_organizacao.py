@@ -103,7 +103,7 @@ def main():
     links=0;markdown=[]
     for file in ROOT.rglob('*.md'):
         rel=file.relative_to(ROOT)
-        if any(part in {'.git','tmp','__pycache__'} for part in rel.parts):continue
+        if any(part in {'.git','tmp','__pycache__','node_modules','bin','obj','dist'} for part in rel.parts):continue
         markdown.append(file);text=file.read_text(encoding='utf-8')
         check(text.count('```')%2==0,f"Bloco aberto: {rel}")
         for target in re.findall(r'\]\(([^)]+)\)',text):

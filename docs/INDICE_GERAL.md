@@ -132,7 +132,7 @@ Versão de organização 1.2. Navegação completa para consulta, execução fut
 - [P04-05 | Criar índices e migration do recorte](execucao/entregas/P04-05.md) (3h, N).
 - [P04-06 | Conferir SQL/RLS do recorte com banco real](execucao/entregas/P04-06.md) (3h, N).
 - [P04-07 | Implementar autorização por recurso](execucao/entregas/P04-07.md) (3h, N).
-- [P04-08 | Isolar cache, sessão e troca de perfil](execucao/entregas/P04-08.md) (3h, R2).
+- [P04-08 | Isolar cache, sessão e troca de perfil](execucao/entregas/P04-08.md) (3h, N promovido de R2).
 - [P04-09 | Reusar evento de auditoria com minimização](execucao/entregas/P04-09.md) (3h, R2).
 - [P04-10 | Conferir proteção de cookies ou tokens](execucao/entregas/P04-10.md) (3h, R2).
 - [P04-11 | Fechar onboarding e cenários negativos](execucao/entregas/P04-11.md) (3h, N).

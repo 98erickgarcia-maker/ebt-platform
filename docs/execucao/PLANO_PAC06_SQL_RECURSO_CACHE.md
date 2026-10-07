@@ -1,6 +1,6 @@
 # PAC-06 — plano de implementação e verificação
 
-Data: 07/10/2026. Estado: preparação iniciada; funcionalidades ainda não implementadas neste pacote.
+Data: 07/10/2026. Estado: plano executado no recorte, demonstrado em QA. Ver [registro](../../evidencias/execucao/PAC-06/registro.md) com versão/prova/limites; este plano não é evidência por si só.
 
 ## Fonte e limites
 
@@ -60,4 +60,4 @@ O frontend atual ainda contém telas sintéticas independentes da API autenticad
 | Cache/sessão | no-store privado; logout limpa estado; A/B e perfis não reutilizam dados; resposta antiga descartada; 401 invalida |
 | Regressão | Casos PAC-05 continuam passando; SQL/Blob real identificado; G-SEG continua aberto |
 
-Este documento registra plano e preparação, não aceite dos tickets nem conclusão do PAC-06.
+Este documento preserva as decisões e a ordem do plano. A prova e o estado dos tickets estão nos registros; G-SEG continua aberto.
