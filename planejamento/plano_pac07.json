@@ -1,0 +1,132 @@
+{
+  "data": "2026-10-07",
+  "tipo": "planejamento_detalhado_sem_execucao",
+  "pacote": "PAC-07",
+  "repositorio": "https://github.com/98erickgarcia-maker/ebt-platform",
+  "plano": "docs/execucao/PLANO_PAC07_AUDITORIA_SESSAO_ONBOARDING.md",
+  "base_sha": "900cac70c3e9323e50d61ef0aa3c7d75b0ca9112",
+  "base_pr": 7,
+  "estado_pacote": "planejado",
+  "gate": "G-SEG",
+  "estado_gate": "aberto",
+  "capacidade": {
+    "pacote_estimado_h": 12,
+    "implementacao_h": 8,
+    "verificacao_h": 3,
+    "registro_h": 1,
+    "entregas_h": 180,
+    "reserva_h": 20,
+    "horas_reais": null,
+    "reserva_consumida_confirmada": null
+  },
+  "tickets": [
+    {
+      "id": "P04-09",
+      "estado": "planejado",
+      "trilha_inicial": "R2",
+      "trilha_planejada": "N",
+      "estimativa_h": 3,
+      "cenarios": [
+        {
+          "id": "P04-09-C01",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-09-C02",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-09-C03",
+          "estado": "nao_executado",
+          "evidencia": null
+        }
+      ]
+    },
+    {
+      "id": "P04-10",
+      "estado": "planejado",
+      "trilha_inicial": "R2",
+      "trilha_planejada": "N",
+      "estimativa_h": 3,
+      "cenarios": [
+        {
+          "id": "P04-10-C01",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-10-C02",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-10-C03",
+          "estado": "nao_executado",
+          "evidencia": null
+        }
+      ]
+    },
+    {
+      "id": "P04-11",
+      "estado": "planejado",
+      "trilha_inicial": "N",
+      "trilha_planejada": "N",
+      "estimativa_h": 3,
+      "cenarios": [
+        {
+          "id": "P04-11-C01",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-11-C02",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-11-C03",
+          "estado": "nao_executado",
+          "evidencia": null
+        }
+      ]
+    },
+    {
+      "id": "P04-12",
+      "estado": "planejado",
+      "trilha_inicial": "N",
+      "trilha_planejada": "N",
+      "estimativa_h": 3,
+      "cenarios": [
+        {
+          "id": "P04-12-C01",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-12-C02",
+          "estado": "nao_executado",
+          "evidencia": null
+        },
+        {
+          "id": "P04-12-C03",
+          "estado": "nao_executado",
+          "evidencia": null
+        }
+      ]
+    }
+  ],
+  "limites": [
+    "Nao implementa os modulos",
+    "Nao altera producao ou projetos-fonte",
+    "Nao fecha gate com CI documental",
+    "Nao demonstra correcao CASST sem reproducao equivalente",
+    "Nao instala dependencias nem ativa envios"
+  ],
+  "ci_base_verificados": [
+    37702169147,
+    37702169126,
+    37702169131
+  ]
+}
