@@ -55,6 +55,13 @@ public static class AuthEndpoints
     private static async Task<IResult> LogoutAsync(HttpContext context)
     {
         await context.SignOutAsync(EbtAuthentication.Scheme);
+        context.Response.Cookies.Delete("ebt.session", new CookieOptions
+        {
+            HttpOnly = true,
+            SameSite = SameSiteMode.Strict,
+            Secure = context.Request.IsHttps,
+            Path = "/"
+        });
         return Results.NoContent();
     }
 
