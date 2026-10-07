@@ -1,3 +1,4 @@
+using Ebt.Api;
 using Ebt.Application.Configuration;
 using Ebt.Infrastructure.Foundation;
 
@@ -59,5 +60,58 @@ public sealed class FoundationTests
         });
 
         Assert.Equal(0, reads);
+    }
+
+    [Theory]
+    [InlineData("Production", "ebt-qa-safe")]
+    [InlineData("EbtQa_safe", "production")]
+    [InlineData("CustomerDb", "ebt-qa-safe")]
+    public void Qa_target_guard_rejects_non_qa_destinations(
+        string databaseName,
+        string containerName)
+    {
+        var options = new QaPersistenceOptions
+        {
+            Enabled = true,
+            DatabaseName = databaseName,
+            BlobContainerName = containerName
+        };
+
+        var error = Assert.Throws<InvalidOperationException>(() =>
+            QaTargetGuard.ValidateTargets(options));
+
+        Assert.Equal("Destino de persistência não autorizado para QA.", error.Message);
+    }
+
+    [Fact]
+    public void Qa_private_configuration_failure_does_not_expose_variable_names()
+    {
+        var options = new QaPersistenceOptions
+        {
+            Enabled = true,
+            DatabaseName = "EbtQa_Test",
+            BlobContainerName = "ebt-qa-test",
+            SqlPasswordEnvironmentVariable = "PRIVATE_SQL_NAME",
+            BlobConnectionEnvironmentVariable = "PRIVATE_BLOB_NAME"
+        };
+
+        var error = Assert.Throws<InvalidOperationException>(() =>
+            QaTargetGuard.ValidatePrivateConfiguration(options, _ => null));
+
+        Assert.Equal(
+            "Configuração privada de QA obrigatória não foi fornecida.",
+            error.Message);
+        Assert.DoesNotContain("PRIVATE_SQL_NAME", error.Message, StringComparison.Ordinal);
+        Assert.DoesNotContain("PRIVATE_BLOB_NAME", error.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void Trace_id_has_only_technical_identifier_content()
+    {
+        var traceId = SafeDiagnostics.CreateTraceId();
+
+        Assert.Matches("^[a-f0-9]{32}$", traceId);
+        Assert.DoesNotContain("orbe", traceId, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("@", traceId, StringComparison.Ordinal);
     }
 }
