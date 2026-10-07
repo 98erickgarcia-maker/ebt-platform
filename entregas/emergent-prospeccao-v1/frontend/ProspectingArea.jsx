@@ -25,6 +25,8 @@ const statuses = {
   cancelled: "Cancelado",
   limit_reached: "Limite atingido",
   rejected: "Recusado",
+  executing: "Operação em andamento; não repetir",
+  deferred: "Adiado pelo provedor; revisar antes de retomar",
 };
 const date = (v) =>
   v
@@ -47,6 +49,8 @@ export default function ProspectingArea() {
     [outlook, setOutlook] = useState({}),
     [wa, setWa] = useState({}),
     [waEvents, setWaEvents] = useState([]);
+  const [waOutbox, setWaOutbox] = useState([]);
+  const waOperations = useRef(new Map());
   const [search, setSearch] = useState(""),
     [filter, setFilter] = useState(""),
     [page, setPage] = useState(0),
@@ -119,13 +123,14 @@ export default function ProspectingArea() {
     return data;
   }
   async function refresh() {
-    const [s, t, r, m, o, w] = await Promise.all([
+    const [s, t, r, m, o, w, outgoing] = await Promise.all([
       api("/summary"),
       api("/templates"),
       api("/recipes"),
       api("/messages"),
       api("/outlook/status"),
       api("/whatsapp/status"),
+      api("/whatsapp/outbox"),
     ]);
     setSummary(s);
     setTemplates(t.items);
@@ -133,6 +138,7 @@ export default function ProspectingArea() {
     setMessages(m.items);
     setOutlook(o);
     setWa(w);
+    setWaOutbox(outgoing.items);
   }
   function clearDetail() {
     detailAbort.current?.abort();
@@ -301,6 +307,47 @@ export default function ProspectingArea() {
       target.close();
       throw e;
     }
+  }
+  async function requestOfficialWhatsApp() {
+    const payload = {
+      ...waForm,
+      parameters: waForm.parameters.split("\n").filter(Boolean),
+    };
+    const key = JSON.stringify({
+      contact_id: contact.id,
+      version: contact.version,
+      ...payload,
+    });
+    if (!waOperations.current.has(key))
+      waOperations.current.set(key, crypto.randomUUID());
+    let result;
+    try {
+      result = await api(
+        "/contacts/" + contact.id + "/whatsapp-template",
+        "POST",
+        {
+          ...payload,
+          operation_id: waOperations.current.get(key),
+        },
+      );
+    } catch (error) {
+      try {
+        const records = await api("/whatsapp/outbox");
+        setWaOutbox(records.items);
+      } catch {}
+      throw error;
+    }
+    setWaOutbox((old) => [result, ...old.filter((m) => m.id !== result.id)]);
+    if (["unknown", "executing"].includes(result.status))
+      throw new Error(
+        "Resultado WhatsApp não confirmado. Consulte a operação no histórico; repetir o clique reutiliza a mesma aprovação.",
+      );
+    if (result.status !== "accepted") throw new Error(`WhatsApp: ${statuses[result.status] || result.status}. Consulte a operação e use a retomada explícita após corrigir a causa.`);
+  }
+  async function resumeWhatsApp(record) {
+    const result = await api("/whatsapp/operations/"+record.id+"/resume", "POST");
+    setWaOutbox((old) => [result, ...old.filter((m) => m.id !== result.id)]);
+    if (result.status !== "accepted") throw new Error(`WhatsApp: ${statuses[result.status] || result.status}. Consulte o histórico antes de outra ação.`);
   }
   async function importFile(file) {
     if (!file) return;
@@ -948,20 +995,7 @@ export default function ProspectingArea() {
                           disabled={!canAct}
                           onClick={() =>
                             action(
-                              () =>
-                                api(
-                                  "/contacts/" +
-                                    contact.id +
-                                    "/whatsapp-template",
-                                  "POST",
-                                  {
-                                    ...waForm,
-                                    parameters: waForm.parameters
-                                      .split("\n")
-                                      .filter(Boolean),
-                                    operation_id: crypto.randomUUID(),
-                                  },
-                                ),
+                              requestOfficialWhatsApp,
                               "Solicitação registrada; veja eventos de entrega.",
                             )
                           }
@@ -1015,6 +1049,23 @@ export default function ProspectingArea() {
                               </button>
                             )}
                             {m.error && <small>{m.error}</small>}
+                            {m.status === "needs_connection" && (
+                              <button
+                                disabled={busy || !outlook.configured}
+                                onClick={() =>
+                                  action(
+                                    () =>
+                                      api(
+                                        "/messages/" + m.id + "/resume",
+                                        "POST",
+                                      ),
+                                    "Operação retomada após correção da conexão.",
+                                  )
+                                }
+                              >
+                                Retomar após corrigir Outlook
+                              </button>
+                            )}
                           </article>
                         ))}
                       {history.map((h) => (
@@ -1023,6 +1074,45 @@ export default function ProspectingArea() {
                           <p>{h.description}</p>
                         </article>
                       ))}
+                      {waOutbox
+                        .filter((m) => m.contact_id === contact.id)
+                        .map((m) => (
+                          <article key={m.id}>
+                            <strong>
+                              WhatsApp: {statuses[m.status] || m.status}
+                            </strong>
+                            <span>
+                              {m.phone} · {m.name} · {date(m.at)}
+                            </span>
+                            <small>{m.parameters?.join(" · ")}</small>
+                            {m.evidence?.read && (
+                              <p>Leitura confirmada pelo webhook.</p>
+                            )}
+                            {m.evidence?.delivered && (
+                              <p>Entrega confirmada pelo webhook.</p>
+                            )}
+                            {m.evidence?.sent && (
+                              <p>Envio confirmado pelo webhook.</p>
+                            )}
+                            {m.evidence?.failed && (
+                              <p>
+                                O webhook registrou falha; consulte a operação.
+                              </p>
+                            )}
+                            <a
+                              href={
+                                "/api/prospecting/whatsapp/operations/" + m.id
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                          Consultar operação WhatsApp JSON
+                        </a>
+                        {["limit_reached", "rejected", "deferred"].includes(m.status) && !m.provider_id && <button disabled={busy || !wa.send_enabled} onClick={() => {
+                          if (window.confirm(`Retomar a aprovação ${m.name} para ${m.phone} após corrigir a causa?`)) action(() => resumeWhatsApp(m), "Retomada solicitada; acompanhe a operação.");
+                        }}>Retomar WhatsApp após corrigir a causa</button>}
+                          </article>
+                        ))}
                       <a
                         href={
                           "/api/prospecting/contacts/" +

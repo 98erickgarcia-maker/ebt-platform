@@ -7,6 +7,9 @@ from mongomock_motor import AsyncMongoMockClient
 from ebt_prospecting.config import Config
 from ebt_prospecting.outlook import OutlookConnector
 from ebt_prospecting.domain import now
+from ebt_prospecting.service import ProspectService
+from ebt_prospecting.channels import MessageWorker
+from test_domain import ROW, SOURCE
 
 
 class SyntheticMsal:
@@ -95,3 +98,29 @@ async def test_application_mode_connects_automatically_with_existing_dispatcher_
     result=await o.execute(message)
     assert result.status == "draft_created"
     assert calls[0].url.path == "/v1.0/users/owner@example.com/messages"
+
+
+async def test_ambiguous_send_keeps_draft_id_and_does_not_repeat():
+    db = AsyncMongoMockClient().synthetic
+    cfg = config()
+    calls = []
+    def handler(request):
+        calls.append(request)
+        if request.url.path.endswith("/send"):
+            raise httpx.ReadTimeout("Resposta de envio perdida", request=request)
+        return httpx.Response(201, json={"id": "immutable-uncertain"})
+    o = OutlookConnector(db, cfg, app_factory=SyntheticMsal, transport=httpx.MockTransport(handler))
+    await db.ebt_p_outlook.insert_one({"space": "A", "user_id": "u1", "email": "owner@example.com", "token_cache": o.cipher().encrypt(b'{}').decode()})
+    s = ProspectService(db)
+    await s.initialize()
+    c = await s.add_contact("A", "u1", ROW, SOURCE)
+    await s.update_contact("A", c["id"], {"version": 1, "status": "qualified", "email_quality": "verified"})
+    p = await s.prepare("A", c["id"], "presentation", "Erick")
+    await s.approve_message("A", "u1", c["id"], p["digest"], "presentation", "Erick", now().isoformat()+"Z", "send")
+    worker = MessageWorker(s, o, send_enabled=True, space="A")
+    await worker.tick()
+    message = (await s.messages("A"))[0]
+    assert message["status"] == "unknown"
+    assert message["provider_id"] == "immutable-uncertain"
+    await worker.tick()
+    assert len(calls) == 2

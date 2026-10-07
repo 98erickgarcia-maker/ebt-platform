@@ -114,3 +114,56 @@ test("mobile mantém conteúdo e ações dentro da tela", async ({ page }) => {
   expect(overflow).toBe(false);
   await page.screenshot({ path: "../evidence/mobile.png", fullPage: true });
 });
+
+test("WhatsApp oficial mantém a aprovação após resposta incerta", async ({
+  page,
+}) => {
+  const requests = [];
+  await page.route("**/whatsapp/status", (route) =>
+    route.fulfill({ json: { configured: true, send_enabled: true } }),
+  );
+  await page.route("**/contacts/*/whatsapp-template", (route) => {
+    const body = route.request().postDataJSON();
+    requests.push(body);
+    const contact_id = new URL(route.request().url()).pathname
+      .split("/")
+      .at(-2);
+    return route.fulfill({
+      json: {
+        ...body,
+        id: body.operation_id,
+        contact_id,
+        status: "unknown",
+        phone: body.confirmation_phone,
+        at: "2026-10-07T12:00:00",
+      },
+    });
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Contatos", exact: true }).click();
+  await page.getByRole("button", { name: /Empresa Exemplo A/ }).click();
+  await page
+    .getByText("Solicitar template oficial WhatsApp", { exact: true })
+    .click();
+  await page.getByLabel("Nome aprovado do template").fill("approved_template");
+  await page
+    .getByLabel("Evidência do opt-in")
+    .fill("Consentimento sintético registrado");
+  await page
+    .getByLabel("Digite o telefone para confirmar")
+    .fill("5511999999999");
+  await page
+    .getByRole("button", { name: "Confirmar template oficial" })
+    .click();
+  await expect(
+    page.getByText("WhatsApp: Resultado não confirmado", { exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Confirmar template oficial" })
+    .click();
+  await expect.poll(() => requests.length).toBe(2);
+  expect(requests[0].operation_id).toBe(requests[1].operation_id);
+  await expect(
+    page.getByRole("link", { name: "Consultar operação WhatsApp JSON" }),
+  ).toBeVisible();
+});

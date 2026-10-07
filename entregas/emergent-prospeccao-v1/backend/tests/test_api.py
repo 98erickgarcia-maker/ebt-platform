@@ -7,6 +7,7 @@ from ebt_prospecting.router import create_router
 from ebt_prospecting.config import Config
 from ebt_prospecting.outlook import OutlookConnector
 from test_domain import ROW, SOURCE
+from ebt_prospecting.domain import now
 
 
 @pytest.fixture
@@ -101,3 +102,126 @@ async def test_manual_whatsapp_freezes_template_without_claiming_send(api):
     assert (await client.post(path+"/whatsapp-manual", json=payload)).status_code == 409
     assert (await client.post(path+"/whatsapp-manual", json=payload, headers={"Origin": "https://evil.example.com"})).status_code == 403
     assert (await client.get('/api/prospecting/contacts/missing/history.json')).status_code == 404
+
+
+async def test_official_whatsapp_dedupes_retries_and_exports_operation(api, monkeypatch):
+    from ebt_prospecting.channels import WhatsAppCloud, ProviderOutcome
+    client, s, cfg = api
+    cfg.wa_send_enabled, cfg.wa_token, cfg.wa_phone_id = True, "synthetic-token", "123"
+    cfg.wa_max_cost_brl, cfg.wa_template_cost_brl = 1.0, 0.0149
+    c = await s.add_contact("A", "user-a", ROW, SOURCE)
+    await s.update_contact("A", c["id"], {"version": 1, "status": "qualified"})
+    calls = []
+    async def send(self, *args):
+        calls.append(args)
+        return ProviderOutcome("unknown")
+    monkeypatch.setattr(WhatsAppCloud, "template", send)
+    payload = {"operation_id": "synthetic-operation-1", "name": "approved_template", "language": "pt_BR", "parameters": ["Ana"], "opt_in_evidence": "Consentimento sintético registrado", "confirmation_phone": c["phone"]}
+    path = f'/api/prospecting/contacts/{c["id"]}/whatsapp-template'
+    first = await client.post(path, json=payload)
+    retry = await client.post(path, json={**payload, "operation_id": "synthetic-operation-2"})
+    assert first.status_code == retry.status_code == 200
+    assert retry.json()["id"] == first.json()["id"]
+    assert retry.json()["status"] == "unknown"
+    assert len(calls) == 1
+    await s.update_contact("A", c["id"], {"version": 2, "notes": "Só uma nota; conteúdo externo igual"})
+    changed_metadata = await client.post(path, json={**payload, "operation_id": "synthetic-operation-3", "opt_in_evidence": "Consentimento sintético com referência atualizada"})
+    assert changed_metadata.status_code == 200
+    assert changed_metadata.json()["id"] == first.json()["id"]
+    assert len(calls) == 1
+    assert (await client.post(path, json={**payload, "parameters": ["Outro texto"]})).status_code == 409
+    record = await client.get('/api/prospecting/whatsapp/operations/synthetic-operation-1')
+    assert record.json()["parameters"] == ["Ana"]
+    assert (await client.get('/api/prospecting/whatsapp/outbox')).json()["items"][0]["status"] == "unknown"
+    await s.db.ebt_p_wa_outbox.insert_one({"space": "B", "id": "other-workspace", "request_digest": "different"})
+    assert (await client.get('/api/prospecting/whatsapp/operations/other-workspace')).status_code == 404
+
+
+async def test_whatsapp_budget_reserves_ceil_cents_without_exceeding_limit(api, monkeypatch):
+    from ebt_prospecting.channels import WhatsAppCloud, ProviderOutcome
+    client, s, cfg = api
+    cfg.wa_send_enabled, cfg.wa_token, cfg.wa_phone_id = True, "synthetic-token", "123"
+    cfg.wa_max_cost_brl, cfg.wa_template_cost_brl = 0.10, 0.0149
+    c = await s.add_contact("A", "user-a", ROW, SOURCE)
+    await s.update_contact("A", c["id"], {"version": 1, "status": "qualified"})
+    calls = []
+    async def send(self, *args):
+        calls.append(args)
+        return ProviderOutcome("accepted", "wamid."+str(len(calls)))
+    monkeypatch.setattr(WhatsAppCloud, "template", send)
+    for i in range(10):
+        payload = {"operation_id": "budget-operation-"+str(i), "name": "approved_template", "parameters": [str(i)], "opt_in_evidence": "Consentimento sintético registrado", "confirmation_phone": c["phone"]}
+        response = await client.post(f'/api/prospecting/contacts/{c["id"]}/whatsapp-template', json=payload)
+        assert response.status_code == (200 if i < 5 else 409)
+    assert len(calls) == 5
+    assert (await s.db.ebt_p_wa_budget.find_one({"space": "A"}))["reserved_cents"] == 10
+
+
+async def test_whatsapp_webhook_before_send_response_is_reconciled(api, monkeypatch):
+    import json, hashlib, hmac
+    from ebt_prospecting.channels import WhatsAppCloud, ProviderOutcome
+    client, s, cfg = api
+    cfg.wa_send_enabled, cfg.wa_token, cfg.wa_phone_id, cfg.wa_app_secret = True, "synthetic-token", "123", "synthetic-secret"
+    cfg.wa_max_cost_brl, cfg.wa_template_cost_brl = 1.0, 0.09
+    c = await s.add_contact("A", "user-a", ROW, SOURCE)
+    await s.update_contact("A", c["id"], {"version": 1, "status": "qualified"})
+    data = {"entry": [{"changes": [{"value": {"metadata": {"phone_number_id": "123"}, "statuses": [{"id": "wamid.early", "status": "delivered", "timestamp": "1791400000", "recipient_id": c["phone"]}]}}]}]}
+    body = json.dumps(data).encode()
+    sig = "sha256="+hmac.new(b"synthetic-secret", body, hashlib.sha256).hexdigest()
+    async def send(self, *args):
+        assert (await client.post('/api/prospecting/whatsapp/webhook', content=body, headers={"X-Hub-Signature-256": sig})).status_code == 200
+        return ProviderOutcome("accepted", "wamid.early")
+    monkeypatch.setattr(WhatsAppCloud, "template", send)
+    response = await client.post(f'/api/prospecting/contacts/{c["id"]}/whatsapp-template', json={"operation_id": "early-operation-1", "name": "approved_template", "opt_in_evidence": "Consentimento sintético registrado", "confirmation_phone": c["phone"]})
+    assert response.status_code == 200
+    record = (await client.get('/api/prospecting/whatsapp/operations/early-operation-1')).json()
+    assert record["evidence"]["delivered"]["provider_timestamp"] == "1791400000"
+    await s.db.ebt_p_wa_outbox.update_one({"space": "A", "id": "early-operation-1"}, {"$unset": {"evidence": ""}})
+    await client.post('/api/prospecting/whatsapp/webhook', content=body, headers={"X-Hub-Signature-256": sig})
+    record = (await client.get('/api/prospecting/whatsapp/operations/early-operation-1')).json()
+    assert "delivered" in record["evidence"]
+    assert await s.db.ebt_p_wa_events.count_documents({"space": "A"}) == 1
+
+
+async def test_resume_email_only_after_safe_pre_send_connection_failure(api):
+    client, s, cfg = api
+    c = await s.add_contact("A", "user-a", ROW, SOURCE)
+    p = await s.prepare("A", c["id"], "presentation", "Erick")
+    m = await s.approve_message("A", "user-a", c["id"], p["digest"], "presentation", "Erick", now().isoformat()+"Z", "draft")
+    await s.db.ebt_p_messages.update_one({"space": "A", "id": m["id"]}, {"$set": {"status": "needs_connection"}})
+    path = f'/api/prospecting/messages/{m["id"]}/resume'
+    assert (await client.post(path)).status_code == 409
+    cfg.ms_client_id, cfg.ms_tenant_id, cfg.ms_client_secret, cfg.sender_mailbox = "synthetic", "synthetic", "synthetic", "owner@example.com"
+    assert (await client.post(path)).status_code == 200
+    assert (await client.post(path)).status_code == 409
+    await s.db.ebt_p_messages.update_one({"space": "A", "id": m["id"]}, {"$set": {"status": "unknown", "provider_id": "immutable-uncertain"}})
+    assert (await client.post(path)).status_code == 409
+    await s.db.ebt_p_messages.update_one({"space": "A", "id": m["id"]}, {"$set": {"status": "needs_connection", "provider_id": "immutable-uncertain"}})
+    assert (await client.post(path)).status_code == 409
+    await s.db.ebt_p_messages.update_one({"space": "A", "id": m["id"]}, {"$set": {"provider_id": ""}})
+    await s.update_contact("A", c["id"], {"version": 1, "email": "outro@example.com"})
+    assert (await client.post(path)).status_code == 409
+
+
+async def test_whatsapp_explicit_resume_only_for_conclusive_unsent_state(api, monkeypatch):
+    from ebt_prospecting.channels import WhatsAppCloud, ProviderOutcome
+    client, s, cfg = api
+    cfg.wa_send_enabled, cfg.wa_token, cfg.wa_phone_id = True, "synthetic-token", "123"
+    cfg.wa_max_cost_brl, cfg.wa_template_cost_brl = 0.01, 0.09
+    c = await s.add_contact("A", "user-a", ROW, SOURCE)
+    await s.update_contact("A", c["id"], {"version": 1, "status": "qualified"})
+    calls = []
+    async def send(self, *args):
+        calls.append(args)
+        return ProviderOutcome("accepted", "wamid.resume")
+    monkeypatch.setattr(WhatsAppCloud, "template", send)
+    response = await client.post(f'/api/prospecting/contacts/{c["id"]}/whatsapp-template', json={"operation_id": "resume-operation-1", "name": "approved_template", "opt_in_evidence": "Consentimento sintético registrado", "confirmation_phone": c["phone"]})
+    assert response.status_code == 409
+    assert not calls
+    cfg.wa_max_cost_brl = 1.0
+    path = '/api/prospecting/whatsapp/operations/resume-operation-1/resume'
+    assert (await client.post(path)).status_code == 200
+    assert len(calls) == 1
+    assert (await client.post(path)).status_code == 409
+    await s.db.ebt_p_wa_outbox.update_one({"space": "A", "id": "resume-operation-1"}, {"$set": {"status": "unknown", "provider_id": ""}})
+    assert (await client.post(path)).status_code == 409

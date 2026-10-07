@@ -54,7 +54,12 @@ class MessageWorker:
                     status = outcome.status
         except Exception:
             error = "Resultado não confirmado. Verifique o Outlook antes de repetir."
-        update = {"status": status, "finished_at": now(), "provider_id": outcome.provider_id, "web_link": safe_url(outcome.web_link), "error": error}
+        update = {"status": status, "finished_at": now(), "error": error}
+        # Um ID salvo antes de /send precisa sobreviver a timeout/exceção.
+        if outcome.provider_id:
+            update["provider_id"] = outcome.provider_id
+        if outcome.web_link:
+            update["web_link"] = safe_url(outcome.web_link)
         if outcome.evidence:
             update["evidence"] = outcome.evidence
         if status == "accepted":

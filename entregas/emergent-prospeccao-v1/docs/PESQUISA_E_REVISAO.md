@@ -20,6 +20,7 @@ No histórico do aplicativo Emergent foi encontrado o backend FastAPI/MongoDB fo
 | Evidência de e-mail | Aprovação/digest, ID imutável, HTTP/request-id, reconciliação de Itens Enviados e JSON exportável | Não exigir foto ou captura da interface |
 | Prospecção automática | Receitas, importação, dedupe, score, lote, pausa, cursor e orçamento | Descobrir empresas dentro da base importada |
 | WhatsApp oficial | Cloud API de template, orçamento e webhook assinado | Aprender/provar o canal oficial; sem automação por QR |
+| WhatsApp manual | Clique no template preenchido; histórico com texto/telefone/digest e exportação JSON | Concluir envio no WhatsApp; registrar preparação sem presumir envio |
 
 ## Fontes atuais e decisão de custo
 

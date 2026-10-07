@@ -1,9 +1,9 @@
 name: Prospecção econômica EBT
 on:
   push:
-    paths: ['entregas/emergent-prospeccao-v1/**', '.github/workflows/prospecting-extension.yml']
+    paths: ['entregas/emergent-prospeccao-v1/backend/**', 'entregas/emergent-prospeccao-v1/frontend/**', 'entregas/emergent-prospeccao-v1/.env.example', '.github/workflows/prospecting-extension.yml']
   pull_request:
-    paths: ['entregas/emergent-prospeccao-v1/**', '.github/workflows/prospecting-extension.yml']
+    paths: ['entregas/emergent-prospeccao-v1/backend/**', 'entregas/emergent-prospeccao-v1/frontend/**', 'entregas/emergent-prospeccao-v1/.env.example', '.github/workflows/prospecting-extension.yml']
 permissions:
   contents: read
 jobs:

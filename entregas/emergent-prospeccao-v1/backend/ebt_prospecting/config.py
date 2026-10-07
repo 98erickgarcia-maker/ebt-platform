@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 import os
+import math
 from urllib.parse import urlparse
 
 
@@ -38,6 +39,8 @@ class Config:
             raise ValueError("Limites fora da faixa permitida.")
         if self.outlook_mode not in {"application", "delegated"}:
             raise ValueError("EP_OUTLOOK_MODE deve ser application ou delegated.")
+        if not all(math.isfinite(v) and v >= 0 for v in (self.wa_max_cost_brl, self.wa_template_cost_brl)):
+            raise ValueError("Custos WhatsApp devem ser números finitos e não negativos.")
         for origin in self.origins:
             u = urlparse(origin)
             if u.scheme != "https" and not (u.scheme == "http" and u.hostname in {"127.0.0.1", "localhost"}):

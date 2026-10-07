@@ -27,6 +27,10 @@ class ProspectService:
         await self.db.ebt_p_catalog.create_index([("space", 1), ("active", 1), ("uf", 1), ("city_key", 1), ("cnpj", 1)])
         await self.db.ebt_p_events.create_index([("space", 1), ("contact_id", 1), ("at", -1)])
         await self.db.ebt_p_messages.create_index([("status", 1), ("due_at", 1)])
+        await self.db.ebt_p_wa_outbox.create_index([("space", 1), ("id", 1)], unique=True)
+        await self.db.ebt_p_wa_outbox.create_index([("space", 1), ("delivery_digest", 1)], unique=True, partialFilterExpression={"delivery_digest": {"$type": "string"}})
+        await self.db.ebt_p_wa_events.create_index([("space", 1), ("id", 1)], unique=True)
+        await self.db.ebt_p_wa_budget.create_index([("space", 1), ("month", 1)], unique=True)
 
     async def import_catalog(self, space, rows, source):
         accepted, rejected = 0, []
@@ -234,6 +238,28 @@ class ProspectService:
             query["contact_id"] = contact_id
         return [public(m) for m in await self.db.ebt_p_messages.find(query).sort("due_at", -1).to_list(100)]
 
+    async def resume_email(self, space, message_id):
+        query = {"space": space, "id": message_id, "status": "needs_connection", "$or": [{"provider_id": {"$exists": False}}, {"provider_id": ""}]}
+        message = await self.db.ebt_p_messages.find_one(query)
+        if not message:
+            raise ValueError("Só é seguro retomar falha de conexão anterior à criação/envio. Resultado incerto exige conferência.")
+        c = await self.get_contact(space, message["contact_id"])
+        if c["version"] != message["contact_version"] or c["email"] != message["recipient"] or c["status"] in {"suppressed", "discarded"}:
+            raise ValueError("Contato alterado ou bloqueado. Prepare uma nova aprovação.")
+        result = await self.db.ebt_p_messages.find_one_and_update(query, {"$set": {"status": "scheduled", "due_at": now(), "error": ""}}, return_document=ReturnDocument.AFTER)
+        if not result:
+            raise ValueError("A operação já foi retomada por outra ação.")
+        await self.event(space, c["id"], "email_resumed", "Retomada explícita após correção da conexão, mantendo a aprovação anterior.")
+        return public(result)
+
     async def summary(self, space):
         contacts = self.db.ebt_p_contacts
         return {"catalog": await self.db.ebt_p_catalog.count_documents({"space": space}), "contacts": await contacts.count_documents({"space": space}), "review": await contacts.count_documents({"space": space, "status": "review"}), "qualified": await contacts.count_documents({"space": space, "status": "qualified"}), "overdue": await contacts.count_documents({"space": space, "next_action_at": {"$ne": None, "$lte": now()}, "status": {"$nin": ["suppressed", "discarded"]}}), "budget": await self.budget(space)}
+
+    async def reconcile_whatsapp(self, space, provider_id):
+        if not provider_id:
+            return
+        events = await self.db.ebt_p_wa_events.find({"space": space, "provider_id": provider_id, "kind": {"$in": ["sent", "delivered", "read", "failed"]}}).sort("at", 1).to_list(100)
+        evidence = {"evidence."+e["kind"]: {"received_at": e["at"], "provider_timestamp": e.get("timestamp"), "event_id": e["id"]} for e in events}
+        if evidence:
+            await self.db.ebt_p_wa_outbox.update_one({"space": space, "provider_id": provider_id}, {"$set": evidence})

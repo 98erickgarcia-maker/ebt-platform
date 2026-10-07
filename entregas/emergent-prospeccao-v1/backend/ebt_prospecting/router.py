@@ -5,6 +5,7 @@ import json
 import re
 import secrets
 from datetime import datetime
+from decimal import Decimal, ROUND_CEILING, ROUND_FLOOR
 from typing import Literal
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from fastapi.responses import RedirectResponse
@@ -203,6 +204,13 @@ def create_router(service, cfg, get_current_user, outlook):
             raise HTTPException(409, "A mensagem já saiu da fila ou foi cancelada.")
         return {"ok": True}
 
+    @router.post("/messages/{message_id}/resume")
+    async def resume_email(message_id: str, p=Depends(mutation)):
+        ready = await outlook.status(p["space"], p["user_id"])
+        if not ready.get("configured") or (not ready.get("automatic") and not ready.get("connected")):
+            raise HTTPException(409, "Corrija primeiro a configuração do conector Outlook.")
+        return await attempt(service.resume_email(p["space"], message_id))
+
     @router.get("/messages/{message_id}/evidence.json")
     async def message_evidence(message_id: str, p=Depends(principal)):
         doc = await service.db.ebt_p_messages.find_one({"space": p["space"], "id": message_id})
@@ -277,10 +285,9 @@ def create_router(service, cfg, get_current_user, outlook):
                     try:
                         await service.db.ebt_p_wa_events.insert_one({"space": cfg.workspace, "id": event_id, "provider_id": event.get("id"), "kind": event.get("status", "inbound"), "phone": event.get("from") or event.get("recipient_id"), "text": event.get("text", {}).get("body", "")[:4000], "timestamp": event.get("timestamp"), "at": now()})
                     except DuplicateKeyError:
-                        continue
+                        pass
                     if event.get("status") in {"sent", "delivered", "read", "failed"}:
-                        # Guardar cada evidência; eventos fora de ordem não apagam delivered/read.
-                        await service.db.ebt_p_wa_outbox.update_one({"space": cfg.workspace, "provider_id": event["id"]}, {"$set": {f'evidence.{event["status"]}': now()}})
+                        await service.reconcile_whatsapp(cfg.workspace, event["id"])
         return {"ok": True}
 
     @router.get("/whatsapp/events")
@@ -288,32 +295,86 @@ def create_router(service, cfg, get_current_user, outlook):
         docs = await service.db.ebt_p_wa_events.find({"space": p["space"]}).sort("at", -1).to_list(100)
         return {"items": [public(d) for d in docs]}
 
+    @router.get("/whatsapp/outbox")
+    async def wa_outbox(contact_id: str | None = None, p=Depends(principal)):
+        query = {"space": p["space"]}
+        if contact_id:
+            query["contact_id"] = contact_id
+        docs = await service.db.ebt_p_wa_outbox.find(query).sort("at", -1).to_list(100)
+        return {"items": [public(d) for d in docs]}
+
+    @router.get("/whatsapp/operations/{operation_id}")
+    async def wa_operation(operation_id: str, p=Depends(principal)):
+        doc = await service.db.ebt_p_wa_outbox.find_one({"space": p["space"], "id": operation_id})
+        if not doc:
+            raise HTTPException(404, "Operação WhatsApp não encontrada.")
+        return public(doc)
+
+    def require_whatsapp_configuration():
+        if not cfg.wa_send_enabled or not cfg.wa_token or not cfg.wa_phone_id or cfg.wa_max_cost_brl <= 0 or cfg.wa_template_cost_brl <= 0:
+            raise HTTPException(403, "Configure e autorize WhatsApp oficial e orçamento antes de enviar.")
+
+    async def execute_whatsapp(doc):
+        space, operation_id = doc["space"], doc["id"]
+        month = now().strftime("%Y-%m")
+        try:
+            await service.db.ebt_p_wa_budget.update_one({"space": space, "month": month}, {"$setOnInsert": {"reserved_cents": 0}}, upsert=True)
+        except DuplicateKeyError:
+            pass
+        cents = max(1, int((Decimal(str(cfg.wa_template_cost_brl))*100).to_integral_value(rounding=ROUND_CEILING)))
+        limit = int((Decimal(str(cfg.wa_max_cost_brl))*100).to_integral_value(rounding=ROUND_FLOOR))
+        reserve = await service.db.ebt_p_wa_budget.find_one_and_update({"space": space, "month": month, "reserved_cents": {"$lte": limit-cents}}, {"$inc": {"reserved_cents": cents}})
+        if not reserve:
+            await service.db.ebt_p_wa_outbox.update_one({"space": space, "id": operation_id}, {"$set": {"status": "limit_reached"}})
+            raise HTTPException(409, "Limite de custo configurado atingido.")
+        w = WhatsAppCloud("https://graph.facebook.com/"+cfg.wa_version, cfg.wa_phone_id, cfg.wa_token)
+        try:
+            outcome = await w.template(doc["phone"], doc["name"], doc["language"], doc["parameters"])
+        except Exception:
+            await service.db.ebt_p_wa_outbox.update_one({"space": space, "id": operation_id}, {"$set": {"status": "unknown"}})
+            raise HTTPException(502, "Resultado não confirmado. Consulte a operação antes de solicitar outra mensagem.")
+        update = {"status": outcome.status, "provider_id": outcome.provider_id}
+        await service.db.ebt_p_wa_outbox.update_one({"space": space, "id": operation_id}, {"$set": update})
+        await service.reconcile_whatsapp(space, outcome.provider_id)
+        await service.event(space, doc["contact_id"], "whatsapp_"+outcome.status, "Template oficial solicitado; consulte o webhook para entrega.")
+        return public(await service.db.ebt_p_wa_outbox.find_one({"space": space, "id": operation_id}))
+
     @router.post("/contacts/{contact_id}/whatsapp-template")
     async def wa_send(contact_id: str, payload: WhatsappRequest, p=Depends(mutation)):
-        if not cfg.wa_send_enabled or not cfg.wa_token or cfg.wa_max_cost_brl <= 0 or cfg.wa_template_cost_brl <= 0:
-            raise HTTPException(403, "Configure e autorize WhatsApp oficial e orçamento antes de enviar.")
+        require_whatsapp_configuration()
         c = await attempt(service.get_contact(p["space"], contact_id))
         if c["status"] != "qualified" or c["phone"] != payload.confirmation_phone:
             raise HTTPException(409, "Confirme o telefone do contato qualificado.")
-        doc = {"space": p["space"], "id": payload.operation_id, "contact_id": contact_id, "phone": c["phone"], "name": payload.name, "status": "executing", "at": now(), "opt_in_evidence": payload.opt_in_evidence}
+        frozen = {"contact_id": contact_id, "contact_version": c["version"], "phone": c["phone"], "sender_phone_id": cfg.wa_phone_id, "name": payload.name, "language": payload.language, "parameters": payload.parameters, "user_id": p["user_id"], "opt_in_evidence": payload.opt_in_evidence}
+        request_digest = digest(frozen)
+        delivery_digest = digest({key: frozen[key] for key in ("phone", "sender_phone_id", "name", "language", "parameters")})
+        doc = {**frozen, "space": p["space"], "id": payload.operation_id, "request_digest": request_digest, "delivery_digest": delivery_digest, "status": "executing", "at": now()}
         try:
             await service.db.ebt_p_wa_outbox.insert_one(doc)
         except DuplicateKeyError:
             old = await service.db.ebt_p_wa_outbox.find_one({"space": p["space"], "id": payload.operation_id})
+            if old and old.get("request_digest") != request_digest:
+                raise HTTPException(409, "Chave de operação já vinculada a outro conteúdo. Consulte o histórico.")
+            if not old:
+                old = await service.db.ebt_p_wa_outbox.find_one({"space": p["space"], "delivery_digest": delivery_digest})
+            if not old:
+                raise HTTPException(409, "Operação concorrente; consulte o histórico antes de tentar novamente.")
             return public(old)
-        month = now().strftime("%Y-%m")
-        await service.db.ebt_p_wa_budget.update_one({"space": p["space"], "month": month}, {"$setOnInsert": {"reserved_cents": 0}}, upsert=True)
-        cents = max(1, round(cfg.wa_template_cost_brl*100))
-        limit = round(cfg.wa_max_cost_brl*100)
-        reserve = await service.db.ebt_p_wa_budget.find_one_and_update({"space": p["space"], "month": month, "reserved_cents": {"$lte": limit-cents}}, {"$inc": {"reserved_cents": cents}})
-        if not reserve:
-            await service.db.ebt_p_wa_outbox.update_one({"space": p["space"], "id": payload.operation_id}, {"$set": {"status": "limit_reached"}})
-            raise HTTPException(409, "Limite de custo configurado atingido.")
-        w = WhatsAppCloud("https://graph.facebook.com/"+cfg.wa_version, cfg.wa_phone_id, cfg.wa_token)
-        outcome = await w.template(c["phone"], payload.name, payload.language, payload.parameters)
-        update = {"status": outcome.status, "provider_id": outcome.provider_id}
-        await service.db.ebt_p_wa_outbox.update_one({"space": p["space"], "id": payload.operation_id}, {"$set": update})
-        await service.event(p["space"], contact_id, "whatsapp_"+outcome.status, "Template oficial solicitado; consulte o webhook para entrega.")
-        return {**public(doc), **update}
+        return await execute_whatsapp(doc)
+
+    @router.post("/whatsapp/operations/{operation_id}/resume")
+    async def wa_resume(operation_id: str, p=Depends(mutation)):
+        require_whatsapp_configuration()
+        query = {"space": p["space"], "id": operation_id, "status": {"$in": ["limit_reached", "rejected", "deferred"]}, "$or": [{"provider_id": {"$exists": False}}, {"provider_id": ""}]}
+        doc = await service.db.ebt_p_wa_outbox.find_one(query)
+        if not doc:
+            raise HTTPException(409, "Somente resultado conclusivo anterior ao envio pode ser retomado. Não repetir operação aceita ou incerta.")
+        c = await attempt(service.get_contact(p["space"], doc["contact_id"]))
+        if c["status"] != "qualified" or c["phone"] != doc["phone"] or doc.get("sender_phone_id") != cfg.wa_phone_id:
+            raise HTTPException(409, "Contato ou número alterado/bloqueado. Revise a aprovação.")
+        claimed = await service.db.ebt_p_wa_outbox.find_one_and_update(query, {"$set": {"status": "executing", "resumed_at": now()}, "$inc": {"resume_count": 1}})
+        if not claimed:
+            raise HTTPException(409, "A operação já foi retomada por outra ação.")
+        return await execute_whatsapp(doc)
 
     return router
