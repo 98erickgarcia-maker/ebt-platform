@@ -1,0 +1,56 @@
+name: Validar fundação EBT
+
+on:
+  pull_request:
+    paths:
+      - "global.json"
+      - "Directory.Build.props"
+      - "EBT.Platform.sln"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/validar-aplicacao-fundacao.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - run: dotnet restore EBT.Platform.sln --nologo
+      - run: dotnet build EBT.Platform.sln --no-restore --nologo
+      - run: dotnet test EBT.Platform.sln --no-build --no-restore --nologo
+      - run: dotnet list EBT.Platform.sln package --vulnerable --include-transitive
+      - name: Verificar padrões de segredo rastreados
+        shell: bash
+        run: |
+          if git grep -n -E '(AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|sk-[A-Za-z0-9_-]{20,}|(Password|Pwd)=[^;[:space:]]{4,})'; then
+            echo "Padrão de segredo potencial encontrado em arquivo rastreado."
+            exit 1
+          fi
+      - run: git diff --check
+
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: src/frontend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.19.0
+          cache: npm
+          cache-dependency-path: src/frontend/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test -- --run
+      - run: npm run lint
+      - run: npm run build
+      - run: npm audit --audit-level=high
