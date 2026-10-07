@@ -7,14 +7,21 @@ type ProblemPayload = {
 }
 
 export class ApiError extends Error {
+  readonly status: number
+  readonly traceId: string | null
+  readonly kind: ApiErrorKind
+
   constructor(
     message: string,
-    public readonly status: number,
-    public readonly traceId: string | null,
-    public readonly kind: ApiErrorKind,
+    status: number,
+    traceId: string | null,
+    kind: ApiErrorKind,
   ) {
     super(message)
     this.name = 'ApiError'
+    this.status = status
+    this.traceId = traceId
+    this.kind = kind
   }
 }
 
