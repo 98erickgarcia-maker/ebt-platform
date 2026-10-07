@@ -17,7 +17,8 @@ public sealed record FoundationDownload(
 public interface IFoundationRecordRepository
 {
     Task AddAsync(FoundationStoredRecord record, CancellationToken cancellationToken = default);
-    Task<FoundationStoredRecord?> FindAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<FoundationStoredRecord?> FindAsync(Guid id, string tenantKey, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<FoundationStoredRecord>> ListAsync(string tenantKey, CancellationToken cancellationToken = default);
     Task<bool> CanConnectAsync(CancellationToken cancellationToken = default);
     Task EnsureCreatedAsync(CancellationToken cancellationToken = default);
 }
@@ -105,14 +106,24 @@ public sealed class FoundationRecordService(
 
     public Task<FoundationStoredRecord?> GetAsync(
         Guid id,
+        string tenantKey,
         CancellationToken cancellationToken = default) =>
-        repository.FindAsync(id, cancellationToken);
+        repository.FindAsync(id, NormalizeTenantKey(tenantKey), cancellationToken);
+
+    public Task<IReadOnlyList<FoundationStoredRecord>> ListAsync(
+        string tenantKey,
+        CancellationToken cancellationToken = default) =>
+        repository.ListAsync(NormalizeTenantKey(tenantKey), cancellationToken);
 
     public async Task<FoundationDownload?> DownloadAsync(
         Guid id,
+        string tenantKey,
         CancellationToken cancellationToken = default)
     {
-        var record = await repository.FindAsync(id, cancellationToken);
+        var record = await repository.FindAsync(
+            id,
+            NormalizeTenantKey(tenantKey),
+            cancellationToken);
         if (record?.Attachment is null)
             return null;
 

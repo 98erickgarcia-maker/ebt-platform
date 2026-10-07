@@ -18,14 +18,32 @@ public sealed class SqlFoundationRecordRepository(
 
     public async Task<FoundationStoredRecord?> FindAsync(
         Guid id,
+        string tenantKey,
         CancellationToken cancellationToken = default)
     {
         await using var context = await contextFactory.CreateDbContextAsync(cancellationToken);
         var entity = await context.FoundationRecords
             .AsNoTracking()
-            .SingleOrDefaultAsync(item => item.Id == id, cancellationToken);
+            .SingleOrDefaultAsync(
+                item => item.Id == id && item.TenantKey == tenantKey,
+                cancellationToken);
 
         return entity?.ToDomain();
+    }
+
+    public async Task<IReadOnlyList<FoundationStoredRecord>> ListAsync(
+        string tenantKey,
+        CancellationToken cancellationToken = default)
+    {
+        await using var context = await contextFactory.CreateDbContextAsync(cancellationToken);
+        var entities = await context.FoundationRecords
+            .AsNoTracking()
+            .Where(item => item.TenantKey == tenantKey)
+            .OrderByDescending(item => item.CreatedAtUtc)
+            .Take(100)
+            .ToListAsync(cancellationToken);
+
+        return entities.Select(item => item.ToDomain()).ToArray();
     }
 
     public async Task<bool> CanConnectAsync(CancellationToken cancellationToken = default)

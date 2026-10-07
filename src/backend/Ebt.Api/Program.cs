@@ -1,8 +1,11 @@
 using Ebt.Api;
+using Ebt.Api.Security;
 using Ebt.Application.Configuration;
 using Ebt.Application.Foundation;
+using Ebt.Application.Security;
 using Ebt.Infrastructure.Foundation;
 using Ebt.Infrastructure.Persistence;
+using Ebt.Infrastructure.Security;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +22,8 @@ builder.Services
     .ValidateOnStart();
 
 builder.Services.AddSingleton<IEbtConsumerCatalog, SyntheticConsumerCatalog>();
+builder.Services.AddSingleton<IEbtIdentityCatalog, SyntheticIdentityCatalog>();
+builder.Services.AddEbtAuthentication();
 builder.Services.AddQaPersistence(builder.Configuration);
 
 var app = builder.Build();
@@ -68,6 +73,9 @@ app.Use(async (context, next) =>
         });
     }
 });
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapGet("/health", (HttpContext context) => Results.Ok(new
 {
@@ -126,6 +134,7 @@ app.MapGet("/api/foundation/consumers/{key}", (string key, IEbtConsumerCatalog c
     return Results.Ok(consumer);
 });
 
+app.MapEbtAuthEndpoints();
 app.MapFoundationRecordEndpoints();
 
 app.Run();
