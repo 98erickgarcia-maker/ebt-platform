@@ -1,3 +1,5 @@
+import { sessionBoundary } from './sessionBoundary'
+
 export type ApiErrorKind = 'unauthorized' | 'http' | 'invalid-response' | 'network'
 
 type ProblemPayload = {
@@ -58,29 +60,33 @@ async function toApiError(response: Response): Promise<ApiError> {
   )
 }
 
-async function execute(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+async function execute<T>(input: RequestInfo | URL, init: RequestInit | undefined, read: (response: Response) => Promise<T>): Promise<T> {
+  const request = sessionBoundary.request(init?.signal ?? (input instanceof Request ? input.signal : undefined))
   try {
-    return await fetch(input, init)
-  } catch {
-    throw new ApiError(
-      'Não foi possível conectar ao serviço.',
-      0,
-      null,
-      'network',
-    )
-  }
+    let response: Response
+    try { response = await fetch(input, { ...init, signal: request.signal, cache: 'no-store', credentials: 'same-origin' }) }
+    catch {
+      request.assertCurrent()
+      throw new ApiError('Não foi possível conectar ao serviço.', 0, null, 'network')
+    }
+    request.assertCurrent()
+    if (!response.ok) {
+      const error = await toApiError(response)
+      request.assertCurrent() // an old 401 must not erase a newer identity
+      if (response.status === 401) sessionBoundary.invalidate()
+      throw error
+    }
+    const value = await read(response)
+    request.assertCurrent() // includes bodies that finished after logout/profile change
+    return value
+  } finally { request.release() }
 }
 
 export async function requestJson<T>(
   input: RequestInfo | URL,
   init?: RequestInit,
 ): Promise<T> {
-  const response = await execute(input, init)
-
-  if (!response.ok) {
-    throw await toApiError(response)
-  }
-
+  return execute(input, init, async response => {
   const contentType = response.headers.get('content-type') ?? ''
   if (!contentType.includes('application/json')) {
     throw new ApiError(
@@ -92,18 +98,14 @@ export async function requestJson<T>(
   }
 
   return await response.json() as T
+  })
 }
 
 export async function downloadFile(
   input: RequestInfo | URL,
   init?: RequestInit,
 ): Promise<Blob> {
-  const response = await execute(input, init)
-
-  if (!response.ok) {
-    throw await toApiError(response)
-  }
-
+  return execute(input, init, async response => {
   const contentType = response.headers.get('content-type') ?? ''
   if (!contentType || contentType.includes('json') || contentType.includes('problem')) {
     throw new ApiError(
@@ -125,4 +127,5 @@ export async function downloadFile(
   }
 
   return blob
+  })
 }

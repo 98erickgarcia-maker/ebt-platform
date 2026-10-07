@@ -9,3 +9,4 @@ __pycache__/
 node_modules/
 bin/
 obj/
+src/frontend/dist/

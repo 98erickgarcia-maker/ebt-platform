@@ -9,16 +9,10 @@ namespace Ebt.Foundation.Tests;
 
 public sealed class QaPersistenceIntegrationTests
 {
-    [Fact]
+    [QaFact]
     [Trait("Category", "QaPersistence")]
     public async Task Qa_persists_metadata_and_binary_in_separate_stores_and_scopes_tenant_reads()
     {
-        if (!string.Equals(
-            Environment.GetEnvironmentVariable("EBT_QA_E2E"),
-            "1",
-            StringComparison.Ordinal))
-            return;
-
         var configuration = new ConfigurationBuilder()
             .AddEnvironmentVariables()
             .Build();
@@ -63,6 +57,7 @@ public sealed class QaPersistenceIntegrationTests
         var contextFactory = services.GetRequiredService<IDbContextFactory<EbtDataContext>>();
         await using var context = await contextFactory.CreateDbContextAsync();
 
+        context.BindTenant("orbe");
         var entity = await context.FoundationRecords
             .AsNoTracking()
             .SingleAsync(item => item.Id == saved.Id);

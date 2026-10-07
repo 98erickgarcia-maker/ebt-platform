@@ -17,6 +17,7 @@ public static class FoundationRecordEndpoints
 
         group.MapGet("/", ListAsync);
         group.MapPost("/", SaveAsync);
+        group.MapGet("/export", ExportAsync);
         group.MapGet("/{id:guid}", GetAsync);
         group.MapGet("/{id:guid}/attachment", DownloadAsync);
 
@@ -39,8 +40,25 @@ public static class FoundationRecordEndpoints
             return Results.NotFound();
 
         var service = services.GetRequiredService<FoundationRecordService>();
-        var items = await service.ListAsync(identity!.TenantKey!, cancellationToken);
+        var items = await service.ListForIdentityAsync(identity!, cancellationToken);
         return Results.Ok(items.Select(ToResponse));
+    }
+
+    private static async Task<IResult> ExportAsync(
+        IServiceProvider services, IEbtTenantContext tenantContext,
+        IOptions<EbtPlatformOptions> platformOptions, IOptions<QaPersistenceOptions> persistenceOptions,
+        CancellationToken cancellationToken)
+    {
+        var identity = tenantContext.Current;
+        var access = Authorize(identity, EbtPermission.FoundationRecordRead);
+        if (access is not null) return access;
+        if (!IsEnabled(platformOptions.Value, persistenceOptions.Value)) return Results.NotFound();
+        var records = await services.GetRequiredService<FoundationRecordService>()
+            .ListForIdentityAsync(identity!, cancellationToken);
+        // Same bounded, authorized set as list (at most 100); no independent wider query.
+        var bytes = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(
+            records.Select(ToResponse), new System.Text.Json.JsonSerializerOptions(System.Text.Json.JsonSerializerDefaults.Web));
+        return Results.File(bytes, "application/json", "registros-qa.json");
     }
 
     private static async Task<IResult> SaveAsync(
@@ -80,13 +98,14 @@ public static class FoundationRecordEndpoints
 
         try
         {
-            var record = await service.SaveAsync(
+            var record = await service.SaveForIdentityAsync(
                 new FoundationRecordDraft(
                     identity!.TenantKey!,
                     request.Title,
                     request.AttachmentFileName,
                     request.AttachmentContentType,
                     attachment),
+                identity!,
                 cancellationToken);
 
             return Results.Created(
@@ -116,7 +135,7 @@ public static class FoundationRecordEndpoints
             return Results.NotFound();
 
         var service = services.GetRequiredService<FoundationRecordService>();
-        var record = await service.GetAsync(id, identity!.TenantKey!, cancellationToken);
+        var record = await service.GetForIdentityAsync(id, identity!, cancellationToken);
         return record is null
             ? Results.NotFound()
             : Results.Ok(ToResponse(record));
@@ -139,7 +158,7 @@ public static class FoundationRecordEndpoints
             return Results.NotFound();
 
         var service = services.GetRequiredService<FoundationRecordService>();
-        var download = await service.DownloadAsync(id, identity!.TenantKey!, cancellationToken);
+        var download = await service.DownloadForIdentityAsync(id, identity!, cancellationToken);
         return download is null
             ? Results.NotFound()
             : Results.File(
@@ -156,7 +175,7 @@ public static class FoundationRecordEndpoints
         if (identity is null)
             return Results.Unauthorized();
 
-        if (identity.TenantId is null
+        if (!identity.IsActive || identity.TenantId is null
             || string.IsNullOrWhiteSpace(identity.TenantKey)
             || !EbtAccessMatrix.Allows(identity.Role, permission))
             return Results.Forbid();
