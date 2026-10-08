@@ -1091,7 +1091,7 @@
     },
     {
       "path": "planejamento/sincronizacao_sequencia_20261008.json",
-      "reviewed_sha256": "cb79955c98d0d914f54bda9c4f39d6a7e478c1f1f729912d38c5a82b7e52d9dd"
+      "reviewed_sha256": "48318196909f3423ab0aa2785107bdb7212af985ec285c0130f19e091d10359e"
     },
     {
       "path": "prompts/AGENTE_EBT_ENTERPRISE.md",
@@ -1559,5 +1559,5 @@
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:56:26.361346+00:00"
+  "reviewed_at_utc": "2026-10-08T01:57:28.193347+00:00"
 }

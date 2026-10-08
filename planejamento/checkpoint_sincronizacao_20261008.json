@@ -13,7 +13,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "reviewed_sha256": "822eac25ddd67e2b103d2f720b258213786f8d09e7b6d6889725b281621bfa1d"
+      "reviewed_sha256": "3a66a61bdc109e2be26d8c97f5a755cf6da6e3bd2bbf87a0851095cbf14b9da8"
     },
     {
       "path": "planejamento/estado_continuidade.json",
@@ -21,8 +21,8 @@
     },
     {
       "path": "planejamento/sincronizacao_sequencia_20261008.json",
-      "reviewed_sha256": "cb79955c98d0d914f54bda9c4f39d6a7e478c1f1f729912d38c5a82b7e52d9dd"
+      "reviewed_sha256": "48318196909f3423ab0aa2785107bdb7212af985ec285c0130f19e091d10359e"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:56:58.314810+00:00"
+  "reviewed_at_utc": "2026-10-08T01:57:28.509415+00:00"
 }

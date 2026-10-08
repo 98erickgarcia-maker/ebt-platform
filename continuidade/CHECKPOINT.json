@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-08T01:56:59.443261+00:00",
+  "created_at_utc": "2026-10-08T01:57:29.195437+00:00",
   "branch": "codex/ebt-enterprise-continuity-sync-20261008",
-  "parent_checkpoint": null,
-  "base": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+  "parent_checkpoint": "88714a629b684bbf55d1860f2f217ea8c6ff7966",
+  "base": "88714a629b684bbf55d1860f2f217ea8c6ff7966",
   "source_head": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -14,11 +14,11 @@
     },
     {
       "path": "planejamento/checkpoint_sincronizacao_20261008.json",
-      "sha256": "2fc3687b7d3fcd95c7bd1aa5fbc752d5ba84383b948db8c149db99ec8925b095"
+      "sha256": "1be2b3f88bec9d9c185e425ed929fc2fd6d0d6b2403dafedc9678131f2252780"
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "822eac25ddd67e2b103d2f720b258213786f8d09e7b6d6889725b281621bfa1d"
+      "sha256": "3a66a61bdc109e2be26d8c97f5a755cf6da6e3bd2bbf87a0851095cbf14b9da8"
     },
     {
       "path": "planejamento/estado_continuidade.json",
@@ -26,7 +26,7 @@
     },
     {
       "path": "planejamento/sincronizacao_sequencia_20261008.json",
-      "sha256": "cb79955c98d0d914f54bda9c4f39d6a7e478c1f1f729912d38c5a82b7e52d9dd"
+      "sha256": "48318196909f3423ab0aa2785107bdb7212af985ec285c0130f19e091d10359e"
     }
   ]
 }

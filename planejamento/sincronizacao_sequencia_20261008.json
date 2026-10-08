@@ -140,7 +140,7 @@
         "src/frontend/src/App.tsx"
       ],
       "depends_on": [
-        "DTO de conversa R02"
+        "DTO de conversa somente para R02; R01 pode avançar independentemente"
       ],
       "proof": [
         "contatos A/B com latência/erro",
@@ -154,7 +154,8 @@
       "owner": "dono de contratos R02/R03 a reservar",
       "exclusive_paths": [
         "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
-        "src/backend/Ebt.Platform.Api/CrmEndpoints.cs"
+        "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+        "src/backend/Ebt.Platform.Api/ConnectWorker.cs"
       ],
       "shared_paths_require_handoff": [
         "src/frontend/src/api.ts"
