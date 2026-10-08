@@ -5,11 +5,11 @@
   "arquivos_gerados": [
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
-      "sha256": "507f0db4b17899c17d161ee47fa0d04be4a00bcc332c855272e3c9ce871ecbaa"
+      "sha256": "43b52d8a44078600b2cb232367157aca3dab73fd4586334684844b3773ff2ffb"
     },
     {
       "path": "README.md",
-      "sha256": "bf290ca9131db2aaf69be2d988c393cc9896c29a5ea48efcbc33c255afeb7d6a"
+      "sha256": "b9011285e5b4d02ffde241bc64d72b1f8f799ed1509c5352229b5253e7ecbf61"
     },
     {
       "path": "docs/BACKLOG_200_HORAS.md",
@@ -779,7 +779,7 @@
     },
     {
       "path": "scripts/enterprise_planejado.py",
-      "sha256": "ed1ce2af4454b8b2690cffaf6634f5716ccc0184b549c7f2546376fa4b18634f"
+      "sha256": "ce48d4d3d6d1443508979c1755e8d65784a2dee97b575a83641eb593c30b06c9"
     },
     {
       "path": "evidencias/revisao_frontend_fontes.json",

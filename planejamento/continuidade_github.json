@@ -41,7 +41,7 @@
     },
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
-      "reviewed_sha256": "507f0db4b17899c17d161ee47fa0d04be4a00bcc332c855272e3c9ce871ecbaa"
+      "reviewed_sha256": "43b52d8a44078600b2cb232367157aca3dab73fd4586334684844b3773ff2ffb"
     },
     {
       "path": "PASSO_A_PASSO_EBT_CONNECT.md",
@@ -57,7 +57,7 @@
     },
     {
       "path": "README.md",
-      "reviewed_sha256": "bf290ca9131db2aaf69be2d988c393cc9896c29a5ea48efcbc33c255afeb7d6a"
+      "reviewed_sha256": "b9011285e5b4d02ffde241bc64d72b1f8f799ed1509c5352229b5253e7ecbf61"
     },
     {
       "path": "deployment/connect/Dockerfile",
@@ -762,7 +762,7 @@
     },
     {
       "path": "docs/qualidade/REVISAO_ENTERPRISE_E_CONTINUIDADE_20261007.md",
-      "reviewed_sha256": "3b1986554ca4354588b20013f10a28c2ed2b9e5e6c04cd1c43818422de6e4aec"
+      "reviewed_sha256": "3016801187a96a4eccc9e5b5f3483a0d0333e19b147baea28591b99604488cdd"
     },
     {
       "path": "docs/qualidade/REVISAO_PROJETO_CONNECT.md",
@@ -774,7 +774,7 @@
     },
     {
       "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
-      "reviewed_sha256": "aeb5f0ad9415ee4551bc0abe8349fa797c1b0745d4dc1e063ae51d76f56305d3"
+      "reviewed_sha256": "08e932990c24d8dd7898ed09cc916b0f83d54921817a719507c15c673e1d695c"
     },
     {
       "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
@@ -851,7 +851,7 @@
     },
     {
       "path": "evidencias/enterprise_continuidade_20261007.json",
-      "reviewed_sha256": "afa62f6fb02138c1b63ab46a0dfbfef29f553c8d6587c30cae128b87b6ffb709"
+      "reviewed_sha256": "27ddecdf1b527acb87a76a939a07848d79830124aab28f741c06e2447a1b19af"
     },
     {
       "path": "evidencias/enterprise_ui_1366.json",
@@ -1030,7 +1030,7 @@
     },
     {
       "path": "evidencias/verificacao_plano.json",
-      "reviewed_sha256": "e43212e48125aec7d19d77a2ea29ea3d0a15f63d71079b513063dc17060800f6"
+      "reviewed_sha256": "3070e53ce50bdccd27dbd767e9d3a2df47fb8ab258dbc5b58c3b8c731742a272"
     },
     {
       "path": "output/pdf/EBT_Plano_Primeiras_200_Horas.pdf",
@@ -1063,7 +1063,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "54cac1d8d2e986c56fcc3fa4eeb795aaf2926ae50a0fc65c6f156732ea540362"
+      "reviewed_sha256": "17ef2a6943e6820df1db0d2609b89d7f5517e60a34aede8c53e6d3d840f2c686"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1075,7 +1075,7 @@
     },
     {
       "path": "planejamento/manifesto_organizacao.json",
-      "reviewed_sha256": "8915a59d501ac429bb3a19e9421ee098f70409efee85f0d7db03201bed71c208"
+      "reviewed_sha256": "1e8e694924a0a0fb82bd9a149a1a7c29912c587a949d4caae9485fe0a7b71055"
     },
     {
       "path": "planejamento/melhorias_frontend.json",
@@ -1175,7 +1175,7 @@
     },
     {
       "path": "scripts/enterprise_planejado.py",
-      "reviewed_sha256": "ed1ce2af4454b8b2690cffaf6634f5716ccc0184b549c7f2546376fa4b18634f"
+      "reviewed_sha256": "ce48d4d3d6d1443508979c1755e8d65784a2dee97b575a83641eb593c30b06c9"
     },
     {
       "path": "scripts/exportar_continuidade.py",
@@ -1551,5 +1551,5 @@
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:19:34.125487+00:00"
+  "reviewed_at_utc": "2026-10-08T01:21:57.890368+00:00"
 }

@@ -64,8 +64,8 @@ Resultados da execução desta revisão ficam em [evidência sanitizada](../../e
 
 ## Próxima sequência
 
-1. Revisar checkpoint e convergir as linhas de trabalho em recorte próprio, preservando suas histórias.
+1. Revisar checkpoint e convergir as linhas de trabalho em recorte próprio, preservando suas histórias. CI hospedada de build/protocolo/proxy/documentos foi observada aprovada no SHA 92e4006; CI de continuidade foi aprovada no SHA 330845f depois de corrigir fetch-depth do checkout. Consultar os runs na evidência, sem promover gates de produto por esse resultado.
 2. Autorizar correções R01/R02 e executar latência/erro, paginação/filtros e identificação do destinatário.
 3. Planejar R03–R05 com contratos/negativas pertinentes; repetir a regressão afetada.
-4. Fechar CI candidata, scanner privado, restauração Azure isolada e aceite do recorte.
+4. Conferir CI da próxima mudança, fechar scanner privado, restauração Azure isolada e aceite do recorte.
 5. Só depois extrair Core e escolher o próximo produto, mantendo a Enterprise completa e o limite 180h + 20h.

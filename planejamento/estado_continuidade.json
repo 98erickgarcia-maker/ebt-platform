@@ -6,7 +6,11 @@
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
   "current_scope": "auditoria de coerência, planejamento integral e ferramentas de continuidade; sem executar novos módulos",
-  "budget": { "delivery_hours": 180, "reserve_hours": 20, "actual_hours": null },
+  "budget": {
+    "delivery_hours": 180,
+    "reserve_hours": 20,
+    "actual_hours": null
+  },
   "product_status_source": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
   "budget_status_source": "planejamento/backlog_200_horas.json",
   "historical_product_version": "0.1.5",
@@ -14,11 +18,11 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "planejamento consolidado; validar checks e checkpoint na versão correspondente",
+  "review_status": "planejamento/contrato/hashes verificados; checkpoint GitHub e tarefa Windows comprovados; CI registrada por SHA",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Scanner real, CI hospedada da aplicação, restore Azure e aceite têm registros pendentes; consultar a versão vigente",
+    "Scanner real, restore Azure e aceite permanecem pendentes nos registros. CI hospedada de build/protocolo/proxy/documentos aprovada no SHA 92e4006; consultar prova e versão vigente.",
     "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
@@ -27,7 +31,7 @@
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
-    "CI de aplicação para o commit candidato",
+    "conferir CI da próxima mudança de produto",
     "aceite operacional do recorte Connect"
   ],
   "fallback_prompt": "prompts/RETOMAR_EBT_ENTERPRISE.md",

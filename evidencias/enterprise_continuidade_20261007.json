@@ -63,9 +63,32 @@
       "unit_cases": 15,
       "unit_passed": true,
       "contract_and_hashes_passed": true,
+      "sha": "330845f4c24b6b5d7f0ddbebbe7873581ee6ed67",
+      "run_id": 37712367999,
+      "overall": "success after checkout parent fetch fix",
+      "passed": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37712367999",
+      "previous_failure_run": 37712170253
+    },
+    "application_ci": {
+      "passed": true,
       "sha": "92e4006fc540d9884e412a65755eb032c3dec9bd",
-      "run_id": 37712170253,
-      "overall": "failed at diff check; shallow checkout must fetch parent; workflow repair pending new run"
+      "run_id": 37712170407,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37712170407",
+      "scope": [
+        "dotnet locked restore/build",
+        "WazVox protocol",
+        "proxy",
+        "npm ci/build/audit",
+        "planning/organization"
+      ],
+      "not_proven": [
+        "Azure SQL/restore",
+        "browser",
+        "R01-R05 corrections",
+        "business acceptance",
+        "new deployment"
+      ]
     }
   },
   "product_gate_promotion": false,

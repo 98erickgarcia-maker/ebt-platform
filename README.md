@@ -17,7 +17,7 @@ EBT Enterprise é a família completa; EBT Platform é a fundação técnica e e
 - [Prova da entrega](evidencias/connect_primeira_entrega_online.json).
 - [Estado dos gates](docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md).
 
-Recebimento, resposta e leitura reais por WazVox demonstrados; correção 0.1.5 de data.id/recipient_id publicada, sem reenvio. Scanner, CI hospedada, restore Azure e aceite permanecem pendentes. O orçamento e o backlog abaixo preservam 180h + 20h; não representam testes aprovados ou horas efetivamente consumidas.
+Recebimento, resposta e leitura reais por WazVox demonstrados; correção 0.1.5 de data.id/recipient_id publicada, sem reenvio. CI hospedada de build/protocolo/proxy/documentos aprovada no commit 92e4006; ver [prova](evidencias/enterprise_continuidade_20261007.json). Scanner, restore Azure e aceite permanecem pendentes. O orçamento e o backlog abaixo preservam 180h + 20h; não representam testes aprovados ou horas efetivamente consumidas.
 
 ## Comece aqui
 

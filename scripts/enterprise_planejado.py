@@ -1,4 +1,6 @@
 """Keep the umbrella identity and continuity references after existing generators."""
+import json
+from pathlib import Path
 
 
 def finalize_enterprise_documents(generated, emit):
@@ -46,3 +48,10 @@ A descrição anterior de ausência de runner pertence ao complemento original. 
 - [Prompt de retomada](../prompts/RETOMAR_EBT_ENTERPRISE.md).
 - [Estado estruturado](../planejamento/estado_continuidade.json).
 ''')
+    proof_path = Path(__file__).resolve().parents[1] / 'evidencias/enterprise_continuidade_20261007.json'
+    if proof_path.exists():
+        ci = json.loads(proof_path.read_text(encoding='utf-8')).get('checks', {}).get('application_ci', {})
+        if ci.get('passed') is True and len(ci.get('sha', '')) == 40:
+            note = f"CI hospedada de build/protocolo/proxy/documentos aprovada no commit {ci['sha'][:7]}; ver [prova](evidencias/enterprise_continuidade_20261007.json). Scanner, restore Azure e aceite permanecem pendentes."
+            emit('README.md', generated['README.md'].replace('Scanner, CI hospedada, restore Azure e aceite permanecem pendentes.', note))
+            emit('CONTINUAR_EM_OUTRO_CHAT.md', generated['CONTINUAR_EM_OUTRO_CHAT.md'].replace('Scanner privado, recuperação Azure, CI hospedada e aceite de negócio.', 'Scanner privado, recuperação Azure e aceite de negócio. CI hospedada aprovada no commit ' + ci['sha'][:7] + '; consultar evidencias/enterprise_continuidade_20261007.json.'))
