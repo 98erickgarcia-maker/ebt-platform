@@ -11,7 +11,11 @@ def main():
     errors=[]
     def check(ok,message):
         if not ok: errors.append(message)
-    check(len(ids)==77 and len(set(ids))==77,'Quantidade/IDs dos itens incorretos')
+    check(len(ids)==data['total_itens'] and len(set(ids))==len(ids),'Quantidade/IDs dos itens incorretos')
+    check(sum(t['trilha']!='RES' for t in items)==data['total_entregas'],'Quantidade de entregas incorreta')
+    delayed=data['adiados']['itens']
+    check(not set(ids)&{t['id'] for t in delayed},'Ticket adiado está alocado no ciclo')
+    check(len(delayed)==14 and sum(t['horas'] for t in delayed)==36,'Site/Flow adiados não foram preservados')
     check(sum(x['horas'] for x in items)==200,'Orçamento não totaliza 200h')
     check(sum(x['horas'] for x in items if x['trilha']!='RES')==180,'Entregas não totalizam 180h')
     check(sum(x['reserva_h'] for x in items)==20,'Reserva não totaliza 20h')
@@ -55,12 +59,13 @@ def main():
     try:
         import pymupdf
         doc=pymupdf.open(pdf);text='\n'.join(p.get_text() for p in doc)
-        for ident in ids: check(ident in text,f"Ticket ausente no PDF: {ident}")
+        for ident in data['ids_pdf_historico']: check(ident in text,f"Ticket histórico ausente no PDF: {ident}")
         check(all(p.get_text().strip() for p in doc),'PDF tem página vazia')
         page_count=len(doc)
     except ImportError: page_count=None
     report=dict(passed=not errors,errors=errors,total_h=200,entregas_h=180,reserva_h=20,
-        total_itens=len(ids),entregas=72,reservas=5,local_links=links,pdf_pages=page_count,
+        total_itens=len(ids),entregas=data['total_entregas'],reservas=5,local_links=links,pdf_pages=page_count,
+        pdf_historico=True,pdf_fila_vigente=False,recortes_adiados=len(delayed),
         pdf_sha256=hashlib.sha256(pdf.read_bytes()).hexdigest(),
         verification_scope='integridade documental, orçamento, dependências, links e conteúdo PDF; não testa aplicações',
         visual_review='Conferir separadamente as páginas renderizadas antes de entregar o PDF.')

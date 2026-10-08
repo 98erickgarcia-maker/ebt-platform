@@ -1,0 +1,13 @@
+{
+  "generatedUtc": "2026-10-07T14:49:36.613842+00:00",
+  "version": "0.1.4",
+  "environment": "synthetic localhost / Production / intentionally unavailable SQL",
+  "passed": true,
+  "cases": 3,
+  "checks": [
+    "Internal liveness returns 200 without redirect",
+    "Unavailable SQL produces readiness 503, not a successful redirect",
+    "User API still redirects to HTTPS"
+  ],
+  "azureDatabaseChanged": false
+}

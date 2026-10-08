@@ -16,6 +16,10 @@ Todas as linhas são pendências de execução, não impedimentos da entrega doc
 | D10 | Protocolo e concorrência | Um tipo, tenant/ano, índice e sequência transacional definidos | P08-01/P08-02 | Impede G-FLOW |
 | D11 | Participantes e aceite do piloto | Pessoas reais e disponibilidade confirmadas; dados autorizados | P09-07 | Candidato QA pode existir; aceite real permanece pendente |
 | D12 | Implantação futura | Domínio/host/config/contas/retorno do cliente escolhido | Depois de gate pertinente | Não prometer publicação específica |
+| D13 | Próxima ação e tarefa | Fonte coerente, pendência principal e fechamento sem duas cópias editáveis | P05-05/P07-01 | Impede composição consistente do Connect |
+| D14 | Exportação do CRM | Confirmar recurso existente, formato, colunas, limite e escopo do filtro | P01-04/P05-03 | Não ampliar exportação por inferência |
+| D15 | Primeiro canal de comunicação | WhatsApp oficial candidato; conta própria de QA, versão, scopes, janela/template e custos | P11-01 | G-MSG permanece pendente sem acesso/prova |
+| D16 | API/webhook e recuperação | Assinatura, dedupe, outbox, callbacks, envio desconhecido e ledger no restore | P11-02 a P11-12 | Impede resposta externa confiável |
 
 ## Como registrar resolução
 

@@ -1,5 +1,7 @@
 # Execução pelo Codex com pacotes maiores
 
+Revisão vigente 1.3 (07/10/2026): Connect com API/webhook primeiro; 70 entregas e cinco reservas, 180h + 20h. Site/Flow estão adiados. Seguir [plano atual](../PLANO_200_HORAS.md) e pacotes em ordem de esforço; as decisões de 06/10 abaixo são contexto do método original.
+
 ## Decisão e limites
 
 Decisão do usuário em 06/10/2026: pacotes maiores e revisão mais profunda, mantendo 200h. Os 17 pacotes agrupam as mesmas 72 tarefas de 180h; as cinco reservas mantêm 20h. Implementação, revisão, verificação e registro já integram os tickets. A nova organização não promete funcionalidades extras nem qualidade sem falhas.
@@ -38,7 +40,7 @@ Dependência externa, credencial ou decisão faltante gera impedimento com próx
 
 ## Continuidade e orientação reutilizável
 
-Usar [registro de pacote](../../templates/PACOTE_CODEX.md), [77 fichas](../INDICE_GERAL.md) e [pacotes](PACOTES_CODEX.md). No fim de cada sessão, deixar pacote/ticket ativo, último commit verificado, cenário que passou/falhou, decisões, arquivos alterados, dependência, esforço/saldo e próximo comando pertinente. Confirmar estado real ao retomar.
+Usar [registro de pacote](../../templates/PACOTE_CODEX.md), [75 fichas](../INDICE_GERAL.md) e [pacotes](PACOTES_CODEX.md). No fim de cada sessão, deixar pacote/ticket ativo, último commit verificado, cenário que passou/falhou, decisões, arquivos alterados, dependência, esforço/saldo e próximo comando pertinente. Confirmar estado real ao retomar.
 
 Exemplo de solicitação para uma implementação futura, que precisa ser enviada pelo usuário:
 

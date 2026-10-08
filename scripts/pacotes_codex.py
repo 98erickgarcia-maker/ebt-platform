@@ -260,6 +260,8 @@ def build_packages(data):
     items={t['id']:t for t in data['itens']}
     packs=[]
     for number,(phase,start,end,name,output,review) in enumerate(PACK_ROWS,1):
+        if phase not in {p['id'] for p in data['fases']}:
+            continue
         ids=[f'{phase}-{i:02}' for i in range(start,end+1)]
         tasks=[items[i] for i in ids]
         packs.append(dict(id=f'PAC-{number:02}',fase=phase,nome=name,tickets=ids,
@@ -270,7 +272,24 @@ def build_packages(data):
             inicio_h=tasks[0]['inicio_h'],fim_h=tasks[-1]['fim_h'],
             saida_integrada=output,revisao_especifica=review,
             estado='planejado',evidencia=None,
-            documento=f'docs/execucao/pacotes/PAC-{number:02}.md'))
+             documento=f'docs/execucao/pacotes/PAC-{number:02}.md'))
+    if 'P11' in {p['id'] for p in data['fases']}:
+        for number,start,end,name in [(18,1,4,'Contrato do canal e recebimento durável'),
+                                      (19,5,8,'Conversa, resposta e callbacks'),
+                                      (20,9,12,'Falhas, interface e gate de comunicação')]:
+            ids=[f'P11-{i:02}' for i in range(start,end+1)]
+            tasks=[items[i] for i in ids]
+            packs.append(dict(id=f'PAC-{number:02}',fase='P11',nome=name,tickets=ids,
+                horas=sum(t['horas'] for t in tasks),
+                implementacao_h=sum(t['implementacao_h'] for t in tasks),
+                verificacao_h=sum(t['verificacao_h'] for t in tasks),
+                registro_h=sum(t['registro_h'] for t in tasks),
+                inicio_h=tasks[0]['inicio_h'],fim_h=tasks[-1]['fim_h'],
+                saida_integrada=name,
+                revisao_especifica='Conferir API, assinatura, persistência, A/B, duplicatas e status observados na versão do canal; mock não homologa provedor',
+                estado='planejado',evidencia=None,
+                documento=f'docs/execucao/pacotes/PAC-{number:02}.md'))
+    packs.sort(key=lambda p:p['inicio_h'])
     owners={ticket:p['id'] for p in packs for ticket in p['tickets']}
     gate_owners={f'{phase["id"]}-GATE':owners[phase['tickets'][-1]] for phase in data['fases'] if phase['id']!='P10'}
     for p in packs:
@@ -281,18 +300,19 @@ def build_packages(data):
         p['gate_fase']=phase['gate']
         p['fecha_gate_fase']=phase['tickets'][-1] in p['tickets']
     flat=[t for p in packs for t in p['tickets']]
-    assert len(flat)==len(set(flat))==72 and set(flat)=={t['id'] for t in items.values() if t['trilha']!='RES'}
+    assert len(flat)==len(set(flat)) and set(flat)=={t['id'] for t in items.values() if t['trilha']!='RES'}
     assert sum(p['horas'] for p in packs)==180 and all(8<=p['horas']<=12 for p in packs)
-    return dict(versao='1.2',decisao='Pacotes maiores e revisão mais profunda, mantendo 200h',
+    return dict(versao='1.3',decisao='Connect com API/webhook primeiro; site e Flow adiados, mantendo 200h',
         fonte_orcamento='planejamento/backlog_200_horas.json',total_h=200,entregas_h=180,reserva_h=20,
         horas_incluem_revisao_verificacao_registro=True,
+        ordem_execucao=[p['id'] for p in packs],
         reservas=[t['id'] for t in items.values() if t['trilha']=='RES'],pacotes=packs)
 
 def emit_packages(data,emit,link):
     registry=build_packages(data)
     emit('planejamento/pacotes_codex.json',json.dumps(registry,ensure_ascii=False,indent=2))
     items={t['id']:t for t in data['itens']}
-    overview='# Pacotes maiores para executar pelo Codex\n\n17 pacotes de 8–12h estimadas agrupam as mesmas 72 entregas (180h). As cinco reservas mantêm 20h. Os 77 tickets, critérios e dependências originais permanecem. Agrupamento e documentação não comprovam execução.\n\n'
+    overview='# Pacotes maiores para executar pelo Codex\n\nRevisão 1.3 de 07/10/2026: 17 pacotes de 8–12h agrupam 70 entregas (180h), com cinco reservas (20h). Connect com tarefas e comunicação é prioridade. IDs existentes são preservados; seguir a ordem desta tabela, não a numeração dos pacotes. Site PAC-04 e Flow PAC-14/PAC-15 estão adiados fora das 200h. Nenhum módulo foi executado.\n\n'
     overview+='| Pacote | Resultado | Tickets | Horas | Gate ao fechar fase |\n|---|---|---|---:|---|\n'
     for p in registry['pacotes']:
         path=p['documento']
