@@ -1,0 +1,186 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "key-certificate": {
+      "type": "secureString"
+    },
+    "key-certificate-password": {
+      "type": "secureString"
+    },
+    "wazvox-signing": {
+      "type": "secureString"
+    },
+    "wazvox-api": {
+      "type": "secureString"
+    }
+  },
+  "resources": [
+    {
+      "location": "brazilsouth",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "/subscriptions/3db06c8f-3b96-4642-ab96-756ff2c84bfd/resourcegroups/rg-crm-casst-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-ebt-connect-hml": {}
+        }
+      },
+      "properties": {
+        "managedEnvironmentId": "/subscriptions/3db06c8f-3b96-4642-ab96-756ff2c84bfd/resourceGroups/rg-crm-casst-prod/providers/Microsoft.App/managedEnvironments/cae-crm-casst-prod",
+        "workloadProfileName": "Consumption",
+        "configuration": {
+          "activeRevisionsMode": "Single",
+          "ingress": {
+            "external": true,
+            "targetPort": 8080,
+            "transport": "auto",
+            "allowInsecure": false
+          },
+          "registries": [
+            {
+              "server": "acrcrmcasstprod2608.azurecr.io",
+              "identity": "/subscriptions/3db06c8f-3b96-4642-ab96-756ff2c84bfd/resourcegroups/rg-crm-casst-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-ebt-connect-hml"
+            }
+          ],
+          "secrets": [
+            {
+              "name": "key-certificate",
+              "value": "[parameters('key-certificate')]"
+            },
+            {
+              "name": "key-certificate-password",
+              "value": "[parameters('key-certificate-password')]"
+            },
+            {
+              "name": "wazvox-signing",
+              "value": "[parameters('wazvox-signing')]"
+            },
+            {
+              "name": "wazvox-api",
+              "value": "[parameters('wazvox-api')]"
+            }
+          ]
+        },
+        "template": {
+          "revisionSuffix": "r015",
+          "containers": [
+            {
+              "name": "connect",
+              "image": "acrcrmcasstprod2608.azurecr.io/ebt-connect@sha256:1f8deb8c1fb948441c3f56942be16137d724535ed521ad62ec97f171f32af815",
+              "env": [
+                {
+                  "name": "ASPNETCORE_ENVIRONMENT",
+                  "value": "Production"
+                },
+                {
+                  "name": "ASPNETCORE_HTTP_PORTS",
+                  "value": "8080"
+                },
+                {
+                  "name": "ASPNETCORE_HTTPS_PORT",
+                  "value": "443"
+                },
+                {
+                  "name": "ConnectionStrings__Platform",
+                  "value": "Server=tcp:sql-crm-casst-dev-crmenterprise98.database.windows.net,1433;Initial Catalog=sqldb-crm-casst-dev-v2;Encrypt=True;TrustServerCertificate=False;Authentication=Active Directory Managed Identity;User Id=196bebfa-0c4d-49a7-9e9c-46a823d8816d;Connection Timeout=30"
+                },
+                {
+                  "name": "AllowedHosts",
+                  "value": "ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io;localhost;127.0.0.1"
+                },
+                {
+                  "name": "Platform__KeyStorage",
+                  "value": "sql"
+                },
+                {
+                  "name": "Platform__RunWorkers",
+                  "value": "true"
+                },
+                {
+                  "name": "Meta__Enabled",
+                  "value": "false"
+                },
+                {
+                  "name": "WazVox__Enabled",
+                  "value": "true"
+                },
+                {
+                  "name": "Documents__ScannerEnabled",
+                  "value": "false"
+                },
+                {
+                  "name": "Platform__KeyCertificateBase64",
+                  "secretRef": "key-certificate"
+                },
+                {
+                  "name": "Platform__KeyCertificatePassword",
+                  "secretRef": "key-certificate-password"
+                },
+                {
+                  "name": "Platform__TrustedProxies",
+                  "value": "100.100.0.232;100.100.1.0;::ffff:100.100.0.232;::ffff:100.100.1.0"
+                },
+                {
+                  "name": "WazVox__Apps__wz-ebt__WorkspaceId",
+                  "value": "01a11528-b74e-723c-82bc-a9a728af7d71"
+                },
+                {
+                  "name": "WazVox__Apps__wz-ebt__SigningSecret",
+                  "secretRef": "wazvox-signing"
+                },
+                {
+                  "name": "WazVox__Connections__ebt-wazvox__ApiKey",
+                  "secretRef": "wazvox-api"
+                }
+              ],
+              "resources": {
+                "cpu": 0.25,
+                "memory": "0.5Gi"
+              },
+              "probes": [
+                {
+                  "type": "Liveness",
+                  "httpGet": {
+                    "path": "/health/live",
+                    "port": 8080,
+                    "httpHeaders": [
+                      {
+                        "name": "Host",
+                        "value": "ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io"
+                      }
+                    ]
+                  },
+                  "initialDelaySeconds": 15,
+                  "periodSeconds": 30
+                },
+                {
+                  "type": "Readiness",
+                  "httpGet": {
+                    "path": "/health/ready",
+                    "port": 8080,
+                    "httpHeaders": [
+                      {
+                        "name": "Host",
+                        "value": "ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io"
+                      }
+                    ]
+                  },
+                  "initialDelaySeconds": 10,
+                  "periodSeconds": 30,
+                  "timeoutSeconds": 10,
+                  "failureThreshold": 3
+                }
+              ]
+            }
+          ],
+          "scale": {
+            "minReplicas": 1,
+            "maxReplicas": 1
+          }
+        }
+      },
+      "type": "Microsoft.App/containerApps",
+      "apiVersion": "2025-01-01",
+      "name": "ebt-connect-hml"
+    }
+  ]
+}

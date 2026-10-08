@@ -1,0 +1,233 @@
+{
+  "generatedUtc": "2026-10-07T15:14:07.758891+00:00",
+  "context": "tmp\\container-context\\1c5a25582d00410db0b84b73596f2cf0",
+  "sourceFiles": [
+    {
+      "path": "Dockerfile",
+      "sha256": "cd34cbad9e5a8d7ab1f3dbba836b13437d39a8ae000f444fc3f8c3da9b86ca91"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/appsettings.json",
+      "sha256": "b7b480fdf36f5de8fc676d5b1d5372e5424f803a112f3fdd44e73e7086c70c64"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/CommercialScanner.cs",
+      "sha256": "02ef8f49022d364e00e46e5054ebc19b86f6d160e7327ee66314e47f48893c10"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
+      "sha256": "5ab98c7511f49bf1ac3a59dbf2c587a2926dc75f2ad0db15b72469b5d5326e44"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
+      "sha256": "7328dc18c4202b9206a31d1d2790b7bd6a2bf48922b051807ef7350ca51aa21b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "sha256": "f232ed075b6df8d57a3e4511cb908a33b396e09d86a32e58a92df674e3d4dd2e"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Data.cs",
+      "sha256": "99e0bfb5786f8afb2105bf5d1e9918548937d113c2b409be6c69d50660648452"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/DesignFactory.cs",
+      "sha256": "75d8cda066f1d07e151dcf1a31c416596b89107664d509edb09a12d2d320c3dd"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/DocumentEndpoints.cs",
+      "sha256": "757ca38005023cd8877388c7719dc058c97b51e97c9eb1b4ef07a4c11ed4834b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Ebt.Platform.Api.csproj",
+      "sha256": "26c9ba8e170ee03e52d5a2437254ba8f9b4a4e9a56253566f69edd0f22256dd6"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/KeyProtection.cs",
+      "sha256": "9d895feef06982ae17b4f303b3f14c020c36ce07aed6067113cfde2304975a1c"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
+      "sha256": "8428d6f296dfd1e1915761d449a34e9724fd54ca33345f4696959f83e29c02ae"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Models.cs",
+      "sha256": "8c475029e14de9760c98ee3bfcbb6d22b9233fe7633b7be50cf10b64d26f5401"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/packages.lock.json",
+      "sha256": "6a57cca3891dbc371b984a5fce17f748ed2c28064307ab4587c1e1fb613f2246"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Program.cs",
+      "sha256": "b02cebb504e044a57abcb3a3bbe5bc5c4ff8878de2d35aacae15f32f7b54a496"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
+      "sha256": "92ca70918f9784310cb4402c06e8302f02d71e7a50dad66c92a5450b923351c8"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/ProxyConfiguration.cs",
+      "sha256": "7dc142f0ae58305c8fab031dd891673b31c6bbd5dfa7a6fe7216419fc81a530b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/QaSeed.cs",
+      "sha256": "01ddecdbda20374e2212834aa33644396224f187fcf03106214c64567086545c"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/QaSqlChecks.cs",
+      "sha256": "ac01da5137f5d1d7eee8fd7974e06cd97855013064bcee37500ed539bfa5ebb2"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/RecoveryChecks.cs",
+      "sha256": "10b393af4be7569e41d826a539bef7319b136c5f4cf25dce9235f78e1ed4fe23"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Security.cs",
+      "sha256": "6d189426fef831e1441afef90a4648e149897aa4d5a776cf0d1491f0af468706"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
+      "sha256": "72af49c874d856aca8ff775e64bd3370ff233f1c56da2e8318fc23094766a270"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/SqlInspection.cs",
+      "sha256": "9743c4437a35c4e3972391561573754299cb11e757f9645776957f763aa24da7"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/TenantSqlContext.cs",
+      "sha256": "9c056dd8b737ccfdf96769d48178ab81ce72db041797b3b633d522f01e01b55b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/WazVoxEndpoints.cs",
+      "sha256": "dde32358524117f9c556bde01b6f69f7f1135b39df94ce40941474bc3528c7cc"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/WazVoxProtocol.cs",
+      "sha256": "9f94786774e79044229fa30fd22f327b071c2717023e474cc8c8c38f6982faef"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/WorkPulse.cs",
+      "sha256": "431d7e0fecff6c12ccc1d015fbcb93fbff4f0141453fcc92a0631f9e20b62ae8"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.cs",
+      "sha256": "dd96a299f563580e158d798e2a82cce6ed0574dfd06dd869bf5f92c327a76143"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.Designer.cs",
+      "sha256": "cac29eb34368c50a29106100866490c8e73cbced4f3eb8fac4256d580c540e36"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061901_DocumentReviewHistory.cs",
+      "sha256": "028310a94a187ab651ac74c20f008a366b4b9616eabc63fb686e930ca79a2ad5"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061901_DocumentReviewHistory.Designer.cs",
+      "sha256": "f78caeb488765c5eced10b8dbc0e18828c159b18681066d4075cde8b969eadce"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062209_TenantStorageBarrier.cs",
+      "sha256": "467afd799c483876b50130e20ce1015918a26fdb90a880bafaf4904ad0c5ca60"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062209_TenantStorageBarrier.Designer.cs",
+      "sha256": "b90a24bd584f7b34bd5e93b988eac08d880c9798ec0fd529c034ae06ada3562f"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062505_ContactCreationLedger.cs",
+      "sha256": "a5dcd14dbd84fd8a965f352116e7c5c748b2ab4b4480c2a008e0e7bb4c4c88ef"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062505_ContactCreationLedger.Designer.cs",
+      "sha256": "66848aa96b7fdd843c8bffd63298075a9dff17fb4e6e5bdea952959c4f4e7166"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007064302_RevocableSessions.cs",
+      "sha256": "43904507a4b557d916a584afdc064889fb8b4d31ec18e6312dac7f355ee87aae"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007064302_RevocableSessions.Designer.cs",
+      "sha256": "96c8f9b5b968046c5da0395afac1239cd2fb1db45f6bc915bdd39e591d46a97d"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007071227_ProviderConnectionIdentity.cs",
+      "sha256": "bfbe664d871c4458ec44f1ea5d13ae01f6b2662de6713ff4eaf6457f64767892"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007071227_ProviderConnectionIdentity.Designer.cs",
+      "sha256": "8b4854760426d73e5125927550b8fc8877786d8e14ed00ec6af632625fa17bdc"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007090647_WazVoxEventIdentity.cs",
+      "sha256": "f40a44d06b869fa725cb3d27c1d32c4e6bf647a77991cd97cf5b1d74d50bf36b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007090647_WazVoxEventIdentity.Designer.cs",
+      "sha256": "fd7a04a9e65489b2be885f3d1c89d4ebbd9128923e7273cdd29c3b36306c18bf"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.cs",
+      "sha256": "cb6fa028321c53a7f79276d4406919cf4a9c53181ea014fa325b9e5de3d6149a"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.Designer.cs",
+      "sha256": "52a21403e6c550386cf60a8ca8cec93d1acb967229fe485baeb841a9a49194fb"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/PlatformDbModelSnapshot.cs",
+      "sha256": "3a963720bc51dcc5b23f32b72fe8ee131f4ad2cb452ca9d68bf118dea4334465"
+    },
+    {
+      "path": "src/frontend/src/api.ts",
+      "sha256": "7f4d795fbf9c2b701c9cb5f4089bbd555fadb2188e607564b78bb57025819b9d"
+    },
+    {
+      "path": "src/frontend/src/App.tsx",
+      "sha256": "8a040a17bc1658f8ec1de6f82b035c4683e5421be4fbf8d93a8cf8e0dbaded29"
+    },
+    {
+      "path": "src/frontend/src/csv.ts",
+      "sha256": "095266235e8e5c6a9ab3035e821dc16cc59e1e8d5c8c657bbc986c127c750ec3"
+    },
+    {
+      "path": "src/frontend/src/main.tsx",
+      "sha256": "46443a53ae77169a882cab8fb73a0d5950a50c17b8b52a54ab9d7449133b871d"
+    },
+    {
+      "path": "src/frontend/src/style.css",
+      "sha256": "a3944a87190218351f10623d58f65a203d4b3241b21b2bb86a8de45543b573dc"
+    },
+    {
+      "path": "src/frontend/package.json",
+      "sha256": "50308697050cb85315537407879270c0217063ad9b2037575fa05715d563dee8"
+    },
+    {
+      "path": "src/frontend/package-lock.json",
+      "sha256": "ee3d552f7d0e623ce4029fc29dfa27f2b4f71d3ba77e3b51552d769bbfd94a3d"
+    },
+    {
+      "path": "src/frontend/index.html",
+      "sha256": "fb902648e09b33d986b2c3fe452ab572193102668ea92291f267969bdc4603eb"
+    },
+    {
+      "path": "src/frontend/tsconfig.json",
+      "sha256": "a4ea96ee8b5e2feaa60f5494ff286af5462f43691a6a0b8ac22710025aa7d47b"
+    },
+    {
+      "path": "src/frontend/vite.config.ts",
+      "sha256": "ecb9de341a4adba25e2e496ccd63db661c5be6d7d582c549ee37e804a1efb673"
+    }
+  ],
+  "privateFilesIncluded": false,
+  "remoteBuildExecuted": false,
+  "imageVerified": true,
+  "limits": [
+    "Allowlist source preparation only; Docker/ACR build pending",
+    "No credential, data, QA config, certificate, or keyring included"
+  ],
+  "buildRunId": "cqq",
+  "buildStatus": "Succeeded",
+  "imageDigest": "sha256:1f8deb8c1fb948441c3f56942be16137d724535ed521ad62ec97f171f32af815",
+  "version": "0.1.5"
+}

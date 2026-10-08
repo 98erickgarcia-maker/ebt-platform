@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "reference_date_local": "2026-10-07",
+  "timezone": "America/Sao_Paulo",
+  "family": "EBT Enterprise",
+  "foundation": "EBT Platform",
+  "first_product": "EBT Connect",
+  "current_scope": "auditoria de coerência, planejamento integral e ferramentas de continuidade; sem executar novos módulos",
+  "budget": { "delivery_hours": 180, "reserve_hours": 20, "actual_hours": null },
+  "product_status_source": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
+  "budget_status_source": "planejamento/backlog_200_horas.json",
+  "historical_product_version": "0.1.5",
+  "historical_evidence": [
+    "evidencias/connect_wazvox_real_015.json",
+    "evidencias/manifesto_connect_local.json"
+  ],
+  "review_status": "planejamento consolidado; validar checks e checkpoint na versão correspondente",
+  "no_product_gate_promotion": true,
+  "product_limits": [
+    "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
+    "Scanner real, CI hospedada da aplicação, restore Azure e aceite têm registros pendentes; consultar a versão vigente",
+    "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
+    "Dois tenants do Connect não comprovam isoladamente Core universal",
+    "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
+  ],
+  "next_authorized_step": "Confirmar SHA remoto e checks do checkpoint; revisar o relatório de coerência e planejar o fechamento das provas pendentes do Connect sem alterar produto/produção neste pedido",
+  "next_product_steps_require_scope": [
+    "scanner privado com prova por versão",
+    "restauração Azure isolada e comparação de hashes",
+    "CI de aplicação para o commit candidato",
+    "aceite operacional do recorte Connect"
+  ],
+  "fallback_prompt": "prompts/RETOMAR_EBT_ENTERPRISE.md",
+  "checkpoint_configuration": "planejamento/continuidade_github.json",
+  "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
+  "automatic_chat_transfer": false,
+  "automatic_new_content_approval": false
+}

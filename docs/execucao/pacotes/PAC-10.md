@@ -1,6 +1,6 @@
 # PAC-10 | Segundo consumidor, importação e fechamento do CRM
 
-Estado: planejado. 10h estimadas (6.5h implementação, 2.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 94-104h.
+Estado: planejado. 10h estimadas (6.5h implementação, 2.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 82-92h.
 
 ## Resultado integrado
 

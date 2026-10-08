@@ -1,0 +1,138 @@
+{
+  "generated_utc": "2026-10-07T11:49:33.799746+00:00",
+  "environment": "localhost SQL Server QA synthetic",
+  "run": "356aef4e5d",
+  "passed": true,
+  "cases": [
+    {
+      "case": "CRM creation + stable ID + idempotent replay",
+      "result": "passed",
+      "seconds": 0.369
+    },
+    {
+      "case": "Tenant B rejects direct contact ID",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "case": "Portfolio rejects direct contact ID",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "case": "Reader mutation denied",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "case": "CSRF mutation denied",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "case": "Unknown tenant fields rejected",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "case": "Changed payload same key rejected",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "case": "Contact update persisted + stale conflict",
+      "result": "passed",
+      "seconds": 0.197
+    },
+    {
+      "case": "Historical note preserves author/time; duplicate not repeated",
+      "result": "passed",
+      "seconds": 0.212
+    },
+    {
+      "case": "Single next-action source + close/replay + B denied",
+      "result": "passed",
+      "seconds": 0.341
+    },
+    {
+      "case": "Import preview/confirm/replay/tenant boundary",
+      "result": "passed",
+      "seconds": 0.583
+    },
+    {
+      "case": "Import conflict rolls back entire batch",
+      "result": "passed",
+      "seconds": 0.162
+    },
+    {
+      "case": "Onboarding activation works once and yields correct membership",
+      "result": "passed",
+      "seconds": 0.322
+    },
+    {
+      "case": "Invalid webhook signature rejected",
+      "result": "passed",
+      "seconds": 0.034
+    },
+    {
+      "case": "Signed webhook durable receipt + inbox dedupe + A/B",
+      "result": "passed",
+      "seconds": 0.557
+    },
+    {
+      "case": "Reply API queues atomically; replay/conflict/preconditions/worker",
+      "result": "passed",
+      "seconds": 0.441
+    },
+    {
+      "case": "Callback batch/order/duplicate preserve read and facts",
+      "result": "passed",
+      "seconds": 0.722
+    },
+    {
+      "case": "Ambiguous send becomes unknown without automatic resend",
+      "result": "passed",
+      "seconds": 1.886
+    },
+    {
+      "case": "Private document version/hash/review/reader/B boundaries",
+      "result": "passed",
+      "seconds": 1.253
+    },
+    {
+      "case": "Technical API key restricted + revocation immediate",
+      "result": "passed",
+      "seconds": 0.425
+    },
+    {
+      "case": "Audit tenant scope contains persisted actions",
+      "result": "passed",
+      "seconds": 0.093
+    },
+    {
+      "case": "Concurrent commands create one durable contact ID",
+      "result": "passed",
+      "seconds": 0.371
+    },
+    {
+      "case": "Mixed envelope routes A/B; unknown metadata quarantined; provider IDs scoped and case sensitive",
+      "result": "passed",
+      "seconds": 4.804
+    },
+    {
+      "case": "Late signed callback reconciles unknown without resending",
+      "result": "passed",
+      "seconds": 1.399
+    },
+    {
+      "case": "Logout/context revoke copied sessions; old-context mutation denied",
+      "result": "passed",
+      "seconds": 0.323
+    }
+  ],
+  "limits": [
+    "No real provider send or Meta homologation",
+    "No Azure shared schema modified",
+    "Not user acceptance"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "generatedUtc": "2026-10-07T14:48:07.100028+00:00",
+  "version": "0.1.4",
+  "revision": "ebt-connect-hml--r014",
+  "passed": true,
+  "results": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "hsts": true
+    },
+    {
+      "path": "/health/ready",
+      "status": 200,
+      "hsts": true
+    },
+    {
+      "path": "/api/auth/me",
+      "status": 200,
+      "hsts": true
+    },
+    {
+      "path": "/api/connect/v1/summary",
+      "status": 200,
+      "hsts": true
+    },
+    {
+      "path": "unsigned webhook",
+      "status": 401
+    }
+  ],
+  "previousRevisionSessionPreserved": true,
+  "realTenantStartsEmpty": true,
+  "readinessChecksSql": true,
+  "resourcesUnchanged": true
+}

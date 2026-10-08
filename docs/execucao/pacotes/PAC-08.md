@@ -1,6 +1,6 @@
 # PAC-08 | Cadastro único, busca e paginação
 
-Estado: planejado. 9h estimadas (7h implementação, 1.25h verificação/revisão e 0.75h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 76-85h.
+Estado: planejado. 9h estimadas (6.75h implementação, 1.5h verificação/revisão e 0.75h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 64-73h.
 
 ## Resultado integrado
 
@@ -18,7 +18,7 @@ Tickets/gates externos: P04-GATE. As dependências originais são mantidas; orde
 |---|---|---:|---|
 | [P05-01](../entregas/P05-01.md) | Fixar contrato mínimo de pessoa e organização | 3h | R2 |
 | [P05-02](../entregas/P05-02.md) | Reaproveitar cadastro e prevenção de duplicidade | 3h | R2 |
-| [P05-03](../entregas/P05-03.md) | Reaproveitar lista, busca e paginação | 3h | R1 |
+| [P05-03](../entregas/P05-03.md) | Reaproveitar lista, busca e paginação | 3h | R2 |
 
 Ler e cumprir os critérios/cenários de cada ficha. A saída integrada complementa os aceites individuais.
 

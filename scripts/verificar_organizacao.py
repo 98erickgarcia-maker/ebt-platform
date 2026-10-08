@@ -26,10 +26,10 @@ def main():
     items={t['id']:t for t in baseline['itens']}
     phases={p['id']:p for p in baseline['fases']}
     case_ids=[c['id'] for c in cases]
-    check(len(items)==77 and len(details)==77,'77 itens/fichas devem existir')
+    check(len(items)==baseline['total_itens'] and len(details)==len(items),'Quantidade de itens/fichas diverge da baseline')
     check({d['id'] for d in details}==set(items),'IDs detalhados diferem da baseline')
     check(len(set(case_ids))==len(case_ids),'Caso duplicado')
-    check(len(gates)==10 and len({g['alias'] for g in gates})==10,'Dez gates/aliases únicos devem existir')
+    check(len(gates)==len(phases) and len({g['alias'] for g in gates})==len(phases),'Gates/aliases únicos devem cobrir as fases')
     check(sum(t['horas'] for t in items.values())==200,'Orçamento alterado')
     check(sum(t['horas'] for t in items.values() if t['trilha']!='RES')==180,'Entregas alteradas')
     check(sum(t['horas'] for t in items.values() if t['trilha']=='RES')==20,'Reserva alterada')
@@ -39,9 +39,40 @@ def main():
     flat=[tid for p in packages for tid in p['tickets']]
     normal={tid for tid,t in items.items() if t['trilha']!='RES'}
     check(len(packages)==len(pack_ids)==17,'17 pacotes únicos devem existir')
-    check(len(flat)==len(set(flat))==72 and set(flat)==normal,'Pacotes devem cobrir cada uma das 72 entregas uma vez')
+    check(len(flat)==len(set(flat))==baseline['total_entregas'] and set(flat)==normal,'Pacotes devem cobrir cada entrega ativa uma vez')
+    check(package_registry['ordem_execucao']==[p['id'] for p in packages],'Ordem explícita de pacotes diverge')
+    check([p['inicio_h'] for p in packages]==sorted(p['inicio_h'] for p in packages),'Pacotes fora da ordem de esforço')
     check(set(package_registry['reservas'])==set(items)-normal,'Reservas foram removidas ou absorvidas por pacote')
     check(sum(p['horas'] for p in packages)==180,'Soma dos pacotes difere de 180h')
+    connect=load('planejamento/entrega_connect.json')
+    check(connect['horas_incluidas']==140 and connect['horas_adicionais']==0,'Contrato Connect altera esforço')
+    connect_rows=[items[tid] for tid in connect['tickets'] if tid in items]
+    check(len(connect_rows)==54 and sum(t['horas'] for t in connect_rows)==140,'Tickets Connect não totalizam 140h')
+    check(connect['estado']=='planejado' and connect['evidencia_execucao'] is None,'Contrato inventa execução')
+    check(phases['P07']['dependencias']==['P05'],'GED bloqueia tarefa comercial do contato')
+    check(phases['P07']['fim_h']==104 and phases['P11']['fim_h']==140 and phases['P06']['fim_h']==164,'Marcos da revisão divergem')
+    check('P03' not in phases and 'P08' not in phases,'Site/Flow continuam alocados no ciclo')
+    postponed=load('planejamento/backlog_apos_200_horas.json')
+    check(postponed['horas_alocadas_neste_ciclo']==0 and len(postponed['itens'])==14,'Recortes adiados foram absorvidos/excluídos')
+    check({t['id'] for t in postponed['itens']}=={t['id'] for t in baseline['adiados']['itens']},'IDs adiados divergentes')
+    check(all(t['trilha']=='N' for t in items.values() if t['fase']=='P11'),'Comunicação nova usa verificação reduzida')
+    specification=load('planejamento/connect_api.openapi.json')
+    check(specification['openapi']=='3.1.0' and specification['x-estado']=='planejado','Contrato API inválido ou declarado executado')
+    schemas=specification['components']['schemas']
+    def inspect_refs(value):
+        if isinstance(value,dict):
+            if '$ref' in value:
+                reference=value['$ref']
+                check(reference.startswith('#/components/schemas/') and reference.rsplit('/',1)[-1] in schemas,'Referência OpenAPI não resolvida: '+reference)
+            for child in value.values():inspect_refs(child)
+        elif isinstance(value,list):
+            for child in value:inspect_refs(child)
+    inspect_refs(specification)
+    reply=specification['paths']['/api/connect/v1/conversations/{conversationId}/messages']['post']
+    check({'Idempotency-Key','If-Match'}<={p['name'] for p in reply['parameters'] if p['required']},'Resposta perdeu repetição/concorrência')
+    check('202' in reply['responses'] and '409' in reply['responses'],'API omite fila ou conflito')
+    check(not {'tenantId','recipient','to'}&set(schemas['ReplyRequest']['properties']),'Cliente escolhe tenant/destinatário arbitrário')
+    check(schemas['ReplyRequest']['additionalProperties'] is False,'DTO de resposta admite campos arbitrários')
     owner={tid:p['id'] for p in packages for tid in p['tickets']}
     for p in packages:
         ids=p['tickets']
@@ -103,11 +134,11 @@ def main():
     links=0;markdown=[]
     for file in ROOT.rglob('*.md'):
         rel=file.relative_to(ROOT)
-        if any(part in {'.git','tmp','__pycache__'} for part in rel.parts):continue
+        if any(part in {'.git','tmp','__pycache__','node_modules','bin','obj','playwright-report'} for part in rel.parts):continue
         markdown.append(file);text=file.read_text(encoding='utf-8')
         check(text.count('```')%2==0,f"Bloco aberto: {rel}")
         for target in re.findall(r'\]\(([^)]+)\)',text):
-            if '://' in target or target.startswith('#'):continue
+            if '://' in target or target.startswith(('#','mailto:','tel:')):continue
             path=target.split('#')[0];links+=1
             resolved=(file.parent/path).resolve()
             if resolved==ROOT/'evidencias/verificacao_organizacao.json' and '--no-write' not in sys.argv:
@@ -122,12 +153,12 @@ def main():
         path=entry['path'];p=ROOT/path
         check(p.is_file(),f"Arquivo do manifesto ausente: {path}")
         if p.is_file():check(digest(path)==entry['sha256'],f"Gerado/fonte mudou sem reconciliação: {path}")
-    check(manifest['total_tickets']==77 and manifest['total_cenarios']==len(cases),'Totais do manifesto divergentes')
+    check(manifest['total_tickets']==len(items) and manifest['total_cenarios']==len(cases),'Totais do manifesto divergentes')
     workflow=(ROOT/'.github/workflows/validar-planejamento.yml').read_text(encoding='utf-8')
     check('verificar_organizacao.py --no-write' in workflow,'CI documental ausente')
     check('contents: read' in workflow and 'deploy' not in workflow.lower(),'CI amplia permissão ou implanta produto')
-    report=dict(passed=not errors,errors=errors,versao_organizacao='1.2',
-        total_h=200,entregas_h=180,reserva_h=20,total_tickets=77,
+    report=dict(passed=not errors,errors=errors,versao_organizacao=manifest['versao'],
+        total_h=200,entregas_h=180,reserva_h=20,total_tickets=len(items),
         total_cenarios=len(cases),casos_nao_executados=len(cases),total_fases=len(phases),
         total_gates=len(gates),fichas_individuais=len(details),total_pacotes=len(packages),
         templates=len(list((ROOT/'templates').glob('*.md'))),

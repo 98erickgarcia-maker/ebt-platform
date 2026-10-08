@@ -1,0 +1,25 @@
+﻿{
+    "generatedUtc":  "2026-10-07T09:22:31.5094107+00:00",
+    "provider":  "wazvox",
+    "baseUrl":  "https://app.wazvox.com/api/v1",
+    "checks":  [
+                   {
+                       "endpoint":  "me",
+                       "httpStatus":  200,
+                       "passed":  true
+                   },
+                   {
+                       "endpoint":  "numbers",
+                       "httpStatus":  200,
+                       "passed":  true
+                   },
+                   {
+                       "endpoint":  "webhook-subscriptions",
+                       "httpStatus":  200,
+                       "passed":  true
+                   }
+               ],
+    "numberRegistered":  true,
+    "numberConnected":  true,
+    "onboardingMode":  "business_app_coexistence"
+}

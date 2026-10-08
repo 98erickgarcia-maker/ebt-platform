@@ -1,0 +1,207 @@
+{
+  "data_referencia": "06/10/2026",
+  "gerado_utc": "2026-10-07T02:25:29.555298+00:00",
+  "escopo": "inspeção estática focal; sem executar produtos, autenticar ou observar telas online; fontes não alteradas",
+  "projetos": [
+    {
+      "projeto": "CASST",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation",
+      "head": "046e7c62359220aaf6ab30832f0fbff5b6f675f0",
+      "arquivos": [
+        {
+          "path": "src/frontend/src/main.tsx",
+          "sha256_bytes": "82c9eef35aa8db9408a361c34490c130a9c3586e2628784ff0f710542d92cc1a",
+          "linhas": 22,
+          "imports_estilos": [
+            {
+              "linha": 5,
+              "import": "import './styles/tokens.css'"
+            },
+            {
+              "linha": 6,
+              "import": "import './styles/global.css'"
+            },
+            {
+              "linha": 7,
+              "import": "import './styles/professional-refresh.css'"
+            },
+            {
+              "linha": 8,
+              "import": "import './styles/approved-commercial-ux.css'"
+            },
+            {
+              "linha": 9,
+              "import": "import './styles/crm-design-system.css'"
+            }
+          ]
+        },
+        {
+          "path": "src/frontend/src/layout/AppShell.tsx",
+          "sha256_bytes": "4d397fb839d2c09d28b6524c03acb0815ab3ef871e10025efe89c406b989238d",
+          "linhas": 189,
+          "navlink_ocorrencias": 28,
+          "observacoes": [
+            {
+              "linha": 70,
+              "codigo": "function trapDrawerFocus(event: ReactKeyboardEvent<HTMLElement>) {"
+            },
+            {
+              "linha": 99,
+              "codigo": "<aside id=\"primary-navigation\" className={`sidebar ${drawerOpen ? 'is-open' : ''}`} aria-label=\"Navegação principal\" aria-hidden={isMobile && !drawerOpen ? true : undefined} inert={isMobile && !drawerOpen ? true : undefined} onKeyDown={trap"
+            },
+            {
+              "linha": 115,
+              "codigo": "<NavGroup label=\"Comercial\">"
+            },
+            {
+              "linha": 130,
+              "codigo": "<NavGroup label=\"Execução SST\">"
+            },
+            {
+              "linha": 137,
+              "codigo": "{(canViewManagement || canManageClientPortal || canViewTeam) && <NavGroup label=\"Gestão\">"
+            },
+            {
+              "linha": 156,
+              "codigo": "<div className=\"desktop-topbar-search\" title=\"Busca geral em planejamento\"><Search aria-hidden=\"true\" size={19} /><span>Buscar clientes, oportunidades, pessoas, propostas...</span><kbd>Ctrl + K</kbd></div>"
+            },
+            {
+              "linha": 158,
+              "codigo": "<button type=\"button\" className=\"topbar-notifications\" disabled title=\"Notificações em planejamento\" aria-label=\"Notificações em planejamento\"><Bell aria-hidden=\"true\" size={21} /></button>"
+            }
+          ]
+        },
+        {
+          "path": "src/frontend/src/styles/tokens.css",
+          "sha256_bytes": "3c7e80b02b05444bd25c7a75be68ac8a42088c9ecc92465e1ee703a8c8fd2dba",
+          "linhas": 32,
+          "ocorrencias_important": 0
+        },
+        {
+          "path": "src/frontend/src/styles/global.css",
+          "sha256_bytes": "406c07e6d294da2f04cd7c182cfbfff5ee47101302983049e5a8f5c84dbe973a",
+          "linhas": 342,
+          "ocorrencias_important": 6
+        },
+        {
+          "path": "src/frontend/src/styles/professional-refresh.css",
+          "sha256_bytes": "a351c27535970343acfc3f4796aa294cab8cb0152ea11c620feb068d90e70a4f",
+          "linhas": 684,
+          "ocorrencias_important": 4
+        },
+        {
+          "path": "src/frontend/src/styles/approved-commercial-ux.css",
+          "sha256_bytes": "27af0eaef0260f4c348c84d4ef36c4c8ac1964a3a3fd408e1b3e84747d05c564",
+          "linhas": 45,
+          "ocorrencias_important": 21
+        },
+        {
+          "path": "src/frontend/src/styles/crm-design-system.css",
+          "sha256_bytes": "4f379ada61a547cb04205b7109459772c5e9aa19d67c58be205f1e97bfa37a4e",
+          "linhas": 477,
+          "ocorrencias_important": 2
+        },
+        {
+          "path": "src/frontend/src/pages/ContactCenterPage.tsx",
+          "sha256_bytes": "2ee8b675dbcbd514a804d75599acde2c258820a8a86d77ab1bd6badfedb8d955",
+          "linhas": 161
+        },
+        {
+          "path": "src/frontend/src/layout/AppShell.test.tsx",
+          "sha256_bytes": "dd8568fa09f040e957c046529a9e64c3868b283d0aa7a0491515dbe5e4592842",
+          "linhas": 86
+        }
+      ]
+    },
+    {
+      "projeto": "Vikings",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\GRUPO VIKINGS",
+      "head": "d41d47923c7386fd926a92b3c29e525c1b307adf",
+      "arquivos": [
+        {
+          "path": "src/VikingsSst.Web/src/App.tsx",
+          "sha256_bytes": "e3789441bb1e784090739e65a34f5a0a6564b0e750ac407cb496cb811ed57042",
+          "linhas": 57,
+          "observacoes": [
+            {
+              "linha": 5,
+              "codigo": "function StatusPill({ok,label}:{ok:boolean;label:string}){return <span className={ok?'pill ok':'pill warn'}>{label}</span>}"
+            },
+            {
+              "linha": 6,
+              "codigo": "function Metric({label,value,attention=false}:{label:string;value:number;attention?:boolean}){return <div className=\"metric\"><span>{label}</span><strong className={attention&&value>0?'attention':''}>{value}</strong></div"
+            },
+            {
+              "linha": 16,
+              "codigo": "export default function App(){"
+            },
+            {
+              "linha": 17,
+              "codigo": "const [dashboard,setDashboard]=useState<Dashboard|null>(null);const[workers,setWorkers]=useState<Worker[]>([]);const[actions,setActions]=useState<ActionItem[]>([]);const[selected,setSelected]=useState<WorkerDetail|null>("
+            }
+          ]
+        },
+        {
+          "path": "src/VikingsSst.Web/src/styles.css",
+          "sha256_bytes": "88263d81d5625a1c0107f5fac85279cff6d96f6e8931c3794e528cbd2f881d01",
+          "linhas": 5,
+          "ocorrencias_important": 0
+        }
+      ]
+    },
+    {
+      "projeto": "Nutrição",
+      "path": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\SITE NUTRIÇÃO",
+      "head": "ce57413cbf18dda264221e2ea93a5cb97df3ec41",
+      "arquivos": [
+        {
+          "path": "web/frontend/src/design/AppLayout.tsx",
+          "sha256_bytes": "0f57c6e9c925addea17e2dfa59307fa238f91e5ac0cb450a591898a955531eae",
+          "linhas": 15,
+          "observacoes": [
+            {
+              "linha": 3,
+              "codigo": "import {Menu,X,LayoutDashboard,Utensils,Activity,LineChart,ClipboardCheck,Calendar,MessageCircle,Files,UserRound,Users,NotebookPen,Briefcase,Settings,Shield,BookOpen,Mail,LogOut} from 'lucide-react';"
+            },
+            {
+              "linha": 8,
+              "codigo": "const clientLinks=[['/cliente/hoje','Hoje',LayoutDashboard],['/cliente/alimentacao','Alimentação',Utensils],['/cliente/treino','Treino',Activity],['/cliente/evolucao','Minha evolução',LineChart],['/cliente/check-in','Che"
+            },
+            {
+              "linha": 9,
+              "codigo": "const teamLinks=[['/equipe/visao-geral','Visão geral',LayoutDashboard,['professional','trainer','reception']],['/equipe/clientes','Clientes',Users,['professional','trainer']],['/equipe/planos','Planos e versões',Notebook"
+            },
+            {
+              "linha": 10,
+              "codigo": "const crmLinks=[['/crm','Visão comercial',LayoutDashboard,['commercial']],['/crm/leads','Oportunidades',Users,['commercial']],['/crm/clientes','Clientes e acesso',UserRound,['commercial']],['/crm/whatsapp','Conversas no "
+            },
+            {
+              "linha": 12,
+              "codigo": "export function AppLayout(){const {user,refresh}=useAuth();const [open,setOpen]=useState(false);const [error,setError]=useState('');const navigate=useNavigate();const location=useLocation();useEffect(()=>{setOpen(false);"
+            },
+            {
+              "linha": 14,
+              "codigo": "async function logout(){try{await api('/api/auth/logout',{method:'POST'});resetCsrf();await refresh();navigate('/entrar')}catch(e){setError(e instanceof Error?e.message:'Falha ao sair')}}"
+            },
+            {
+              "linha": 15,
+              "codigo": "return <><a className=\"skip-link\" href=\"#conteudo\">Ir ao conteúdo</a><div className={isCrm?'app-shell crm-shell':'app-shell'}><aside className={'sidebar '+(open?'nav-open':'')}>{isCrm?<CrmBrand to={user.role==='finance'?"
+            }
+          ]
+        },
+        {
+          "path": "web/frontend/src/design/tokens.css",
+          "sha256_bytes": "2fb73263c607c88596716aa1189266bb12fad49d0add98903a5a52a953b028ea",
+          "linhas": 6,
+          "ocorrencias_important": 3
+        },
+        {
+          "path": "web/frontend/src/design/workspace.css",
+          "sha256_bytes": "1e9c5ae469e21fc6a50752c885e8d7018a0b84e4f15ed170cad82ed4aa32f96b",
+          "linhas": 15,
+          "ocorrencias_important": 0
+        }
+      ]
+    }
+  ]
+}

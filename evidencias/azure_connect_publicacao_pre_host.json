@@ -1,0 +1,70 @@
+{
+  "generatedUtc": "2026-10-07T12:00:24.518757+00:00",
+  "publicationAuthorized": true,
+  "fixedMonthlyAmountAuthorizedBrl": 30,
+  "variableChargesAuthorized": false,
+  "publicAppCreated": false,
+  "publicHttpsVerified": false,
+  "registryBuildExecuted": false,
+  "paidPlanCreated": false,
+  "hostingChecks": {
+    "existingAppServicePlans": 0,
+    "existingWebApps": 0,
+    "freeAttempts": [
+      {
+        "region": "brazilsouth",
+        "os": "Linux",
+        "sku": "F1",
+        "result": "quota_denied",
+        "limit": 0,
+        "required": 1
+      },
+      {
+        "region": "brazilsouth",
+        "os": "Windows",
+        "sku": "F1",
+        "result": "quota_denied",
+        "limit": 0,
+        "required": 1
+      },
+      {
+        "region": "eastus",
+        "os": "Windows",
+        "sku": "F1",
+        "result": "quota_denied",
+        "limit": 0,
+        "required": 1
+      }
+    ],
+    "plansAfterAttempts": 0
+  },
+  "sql": {
+    "existingDatabase": "sqldb-crm-casst-dev-v2",
+    "schema": "ebt_connect",
+    "migrationsApplied": 8,
+    "otherSchemaCatalogUnchanged": true,
+    "newDatabaseCreated": false,
+    "skuChanged": false,
+    "seedApplied": false
+  },
+  "temporaryFirewall": {
+    "name": "EbtConnectTemporary_20261007",
+    "startIp": "45.236.137.160",
+    "endIp": "45.236.137.160",
+    "creationAuthorized": true,
+    "created": true,
+    "deleted": true,
+    "absenceVerified": true
+  },
+  "blockingCondition": "F1 quota is zero; Consumption cannot guarantee the authorized fixed BRL30 charge",
+  "sources": [
+    "https://azure.microsoft.com/en-us/pricing/details/container-apps/",
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-limit"
+  ],
+  "limits": [
+    "Hosting cost of existing products and SQL not replaced or changed",
+    "No message sent or provider subscription created",
+    "No automatic paid fallback or cost ceiling claimed"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "generatedUtc": "2026-10-07T13:03:39.293637+00:00",
+  "latestInstruction": "ok, pode publicar nele mesmo",
+  "publicationAuthorized": true,
+  "targetDatabase": "sqldb-crm-casst-dev-v2",
+  "databaseStatus": "Online",
+  "databaseSku": "Basic",
+  "moveToFreeDatabase": false,
+  "existingProjectConnectionsChanged": false,
+  "additionalCostConstraint": "Only fixed BRL30 previously authorized; latest message does not change it",
+  "hosting": {
+    "existingAppServicePlans": 0,
+    "existingWebApps": 0,
+    "freeF1BrazilSouthCurrent": 0,
+    "freeF1BrazilSouthLimit": 0,
+    "quotaReadApi": "Microsoft.Web/locations/brazilsouth/usages, 2024-11-01",
+    "connectPublicAppExists": false
+  },
+  "artifact": {
+    "version": "0.1.2-azure-schema-ready",
+    "sha256Matches": true,
+    "sourceHashesMatch": true
+  },
+  "publicHttpsVerified": false,
+  "supportRequestPrepared": "docs/execucao/PEDIDO_COTA_F1_CONNECT.md",
+  "supportRequestSent": false,
+  "noPaidFallbackExecuted": true,
+  "remaining": "Application hosting unresolved under fixed BRL30 constraint; keep shared paid SQL and all existing app connections; do not contact Microsoft support or create paid/variable-charge fallback",
+  "latestClarification": {
+    "generatedUtc": "2026-10-07T13:09:52.611122+00:00",
+    "userInstruction": "não, vamos manter o banco pago compartilhado",
+    "supportContactAuthorized": false,
+    "sharedPaidDatabaseConfirmed": true,
+    "existingDatabaseMaintained": "sqldb-crm-casst-dev-v2",
+    "newHostingCostAuthorized": false
+  }
+}

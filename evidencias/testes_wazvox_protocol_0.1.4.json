@@ -1,0 +1,64 @@
+{
+  "generatedUtc": "2026-10-07T14:46:01.5965266+00:00",
+  "environment": "synthetic protocol; no provider send",
+  "passed": true,
+  "cases": 14,
+  "results": [
+    {
+      "name": "Signed raw envelope and matching event header",
+      "passed": true
+    },
+    {
+      "name": "Body mutation rejected",
+      "passed": true
+    },
+    {
+      "name": "Expired and future delivery signatures rejected",
+      "passed": true
+    },
+    {
+      "name": "Malformed signatures rejected",
+      "passed": true
+    },
+    {
+      "name": "Foreign workspace and mismatched event ID rejected",
+      "passed": true
+    },
+    {
+      "name": "Inbound normalized with provider IDs and occurrence time",
+      "passed": true
+    },
+    {
+      "name": "Unsupported event never treated as inbound",
+      "passed": true
+    },
+    {
+      "name": "Canonical status normalized using waMessageId",
+      "passed": true
+    },
+    {
+      "name": "Outbound uses Bearer and stable operation idempotency",
+      "passed": true
+    },
+    {
+      "name": "Missing WhatsApp reference remains unknown",
+      "passed": true
+    },
+    {
+      "name": "Provider failure never causes automatic retry",
+      "passed": true
+    },
+    {
+      "name": "Provisioning verifies registered number in its workspace",
+      "passed": true
+    },
+    {
+      "name": "Provisioning rejects foreign workspace",
+      "passed": true
+    },
+    {
+      "name": "Provisioning rejects foreign WABA and number",
+      "passed": true
+    }
+  ]
+}

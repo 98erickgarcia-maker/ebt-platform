@@ -9,3 +9,7 @@ __pycache__/
 node_modules/
 bin/
 obj/
+*.tsbuildinfo
+src/backend/Ebt.Platform.Api/wwwroot/assets/
+src/backend/Ebt.Platform.Api/wwwroot/index.html
+playwright-report/

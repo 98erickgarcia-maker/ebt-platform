@@ -1,0 +1,59 @@
+{
+  "generatedUtc": "2026-10-07T11:58:49.656851+00:00",
+  "source": "EbtPlatformQa_20261007Migrated",
+  "target": "EbtPlatformQa_Restore_3bfe1d05f0",
+  "passed": true,
+  "cases": [
+    {
+      "name": "COPY_ONLY backup checksum verified",
+      "result": "passed"
+    },
+    {
+      "name": "Restored table fingerprints and other-schema sentinel match",
+      "result": "passed"
+    },
+    {
+      "name": "Migration script reapplied twice preserves data and other schema",
+      "result": "passed"
+    },
+    {
+      "name": "Copied protected key ring decrypts restored envelopes; all document hashes match",
+      "result": "passed"
+    },
+    {
+      "name": "Restored runtime ready; worker restart preserves unknown and terminal sends without resending",
+      "result": "passed"
+    }
+  ],
+  "limits": [
+    "Synthetic localhost only",
+    "Not an Azure backup or production restore",
+    "No existing database overwritten"
+  ],
+  "fingerprints": {
+    "__EFMigrationsHistory": "e06808cf5d307a73e6a18884755b488547ab32637a56b19b21c738b22755d988",
+    "Audit": "cd9c5186510c433d0d8f5f5268c0ec90766dcac13874358c0a3db3351b598db5",
+    "Connections": "4bc58c8845ab102cf99031cffe20f56d1b314d5b92c5a5d1c8751f46c47e0897",
+    "ContactCreations": "cfc72d7583be4a0e332e9f5eceef61729138f412f9297cd56db9f019dd6953ed",
+    "Contacts": "bc0f460c28d657f1ab85e363f62b5ac1268d0358de43600003b641f5e5538d03",
+    "Conversations": "a149fe164e165b953d2a96a9d6d97b277933e55a2cbd1eabe0d6298c279899b6",
+    "Credentials": "7ea408e2c015585fbdb7b0f53d29221491511b83c935f3a74855b21199f4cabc",
+    "DataProtectionKeys": "fb329000228cc5a24c264c57139de8bf854fc86fc18bf1c04ab61a2b5cb4b921",
+    "DeliveryEvents": "bc1732f7b9a74a4101a39bce9af8b27f78e3f367ebde32cc4fe0dc7ace00775b",
+    "Documents": "900d2f178a65da099de77543e9ff8cf9f6b2bff701d03da926331ff9ce349e9b",
+    "DocumentVersions": "dcb0220ebe7e95c7e7c8d51aa1c30ed3282cdf464cde0741107dabc93c95e87c",
+    "Imports": "21caf8c4fb31e108af3e283bdf3149aae792b8d4d18f6a08322eb313389b4552",
+    "Interactions": "ad362ccb01e21d4ab2a907e9d75fe4324b3a5ec3e50171173aca66a2ec21cb72",
+    "Invitations": "a33587783270cb296ad8e5be0c93aae3ca54e4dd0f7ca098b6ec43676255f2f5",
+    "Memberships": "e1ba03e463763715d79bc6820a3bf729e1f7d31be44ac0d3659bbd2cf868220b",
+    "Messages": "07c8df78b3084ce3ab205bd0370e8dbf0f8fcd6da18eea62eff1019e5542a45b",
+    "Organizations": "4eb40f36445b4270d542177f7cde74c6c60c4a0b4b2e0cfa2cf80d3e4842c2f3",
+    "Outbox": "ef305863d52c2517aee966eb31396df2bd82127fcb993d8c9ddee53f9606d301",
+    "Receipts": "b3da9ab35c462533f96c379722b3c919be0e8db04946a19e0f162a89cee65b66",
+    "Sessions": "5c9bdefb8ef1e6ba680f30751ec410f2925cfba780a2ac2b8ba46e3be60464fb",
+    "Tasks": "dbdc1a29b9c2ab33c6dbf46ccd43aa7ba9aadcb880ecdc99013b4f060b153e95",
+    "Tenants": "a9855d80594de1bad66a77a559f616ec52e25d1f2e941d09b65dcbdeba085b2a",
+    "Users": "27d51ba914b14483bb4527891b07fcb4bf92a80c17e5c1770859135ee710a94e",
+    "other_schema": "5d58d2d2a1e40b9cfaa53da5cfac2411491721b9407203c0ce94036198dbe92a"
+  }
+}

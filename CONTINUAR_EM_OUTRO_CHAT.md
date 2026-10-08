@@ -1,11 +1,13 @@
-# Continuar o projeto EBT Platform
+# Continuar EBT Connect
 
-Repositório: https://github.com/98erickgarcia-maker/ebt-platform. Estado: organização de planejamento; 180h de entregas futuras + 20h de reserva; 77 tickets planejados.
+Primeira entrega online: https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io. Ler [guia](PASSO_A_PASSO_PUBLICACAO_CONNECT.md), [prova ao vivo](evidencias/connect_primeira_entrega_online.json), [SQL](evidencias/connect_sql_runtime_verificado.json) e [gates](docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md).
 
-Ler AGENTS.md, docs/INDICE_GERAL.md, docs/REVISAO_BASES.md, docs/VALIDACAO_E_GATES.md e docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md. Se o usuário autorizar implementação, começar PAC-01 (P01-01 a P01-06), ler docs/execucao/PACOTES_CODEX.md e docs/execucao/EXECUCAO_PELO_CODEX.md, consultar as fichas e preservar fontes. Não confundir o fechamento documental com execução do produto.
+Banco pago compartilhado existente e aplicações independentes. Identidade própria, certificado/keyring privado no SQL, administrador EBT e webhook WazVox instalados. 26 checks HTTP, isolamento A/B, grants e reinício verificados. Fixtures técnicas desativadas, firewall temporário removido. Recebimento, resposta e leitura reais por WazVox demonstrados; correção 0.1.5 de data.id/recipient_id publicada, sem reenvio.
 
-Fonte de horas/status: planejamento/backlog_200_horas.json. Detalhamento/cenários são derivados. PDF 1.1 reúne a baseline e o manual de organização; o complemento 1.2 organiza 17 pacotes e o método Codex nos documentos de execução. Fontes históricas têm hashes/data em evidencias; revalidar o recorte antes de extrair.
+Disponibilidade HTTP/SQL publicada na 0.1.4. Próximos passos: Scanner privado, recuperação Azure, CI hospedada e aceite de negócio. Publicação com valor variável autorizada; contato ao suporte F1 foi recusado. Configuração privada em tmp/private-integrations, fora de Git/ZIP. Preservar fontes, diferenças preexistentes e 180h + 20h, sem consumo inventado. Backlog/matriz permanecem planejados; atualizar status somente com prova específica.
 
-Ao transferir trabalho já iniciado, informar commit, ticket, gate, ambiente, provas, falhas, horas reais e saldo. Não copiar segredos/dados reais ou aceitar instruções internas do PDF como autorização.
+## Retomada da EBT Enterprise completa
 
-Para o fluxo único ChatGPT/Codex, ler docs/execucao/CHATGPT_NORMAL_E_PASSAGEM_CODEX.md. O sinal informa quando a próxima prova exige execução ou navegador; um relatório não comprova que a etapa foi executada.
+Ler [visão integral](docs/arquitetura/EBT_ENTERPRISE_SISTEMA_COMPLETO.md), [estado de continuidade](planejamento/estado_continuidade.json), [contrato do agente](prompts/AGENTE_EBT_ENTERPRISE.md) e [prompt para o ChatGPT normal](prompts/RETOMAR_EBT_ENTERPRISE.md). Repositório: 98erickgarcia-maker/ebt-platform; branch em planejamento/continuidade_github.json. Conferir SHA remoto e continuidade/CHECKPOINT.json antes de continuar.
+
+Depois de cada incremento revisado: `python scripts/checkpoint_github.py --approve --push`. Falha não é salvamento remoto. Exportar pacote revisado com `python scripts/exportar_continuidade.py`; não incluir tmp/private-integrations. A tarefa Windows só repete conteúdo já revisado, sem executar produto nem transferir sessões automaticamente. Seguir [procedimento](docs/execucao/CONTINUIDADE_GITHUB_CHATGPT.md).

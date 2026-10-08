@@ -1,0 +1,59 @@
+{
+  "version": "enterprise-ui-20261007",
+  "environment": "localhost-synthetic-qa",
+  "width": 320,
+  "pages": [
+    {
+      "name": "login",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    },
+    {
+      "name": "meu-dia",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    },
+    {
+      "name": "relacionamentos",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    },
+    {
+      "name": "tarefas",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    },
+    {
+      "name": "conversas",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    },
+    {
+      "name": "documentos",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    },
+    {
+      "name": "configuracoes",
+      "width": 320,
+      "pageWidth": 320,
+      "overflow": false,
+      "contrastFailures": []
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "limitation": "Contrast measurement checks solid text surfaces in the inspected states; it is not a complete accessibility certification."
+}

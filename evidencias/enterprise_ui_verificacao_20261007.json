@@ -1,0 +1,97 @@
+{
+  "version": "enterprise-ui-20261007",
+  "environment": "localhost-synthetic-qa",
+  "reference": "EBT institutional palette and user images; later decisions preserved",
+  "build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "typescript": "passed",
+    "vite": "passed"
+  },
+  "browser": {
+    "command": "npx playwright test e2e/connect.spec.ts e2e/navigation.spec.ts --reporter=line --output=../../tmp/e2e/enterprise-final-regression",
+    "passed": 5,
+    "failed": 0,
+    "duration_seconds": 20.1
+  },
+  "navigation_regression": {
+    "before": "failed: loading did not end after current-view click",
+    "after": "passed",
+    "test_file": "src/frontend/e2e/navigation.spec.ts"
+  },
+  "layout": {
+    "widths": [
+      320,
+      390,
+      768,
+      1366
+    ],
+    "states_per_width": 7,
+    "states_total": 28,
+    "reports": [
+      "evidencias/enterprise_ui_320.json",
+      "evidencias/enterprise_ui_390.json",
+      "evidencias/enterprise_ui_768.json",
+      "evidencias/enterprise_ui_1366.json"
+    ],
+    "limitations": "Contrast measurement checks solid text surfaces in the inspected states; it is not a complete accessibility certification."
+  },
+  "sources": [
+    {
+      "path": "src/frontend/src/App.tsx",
+      "sha256": "34cb8f882b46ae4ca7fc7623ee73a33f80b25a963440c2866e43eb3ccb0018ed"
+    },
+    {
+      "path": "src/frontend/src/Brand.tsx",
+      "sha256": "a284845650133a772b29cb75b4d0d1d29957031c00f2368357e176f3d135143c"
+    },
+    {
+      "path": "src/frontend/src/style.css",
+      "sha256": "de79df318e77a4c0b401bd33ad68b8a293fc8d1fad5130375929475885a53091"
+    },
+    {
+      "path": "src/frontend/index.html",
+      "sha256": "5ed09ee321d0afec26220827e3e3785d74e4b574b7df9b2d368875901224031e"
+    },
+    {
+      "path": "src/frontend/public/assets/ebt-logo-240.webp",
+      "sha256": "146d1cd385f02f086a1b536860f39fde38c37403dc98973ecf774a3c475c14ab"
+    },
+    {
+      "path": "src/frontend/e2e/navigation.spec.ts",
+      "sha256": "2dc4f2a86ecab1ec92016a8289c19342e6e20e515d26bf2c32f3cf05cf594317"
+    }
+  ],
+  "reference_images": [
+    {
+      "path": "docs/frontend/referencias/ebt-connect-referencia-1.png",
+      "sha256": "0b784f5b5c5d8f45e7372fae77dbca784d75551939c6dd5cf25d740cec290f16"
+    },
+    {
+      "path": "docs/frontend/referencias/ebt-connect-referencia-2.png",
+      "sha256": "b2f0409d12958a523c9bb8b5d9035b2e0006903850b4df1ccb7736b259ec8869"
+    },
+    {
+      "path": "docs/frontend/referencias/ebt-connect-referencia-3.png",
+      "sha256": "c5ccb9aababf2d2b37ba78cc82287eed8e6dd948d455587494d6ffe20ee2fffd"
+    }
+  ],
+  "backend_changed": false,
+  "shared_database_changed": false,
+  "deployed": false,
+  "prospecting_integration": "pending implementation plan review",
+  "existing_findings": {
+    "R01": "pending",
+    "R02": "pending",
+    "R03": "pending",
+    "R04": "pending",
+    "R05": "pending"
+  },
+  "specification": "approved by user",
+  "implementation_plan": "awaiting review and execution choice",
+  "budget": {
+    "deliverables_hours": 180,
+    "reserve_hours": 20,
+    "actual_hours_not_invented": true
+  }
+}

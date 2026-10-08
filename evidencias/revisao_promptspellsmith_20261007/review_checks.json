@@ -1,0 +1,77 @@
+{
+  "generatedUtc": "2026-10-07T20:52:30.103Z",
+  "run": "c69db4d4",
+  "environment": "Development; localhost:5191; EbtPlatformQa_20261007Migrated; only synthetic fixtures; no real provider send",
+  "results": [
+    {
+      "case": "Synthetic fixture and durable inbound A/B",
+      "passed": true,
+      "contactA": "bac04e08-d397-4ad0-98fe-8aba0a3f0726",
+      "contactB": "c141dbb8-f790-48b4-9959-3be3538121ac",
+      "taskA": "df862c3e-fe32-496d-acca-54dcfb4a4ddc",
+      "conversationA": "19922809-a878-4ec0-8010-eedf00e7d829",
+      "conversationB": "23fc0a2f-3154-4391-848a-3c4063fa7721",
+      "noteA": "937c28cd-2442-43fe-a334-3b0ba3f21002"
+    },
+    {
+      "case": "Tenant B cannot read direct contact ID from A",
+      "passed": true,
+      "status": 404
+    },
+    {
+      "case": "Reader cannot create contact",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "case": "R01 stale task remains actionable under another contact",
+      "reproduced": true,
+      "foreignTaskVisible": true,
+      "foreignTaskActionEnabled": true,
+      "taskAState": "done",
+      "throttledRequests": 2,
+      "screenshot": "contato-b-tarefa-a.png"
+    },
+    {
+      "case": "R02 conversation identity depends on unrelated filtered contact page",
+      "reproduced": true,
+      "unnamedConversations": 17,
+      "nameBShown": false,
+      "conversationHeader": "Conversa",
+      "screenshot": "conversas-sem-identificacao.png",
+      "afterMessagesLoaded": {
+        "conversationHeader": "Conversa",
+        "responseButtonEnabled": true,
+        "outgoingMessageSent": false
+      }
+    },
+    {
+      "case": "R03 moving contact portfolio prevents subsequent channel inbound",
+      "reproduced": true,
+      "acceptedWebhook": true,
+      "inboundReachedConversation": false,
+      "transferredPortfolio": "outra"
+    },
+    {
+      "case": "R04 issued keys cannot be enumerated for later revocation",
+      "reproduced": true,
+      "listStatus": 405,
+      "createdReviewKeyRevoked": true
+    },
+    {
+      "case": "R05 existing account invitation has no application linking path",
+      "reproduced": true,
+      "activationStatus": 409,
+      "activationCode": "existing_user"
+    },
+    {
+      "case": "Mobile conversations have no horizontal overflow",
+      "passed": true,
+      "screenshot": "mobile-conversas.png"
+    },
+    {
+      "case": "Current reviewed runtime SQL health",
+      "passed": true
+    }
+  ]
+}

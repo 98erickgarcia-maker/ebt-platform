@@ -1,0 +1,38 @@
+name: Build EBT Connect
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      MSBuildEnableWorkloadResolver: 'false'
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: src/frontend/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: dotnet restore src/backend/Ebt.Platform.Api --locked-mode
+      - run: dotnet build src/backend/Ebt.Platform.Api --no-restore -c Release
+      - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-restore -c Release
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --proxy
+      - run: npm ci
+        working-directory: src/frontend
+      - run: npm run build
+        working-directory: src/frontend
+      - run: npm audit --omit=dev
+        working-directory: src/frontend
+      - run: python scripts/verificar_plano.py
+      - run: python scripts/verificar_organizacao.py --no-write
+      - run: git diff --check
+      # SQL/HTTP/restore/E2E require the isolated local SQL fixture; no cloud secrets.

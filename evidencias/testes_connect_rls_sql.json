@@ -1,0 +1,35 @@
+{
+  "generatedUtc": "2026-10-07T07:22:59.3329803+00:00",
+  "environment": "EbtPlatformQa_20261007Migrated",
+  "passed": true,
+  "cases": [
+    {
+      "name": "RLS enabled on EBT schema",
+      "result": "passed"
+    },
+    {
+      "name": "Runtime identity granted only own schema",
+      "result": "passed"
+    },
+    {
+      "name": "RLS no context sees no contacts",
+      "result": "passed"
+    },
+    {
+      "name": "RLS A cannot read B, including documents",
+      "result": "passed"
+    },
+    {
+      "name": "RLS blocks a cross-tenant SQL write",
+      "result": "passed"
+    },
+    {
+      "name": "Runtime cannot read another application\u0027s schema",
+      "result": "passed"
+    },
+    {
+      "name": "Sentinel preserved",
+      "result": "passed"
+    }
+  ]
+}

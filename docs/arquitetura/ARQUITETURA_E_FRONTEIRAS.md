@@ -4,26 +4,29 @@ Status: desenho para implementação futura. Fonte da direção: PDF fornecido e
 
 ## Composição
 
-Site essencial pode permanecer estático ou Razor, conforme P03-01. Core/CRM/Flow mantêm a família .NET, React/TypeScript e SQL Server/Azure SQL da origem adequada. O backend começa como monólito com fronteiras explícitas, sem introduzir filas, cache distribuído ou microserviços antes de necessidade demonstrada.
+Connect mantém a família .NET, React/TypeScript e SQL Server/Azure SQL da origem adequada, selecionada pela baseline. Comunicação usa inbox/outbox duráveis no SQL e worker no serviço; ver [desenho de API/webhook](CONNECT_API_E_WEBHOOK.md). Site/Flow estão adiados. O backend começa como monólito com fronteiras explícitas, sem exigir broker separado, cache distribuído ou microserviços.
 
 ```mermaid
 flowchart LR
-  Site[Site essencial] --> Canal[Canal ou formulário escolhido]
-  Web[Interface CRM e Flow] --> Api[API autenticada]
+  Web[Interface Connect] --> Api[API autenticada]
   Api --> Access[Contexto de empresa e autorização]
   Access --> CRM[Contatos e histórico]
   Access --> GED[Documentos privados]
   Access --> Tasks[Tarefas]
-  Access --> Flow[Protocolo e fluxo fixo]
+  Access --> Msg[Conversa e mensagens]
   CRM --> SQL[(SQL QA)]
   GED --> SQL
   Tasks --> SQL
-  Flow --> SQL
+  Msg --> SQL
+  Provider[Canal oficial] --> Hook[Webhook autenticado]
+  Hook --> SQL
+  SQL --> Worker[Worker inbox/outbox]
+  Worker --> Provider
   GED --> Storage[(Storage privado QA)]
   Api --> Audit[Auditoria e correlação]
 ```
 
-O diagrama não presume integração automática site->CRM. Canal manual e formulário servidor são alternativas reais, escolhidas e demonstradas no pacote. Storage e identidade são interfaces/contratos da composição; credenciais não entram no domínio.
+O diagrama é candidato. Recebimento do webhook, fila de resposta, aceite do provedor e entrega são estados separados. Storage e identidade são interfaces/contratos da composição; credenciais não entram no domínio.
 
 ## Responsabilidade por fronteira
 

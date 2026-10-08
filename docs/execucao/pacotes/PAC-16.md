@@ -8,18 +8,18 @@ Versão candidata reúne site, CRM e Flow/documentos do recorte.
 
 ## Dependências
 
-[PAC-04](PAC-04.md), [PAC-10](PAC-10.md), [PAC-12](PAC-12.md), [PAC-13](PAC-13.md), [PAC-15](PAC-15.md)
+[PAC-10](PAC-10.md), [PAC-12](PAC-12.md), [PAC-13](PAC-13.md), [PAC-20](PAC-20.md)
 
-Tickets/gates externos: P03-GATE, P05-GATE, P06-GATE, P07-GATE, P08-GATE. As dependências originais são mantidas; ordenar por pacote não substitui sua prova.
+Tickets/gates externos: P05-GATE, P06-GATE, P07-GATE, P11-GATE. As dependências originais são mantidas; ordenar por pacote não substitui sua prova.
 
 ## Tarefas internas e aceite original
 
 | Ticket | Resultado/atividade | Horas | Trilha |
 |---|---|---:|---|
 | [P09-01](../entregas/P09-01.md) | Reconciliar resultados e versão entregue | 2h | R2 |
-| [P09-02](../entregas/P09-02.md) | Conferir jornada de site e cadastro | 2h | R2 |
+| [P09-02](../entregas/P09-02.md) | Conferir jornada de contato e tarefas | 2h | R2 |
 | [P09-03](../entregas/P09-03.md) | Conferir jornada CRM em dois consumidores | 2h | N |
-| [P09-04](../entregas/P09-04.md) | Conferir jornada Flow e documento privado | 2h | N |
+| [P09-04](../entregas/P09-04.md) | Conferir jornada de comunicação e documento privado | 2h | N |
 
 Ler e cumprir os critérios/cenários de cada ficha. A saída integrada complementa os aceites individuais.
 

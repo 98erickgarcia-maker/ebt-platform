@@ -1,0 +1,21 @@
+{
+  "generatedUtc": "2026-10-07T14:47:01.2436930+00:00",
+  "passed": true,
+  "apps": [
+    {
+      "imageUnchanged": true,
+      "name": "crm-casst-prod",
+      "fqdn": "crm-casst-prod.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io"
+    },
+    {
+      "imageUnchanged": true,
+      "name": "crp-site-prod",
+      "fqdn": "crp-site-prod.agreeablesmoke-ed0d5b42.brazilsouth.azurecontainerapps.io"
+    },
+    {
+      "imageUnchanged": true,
+      "name": "thaiane-portal-pilot",
+      "fqdn": "thaiane-portal-pilot.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io"
+    }
+  ]
+}

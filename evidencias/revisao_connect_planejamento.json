@@ -1,0 +1,318 @@
+{
+  "data_revisao": "07/10/2026",
+  "tipo": "verificacao_documental",
+  "escopo": "planejamento, orçamento, dependências, contratos candidatos, hashes e preservação; não testa aplicações/provedor",
+  "estado": "verificado_documentalmente",
+  "modulos_executados": false,
+  "envios_realizados": false,
+  "publicacao_realizada": false,
+  "produto_homologado": false,
+  "git_head_inicial": "4c185f761b2b5e212800464f4b450167a26c1b88",
+  "snapshot_arquivos": 189,
+  "passed": true,
+  "verificado_utc": "2026-10-07T07:48:54.166692+00:00",
+  "total_h": 200,
+  "entregas_h": 180,
+  "reserva_h": 20,
+  "entregas_ativas": 70,
+  "reservas": 5,
+  "tickets_ativos": 75,
+  "casos_planejados": 238,
+  "casos_executados_produto": 0,
+  "pacotes_ativos": 17,
+  "marcos_h": {
+    "seguranca": 64,
+    "crm": 92,
+    "crm_tarefas": 104,
+    "comunicacao": 140,
+    "ged": 164,
+    "candidato": 180
+  },
+  "adiados": {
+    "fases": [
+      "P03",
+      "P08"
+    ],
+    "tickets": 14,
+    "estimativa_anterior_h": 36,
+    "horas_alocadas": 0
+  },
+  "preservacao": {
+    "tickets_originais_preservados": [
+      "P01-01",
+      "P01-02",
+      "P01-03",
+      "P01-04",
+      "P01-05",
+      "P01-06",
+      "P02-01",
+      "P02-02",
+      "P02-03",
+      "P02-04",
+      "P02-05",
+      "P02-06",
+      "P02-07",
+      "P02-08",
+      "P03-01",
+      "P03-02",
+      "P03-03",
+      "P03-04",
+      "P03-05",
+      "P03-06",
+      "P04-01",
+      "P04-02",
+      "P04-03",
+      "P04-04",
+      "P04-05",
+      "P04-06",
+      "P04-07",
+      "P04-08",
+      "P04-09",
+      "P04-10",
+      "P04-11",
+      "P04-12",
+      "P05-01",
+      "P05-02",
+      "P05-03",
+      "P05-04",
+      "P05-05",
+      "P05-06",
+      "P05-07",
+      "P05-08",
+      "P05-09",
+      "P05-10",
+      "P06-01",
+      "P06-02",
+      "P06-03",
+      "P06-04",
+      "P06-05",
+      "P06-06",
+      "P06-07",
+      "P06-08",
+      "P07-01",
+      "P07-02",
+      "P07-03",
+      "P07-04",
+      "P07-05",
+      "P07-06",
+      "P08-01",
+      "P08-02",
+      "P08-03",
+      "P08-04",
+      "P08-05",
+      "P08-06",
+      "P08-07",
+      "P08-08",
+      "P09-01",
+      "P09-02",
+      "P09-03",
+      "P09-04",
+      "P09-05",
+      "P09-06",
+      "P09-07",
+      "P09-08",
+      "P10-01",
+      "P10-02",
+      "P10-03",
+      "P10-04",
+      "P10-05"
+    ],
+    "horas_totais_por_ticket_e_estados_preservados": true,
+    "arquivos_preexistentes_protegidos": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "d8e5698e12574a201f388b0def70d0ae45a53eaf106d516d2be98cc826b3da89"
+      },
+      {
+        "path": "docs/REVISAO_BASES.md",
+        "sha256": "5d2ff1d48d37017a81aea9296aca512b00160dd13068d34378855b3e3d91486f"
+      },
+      {
+        "path": "evidencias/github_vikings_snapshot.json",
+        "sha256": "e9b473d0b330d2f12a70b2c77ebe2034cc010d334c1c84214d0ae18f42372e6a"
+      },
+      {
+        "path": "evidencias/inventario_fontes.json",
+        "sha256": "e60584fdb68f18d364203c6f7fd2cbed2e5632fbd8d6c33ef2180865ab081ffc"
+      },
+      {
+        "path": "evidencias/revisao_frontend_fontes.json",
+        "sha256": "653525914d954d33f416cfa11daf7dd119f77362c71f1526f9f7ececd8380a4a"
+      },
+      {
+        "path": "planejamento/melhorias_frontend.json",
+        "sha256": "45e7471acb8770cec5ce5241074cd00b7fe812239120ad3b3285da8767959cc2"
+      },
+      {
+        "path": "scripts/frontend_planejado.py",
+        "sha256": "824eb790495e0931e13ef4476825a964d890acbdb9c394c312f8aa3c02768bb4"
+      },
+      {
+        "path": "templates/REVISAO_FRONTEND.md",
+        "sha256": "fa0ab4897a251ca65d768559041e29766edf956d317943da063e5cc1fafd126c"
+      },
+      {
+        "path": "docs/frontend/ALTERNATIVAS_DE_LAYOUT.md",
+        "sha256": "9f4516f4e1922f6be183b60ef694fc4bcfed63dfe3a61e19a88f17f9d21f5e64"
+      },
+      {
+        "path": "docs/frontend/PADRAO_VISUAL_E_COMPONENTES.md",
+        "sha256": "964585781604f261433fbdf7588e784f45b8dee9bac9d184d90591aba05f36dc"
+      },
+      {
+        "path": "docs/frontend/REVISAO_ACEITE_FRONTEND.md",
+        "sha256": "4bc4b6c0fbbf4cf0c597b4853df6181d36170840e1d64e403478b89b819346b7"
+      },
+      {
+        "path": "docs/frontend/REVISAO_E_PRIORIDADES.md",
+        "sha256": "a6d3469d941a85aedce6e5f845d590d6338e08e64b70a95eec269895dcd9f8b3"
+      },
+      {
+        "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
+        "sha256": "840c5d637d21847043ea800b5cf76ac21a12fbef24ea9ff53322da62a89fabb1"
+      },
+      {
+        "path": "docs/historico/v1.0/EBT_Plano_Primeiras_200_Horas.pdf",
+        "sha256": "c4b52db767ca6ed57ace0ffa5b67902b9beaae5943494669c468bc44e9ebe186"
+      },
+      {
+        "path": "output/pdf/EBT_Plano_Primeiras_200_Horas.pdf",
+        "sha256": "31eb859ae71989765fc7bff93fc2c866d82bf405ccc5f736cc98528008bd7b35"
+      }
+    ],
+    "alteracoes_frontend_preexistentes_preservadas": true,
+    "pdf_historico_preservado": true
+  },
+  "checks": {
+    "verificar_plano": {
+      "passed": true,
+      "errors": [],
+      "total_h": 200,
+      "entregas_h": 180,
+      "reserva_h": 20,
+      "total_itens": 75,
+      "entregas": 70,
+      "reservas": 5,
+      "local_links": 211,
+      "pdf_pages": 40,
+      "pdf_historico": true,
+      "pdf_fila_vigente": false,
+      "recortes_adiados": 14,
+      "pdf_sha256": "31eb859ae71989765fc7bff93fc2c866d82bf405ccc5f736cc98528008bd7b35",
+      "verification_scope": "integridade documental, orçamento, dependências, links e conteúdo PDF; não testa aplicações",
+      "visual_review": "40 páginas renderizadas e inspecionadas; sem corte, sobreposição, página vazia ou tabela fora dos limites.",
+      "visual_review_passed": true,
+      "layout_bounds_issues": [],
+      "credential_pattern_hits": [],
+      "files_checked": 181
+    },
+    "verificar_organizacao": {
+      "passed": true,
+      "errors": [],
+      "versao_organizacao": "1.3",
+      "total_h": 200,
+      "entregas_h": 180,
+      "reserva_h": 20,
+      "total_tickets": 75,
+      "total_cenarios": 238,
+      "casos_nao_executados": 238,
+      "total_fases": 9,
+      "total_gates": 9,
+      "fichas_individuais": 75,
+      "total_pacotes": 17,
+      "templates": 11,
+      "markdown_files": 184,
+      "local_links_checked": 1313,
+      "generated_files": 184,
+      "hashes_checked": 193,
+      "product_states": {
+        "planejado": 75
+      },
+      "verification_scope": "documentos, orçamento, dependências, fichas, casos e hashes; não verifica funcionamento das aplicações"
+    },
+    "sintaxe_python": "Todos os scripts analisados com ast.parse; não executa aplicações",
+    "openapi": "JSON, referências locais, precondições, campos e respostas estruturais conferidos; sem servidor implementado"
+  },
+  "comandos": [
+    {
+      "comando": "C:\\Users\\Ivair Silva\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 scripts/organizar_projeto.py",
+      "exit_code": 0,
+      "stdout": "{\"arquivos_gerados\": 184, \"tickets\": 75, \"cenarios\": 238, \"horas\": 200}",
+      "stderr": ""
+    },
+    {
+      "comando": "C:\\Users\\Ivair Silva\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 scripts/verificar_plano.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"errors\": [],\n  \"total_h\": 200,\n  \"entregas_h\": 180,\n  \"reserva_h\": 20,\n  \"total_itens\": 75,\n  \"entregas\": 70,\n  \"reservas\": 5,\n  \"local_links\": 211,\n  \"pdf_pages\": 40,\n  \"pdf_historico\": true,\n  \"pdf_fila_vigente\": false,\n  \"recortes_adiados\": 14,\n  \"pdf_sha256\": \"31eb859ae71989765fc7bff93fc2c866d82bf405ccc5f736cc98528008bd7b35\",\n  \"verification_scope\": \"integridade documental, orçamento, dependências, links e conteúdo PDF; não testa aplicações\",\n  \"visual_review\": \"40 páginas renderizadas e inspecionadas; sem corte, sobreposição, página vazia ou tabela fora dos limites.\",\n  \"visual_review_passed\": true,\n  \"layout_bounds_issues\": [],\n  \"credential_pattern_hits\": [],\n  \"files_checked\": 181\n}",
+      "stderr": ""
+    },
+    {
+      "comando": "C:\\Users\\Ivair Silva\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 scripts/verificar_organizacao.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"errors\": [],\n  \"versao_organizacao\": \"1.3\",\n  \"total_h\": 200,\n  \"entregas_h\": 180,\n  \"reserva_h\": 20,\n  \"total_tickets\": 75,\n  \"total_cenarios\": 238,\n  \"casos_nao_executados\": 238,\n  \"total_fases\": 9,\n  \"total_gates\": 9,\n  \"fichas_individuais\": 75,\n  \"total_pacotes\": 17,\n  \"templates\": 11,\n  \"markdown_files\": 184,\n  \"local_links_checked\": 1313,\n  \"generated_files\": 184,\n  \"hashes_checked\": 193,\n  \"product_states\": {\n    \"planejado\": 75\n  },\n  \"verification_scope\": \"documentos, orçamento, dependências, fichas, casos e hashes; não verifica funcionamento das aplicações\"\n}",
+      "stderr": ""
+    },
+    {
+      "comando": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/VALIDACAO_E_GATES.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'evidencias/verificacao_organizacao.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'evidencias/verificacao_plano.json', CRLF will be replaced by LF the next time Git touches it"
+    }
+  ],
+  "arquivos": [
+    {
+      "path": "README.md",
+      "sha256": "146eee829d622411d36a14b66859e753352919dd3f234e4536c27d199852db77"
+    },
+    {
+      "path": "docs/PLANO_200_HORAS.md",
+      "sha256": "d1b3d0382b1223bf0a3179441cd00ec8faece7c64163d4a210ea113d75ce3155"
+    },
+    {
+      "path": "docs/produtos/ENTREGA_EBT_CONNECT.md",
+      "sha256": "8838530f41efb4941a6de64da5c44d3269daacd9a156b76f845a9f221d7276fb"
+    },
+    {
+      "path": "docs/arquitetura/CONNECT_API_E_WEBHOOK.md",
+      "sha256": "8e232d837ee1f2a089b40a3c2d523676d8b6b5188e22e4958ebf888523232ca1"
+    },
+    {
+      "path": "planejamento/backlog_200_horas.json",
+      "sha256": "898ff64cdef6b1896e36a6c0a48d38494279ba6c624020d615c7021dd19a166b"
+    },
+    {
+      "path": "planejamento/entrega_connect.json",
+      "sha256": "301344cd7f7df28e0408c1af6e76304f385b9f03b327d757dacc559eea6ebcf3"
+    },
+    {
+      "path": "planejamento/connect_api.openapi.json",
+      "sha256": "320ed717cdf478d0f364095a81134f88eec6bf8c8a1628798bb0590687010664"
+    },
+    {
+      "path": "planejamento/backlog_apos_200_horas.json",
+      "sha256": "dd1d97114a1f7545a2ed106dd8407fb8f001b5cd0e473228af975705451f64f0"
+    },
+    {
+      "path": "scripts/connect_planejado.py",
+      "sha256": "33f7c84030f2f3139611d71b2cf55d03224765c6071917696c026d64a8432a9c"
+    },
+    {
+      "path": "scripts/comunicacao_planejada.py",
+      "sha256": "0c4d3c97a416dc5ef34666b6a9024f66f87c2199ef99adda8100b1dcc36a97a0"
+    }
+  ],
+  "fontes_online": {
+    "consultadas_em": "07/10/2026",
+    "primarias": [
+      "https://www.chatwoot.com/hc/user-guide/articles/1677839703-how-to-create-an-api-channel-inbox",
+      "https://developers.chatwoot.com/api-reference/messages/create-new-message",
+      "https://docs.stripe.com/webhooks",
+      "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+      "https://www.postman.com/meta/whatsapp-business-platform/documentation/wlk6lh4/whatsapp-cloud-api",
+      "https://www.postman.com/meta/whatsapp-business-platform/folder/tduohwq/webhook-payload-reference",
+      "https://whatsapp.github.io/WhatsApp-Nodejs-SDK/api-reference/types/webhookCallbackFunction/",
+      "https://www.rfc-editor.org/info/rfc9457/"
+    ],
+    "limites": "Novas páginas Meta tentadas retornaram erro; SDK de assinatura é histórico. Versão/configuração/políticas precisam ser confirmadas na homologação."
+  }
+}

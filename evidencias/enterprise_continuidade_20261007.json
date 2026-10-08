@@ -1,0 +1,56 @@
+{
+  "reference_date_local": "2026-10-07",
+  "scope": "planejamento e processo de continuidade; sem novos módulos, deploy ou testes live de produto",
+  "skill": "promptspellsmith-master",
+  "delivery_hours": 180,
+  "reserve_hours": 20,
+  "source_head": "43a42bfe0b1daf07a96a3cacb19a9ff2b265bc5d",
+  "remote_main_observed": "fdc3a9fa76c713c41323739ba816491293a6381a",
+  "checkpoint_branch": "codex/ebt-enterprise-continuity-20261007",
+  "checks": {
+    "baseline_documental": {
+      "passed": true,
+      "tickets": 75,
+      "scenarios_documental": 238,
+      "packages": 17
+    },
+    "prompt_lint": {
+      "strict": true,
+      "agent": "PASS P000",
+      "resume": "PASS P000"
+    },
+    "checkpoint_tests": {
+      "passed": true,
+      "cases": 15,
+      "environment": "Windows / local synthetic bare Git remote",
+      "final_revision_test": "passed",
+      "seconds": 76.801
+    },
+    "powershell_syntax": {
+      "passed": true,
+      "scripts": 2
+    },
+    "source_preservation": {
+      "passed": true,
+      "preexisting_application_files": 70,
+      "head_preserved": true,
+      "real_index_staging_unchanged": true
+    },
+    "planning_after_revision": {
+      "passed": true,
+      "delivery_hours": 180,
+      "reserve_hours": 20,
+      "tickets": 75,
+      "scenarios_documental": 238
+    }
+  },
+  "product_gate_promotion": false,
+  "new_messages_sent": 0,
+  "deploy_performed": false,
+  "scheduled_task_status": "not_yet_verified",
+  "private_data_uploaded": false,
+  "remote_save_rule": "Only after git push and matching ls-remote SHA; receipt ignored under tmp/continuidade",
+  "historical_product_evidence_only": true,
+  "repository_visibility_observed": "public",
+  "visibility_verified_with": "GitHub connector get_repo; 07/10/2026"
+}

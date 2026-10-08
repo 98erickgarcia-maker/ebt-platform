@@ -1,0 +1,30 @@
+{
+  "observedDate": "2026-10-07",
+  "mode": "Somente leitura: Azure resource metadata/metric and attempted SQL metadata connection",
+  "server": "sql-crm-casst-dev-crmenterprise98.database.windows.net",
+  "database": "sqldb-crm-casst-dev-v2",
+  "resourceGroup": "rg-crm-casst-dev",
+  "stateObserved": "Online",
+  "skuObserved": "Basic",
+  "dtuObserved": 5,
+  "maxBytesObserved": 2147483648,
+  "storageMetric": {
+    "name": "storage_percent",
+    "pointUtc": "2026-10-07T04:53:00Z",
+    "average": 3,
+    "maximum": 3,
+    "limits": "Ponto observado; não garante capacidade futura ou desempenho"
+  },
+  "dataPlane": {
+    "success": false,
+    "sqlError": 40615,
+    "reason": "Firewall negou o acesso deste computador; nenhuma query de schema/dados executada"
+  },
+  "mutations": {
+    "databaseCreated": false,
+    "schemaApplied": false,
+    "firewallOpened": false,
+    "skuChanged": false
+  },
+  "deploymentScript": "sql/connect-migrations.sql"
+}

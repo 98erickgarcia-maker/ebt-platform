@@ -1,0 +1,404 @@
+{
+  "version": "0.1.2-azure-schema-ready",
+  "generatedUtc": "2026-10-07T12:04:08.476675+00:00",
+  "gitBase": "4c185f761b2b5e212800464f4b450167a26c1b88",
+  "uncommittedChanges": true,
+  "published": false,
+  "azureSchemaApplied": true,
+  "containsRealCredentials": false,
+  "artifact": {
+    "path": "tmp/release/EBT_Connect_0.1.2_azure_schema_ready.zip",
+    "sha256": "5ad33cc6d8f312090ac0fff744aed82e131d3c254ad1f223e652b03863d7bc1f",
+    "bytes": 27641195,
+    "kind": "Framework-dependent .NET10/frontend; package smoke on synthetic localhost; not a hosted deployment"
+  },
+  "previousManifest": "evidencias/manifesto_connect_local_0.1.1.json",
+  "files": [
+    {
+      "path": ".config/dotnet-tools.json",
+      "sha256": "a9fd20a79a1f8623cf5e855ffc25202b45adb320c6bdfbe52185ac05b75eb7ff"
+    },
+    {
+      "path": ".env.example",
+      "sha256": "df231312365fd5b47e737f8c0492d2e3fe8fef892ada8ae0ed2ef285a3ae5605"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "sha256": "1aebc5d6d9327504407b562abfa202ef6f44b0c2902d16fe0e06f42cf44fc9d1"
+    },
+    {
+      "path": "CONTINUAR_EM_OUTRO_CHAT.md",
+      "sha256": "393536636272ef838689e7367d5ad250d9084f3bc6b2dac91fae522fa0d1e9b4"
+    },
+    {
+      "path": "PASSO_A_PASSO_EBT_CONNECT.md",
+      "sha256": "a80cba935ff3b13f38a7f0a46565c06b8668d5fbbc4baaeea4f64b26e3060e19"
+    },
+    {
+      "path": "PASSO_A_PASSO_PUBLICACAO_CONNECT.md",
+      "sha256": "bb65200b4934b8c60e7541e29d772be159c70a85f00ea8da3bd0dfb889cfc0fd"
+    },
+    {
+      "path": "PASSO_A_PASSO_WAZVOX_CONNECT.md",
+      "sha256": "77265008e6062363b03ee27fddaf86f1327ed8d48b4da2ce0d619dc341b32625"
+    },
+    {
+      "path": "README.md",
+      "sha256": "3e5932e83fb94f0b9eed7dbe072bcc6f500e25180475b9d4a42225555d804624"
+    },
+    {
+      "path": "deployment/connect/Dockerfile",
+      "sha256": "cd34cbad9e5a8d7ab1f3dbba836b13437d39a8ae000f444fc3f8c3da9b86ca91"
+    },
+    {
+      "path": "docs/api/CONNECT_V1.md",
+      "sha256": "be6689f7157d008d601ee5f0066df80b113575dc1b83eb91335bb324ac795231"
+    },
+    {
+      "path": "docs/arquitetura/DECISAO_IMPLEMENTACAO_20261007.md",
+      "sha256": "b82fe3dc58545730131a7dd554279d5925c2f9ad96ae34ad83eec9fa9af5f09c"
+    },
+    {
+      "path": "docs/execucao/DESTINO_CONNECT_WAZVOX_AZURE.md",
+      "sha256": "667513c94011beafd735e8cb1dd8bd03ddcc7fba58184dd5a3235efffac3787e"
+    },
+    {
+      "path": "docs/execucao/IMPLANTACAO_CONNECT_AZURE.md",
+      "sha256": "5149ea6732907de529fd75066fa0b4f9dfafb5249d46cb97c9eef3b0a1f93449"
+    },
+    {
+      "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
+      "sha256": "9682e8a51de60d19a0e344b7224563bd85fb093dce28851ab13c02127e2f4f7f"
+    },
+    {
+      "path": "evidencias/azure_connect_publicacao.json",
+      "sha256": "903e7c56dd5fe3cd5243fe9cc44bb319730c9590febe87e925a2492cf20e5384"
+    },
+    {
+      "path": "evidencias/azure_connect_schema_aplicado.json",
+      "sha256": "bf1a4eb9df2c5893805223b51876d9dbae5ed689b6847787f4496e93b6f286b4"
+    },
+    {
+      "path": "evidencias/testes_connect_pacote_runtime.json",
+      "sha256": "58c2a32b8abfd1291986a21b612f293031f35175d6e2b1b515a3d39491647e1e"
+    },
+    {
+      "path": "evidencias/testes_connect_proxy.json",
+      "sha256": "00695044a988377ab696adeff2f2cc8cdc8acca11cdf7af441a4fd92dc082b37"
+    },
+    {
+      "path": "evidencias/testes_connect_sql_keyring.json",
+      "sha256": "f015a0dddebc0d4d896a02d29f114fe462a639bc5439a4015b7785abee08cfcf"
+    },
+    {
+      "path": "scripts/Apply-ConnectAzureSchema.ps1",
+      "sha256": "41b6aa45faf0c6558a0d25d2d8da7de091bc8c0ce2c370879a132830e3d206f7"
+    },
+    {
+      "path": "scripts/Export-Migration.ps1",
+      "sha256": "6da5609f39976d33b42e5b27c201e6b5bf627b2cc72725fae1fe5adf9ff9fffa"
+    },
+    {
+      "path": "scripts/Inspect-AzureSql.ps1",
+      "sha256": "b028e08d9a5dbf011aee76b890b71a37341c1fbe6647a4f4c738cef595ae5a5f"
+    },
+    {
+      "path": "scripts/Inspect-WazVox.ps1",
+      "sha256": "c2faa3f6c34ab93c41b17d8a84382e2d6a578aa98cd730ef2782ba79697c7f26"
+    },
+    {
+      "path": "scripts/Prepare-ConnectContainer.py",
+      "sha256": "ffb366715f9459c2777993051d8975bcfeb4ee9965b4c87bcc42e958dba29594"
+    },
+    {
+      "path": "scripts/Prepare-WazVoxQa.py",
+      "sha256": "f03438986576242914f02fee3e40147c6ee11f5c5d413a0e535eaf953aad0a47"
+    },
+    {
+      "path": "scripts/Smoke-ConnectPackage.py",
+      "sha256": "2e2fbb302b2ead161b1be2de23a431d2973926e23164cf581012cde4d29cf022"
+    },
+    {
+      "path": "scripts/Start-Local.ps1",
+      "sha256": "e9d83d1087048f64494c891db43703217bccb6f69df86a25cd6a0ec188107d0e"
+    },
+    {
+      "path": "scripts/Start-WazVoxQa.ps1",
+      "sha256": "6697c73131ec346321776315cce2e48af5fa9701558efe17e27a7aecd8cd14b3"
+    },
+    {
+      "path": "scripts/connect_planejado.py",
+      "sha256": "efd02e57c4a15123ab0e97a21af518ad5afbe9f8235e30ff42c8eb0f3bef72c0"
+    },
+    {
+      "path": "scripts/test_migration.py",
+      "sha256": "ec0ab9e86763feac7e15233da9d86f1b5abf206860a684c8ea7c207336bda250"
+    },
+    {
+      "path": "scripts/test_recovery.py",
+      "sha256": "c62614168fc6128e17f84894b368291e97d31bb4bfbb4cfb908aec74772ead7a"
+    },
+    {
+      "path": "sql/connect-migrations.sql",
+      "sha256": "baddfa69afd6c508e84c233f6a903b2c3054bb3ad7bb34d1fe50173c4fc6467a"
+    },
+    {
+      "path": "sql/connect-runtime-permissions.sql",
+      "sha256": "405a8ae33a55d0e7bb9111fdb35a764b8d5060e0769f889ef9f0900360b0902b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/CommercialScanner.cs",
+      "sha256": "02ef8f49022d364e00e46e5054ebc19b86f6d160e7327ee66314e47f48893c10"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
+      "sha256": "5ab98c7511f49bf1ac3a59dbf2c587a2926dc75f2ad0db15b72469b5d5326e44"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
+      "sha256": "7328dc18c4202b9206a31d1d2790b7bd6a2bf48922b051807ef7350ca51aa21b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "sha256": "f232ed075b6df8d57a3e4511cb908a33b396e09d86a32e58a92df674e3d4dd2e"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Data.cs",
+      "sha256": "99e0bfb5786f8afb2105bf5d1e9918548937d113c2b409be6c69d50660648452"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/DesignFactory.cs",
+      "sha256": "75d8cda066f1d07e151dcf1a31c416596b89107664d509edb09a12d2d320c3dd"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/DocumentEndpoints.cs",
+      "sha256": "757ca38005023cd8877388c7719dc058c97b51e97c9eb1b4ef07a4c11ed4834b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Ebt.Platform.Api.csproj",
+      "sha256": "26c9ba8e170ee03e52d5a2437254ba8f9b4a4e9a56253566f69edd0f22256dd6"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/KeyProtection.cs",
+      "sha256": "9d895feef06982ae17b4f303b3f14c020c36ce07aed6067113cfde2304975a1c"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
+      "sha256": "8428d6f296dfd1e1915761d449a34e9724fd54ca33345f4696959f83e29c02ae"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.Designer.cs",
+      "sha256": "cac29eb34368c50a29106100866490c8e73cbced4f3eb8fac4256d580c540e36"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.cs",
+      "sha256": "dd96a299f563580e158d798e2a82cce6ed0574dfd06dd869bf5f92c327a76143"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061901_DocumentReviewHistory.Designer.cs",
+      "sha256": "f78caeb488765c5eced10b8dbc0e18828c159b18681066d4075cde8b969eadce"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061901_DocumentReviewHistory.cs",
+      "sha256": "028310a94a187ab651ac74c20f008a366b4b9616eabc63fb686e930ca79a2ad5"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062209_TenantStorageBarrier.Designer.cs",
+      "sha256": "b90a24bd584f7b34bd5e93b988eac08d880c9798ec0fd529c034ae06ada3562f"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062209_TenantStorageBarrier.cs",
+      "sha256": "467afd799c483876b50130e20ce1015918a26fdb90a880bafaf4904ad0c5ca60"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062505_ContactCreationLedger.Designer.cs",
+      "sha256": "66848aa96b7fdd843c8bffd63298075a9dff17fb4e6e5bdea952959c4f4e7166"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062505_ContactCreationLedger.cs",
+      "sha256": "a5dcd14dbd84fd8a965f352116e7c5c748b2ab4b4480c2a008e0e7bb4c4c88ef"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007064302_RevocableSessions.Designer.cs",
+      "sha256": "96c8f9b5b968046c5da0395afac1239cd2fb1db45f6bc915bdd39e591d46a97d"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007064302_RevocableSessions.cs",
+      "sha256": "43904507a4b557d916a584afdc064889fb8b4d31ec18e6312dac7f355ee87aae"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007071227_ProviderConnectionIdentity.Designer.cs",
+      "sha256": "8b4854760426d73e5125927550b8fc8877786d8e14ed00ec6af632625fa17bdc"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007071227_ProviderConnectionIdentity.cs",
+      "sha256": "bfbe664d871c4458ec44f1ea5d13ae01f6b2662de6713ff4eaf6457f64767892"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007090647_WazVoxEventIdentity.Designer.cs",
+      "sha256": "fd7a04a9e65489b2be885f3d1c89d4ebbd9128923e7273cdd29c3b36306c18bf"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007090647_WazVoxEventIdentity.cs",
+      "sha256": "f40a44d06b869fa725cb3d27c1d32c4e6bf647a77991cd97cf5b1d74d50bf36b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.Designer.cs",
+      "sha256": "52a21403e6c550386cf60a8ca8cec93d1acb967229fe485baeb841a9a49194fb"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.cs",
+      "sha256": "cb6fa028321c53a7f79276d4406919cf4a9c53181ea014fa325b9e5de3d6149a"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/PlatformDbModelSnapshot.cs",
+      "sha256": "3a963720bc51dcc5b23f32b72fe8ee131f4ad2cb452ca9d68bf118dea4334465"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Models.cs",
+      "sha256": "8c475029e14de9760c98ee3bfcbb6d22b9233fe7633b7be50cf10b64d26f5401"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Program.cs",
+      "sha256": "e2d97c88912ea2220b30e0fe2e0de911041e9361620cdb5f0d96c20595796544"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
+      "sha256": "92ca70918f9784310cb4402c06e8302f02d71e7a50dad66c92a5450b923351c8"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/ProxyConfiguration.cs",
+      "sha256": "9844843eed2e4348d38508b1fb63d10e05ea99e99e284a7a6ced4b103d3e8971"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/QaSeed.cs",
+      "sha256": "01ddecdbda20374e2212834aa33644396224f187fcf03106214c64567086545c"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/QaSqlChecks.cs",
+      "sha256": "ac01da5137f5d1d7eee8fd7974e06cd97855013064bcee37500ed539bfa5ebb2"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/RecoveryChecks.cs",
+      "sha256": "10b393af4be7569e41d826a539bef7319b136c5f4cf25dce9235f78e1ed4fe23"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Security.cs",
+      "sha256": "6d189426fef831e1441afef90a4648e149897aa4d5a776cf0d1491f0af468706"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
+      "sha256": "72af49c874d856aca8ff775e64bd3370ff233f1c56da2e8318fc23094766a270"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/SqlInspection.cs",
+      "sha256": "9743c4437a35c4e3972391561573754299cb11e757f9645776957f763aa24da7"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/TenantSqlContext.cs",
+      "sha256": "9c056dd8b737ccfdf96769d48178ab81ce72db041797b3b633d522f01e01b55b"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/WazVoxEndpoints.cs",
+      "sha256": "dde32358524117f9c556bde01b6f69f7f1135b39df94ce40941474bc3528c7cc"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/WazVoxProtocol.cs",
+      "sha256": "1489fe468b8c18c93b2bacf9dc8d290d0454faff87c5322d107eca9dba9c49ff"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/WorkPulse.cs",
+      "sha256": "431d7e0fecff6c12ccc1d015fbcb93fbff4f0141453fcc92a0631f9e20b62ae8"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/appsettings.json",
+      "sha256": "b7b480fdf36f5de8fc676d5b1d5372e5424f803a112f3fdd44e73e7086c70c64"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/packages.lock.json",
+      "sha256": "6a57cca3891dbc371b984a5fce17f748ed2c28064307ab4587c1e1fb613f2246"
+    },
+    {
+      "path": "src/frontend/e2e/connect.spec.ts",
+      "sha256": "37a11e31f403e825b9046b58166a3631f45db548d27a4d2a50c6cf4dcc73d6e4"
+    },
+    {
+      "path": "src/frontend/index.html",
+      "sha256": "fb902648e09b33d986b2c3fe452ab572193102668ea92291f267969bdc4603eb"
+    },
+    {
+      "path": "src/frontend/package-lock.json",
+      "sha256": "ee3d552f7d0e623ce4029fc29dfa27f2b4f71d3ba77e3b51552d769bbfd94a3d"
+    },
+    {
+      "path": "src/frontend/package.json",
+      "sha256": "50308697050cb85315537407879270c0217063ad9b2037575fa05715d563dee8"
+    },
+    {
+      "path": "src/frontend/playwright.config.ts",
+      "sha256": "d352db7c35a42162a2eae872d0ba4d09b9b59b03ba6f492f4f7693b79c6b51ee"
+    },
+    {
+      "path": "src/frontend/src/App.tsx",
+      "sha256": "8a040a17bc1658f8ec1de6f82b035c4683e5421be4fbf8d93a8cf8e0dbaded29"
+    },
+    {
+      "path": "src/frontend/src/api.ts",
+      "sha256": "7f4d795fbf9c2b701c9cb5f4089bbd555fadb2188e607564b78bb57025819b9d"
+    },
+    {
+      "path": "src/frontend/src/csv.ts",
+      "sha256": "095266235e8e5c6a9ab3035e821dc16cc59e1e8d5c8c657bbc986c127c750ec3"
+    },
+    {
+      "path": "src/frontend/src/main.tsx",
+      "sha256": "46443a53ae77169a882cab8fb73a0d5950a50c17b8b52a54ab9d7449133b871d"
+    },
+    {
+      "path": "src/frontend/src/style.css",
+      "sha256": "a3944a87190218351f10623d58f65a203d4b3241b21b2bb86a8de45543b573dc"
+    },
+    {
+      "path": "src/frontend/tsconfig.json",
+      "sha256": "a4ea96ee8b5e2feaa60f5494ff286af5462f43691a6a0b8ac22710025aa7d47b"
+    },
+    {
+      "path": "src/frontend/vite.config.ts",
+      "sha256": "ecb9de341a4adba25e2e496ccd63db661c5be6d7d582c549ee37e804a1efb673"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/Program.cs",
+      "sha256": "0c5c05f00fc6fa381c84b8ba45fa8becafabf352edeaecbf0b9c408d95e287c2"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/ProxyChecks.cs",
+      "sha256": "9e06b82bf894af3217f956201f75f8f28f5975984eb2d94c4d9fdc252dbc0b68"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/SqlKeyRingChecks.cs",
+      "sha256": "ac28a70e9dcdaea2a623eacef7069583f16953212061989bbce7e869fb76517a"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/WazVox.ProtocolTests.csproj",
+      "sha256": "7ebf1b9b15710fd32d390cc2f9e620f56414bfc66ae156fe729a77341b44b50e"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/packages.lock.json",
+      "sha256": "b8606b1afcac18e82bf43681e58f63c8d7aea77b116d896f837bc0b983033d82"
+    },
+    {
+      "path": "tests/integration/connect_qa.py",
+      "sha256": "7b8034b61bb4b596ff1ece547bce22056eef9b645f9c421687d9ce210eea538c"
+    },
+    {
+      "path": "tests/integration/wazvox_qa.py",
+      "sha256": "c9167fa2c50d5cdaafade97acbf22529f6573426fbdf0f1b05c50f28f496fd3a"
+    }
+  ],
+  "limits": [
+    "Public hosting unavailable: Azure F1 quota zero",
+    "Fixed BRL30 only; no variable-cost fallback",
+    "No private configuration, certificate, keyring, real API key or data in package",
+    "SQL schema applied without seed; runtime identity and bootstrap pending"
+  ]
+}

@@ -9,22 +9,23 @@ Projeto: EBT Platform. Base de planejamento: 06/10/2026. Capacidade: 200 horas-p
 
 ## Objetivo
 
-Preparar quatro pacotes delimitados, usando capacidade existente: site essencial; CRM simples; documentos/tarefas; protocolo e tramitação piloto. Construir fronteiras reutilizáveis apenas onde um segundo consumidor demonstrar que a generalização é útil. As primeiras entregas são configuração e extração focal, seguidas de regras novas com testes proporcionais.
+Priorizar Connect com cadastro/histórico/tarefas, resposta por API e webhook, documentos privados e candidato operacional. Site e Flow ficam no backlog posterior; CASST é fonte seletiva, sem copiar integralmente sua estrutura. Construir fronteiras reutilizáveis apenas onde um segundo consumidor demonstrar que a generalização é útil. As primeiras entregas são configuração e extração focal, seguidas de regras novas com testes proporcionais.
 
 ## Contrato de escopo interno
 
 | Pacote | Incluído | Não incluído neste ciclo |
 |---|---|---|
-| Site | Até cinco páginas, navegação, marca, conteúdo fornecido, canal definido, manual | CMS completo, portal de transparência, e-SIC e novo painel complexo |
+| Site, adiado | Até cinco páginas e manual no backlog posterior; zero horas neste ciclo | CMS completo, transparência e painel complexo |
 | CRM | Pessoa/organização/contato, histórico, até cinco etapas fixas, responsável, próxima ação e importação QA de até 100 linhas | Financeiro, propostas completas, OS, estoque, inbox coletivo, WhatsApp oficial |
 | Documentos/tarefas | Uma categoria comercial, arquivo privado, revisão, versão, download autorizado, tarefa e prazo | Prontuário, assinatura digital, canal externo automático e GED completo |
-| Flow | Um tipo de protocolo por tenant/ano, estados fixos, anexos, responsável, tramitação e encerramento | Designer, branching, timers, W3/W4 completos, consulta pública e workflow regulado |
+| Comunicação Connect | Texto recebido, resposta do atendente por API, webhook de status e recuperação | Campanha, chatbot, omnichannel e inbox coletivo avançado |
+| Flow, adiado | Um protocolo/fluxo fixo no backlog posterior; zero horas neste ciclo | Designer, timers e workflow amplo |
 
 O número de páginas/etapas/linhas é um limite do pacote. Nenhum limite arbitrário de arquivo, sessão, retenção ou usuários é inventado: esses parâmetros ficam registrados como decisão pendente e são fechados nos tickets correspondentes.
 
 ## Marcos
 
-Site: 40h cumulativas. Segurança e CRM: 104h. Documentos/tarefas: 140h. Flow piloto: 164h. Candidato interno: 180h. Reserva: 20h consumíveis antes ou depois desses marcos, com registro de causa. A soma é de esforço; espera por credencial ou aceite altera calendário sem ser automaticamente hora técnica.
+Segurança: 64h cumulativas. CRM: 92h. CRM/tarefas: 104h. Comunicação API/webhook: 140h. Documentos: 164h. Candidato interno: 180h. Site e Flow adiados fora do ciclo. Reserva: 20h consumíveis antes ou depois desses marcos, com registro de causa. A soma é de esforço; espera por credencial ou aceite altera calendário sem ser automaticamente hora técnica.
 
 ## Condição de entrega
 
@@ -32,7 +33,7 @@ Uma capacidade avança quando tem entrada satisfeita, saída concreta, cenário 
 
 ## Mudança de escopo
 
-Toda mudança tem motivo, tickets afetados, horas, dependências e impacto em testes. Alterar um rótulo não justifica renomear banco/API. Acrescentar integração ou vertical não pode ser disfarçado como reserva. Se faltar capacidade, adiar o Flow preservando segurança, recuperação e os pacotes anteriores. Alteração da distribuição 180/20 requer instrução explícita do usuário.
+Toda mudança tem motivo, tickets afetados, horas, dependências e impacto em testes. Alterar um rótulo não justifica renomear banco/API. Acrescentar integração ou vertical não pode ser disfarçado como reserva. Se faltar capacidade, recortar/adiar GED com impacto explícito no candidato, preservando segurança, recuperação e comunicação essencial. Site e Flow já estão adiados. Alteração da distribuição 180/20 requer instrução explícita do usuário.
 ''',
 
 'docs/gestao/GOVERNANCA_E_RESPONSABILIDADES.md': '''# Governança e responsabilidades propostas
@@ -96,6 +97,10 @@ Todas as linhas são pendências de execução, não impedimentos da entrega doc
 | D10 | Protocolo e concorrência | Um tipo, tenant/ano, índice e sequência transacional definidos | P08-01/P08-02 | Impede G-FLOW |
 | D11 | Participantes e aceite do piloto | Pessoas reais e disponibilidade confirmadas; dados autorizados | P09-07 | Candidato QA pode existir; aceite real permanece pendente |
 | D12 | Implantação futura | Domínio/host/config/contas/retorno do cliente escolhido | Depois de gate pertinente | Não prometer publicação específica |
+| D13 | Próxima ação e tarefa | Fonte coerente, pendência principal e fechamento sem duas cópias editáveis | P05-05/P07-01 | Impede composição consistente do Connect |
+| D14 | Exportação do CRM | Confirmar recurso existente, formato, colunas, limite e escopo do filtro | P01-04/P05-03 | Não ampliar exportação por inferência |
+| D15 | Primeiro canal de comunicação | WhatsApp oficial candidato; conta própria de QA, versão, scopes, janela/template e custos | P11-01 | G-MSG permanece pendente sem acesso/prova |
+| D16 | API/webhook e recuperação | Assinatura, dedupe, outbox, callbacks, envio desconhecido e ledger no restore | P11-02 a P11-12 | Impede resposta externa confiável |
 
 ## Como registrar resolução
 
@@ -120,7 +125,7 @@ A reserva não é cinco tarefas obrigatórias. Registrar defeito, ticket afetado
 
 ## Critério de corte
 
-Não remover casos de isolamento, autorização por ID, migração ou recuperação do recorte para cumprir prazo. Suspender o recorte afetado quando a prova falhar. Preparar site independente enquanto a segurança do CRM é resolvida. Se a reserva se esgotar, fechar o que passou e transportar esforço restante a uma proposta revisada.
+Não remover casos de isolamento, autorização por ID, migração ou recuperação do recorte para cumprir prazo. Suspender o recorte afetado quando a prova falhar. Site/Flow estão adiados; uma mudança de fila por impedimento precisa de realocação explícita. Se a reserva se esgotar, fechar o que passou e transportar esforço restante a uma proposta revisada.
 ''',
 
 'docs/arquitetura/ARQUITETURA_E_FRONTEIRAS.md': '''# Arquitetura candidata e fronteiras do recorte
@@ -129,26 +134,29 @@ Status: desenho para implementação futura. Fonte da direção: PDF fornecido e
 
 ## Composição
 
-Site essencial pode permanecer estático ou Razor, conforme P03-01. Core/CRM/Flow mantêm a família .NET, React/TypeScript e SQL Server/Azure SQL da origem adequada. O backend começa como monólito com fronteiras explícitas, sem introduzir filas, cache distribuído ou microserviços antes de necessidade demonstrada.
+Connect mantém a família .NET, React/TypeScript e SQL Server/Azure SQL da origem adequada, selecionada pela baseline. Comunicação usa inbox/outbox duráveis no SQL e worker no serviço; ver [desenho de API/webhook](CONNECT_API_E_WEBHOOK.md). Site/Flow estão adiados. O backend começa como monólito com fronteiras explícitas, sem exigir broker separado, cache distribuído ou microserviços.
 
 ```mermaid
 flowchart LR
-  Site[Site essencial] --> Canal[Canal ou formulário escolhido]
-  Web[Interface CRM e Flow] --> Api[API autenticada]
+  Web[Interface Connect] --> Api[API autenticada]
   Api --> Access[Contexto de empresa e autorização]
   Access --> CRM[Contatos e histórico]
   Access --> GED[Documentos privados]
   Access --> Tasks[Tarefas]
-  Access --> Flow[Protocolo e fluxo fixo]
+  Access --> Msg[Conversa e mensagens]
   CRM --> SQL[(SQL QA)]
   GED --> SQL
   Tasks --> SQL
-  Flow --> SQL
+  Msg --> SQL
+  Provider[Canal oficial] --> Hook[Webhook autenticado]
+  Hook --> SQL
+  SQL --> Worker[Worker inbox/outbox]
+  Worker --> Provider
   GED --> Storage[(Storage privado QA)]
   Api --> Audit[Auditoria e correlação]
 ```
 
-O diagrama não presume integração automática site->CRM. Canal manual e formulário servidor são alternativas reais, escolhidas e demonstradas no pacote. Storage e identidade são interfaces/contratos da composição; credenciais não entram no domínio.
+O diagrama é candidato. Recebimento do webhook, fila de resposta, aceite do provedor e entrega são estados separados. Storage e identidade são interfaces/contratos da composição; credenciais não entram no domínio.
 
 ## Responsabilidade por fronteira
 
@@ -264,11 +272,11 @@ Usuário de B tentando ID de A; operador fora da carteira; consulta tentando esc
 Ausência de botão não substitui recusa de API. Perfil admin não confere automaticamente acesso a categoria sensível ou a todos os clientes. Não criar usuários reais para preencher a matriz do planejamento.
 ''',
 
-'docs/produtos/SITE_ESSENCIAL.md': '''# Pacote 1: site essencial
+'docs/produtos/SITE_ESSENCIAL.md': '''# Site essencial: recorte adiado
 
 ## Resultado
 
-Um site de até cinco páginas com marca e conteúdo fornecidos/autorizados, navegação consistente, contato definido e manual. Marco de esforço: 40h cumulativas. Tickets P03-01 a P03-06, após P01/P02. O pacote independe do Core novo e da correção do onboarding CRM.
+Um site de até cinco páginas com marca e conteúdo fornecidos/autorizados, navegação consistente, contato definido e manual. Recorte adiado, com 12h anteriores a reestimar; zero horas alocadas neste ciclo. IDs P03-01 a P03-06 preservados no backlog posterior. O pacote independe do Core novo e da correção do onboarding CRM.
 
 ## Jornada e páginas
 
@@ -295,11 +303,11 @@ Home e contato em celular/computador; menu e foco de teclado; imagens/links; flu
 Fonte selecionada/versionada, configuração de identidade, conteúdo/assets autorizados, relatório focal, canal efetivo, manual, requisitos de host/domínio e retorno. Hospedagem e publicação do cliente permanecem decisões de implantação; nenhum serviço pago é escolhido por este documento.
 ''',
 
-'docs/produtos/CRM_CONNECT_INICIAL.md': '''# Pacote 2: CRM simples / Connect inicial
+'docs/produtos/CRM_CONNECT_INICIAL.md': '''# Cadastro e jornada CRM do EBT Connect
 
 ## Resultado e janela
 
-Cadastro único, organização, contatos, histórico, até cinco etapas fixas, responsável e próxima ação. Segurança P04 e funcionalidades P05 fecham até 104h cumulativas; duas configurações sintéticas usam a mesma regra. Isso não é Connect completo do plano mestre.
+Cadastro único, organização, contatos, histórico, até cinco etapas fixas, responsável e próxima ação. Segurança P04 e funcionalidades P05 fecham até 92h cumulativas; tarefas P07 completam o checkpoint em 104h e comunicação P11 fecha em 140h; duas configurações sintéticas usam a mesma regra. Isso não é Connect completo do plano mestre.
 
 ## Fluxo
 
@@ -319,10 +327,10 @@ Um layout fixo e até 100 contatos sintéticos. Área de preparação com previe
 
 ## Aceite
 
-G-SEG vigente; jornada QA em A/B; permissão por perfil/carteira e ID direto; repetição/conflito; cadastro único após reload; duas marcas sem forks de regra; manual e limites. Fora: inbox multiusuário, campanha/envio automático, WhatsApp oficial, financeiro, OS e proposta comercial completa.
+G-SEG vigente; jornada QA em A/B; permissão por perfil/carteira e ID direto; repetição/conflito; cadastro único após reload; duas marcas sem forks de regra; manual e limites. P05 não implementa canal externo; resposta por API/webhook pertence a P11 e G-MSG. Fora: inbox coletivo avançado, campanha automática, chatbot, financeiro, OS e proposta comercial completa. Ver docs/produtos/ENTREGA_EBT_CONNECT.md.
 ''',
 
-'docs/produtos/DOCUMENTOS_E_TAREFAS.md': '''# Pacote 3: documentos privados e tarefas
+'docs/produtos/DOCUMENTOS_E_TAREFAS.md': '''# Documentos privados e composição com tarefas do Connect
 
 ## Documento
 
@@ -334,7 +342,7 @@ A política de scan/liberação deve ser fechada no recorte. Sem a dependência 
 
 ## Tarefa
 
-P07 vincula origem, responsável, prazo, estado e resultado. Criar -> acompanhar -> concluir ou cancelar, com motivo/resultado e histórico. Idempotência do fechamento, concorrência e regra temporal precisam do cenário pertinente. Exibição de pendência interna não implica e-mail, calendário ou WhatsApp enviado.
+P07 já entrega em 104h a tarefa com contato de origem, responsável, prazo, estado e resultado. Ligação documental é demonstrada em P06-02/P06-08 após o GED, sem bloquear a tarefa comercial inicial. Criar -> acompanhar -> concluir ou cancelar, com motivo/resultado e histórico. Idempotência do fechamento, concorrência e regra temporal precisam do cenário pertinente. Exibição de pendência interna não implica e-mail, calendário ou WhatsApp enviado.
 
 ## Composição
 
@@ -342,14 +350,14 @@ O mesmo cadastro pode ter documento e tarefa; vínculo por ID e empresa preserva
 
 ## Entrega
 
-Até 140h cumulativas: fluxo GED de uma categoria, tarefa ligada, prova negativa de acesso, versão/retry/conflito, restore de banco/arquivo/chave e manual. Não é plataforma clínica, GED integral ou assinatura eletrônica homologada.
+Até 164h cumulativas: fluxo GED de uma categoria, tarefa ligada, prova negativa de acesso, versão/retry/conflito, restore de banco/arquivo/chave e manual. Não é plataforma clínica, GED integral ou assinatura eletrônica homologada.
 ''',
 
 'docs/produtos/FLOW_PILOTO.md': '''# Pacote 4: protocolo e tramitação mínima
 
 ## Delimitação
 
-Novo fluxo, tickets P08-01 a P08-08, 24h de capacidade estimada após os gates de segurança, documentos e tarefas. Um tipo de protocolo, numeração por tenant/ano e três estados fixos. Marco até 164h cumulativas, sujeito ao reaproveitamento e à reserva.
+Recorte adiado fora deste ciclo; tickets P08-01 a P08-08 e estimativa anterior de 24h preservados no backlog posterior. Nenhuma janela cumulativa vigente ou hora alocada. Reestimar após gates de segurança, documentos e tarefas. Escopo anterior: um tipo de protocolo, numeração por tenant/ano e três estados fixos.
 
 ## Estado e ação candidata
 
