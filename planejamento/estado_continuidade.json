@@ -38,5 +38,17 @@
   "checkpoint_configuration": "planejamento/continuidade_github.json",
   "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
   "automatic_chat_transfer": false,
-  "automatic_new_content_approval": false
+  "automatic_new_content_approval": false,
+  "coordination_review": {
+    "reference_date_utc": "2026-10-08",
+    "source_sha": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+    "branch": "codex/ebt-enterprise-continuity-sync-20261008",
+    "document": "docs/execucao/SINCRONIZACAO_SEQUENCIA_20261008.md",
+    "structured_state": "planejamento/sincronizacao_sequencia_20261008.json",
+    "scope": "sequência e frentes planejadas; sem implementar produto",
+    "referenced_chat_read": false,
+    "direct_chat_sync_confirmed": false,
+    "next_step": "reconciliar com ponta vigente da branch original e reservar donos de arquivos antes de implementar R01/R02",
+    "product_gates_promoted": false
+  }
 }

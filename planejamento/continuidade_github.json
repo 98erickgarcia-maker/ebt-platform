@@ -184,6 +184,10 @@
       "reviewed_sha256": "a60fe2ee5aa6aaf5fd4b33019dce73dc74c28963ee28700ad8ac32558bc2bcc8"
     },
     {
+      "path": "docs/execucao/SINCRONIZACAO_SEQUENCIA_20261008.md",
+      "reviewed_sha256": "87624e8f1fd8749608f6cbec387d6afb341d3a76e7235e9c62131d2a209d0843"
+    },
+    {
       "path": "docs/execucao/entregas/P01-01.md",
       "reviewed_sha256": "6f2f5f512decec198f7a67564cdfbfede8b3e9825312bed530fb63cea7fb8f8d"
     },
@@ -1063,7 +1067,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "17ef2a6943e6820df1db0d2609b89d7f5517e60a34aede8c53e6d3d840f2c686"
+      "reviewed_sha256": "e0910253b01c7c9cb44a33d22e4829eaf176f43b86862ff428f050cf3b0875e4"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1084,6 +1088,10 @@
     {
       "path": "planejamento/pacotes_codex.json",
       "reviewed_sha256": "fb3b8d519773b0d127af87c2e9a13a9514e7542b03c278f540862f02b38ef3da"
+    },
+    {
+      "path": "planejamento/sincronizacao_sequencia_20261008.json",
+      "reviewed_sha256": "48318196909f3423ab0aa2785107bdb7212af985ec285c0130f19e091d10359e"
     },
     {
       "path": "prompts/AGENTE_EBT_ENTERPRISE.md",
@@ -1551,5 +1559,5 @@
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:23:00.711138+00:00"
+  "reviewed_at_utc": "2026-10-08T01:57:28.193347+00:00"
 }

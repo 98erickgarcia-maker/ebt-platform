@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-08T01:54:32Z",
+  "scope": "coordenação das linhas publicadas; sem implementação de produto",
+  "repository": "98erickgarcia-maker/ebt-platform",
+  "referenced_task": {
+    "thread_id": "01a1190a-c397-7422-9b3e-0b8943be5038",
+    "host_id": "cloud:account",
+    "read": false,
+    "direct_synchronization_confirmed": false,
+    "limitation": "read_thread indisponível"
+  },
+  "source": {
+    "branch": "codex/ebt-enterprise-continuity-20261007",
+    "sha": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+    "remote_sha_verified": true,
+    "main_sha": "fdc3a9fa76c713c41323739ba816491293a6381a"
+  },
+  "coordination": {
+    "branch": "codex/ebt-enterprise-continuity-sync-20261008",
+    "checkpoint_config": "planejamento/checkpoint_sincronizacao_20261008.json",
+    "document": "docs/execucao/SINCRONIZACAO_SEQUENCIA_20261008.md",
+    "original_branch_modified": false
+  },
+  "pull_requests": [
+    {
+      "number": 9,
+      "head": "codex/plataforma-generica-finalizacao",
+      "sha": "b57ab86f44da655f35a549a90c05bb60d175989c",
+      "base": "main",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/9",
+      "decision": "candidatos incrementais; requer reconciliação"
+    },
+    {
+      "number": 8,
+      "head": "codex/plano-pac07-audit-session-onboarding",
+      "sha": "044e8a536686088206193a1c9907be7dd6458ba8",
+      "base": "codex/pac06-sql-rls-resource-cache",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/8",
+      "decision": "planejamento a reconciliar com Connect atual"
+    },
+    {
+      "number": 7,
+      "head": "codex/pac06-sql-rls-resource-cache",
+      "sha": "900cac70c3e9323e50d61ef0aa3c7d75b0ca9112",
+      "base": "feat/pac-05-identity-tenant-scope-v2-20261007",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/7",
+      "decision": "fundação sintética distinta; comparar antes de integrar"
+    },
+    {
+      "number": 6,
+      "head": "feat/pac-05-identity-tenant-scope-v2-20261007",
+      "sha": "e84ad5e8def9b8b3001475cda6fcf73610a17804",
+      "base": "feat/pac-03-ebt-qa-persistence-20261007",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/6",
+      "decision": "fundação sintética distinta; comparar antes de integrar"
+    },
+    {
+      "number": 5,
+      "head": "codex/prospeccao-emergent",
+      "sha": "e8e310277f1e9b40827d7344756f84fd5a199714",
+      "base": "main",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/5",
+      "decision": "pacote separado"
+    },
+    {
+      "number": 3,
+      "head": "feat/pac-03-ebt-qa-persistence-20261007",
+      "sha": "332a04761459a4eb658efec99916d53521366f0c",
+      "base": "feat/pac-02-ebt-platform-foundation-v2-20261007",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/3",
+      "decision": "fundação sintética distinta; comparar antes de integrar"
+    },
+    {
+      "number": 2,
+      "head": "feat/pac-02-ebt-platform-foundation-v2-20261007",
+      "sha": "f015259976a42ceee68bf8cbedf74dc2074aaa87",
+      "base": "feat/pac-01-ebt-connect-g0-20261007",
+      "draft": true,
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/pull/2",
+      "decision": "fundação sintética distinta; comparar antes de integrar"
+    }
+  ],
+  "observed_ci": [
+    {
+      "sha": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+      "name": "Build EBT Connect",
+      "run_id": 37712661852,
+      "conclusion": "success",
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37712661852"
+    },
+    {
+      "sha": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+      "name": "Validate EBT Enterprise continuity",
+      "run_id": 37712661809,
+      "conclusion": "success",
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37712661809"
+    },
+    {
+      "sha": "b57ab86f44da655f35a549a90c05bb60d175989c",
+      "name": "Build EBT Connect",
+      "run_id": 37709330415,
+      "conclusion": "failure",
+      "build_job": "success",
+      "qa_job": "failure",
+      "failed_step": "Private loopback ClamAV fixture",
+      "subsequent_sql_browser_steps": "skipped",
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37709330415"
+    }
+  ],
+  "sequence": [
+    "conferir base e selecionar candidatos por contrato/cenário",
+    "corrigir e provar R01/R02 antes de aceite",
+    "tratar R03–R05 e regressão afetada",
+    "CI da versão integrada, scanner privado, restore Azure com hashes, aceite",
+    "medir piloto, escolher segundo consumidor e extrair o duplicado"
+  ],
+  "workstreams": [
+    {
+      "id": "integracao",
+      "status": "planejado",
+      "owner": "integrador a reservar",
+      "exclusive_paths": [
+        "planejamento/estado_continuidade.json",
+        "planejamento/continuidade_github.json"
+      ],
+      "output": "origem/SHA, diff aceito, checkpoint verificado"
+    },
+    {
+      "id": "interface_r01_r02",
+      "status": "planejado",
+      "owner": "dono único de App.tsx a reservar",
+      "exclusive_paths": [
+        "src/frontend/src/App.tsx"
+      ],
+      "depends_on": [
+        "DTO de conversa somente para R02; R01 pode avançar independentemente"
+      ],
+      "proof": [
+        "contatos A/B com latência/erro",
+        "paginação/filtros e mais de 25 contatos",
+        "destinatário identificado antes da confirmação"
+      ]
+    },
+    {
+      "id": "conversa_carteira",
+      "status": "planejado",
+      "owner": "dono de contratos R02/R03 a reservar",
+      "exclusive_paths": [
+        "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
+        "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+        "src/backend/Ebt.Platform.Api/ConnectWorker.cs"
+      ],
+      "shared_paths_require_handoff": [
+        "src/frontend/src/api.ts"
+      ],
+      "proof": [
+        "identificação por conversa sem liberar outra carteira",
+        "vínculo canal/carteira consistente",
+        "negativas A/B"
+      ]
+    },
+    {
+      "id": "administracao",
+      "status": "planejado",
+      "owner": "dono único de Security.cs a reservar",
+      "exclusive_paths": [
+        "src/backend/Ebt.Platform.Api/Security.cs"
+      ],
+      "proof": [
+        "metadados e revogação sem segredo",
+        "convite existente e titular correto",
+        "tenant/perfil/expiração/repetição"
+      ]
+    },
+    {
+      "id": "scanner_recuperacao",
+      "status": "planejado",
+      "owner": "responsável de scanner/recuperação a reservar",
+      "exclusive_paths": [
+        "src/backend/Ebt.Platform.Api/CommercialScanner.cs",
+        "src/backend/Ebt.Platform.Api/DocumentSafety.cs",
+        "src/backend/Ebt.Platform.Api/DocumentEndpoints.cs"
+      ],
+      "proof": [
+        "scanner real isolado",
+        "download/versão/hash e negativas",
+        "restore Azure isolado com hashes"
+      ],
+      "private_execution_scope_confirmed": false
+    },
+    {
+      "id": "ci_evidencia",
+      "status": "planejado",
+      "owner": "responsável de fixtures/CI a reservar",
+      "exclusive_paths": [
+        ".github/workflows/validate.yml",
+        "tests/integration/prepare_ci_fixture.py"
+      ],
+      "proof": [
+        "fixture ClamAV funcional",
+        "cenários executados/ignorados por SHA",
+        "regressão pertinente da versão integrada"
+      ]
+    }
+  ],
+  "open_findings": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "product_pending": [
+    "scanner privado",
+    "restauração Azure isolada",
+    "aceite operacional"
+  ],
+  "budget": {
+    "delivery_hours": 180,
+    "reserve_hours": 20,
+    "actual_hours": null
+  },
+  "verification_limits": {
+    "product_code_modified": false,
+    "product_tests_rerun": false,
+    "product_gates_promoted": false,
+    "merge_performed": false,
+    "deploy_performed": false,
+    "speed_gain_measured": false
+  }
+}
