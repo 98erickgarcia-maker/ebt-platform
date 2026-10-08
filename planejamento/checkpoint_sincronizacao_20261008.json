@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "remote": "origin",
+  "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
+  "branch": "codex/ebt-enterprise-continuity-sync-20261008",
+  "initial_base_ref": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+  "hash_mode": "SHA-256; LF for UTF-8 text, unchanged bytes for pinned binaries",
+  "automated_approval": false,
+  "files": [
+    {
+      "path": "docs/execucao/SINCRONIZACAO_SEQUENCIA_20261008.md",
+      "reviewed_sha256": "87624e8f1fd8749608f6cbec387d6afb341d3a76e7235e9c62131d2a209d0843"
+    },
+    {
+      "path": "planejamento/continuidade_github.json",
+      "reviewed_sha256": "822eac25ddd67e2b103d2f720b258213786f8d09e7b6d6889725b281621bfa1d"
+    },
+    {
+      "path": "planejamento/estado_continuidade.json",
+      "reviewed_sha256": "e0910253b01c7c9cb44a33d22e4829eaf176f43b86862ff428f050cf3b0875e4"
+    },
+    {
+      "path": "planejamento/sincronizacao_sequencia_20261008.json",
+      "reviewed_sha256": "cb79955c98d0d914f54bda9c4f39d6a7e478c1f1f729912d38c5a82b7e52d9dd"
+    }
+  ],
+  "reviewed_at_utc": "2026-10-08T01:56:58.314810+00:00"
+}
