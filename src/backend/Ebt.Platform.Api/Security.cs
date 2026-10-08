@@ -145,9 +145,13 @@ public static class Security
         {
             access.RequireAdmin();
             if (command.Role is not ("admin" or "operator" or "reader")) throw new ApiFault(400, "invalid_role", "Perfil inválido.");
+            var email = Contract.Email(command.Email);
+            if (email == "") throw new ApiFault(400, "invalid_email", "Informe o e-mail do convidado.");
+            var existingUserId = await db.Users.AsNoTracking().Where(x => x.Email == email).Select(x => (Guid?)x.Id).SingleOrDefaultAsync();
+            if (existingUserId.HasValue && await db.Memberships.AnyAsync(x => x.UserId == existingUserId.Value && x.Active))
+                throw new ApiFault(409, "already_member", "Este e-mail já possui vínculo ativo com esta empresa.");
             var token = Contract.Token();
-            var invite = new Invitation { TenantId = access.TenantId, Email = Contract.Email(command.Email), Role = command.Role, Portfolio = Contract.Required(command.Portfolio, 60, "Carteira"), TokenHash = Contract.Hash(token), ExpiresAt = DateTimeOffset.UtcNow.AddDays(2) };
-            if (invite.Email == "") throw new ApiFault(400, "invalid_email", "Informe o e-mail do convidado.");
+            var invite = new Invitation { TenantId = access.TenantId, Email = email, Role = command.Role, Portfolio = Contract.Required(command.Portfolio, 60, "Carteira"), TokenHash = Contract.Hash(token), ExpiresAt = DateTimeOffset.UtcNow.AddDays(2) };
             db.Invitations.Add(invite); db.Record(access, "invitation.created", invite.Id, http.TraceIdentifier); await db.SaveChangesAsync();
             return Results.Ok(new { invite.Id, invite.ExpiresAt, activationToken = token });
         });
@@ -159,7 +163,7 @@ public static class Security
             if (!await db.Tenants.AnyAsync(x => x.Id == invite.TenantId && x.Active)) throw new ApiFault(400, "invalid_invitation", "Convite indisponível.");
             // Existing users must authenticate; activation never resets another user's password.
             var existing = await db.Users.AnyAsync(x => x.Email == invite.Email);
-            if (existing) throw new ApiFault(409, "existing_user", "Este e-mail já possui acesso. O administrador deve vincular a conta existente.");
+            if (existing) throw new ApiFault(409, "existing_user", "Este e-mail já possui conta. Entre com ela e aceite o convite recebido.");
             access.TenantId = invite.TenantId;
             var user = new PlatformUser { Email = invite.Email, Name = Contract.Required(command.Name, 120, "Nome") };
             user.PasswordHash = Password(user, command.Password);
@@ -168,6 +172,60 @@ public static class Security
             await db.SaveChangesAsync(); await tx.CommitAsync(); await SignIn(http, user, invite.TenantId);
             return Results.Ok(new { user.Id, user.Name, tenantId = invite.TenantId });
         }).RequireRateLimiting("auth");
+        app.MapPost("/api/auth/invitations/accept-existing", async (AcceptExistingInviteCommand command, AccessScope access, PlatformDb db, HttpContext http) =>
+        {
+            var hash = Contract.Hash(Contract.Required(command.Token, 64, "Convite"));
+            var user = await db.Users.AsNoTracking().SingleAsync(x => x.Id == access.UserId && x.Active);
+            await using var tx = await db.Lock("global:invite-existing:" + hash);
+            var invite = await db.Invitations.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.TokenHash == hash && x.UsedAt == null && x.ExpiresAt > DateTimeOffset.UtcNow)
+                ?? throw new ApiFault(400, "invalid_invitation", "Convite inválido, expirado ou já utilizado.");
+            if (!await db.Tenants.AsNoTracking().AnyAsync(x => x.Id == invite.TenantId && x.Active))
+                throw new ApiFault(400, "invalid_invitation", "Convite indisponível.");
+            if (!string.Equals(user.Email, invite.Email, StringComparison.OrdinalIgnoreCase))
+                throw new ApiFault(403, "invitation_owner_mismatch", "Este convite pertence a outra conta.");
+
+            var membership = await db.Memberships.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.TenantId == invite.TenantId && x.UserId == access.UserId);
+            if (membership?.Active == true)
+                throw new ApiFault(409, "already_member", "Sua conta já possui vínculo ativo com esta empresa.");
+
+            access.TenantId = invite.TenantId;
+            if (membership == null)
+            {
+                membership = new Membership { TenantId = invite.TenantId, UserId = access.UserId, Role = invite.Role, Portfolio = invite.Portfolio };
+                db.Memberships.Add(membership);
+            }
+            else
+            {
+                membership.Role = invite.Role;
+                membership.Portfolio = invite.Portfolio;
+                membership.Active = true;
+            }
+
+            invite.UsedAt = DateTimeOffset.UtcNow;
+            db.Record(access, "invitation.linked", invite.Id, http.TraceIdentifier);
+            await db.SaveChangesAsync(); await tx.CommitAsync();
+            return Results.Ok(new { membership.Id, tenantId = invite.TenantId, membership.Role, membership.Portfolio });
+        }).RequireRateLimiting("auth");
+        app.MapGet("/api/admin/api-keys", async (AccessScope access, PlatformDb db) =>
+        {
+            access.RequireAdmin();
+            var now = DateTimeOffset.UtcNow;
+            var keys = await db.Credentials.AsNoTracking()
+                .Join(db.Users.AsNoTracking(), key => key.UserId, user => user.Id, (key, user) => new
+                {
+                    key.Id,
+                    key.Name,
+                    key.UserId,
+                    ownerName = user.Name,
+                    ownerEmail = user.Email,
+                    key.ExpiresAt,
+                    key.Active,
+                    state = !key.Active ? "revoked" : key.ExpiresAt <= now ? "expired" : "active"
+                })
+                .OrderByDescending(x => x.ExpiresAt)
+                .ToListAsync();
+            return Results.Ok(keys);
+        });
         app.MapPost("/api/admin/api-keys", async (AccessScope access, PlatformDb db, HttpContext http) =>
         {
             access.RequireAdmin(); var token = Contract.Token();
@@ -178,6 +236,7 @@ public static class Security
         app.MapDelete("/api/admin/api-keys/{id:guid}", async (Guid id, AccessScope access, PlatformDb db, HttpContext http) =>
         {
             access.RequireAdmin(); var key = await db.Credentials.SingleOrDefaultAsync(x => x.Id == id) ?? throw ApiFault.NotFound();
+            if (!key.Active) return Results.NoContent();
             key.Active = false; db.Record(access, "api_key.revoked", id, http.TraceIdentifier); await db.SaveChangesAsync(); return Results.NoContent();
         });
     }
