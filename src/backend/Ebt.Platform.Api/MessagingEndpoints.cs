@@ -20,9 +20,17 @@ public static class MessagingEndpoints
         app.MapGet(prefix + "/conversations", async (Guid? contactId, AccessScope access, PlatformDb db) =>
         {
             if (contactId != null) await db.Contact(contactId.Value, access);
-            var visible = db.VisibleContacts(access);
-            var rows = await db.Conversations.Where(x => visible.Any(c => c.Id == x.ContactId) && (contactId == null || x.ContactId == contactId))
-                .Join(db.Connections, x => x.ConnectionId, x => x.Id, (c, channel) => new { c.Id, c.ContactId, c.State, c.LastInboundAt, c.Version, channelName = channel.Name, provider = channel.Provider })
+            var visible = db.VisibleContacts(access).AsNoTracking();
+            var rows = await db.Conversations
+                .Where(x => contactId == null || x.ContactId == contactId)
+                .Join(visible, conversation => conversation.ContactId, contact => contact.Id, (conversation, contact) => new { conversation, contact })
+                .Join(db.Connections, x => x.conversation.ConnectionId, channel => channel.Id, (x, channel) => new
+                {
+                    x.conversation.Id, x.conversation.ContactId,
+                    contactName = x.contact.Name, contactPhone = x.contact.Phone, contactEmail = x.contact.Email,
+                    x.conversation.State, x.conversation.LastInboundAt, x.conversation.Version,
+                    channelName = channel.Name, provider = channel.Provider
+                })
                 .OrderByDescending(x => x.LastInboundAt).ThenBy(x => x.Id).Take(100).ToListAsync();
             return Results.Ok(rows);
         });
