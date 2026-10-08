@@ -130,6 +130,31 @@ def onboarding():
     assert new.req('/api/auth/me')['role']=='reader' and result['tenantId']==ACCESS['tenantA']
     Client().req('/api/auth/activate','POST',{'token':invite['activationToken'],'name':'Duplicate','password':ACCESS['password']},expected=400)
 check('Onboarding activation works once and yields correct membership',onboarding)
+
+def existing_account_invite():
+    # A tenant-B admin invites an account that already exists in tenant A.
+    invite=b.req('/api/admin/invitations','POST',{'email':'operador@ebt.example','role':'reader','portfolio':'principal'})
+    wrong=Client(); wrong.login('outra@ebt.example')
+    wrong.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']},expected=403)
+    linked=operator.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']})
+    assert linked['tenantId']==ACCESS['tenantB'] and linked['role']=='reader'
+    operator.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']},expected=400)
+    me=operator.context(ACCESS['tenantB'])
+    assert me['role']=='reader'
+    operator.context(ACCESS['tenantA'])
+check('Existing account accepts only its own tenant invitation once',existing_account_invite)
+
+def api_key_inventory():
+    key=admin.req('/api/admin/api-keys','POST')
+    rows=admin.req('/api/admin/api-keys')
+    saved=next(x for x in rows if x['id']==key['id'])
+    assert saved['state']=='active' and 'token' not in saved and 'tokenHash' not in saved
+    b.req('/api/admin/api-keys/'+key['id'],'DELETE',expected=404)
+    admin.req('/api/admin/api-keys/'+key['id'],'DELETE',expected=204)
+    admin.req('/api/admin/api-keys/'+key['id'],'DELETE',expected=204)
+    revoked=next(x for x in admin.req('/api/admin/api-keys') if x['id']==key['id'])
+    assert revoked['state']=='revoked' and revoked['active'] is False
+check('API key inventory exposes metadata only and revocation is tenant-safe/idempotent',api_key_inventory)
 check('Invalid webhook signature rejected',lambda:webhook(envelope('qa-phone-a'),False,401))
 incoming_id = 'wamid.qa.'+RUN
 at = str(int(time.time()))
