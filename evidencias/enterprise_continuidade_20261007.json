@@ -58,12 +58,20 @@
       "zip_integrity": true,
       "all_reviewed_file_hashes_checked": true,
       "first_export_bytes": 1648900
+    },
+    "linux_hosted_continuity": {
+      "unit_cases": 15,
+      "unit_passed": true,
+      "contract_and_hashes_passed": true,
+      "sha": "92e4006fc540d9884e412a65755eb032c3dec9bd",
+      "run_id": 37712170253,
+      "overall": "failed at diff check; shallow checkout must fetch parent; workflow repair pending new run"
     }
   },
   "product_gate_promotion": false,
   "new_messages_sent": 0,
   "deploy_performed": false,
-  "scheduled_task_status": "registered; execution not yet verified",
+  "scheduled_task_status": "registered and executed successfully",
   "private_data_uploaded": false,
   "remote_save_rule": "Only after git push and matching ls-remote SHA; receipt ignored under tmp/continuidade",
   "historical_product_evidence_only": true,
@@ -75,6 +83,10 @@
     "windows_state": "Ready",
     "requires_interactive_user": true,
     "approves_new_bytes": false,
-    "ai_api_calls": false
+    "ai_api_calls": false,
+    "last_task_result": 0,
+    "tested_sha": "92e4006fc540d9884e412a65755eb032c3dec9bd",
+    "remote_verified_on_run": true,
+    "no_duplicate_commit_on_run": true
   }
 }

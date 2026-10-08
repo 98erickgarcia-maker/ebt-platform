@@ -21,7 +21,7 @@
     },
     {
       "path": ".github/workflows/continuity.yml",
-      "reviewed_sha256": "1d2cfc9b6757ad3433db1bbc6a9cffd2bd46d380f55cd16ba9c6b19f4b2ab68b"
+      "reviewed_sha256": "c6060fefffd94cb99e19abfabda58983c9b61bc7207482a9199cce06f57434f7"
     },
     {
       "path": ".github/workflows/validar-planejamento.yml",
@@ -851,7 +851,7 @@
     },
     {
       "path": "evidencias/enterprise_continuidade_20261007.json",
-      "reviewed_sha256": "d86ab01da847bf0531a20f66983bfde38b1007f54a734fe8c4842abde42a840f"
+      "reviewed_sha256": "afa62f6fb02138c1b63ab46a0dfbfef29f553c8d6587c30cae128b87b6ffb709"
     },
     {
       "path": "evidencias/enterprise_ui_1366.json",
@@ -1551,5 +1551,5 @@
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:17:00.134204+00:00"
+  "reviewed_at_utc": "2026-10-08T01:19:34.125487+00:00"
 }
