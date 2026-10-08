@@ -42,15 +42,39 @@
       "reserve_hours": 20,
       "tickets": 75,
       "scenarios_documental": 238
+    },
+    "isolated_checkout": {
+      "passed": true,
+      "plan": 0,
+      "organization": 0,
+      "continuity": 0,
+      "files_in_snapshot": 396,
+      "no_original_checkout_change": true
+    },
+    "zip_export": {
+      "passed": true,
+      "files": 387,
+      "immutable_commit_source": true,
+      "zip_integrity": true,
+      "all_reviewed_file_hashes_checked": true,
+      "first_export_bytes": 1648900
     }
   },
   "product_gate_promotion": false,
   "new_messages_sent": 0,
   "deploy_performed": false,
-  "scheduled_task_status": "not_yet_verified",
+  "scheduled_task_status": "registered; execution not yet verified",
   "private_data_uploaded": false,
   "remote_save_rule": "Only after git push and matching ls-remote SHA; receipt ignored under tmp/continuidade",
   "historical_product_evidence_only": true,
   "repository_visibility_observed": "public",
-  "visibility_verified_with": "GitHub connector get_repo; 07/10/2026"
+  "visibility_verified_with": "GitHub connector get_repo; 07/10/2026",
+  "scheduler": {
+    "name": "EBT-Enterprise-GitHub-Reviewed-Checkpoint",
+    "interval_minutes": 5,
+    "windows_state": "Ready",
+    "requires_interactive_user": true,
+    "approves_new_bytes": false,
+    "ai_api_calls": false
+  }
 }

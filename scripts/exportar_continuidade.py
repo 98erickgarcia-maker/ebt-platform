@@ -1,5 +1,6 @@
 """Export only the reviewed checkpoint bytes, never the current dirty/private tree."""
 import json
+from io import BytesIO
 import os
 from pathlib import Path
 import subprocess
@@ -17,12 +18,14 @@ def export(root):
     output.parent.mkdir(parents=True,exist_ok=True)
     temp=output.with_suffix('.zip.new')
     pins={e['path']:e.get('binary_sha256') for e in config['files']}
-    with zipfile.ZipFile(temp,'w',compression=zipfile.ZIP_DEFLATED) as archive:
+    result=subprocess.run(['git','-C',str(root),'archive','--format=zip',sha],capture_output=True,timeout=90)
+    if result.returncode:raise CheckpointError('Não foi possível ler o checkpoint por Git archive.')
+    # One immutable Git archive avoids hundreds of processes. Export only reviewed entries.
+    with zipfile.ZipFile(BytesIO(result.stdout)) as frozen, zipfile.ZipFile(temp,'w',compression=zipfile.ZIP_DEFLATED) as archive:
         for path in paths:
             safe_path(path)
-            result=subprocess.run(['git','-C',str(root),'show',sha+':'+path],capture_output=True,timeout=30)
-            if result.returncode:raise CheckpointError('Arquivo ausente no commit: '+path)
-            data=result.stdout
+            try:data=frozen.read(path)
+            except KeyError:raise CheckpointError('Arquivo ausente no commit: '+path) from None
             if scan(path,data,pins.get(path)):raise CheckpointError('Possível segredo no commit: '+path)
             expected=next((x['sha256'] for x in manifest['files'] if x['path']==path),None)
             if expected and digest(data)!=expected:raise CheckpointError('Hash divergente: '+path)
