@@ -1075,7 +1075,7 @@
     },
     {
       "path": "planejamento/manifesto_organizacao.json",
-      "reviewed_sha256": "1e8e694924a0a0fb82bd9a149a1a7c29912c587a949d4caae9485fe0a7b71055"
+      "reviewed_sha256": "f12607ac731ecdb9e72c3412400c0a4787558879e32b2521131b6d14f9aeb0f0"
     },
     {
       "path": "planejamento/melhorias_frontend.json",
@@ -1195,7 +1195,7 @@
     },
     {
       "path": "scripts/organizar_projeto.py",
-      "reviewed_sha256": "880e3c97e57871d16454afe078146aedb705d5496443a31f5ad13076e7d77513"
+      "reviewed_sha256": "063e3ff7e8162f7ade82fc920c48bffb36b476638edd62be89de2b4de3be30f6"
     },
     {
       "path": "scripts/pacotes_codex.py",
@@ -1551,5 +1551,5 @@
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:21:57.890368+00:00"
+  "reviewed_at_utc": "2026-10-08T01:23:00.711138+00:00"
 }

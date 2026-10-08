@@ -247,7 +247,7 @@ O gerador histórico scripts/planejar.py fica protegido para não apagar a organ
     manifest=dict(versao='1.3',origem='geração documental a partir do backlog existente',
         hash_mode='SHA-256 de texto UTF-8 com quebras LF; binários preservados',
         arquivos_gerados=[dict(path=p,sha256=sha(ROOT/p)) for p in sorted(GENERATED)],
-        entradas=[dict(path=p,sha256=sha(ROOT/p)) for p in ['planejamento/backlog_200_horas.json','scripts/catalogo_organizacao.py','scripts/conteudo_organizacao.py','scripts/organizar_projeto.py','scripts/pacotes_codex.py','scripts/frontend_planejado.py','scripts/connect_planejado.py','scripts/comunicacao_planejada.py','scripts/live_docs.py','scripts/enterprise_planejado.py','evidencias/revisao_frontend_fontes.json']],
+        entradas=[dict(path=p,sha256=sha(ROOT/p)) for p in ['planejamento/backlog_200_horas.json','scripts/catalogo_organizacao.py','scripts/conteudo_organizacao.py','scripts/organizar_projeto.py','scripts/pacotes_codex.py','scripts/frontend_planejado.py','scripts/connect_planejado.py','scripts/comunicacao_planejada.py','scripts/live_docs.py','scripts/enterprise_planejado.py','evidencias/revisao_frontend_fontes.json','evidencias/enterprise_continuidade_20261007.json']],
         total_tickets=len(enriched),total_cenarios=len(cases),total_pacotes=len(package_registry['pacotes']),total_h=200,entregas_h=180,reserva_h=20)
     MANIFEST.parent.mkdir(parents=True,exist_ok=True)
     MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')

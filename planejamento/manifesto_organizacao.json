@@ -755,7 +755,7 @@
     },
     {
       "path": "scripts/organizar_projeto.py",
-      "sha256": "880e3c97e57871d16454afe078146aedb705d5496443a31f5ad13076e7d77513"
+      "sha256": "063e3ff7e8162f7ade82fc920c48bffb36b476638edd62be89de2b4de3be30f6"
     },
     {
       "path": "scripts/pacotes_codex.py",
@@ -784,6 +784,10 @@
     {
       "path": "evidencias/revisao_frontend_fontes.json",
       "sha256": "653525914d954d33f416cfa11daf7dd119f77362c71f1526f9f7ececd8380a4a"
+    },
+    {
+      "path": "evidencias/enterprise_continuidade_20261007.json",
+      "sha256": "27ddecdf1b527acb87a76a939a07848d79830124aab28f741c06e2447a1b19af"
     }
   ],
   "total_tickets": 75,
