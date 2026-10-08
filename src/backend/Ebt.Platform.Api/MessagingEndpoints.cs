@@ -27,7 +27,7 @@ public static class MessagingEndpoints
                 .Join(db.Connections, x => x.conversation.ConnectionId, channel => channel.Id, (x, channel) => new
                 {
                     x.conversation.Id, x.conversation.ContactId,
-                    contactName = x.contact.Name, contactPhone = x.contact.Phone, contactEmail = x.contact.Email,
+                    contactName = x.contact.Name, recipient = x.conversation.Recipient,
                     x.conversation.State, x.conversation.LastInboundAt, x.conversation.Version,
                     channelName = channel.Name, provider = channel.Provider
                 })
