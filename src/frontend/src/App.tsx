@@ -348,11 +348,10 @@ export function App() {
     admin = me?.role === "admin";
   function conversationRecipient(item: Conversation | null) {
     if (!item) return "";
-    if (item.contactPhone)
-      return item.contactPhone.startsWith("+")
-        ? item.contactPhone
-        : "+" + item.contactPhone;
-    return item.contactEmail;
+    if (!item.recipient?.trim()) return "";
+    return item.recipient.startsWith("+")
+      ? item.recipient
+      : "+" + item.recipient;
   }
   function clearContactResources() {
     setTasks([]);
