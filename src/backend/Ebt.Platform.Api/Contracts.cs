@@ -52,6 +52,7 @@ public static class Contract
 }
 public sealed record LoginCommand(string Email, string Password);
 public sealed record AcceptInviteCommand(string Token, string Name, string Password);
+public sealed record AcceptExistingInviteCommand(string Token);
 public sealed record InviteCommand(string Email, string Role, string Portfolio);
 public sealed record MembershipCommand(string Role, string Portfolio, bool Active);
 public sealed record ContactCommand(string Name, string? Email, string? Phone, string? ExternalKey, Guid? OrganizationId, Guid? OwnerId, string? Portfolio, string? Stage);
