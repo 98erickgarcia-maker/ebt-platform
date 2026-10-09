@@ -34,6 +34,8 @@ builder.Services.AddHttpClient("meta", c => { c.BaseAddress = new Uri("https://g
 builder.Services.AddHttpClient("wazvox", c => { c.BaseAddress = new Uri("https://app.wazvox.com/api/v1/"); c.Timeout = TimeSpan.FromSeconds(20); }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
 builder.Services.AddSingleton<WorkPulse>();
 builder.Services.AddHostedService<ConnectWorker>();
+builder.Services.AddHttpClient("mail", c => c.Timeout = TimeSpan.FromSeconds(20)).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
+builder.Services.AddHostedService<MailWorker>();
 var app = builder.Build();
 app.Use((http, next) => ProxyConfiguration.Audit(http, builder.Configuration, next));
 app.UseForwardedHeaders(ProxyConfiguration.Options(builder.Configuration));
@@ -84,6 +86,12 @@ if (args.Contains("--init-qa"))
     using var scoped = app.Services.CreateScope(); var db = scoped.ServiceProvider.GetRequiredService<PlatformDb>();
     scoped.ServiceProvider.GetRequiredService<AccessScope>().System = true;
     await db.Database.MigrateAsync();
+    if (builder.Configuration["Qa:CatalogScript"] is { Length: > 0 } catalogScript)
+    {
+        var catalogSql = await File.ReadAllTextAsync(catalogScript);
+        if (!catalogSql.StartsWith("-- EBT Platform only.", StringComparison.Ordinal)) throw new InvalidOperationException("QA catalog script differs from the dedicated platform script.");
+        await db.Database.ExecuteSqlRawAsync(catalogSql);
+    }
     await QaSeed.Run(db, builder.Configuration); return;
 }
 app.Use(async (http, next) =>
@@ -114,13 +122,15 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseDefaultFiles(); app.UseStaticFiles(); app.UseRouting(); app.UseRateLimiter(); app.UseAuthentication();
 app.Use(Security.ValidateContext);
-app.MapGet("/health/live", () => Results.Ok(new { status = "alive", service = "EBT Platform", application = "Connect", version = "0.2.0" }));
+app.MapGet("/health/live", () => Results.Ok(new { status = "alive", service = "EBT Platform", application = "Connect", version = "0.3.0" }));
 app.MapGet("/health/ready", async (PlatformDb db) =>
 {
-    try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); var catalog = await PlatformCatalog.Read(db); if (!catalog.Any(x => x.Code == "connect")) return Results.StatusCode(503); return Results.Ok(new { status = "ready", schema = "ebt_connect", platformSchema = "ebt_platform", version = "0.2.0" }); }
+    try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); var catalog = await PlatformCatalog.Read(db); if (!catalog.Any(x => x.Code == "connect")) return Results.StatusCode(503); return Results.Ok(new { status = "ready", schema = "ebt_connect", platformSchema = "ebt_platform", version = "0.3.0" }); }
     catch { return Results.StatusCode(503); }
 });
 PlatformCatalog.Map(app); Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
+MailEndpoints.Map(app);
+ConnectImprovements.Map(app);
 WazVoxEndpoints.Map(app);
 await app.RunAsync();
 

@@ -29,7 +29,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "reviewed_sha256": "2633d88ba5700812856cef867db4bb7e7d1880934eada6c4f3000494b17ca76d"
+      "reviewed_sha256": "7a7c4e9b094383e825ae4e371d5d37a75f80ac1976ff336f300b77ca54c6650f"
     },
     {
       "path": ".gitignore",
@@ -37,7 +37,7 @@
     },
     {
       "path": "AGENTS.md",
-      "reviewed_sha256": "cdbde4ef3efee04eca21d9dec45e671a3fc3d3d6c8ad3c5e549fffa2bda3e35a"
+      "reviewed_sha256": "553c54ea3548c7a79ebac10e72fdc6b005be14e11a7156cc6f07468603a5af44"
     },
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
@@ -1018,7 +1018,7 @@
     },
     {
       "path": "evidencias/testes_connect_browser.json",
-      "reviewed_sha256": "2651970314f90c6884fe23eefb0ac85fdaad81bf372347f10f39437794d7c4f4"
+      "reviewed_sha256": "58ee89433abc5d79b793424e3d07114aed660e0c459d57064605f7a0ff33c71e"
     },
     {
       "path": "evidencias/testes_connect_health_producao.json",
@@ -1038,7 +1038,7 @@
     },
     {
       "path": "evidencias/testes_connect_proxy.json",
-      "reviewed_sha256": "289ac016ed1760ee876ef421b3f7029d6c29e628e8846cec9215d2f6b72c5353"
+      "reviewed_sha256": "4ce3a722220bad4d6affd0915b783e297b714e0283d75dbf9d034ec0b8f01754"
     },
     {
       "path": "evidencias/testes_connect_restore.json",
@@ -1062,7 +1062,7 @@
     },
     {
       "path": "evidencias/testes_wazvox_protocol.json",
-      "reviewed_sha256": "b661611b1ae152ffdd4b0a45c873db5c736d699c858c50ce9acb2c721d84d661"
+      "reviewed_sha256": "bb5c52fcff909a3199f16adaeb089ea165fa9174d43a0fd0c72f972a75809ce1"
     },
     {
       "path": "evidencias/testes_wazvox_protocol_0.1.4.json",
@@ -1074,7 +1074,7 @@
     },
     {
       "path": "evidencias/verificacao_organizacao.json",
-      "reviewed_sha256": "b90a0a144890e2649f2e98ca17d885f2180ba74fab2427b4e90e7fe7c3a32d58"
+      "reviewed_sha256": "149c278225ea27a5532ba546da1d4882d80b2f1d7bff0316496bcb2f821f7ed5"
     },
     {
       "path": "evidencias/verificacao_plano.json",
@@ -1111,7 +1111,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "2ad1a18b8c81b6ee64adda4908d929bb72c18c62df1a0c9e827faa054ed46b4b"
+      "reviewed_sha256": "f2cde2e2a1458584024ff2afa6297f0fc957ad389e86be8ca740ee6cf3cbb3a2"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1303,15 +1303,15 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
-      "reviewed_sha256": "96e68338e7cd1f19fb747cd64663b7da7642cf4b55d0c3e392d82cf0c93c6ffb"
+      "reviewed_sha256": "503cf4665bbb9e7385683b1386b59a9b622373f6e75c5ae92356f9bcde591fa2"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
-      "reviewed_sha256": "996aaf76523a8e1c26009c709b92c01727c80d63d4f1940ed3f65d95d02f1f0b"
+      "reviewed_sha256": "7d5f93eba70935d91905f2295180a7a79fcda190d4057ad3b98d8d3b684ead50"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Data.cs",
-      "reviewed_sha256": "2374fa370001385e1ffd79c66d9ea91daee9fd49a013641c74705510f6a57fef"
+      "reviewed_sha256": "07d725257d861b938be83f65b0087325929b6bf784b95c090493bb883471caac"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/DesignFactory.cs",
@@ -1403,11 +1403,11 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/PlatformDbModelSnapshot.cs",
-      "reviewed_sha256": "1763d23956e546917ee5891bac8046bfb2fb8f5b4f9e10c98759dd29d92f299c"
+      "reviewed_sha256": "908d02ca36a9ad33aced7916358ff461ae19f3be8b8b15d93c495313fd4de1bd"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Models.cs",
-      "reviewed_sha256": "28ed2c3c24c0aec160c64ea51ddee159b08b15d631e9bd1da765ae450bd1ea1a"
+      "reviewed_sha256": "a9f057cab5c993409303996ea9fd8b70b6cb800df30a89a04d9dddf94123193b"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/PlatformCatalog.cs",
@@ -1419,7 +1419,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Program.cs",
-      "reviewed_sha256": "cbddae8ec01f81a30ad44ff5ce9f5dd696b73bc5f580f36a0d35d18da3563495"
+      "reviewed_sha256": "4a61ed082818baef9d9a9a934d9dcf89c3d3c13569aeb53356f28d72e27b191d"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
@@ -1447,7 +1447,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
-      "reviewed_sha256": "72af49c874d856aca8ff775e64bd3370ff233f1c56da2e8318fc23094766a270"
+      "reviewed_sha256": "b4215b468ef09c811d9ff1877eb93d7283ad90c53e20e151c2379868c424f2bc"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlInspection.cs",
@@ -1495,11 +1495,11 @@
     },
     {
       "path": "src/frontend/e2e/qa-auth-budget.ts",
-      "reviewed_sha256": "f32f3715d29baddeb042dfddb3ddce73caf48484833bbd359adc0b373bed5053"
+      "reviewed_sha256": "335321959fcfd5197ad66143618808c2d895f423a0a317c98902f8ade6ad37c5"
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
-      "reviewed_sha256": "4e300a67ebd16a471bb678bdf5ccda0c51213fb7e010a086b72c1325d6af0483"
+      "reviewed_sha256": "222bf82f9bc23626796ae927d008e66f6f92663518152e57fb5286890d345483"
     },
     {
       "path": "src/frontend/index.html",
@@ -1528,7 +1528,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "0c7de39684b146083286c59eed1e57da8523247547a9d2ba46714472ea3afd97"
+      "reviewed_sha256": "069e8dd63c9984e25efbcfe097860fefd9142104e9fee6e20b5bdb4d102b334a"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1540,7 +1540,7 @@
     },
     {
       "path": "src/frontend/src/api.ts",
-      "reviewed_sha256": "32b505276edfe670961395d68763ed69a90694a0ee07fd7c2f6a8d2f27da98ed"
+      "reviewed_sha256": "8615ecf7cbade1b6cca5340e59ec92411227e1eb7d9bb324bbd58b748a2397e6"
     },
     {
       "path": "src/frontend/src/csv.ts",
@@ -1552,7 +1552,7 @@
     },
     {
       "path": "src/frontend/src/style.css",
-      "reviewed_sha256": "341550a29126d56d660314b342389055d74bb219e13dc7dd9b69515e8239ec33"
+      "reviewed_sha256": "8e9b1e22a09482275800fa7edddb7f4ecc1321e0b06cb4bc91003db6c3a10fda"
     },
     {
       "path": "src/frontend/tests/api.test.js",
@@ -1612,7 +1612,7 @@
     },
     {
       "path": "tests/WazVox.ProtocolTests/Program.cs",
-      "reviewed_sha256": "44d151062bed093164376088ffe8a50096530ff2bb023e5b688daa9ddeba94b2"
+      "reviewed_sha256": "af2420009fd3f3d08c9fa01dc9a03c25ab07857608a3f7c540de1c863fc134c1"
     },
     {
       "path": "tests/WazVox.ProtocolTests/ProxyChecks.cs",
@@ -1659,5 +1659,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T04:39:22.665331+00:00"
+  "reviewed_at_utc": "2026-10-09T07:12:53.451983+00:00"
 }

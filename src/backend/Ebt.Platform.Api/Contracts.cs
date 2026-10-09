@@ -55,7 +55,8 @@ public sealed record AcceptInviteCommand(string Token, string Name, string Passw
 public sealed record AcceptExistingInviteCommand(string Token);
 public sealed record InviteCommand(string Email, string Role, string Portfolio);
 public sealed record MembershipCommand(string Role, string Portfolio, bool Active);
-public sealed record ContactCommand(string Name, string? Email, string? Phone, string? ExternalKey, Guid? OrganizationId, Guid? OwnerId, string? Portfolio, string? Stage);
+public sealed record ContactCommand(string Name, string? Email, string? Phone, string? ExternalKey, Guid? OrganizationId, Guid? OwnerId, string? Portfolio, string? Stage, ProspectionCommand? Prospection = null);
+public sealed record ProspectionCommand(string? Source = null, string? SourceUrl = null, string? Segment = null, string? ContactRole = null, string? Need = null, string? PreferredChannel = null, string? BestTime = null, string? DecisionMaker = null);
 public sealed record OrganizationCommand(string Name, string ExternalKey, string? Portfolio);
 public sealed record NoteCommand(string Content, DateTimeOffset? OccurredAt);
 public sealed record TaskCommand(string Title, DateTimeOffset DueAt, Guid? OwnerId);

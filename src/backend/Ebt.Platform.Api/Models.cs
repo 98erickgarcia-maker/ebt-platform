@@ -64,6 +64,16 @@ public sealed class Organization : TenantRow
 }
 public sealed class Contact : TenantRow
 {
+    public string Source { get; set; } = "";
+    public string SourceUrl { get; set; } = "";
+    public string Segment { get; set; } = "";
+    public string ContactRole { get; set; } = "";
+    public string Need { get; set; } = "";
+    public string PreferredChannel { get; set; } = "";
+    public string BestTime { get; set; } = "";
+    public string DecisionMaker { get; set; } = "unknown";
+    public DateTimeOffset? ActiveSince { get; set; }
+
     public string CreationHash { get; set; } = "";
     public string Name { get; set; } = "";
     public string ExternalKey { get; set; } = "";

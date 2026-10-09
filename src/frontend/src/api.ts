@@ -14,6 +14,18 @@ export type Contact = {
   phone: string;
   externalKey: string;
   organizationId: string | null;
+  organizationName?: string | null;
+  activeSince?: string | null;
+  prospection?: {
+    source: string;
+    sourceUrl: string;
+    segment: string;
+    contactRole: string;
+    need: string;
+    preferredChannel: string;
+    bestTime: string;
+    decisionMaker: string;
+  };
   ownerId: string;
   portfolio: string;
   stage: string;
@@ -91,6 +103,7 @@ export type ImportRow = {
   phone: string;
 };
 export type Summary = {
+  withoutNextAction?: number;
   contacts: number;
   openTasks: number;
   overdue: number;
@@ -270,7 +283,7 @@ export const labels: Record<string, string> = {
   novo: "Novo",
   contato: "Em contato",
   proposta: "Proposta",
-  ganho: "Ganho",
+  ganho: "Cliente ativo",
   encerrado: "Encerrado",
   open: "Aberta",
   done: "Concluída",

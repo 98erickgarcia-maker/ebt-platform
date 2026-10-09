@@ -31,9 +31,19 @@ import { parseContactsCsv, downloadContactsTemplate } from "./csv";
 import { Brand } from "./Brand";
 import { PlatformApplications } from "./PlatformApplications";
 import { ApiKeyPanel, InvitationAcceptance } from "./AccessTools";
+import { CommercialTemplates } from "./CommercialTemplates";
+import { MailPanel } from "./MailPanel";
+import { QuickSearch, DuplicateHints } from "./QuickSearch";
 
 type View =
-  "applications" | "daily" | "contacts" | "tasks" | "messages" | "documents" | "settings";
+  | "applications"
+  | "daily"
+  | "contacts"
+  | "tasks"
+  | "messages"
+  | "mail"
+  | "documents"
+  | "settings";
 function mergeMessages(current: Message[], incoming: Message[]) {
   const index = new Map(current.map((m) => [m.messageId, m]));
   for (const message of incoming) index.set(message.messageId, message);
@@ -49,6 +59,7 @@ const views: { id: View; name: string; icon: string }[] = [
   { id: "contacts", name: "Relacionamentos", icon: "people" },
   { id: "tasks", name: "Tarefas", icon: "check" },
   { id: "messages", name: "Conversas", icon: "message" },
+  { id: "mail", name: "E-mail", icon: "message" },
   { id: "documents", name: "Documentos", icon: "file" },
   { id: "settings", name: "Configurações", icon: "settings" },
 ];
@@ -345,6 +356,17 @@ export function App() {
       createdAt: string;
     }[]
   >([]);
+  const [taskWindow, setTaskWindow] = useState(""),
+    [duplicateEmail, setDuplicateEmail] = useState(""),
+    [duplicatePhone, setDuplicatePhone] = useState("");
+  const [taskPage, setTaskPage] = useState(1),
+    [taskTotal, setTaskTotal] = useState(0),
+    [historyPage, setHistoryPage] = useState(1),
+    [historyTotal, setHistoryTotal] = useState(0),
+    [orgPage, setOrgPage] = useState(1),
+    [orgTotal, setOrgTotal] = useState(0),
+    [orgSearch, setOrgSearch] = useState(""),
+    [withoutNext, setWithoutNext] = useState(false);
   const [taskFilter, setTaskFilter] = useState("");
   const [taskOwner, setTaskOwner] = useState("");
   const [taskFrom, setTaskFrom] = useState("");
@@ -381,7 +403,11 @@ export function App() {
     setDialog(null);
     setPreview(null);
     setTasks([]);
+    setTaskPage(1);
+    setTaskTotal(0);
     setNotes([]);
+    setHistoryPage(1);
+    setHistoryTotal(0);
     setDocs([]);
     setConversations([]);
     setConversation(null);
@@ -435,6 +461,15 @@ export function App() {
       setPreview(null);
       setDocumentVersions([]);
       setTaskFilter("");
+      setTaskWindow("");
+      setTaskPage(1);
+      setHistoryPage(1);
+      setOrgPage(1);
+      setOrgSearch("");
+      setWithoutNext(false);
+      setTaskTotal(0);
+      setHistoryTotal(0);
+      setOrgTotal(0);
       setTaskOwner("");
       setTaskFrom("");
       setTaskTo("");
@@ -467,7 +502,10 @@ export function App() {
   const selectedId = selected?.id;
   const load = useCallback(async () => {
     if (!me) return;
-    if (view === "applications") { setLoading(false); return; }
+    if (view === "applications" || view === "mail") {
+      setLoading(false);
+      return;
+    }
     const sequence = ++loadSequence.current;
     setLoading(true);
     try {
@@ -481,13 +519,18 @@ export function App() {
               stage,
               page: String(page),
               limit: "25",
+              ...(withoutNext ? { withoutNextAction: "true" } : {}),
             }),
         ),
-        api<Task[]>(
+        api<{ items: Task[]; total: number }>(
           route +
             "/tasks?" +
-            new URLSearchParams(
-              selectedId
+            new URLSearchParams({
+              paged: "true",
+              page: String(taskPage),
+              limit: "25",
+              ...(view === "tasks" && taskWindow ? { window: taskWindow } : {}),
+              ...(selectedId
                 ? { contactId: selectedId }
                 : view === "tasks"
                   ? {
@@ -506,8 +549,8 @@ export function App() {
                           }
                         : {}),
                     }
-                  : {},
-            ),
+                  : {}),
+            }),
         ),
         api<Document[]>(
           route + "/documents" + (selectedId ? "?contactId=" + selectedId : ""),
@@ -518,25 +561,43 @@ export function App() {
             (selectedId ? "?contactId=" + selectedId : ""),
         ),
         api<Member[]>("/api/admin/members"),
-        api<Organization[]>(route + "/organizations"),
+        api<{ items: Organization[]; total: number }>(
+          route +
+            "/organizations?" +
+            new URLSearchParams({
+              paged: "true",
+              page: String(orgPage),
+              limit: "25",
+              search: orgSearch,
+            }),
+        ),
       ]);
       if (sequence !== loadSequence.current) return;
       setSummary(s);
       setContacts(c.items);
       setTotal(c.total);
-      setTasks(t);
+      setTasks(t.items);
+      setTaskTotal(t.total);
       setDocs(d);
       setConversations(conv);
       setMembers(m);
-      setOrgs(o);
+      setOrgs(o.items);
+      setOrgTotal(o.total);
       if (selectedId) {
         const [detail, history] = await Promise.all([
           api<Contact>(route + "/contacts/" + selectedId),
-          api<Note[]>(route + "/contacts/" + selectedId + "/history"),
+          api<{ items: Note[]; total: number }>(
+            route +
+              "/contacts/" +
+              selectedId +
+              "/history?paged=true&page=" +
+              historyPage,
+          ),
         ]);
         if (sequence !== loadSequence.current) return;
         setSelected(detail);
-        setNotes(history);
+        setNotes(history.items);
+        setHistoryTotal(history.total);
       }
     } catch (e) {
       if (
@@ -558,6 +619,12 @@ export function App() {
     taskOwner,
     taskFrom,
     taskTo,
+    taskWindow,
+    taskPage,
+    historyPage,
+    orgPage,
+    orgSearch,
+    withoutNext,
   ]);
   useEffect(() => {
     void load();
@@ -621,6 +688,10 @@ export function App() {
     loadSequence.current++;
     clearContactResources();
     setView(next);
+    setTaskWindow("");
+    setTaskPage(1);
+    setHistoryPage(1);
+    setWithoutNext(false);
     // The same view must replace a load invalidated by navigation too.
     setRefresh((current) => current + 1);
     setMenu(false);
@@ -632,11 +703,15 @@ export function App() {
     loadSequence.current++;
     clearContactResources();
     setSelected(c);
+    setTaskPage(1);
+    setHistoryPage(1);
     setView("contacts");
     setError("");
   }
   function show(kind: Dialog) {
     operationKey.current = crypto.randomUUID();
+    setDuplicateEmail(kind === "edit" ? (selected?.email ?? "") : "");
+    setDuplicatePhone(kind === "edit" ? (selected?.phone ?? "") : "");
     setPreview(null);
     setDialog(kind);
     setError("");
@@ -690,6 +765,16 @@ export function App() {
             ? selected.externalKey
             : value("externalKey"),
         stage: value("stage"),
+        prospection: {
+          source: value("source"),
+          sourceUrl: value("sourceUrl"),
+          segment: value("segment"),
+          contactRole: value("contactRole"),
+          need: value("need"),
+          preferredChannel: value("preferredChannel"),
+          bestTime: value("bestTime"),
+          decisionMaker: value("decisionMaker"),
+        },
         organizationId: value("organizationId") || null,
         ownerId: value("ownerId") || me?.userId,
         portfolio: value("portfolio") || me?.portfolio,
@@ -864,6 +949,34 @@ export function App() {
       false,
     );
   }
+  function pages(
+    index: number,
+    count: number,
+    change: (value: number) => void,
+  ) {
+    return (
+      <div className="pagination">
+        <button
+          className="secondary"
+          disabled={busy || loading || index <= 1}
+          onClick={() => change(index - 1)}
+        >
+          Anterior
+        </button>
+        <span>
+          Página {index} de {Math.max(1, Math.ceil(count / 25))} · {count}{" "}
+          registros
+        </span>
+        <button
+          className="secondary"
+          disabled={busy || loading || index * 25 >= count}
+          onClick={() => change(index + 1)}
+        >
+          Próxima
+        </button>
+      </div>
+    );
+  }
   function taskRows(rows: Task[]) {
     return rows.map((t) => (
       <article className="task-row" key={t.id}>
@@ -883,6 +996,33 @@ export function App() {
           </span>
           {t.result && <p>{t.result}</p>}
         </div>
+        <button
+          className="text-button"
+          onClick={() =>
+            void run(
+              async () =>
+                openContact(
+                  await api<Contact>(route + "/contacts/" + t.contactId),
+                ),
+              "",
+            )
+          }
+        >
+          Abrir contato
+        </button>
+        {t.state === "open" && (
+          <button
+            className="text-button"
+            onClick={() =>
+              void run(
+                () => download(route + "/tasks/" + t.id + "/calendar.ics"),
+                "Arquivo .ics baixado. Importe no seu calendário; não há sincronização automática.",
+              )
+            }
+          >
+            Baixar .ics
+          </button>
+        )}
         <Badge value={t.state} />
         {writable && t.state === "open" && (
           <button
@@ -1085,8 +1225,19 @@ export function App() {
             <Icon name="grid" />
           </button>
           <div className="breadcrumb">
-            EBT Platform <span>/</span> <strong>{view === "applications" ? "Aplicativos" : "Connect"}</strong>
+            EBT Platform <span>/</span>{" "}
+            <strong>
+              {view === "applications" ? "Aplicativos" : "Connect"}
+            </strong>
           </div>
+          <QuickSearch
+            key={[me.userId, me.tenantId, me.role, me.portfolio].join("|")}
+            onContact={(id) =>
+              void run(async () => {
+                openContact(await api<Contact>(route + "/contacts/" + id));
+              }, "")
+            }
+          />
           <label className="context-picker">
             <span>Empresa</span>
             <select
@@ -1108,20 +1259,26 @@ export function App() {
           <div className="page-heading">
             <div>
               <span className="eyebrow">
-                {selected ? "RELACIONAMENTO" : view === "applications" ? "EBT PLATFORM" : "EBT CONNECT"}
+                {selected
+                  ? "RELACIONAMENTO"
+                  : view === "applications"
+                    ? "EBT PLATFORM"
+                    : "EBT CONNECT"}
               </span>
               <h1>{selected ? selected.name : currentView.name}</h1>
               <p>
                 {selected
                   ? "Um contato, um histórico e próximos passos claros."
                   : {
-                      applications: "Seus aplicativos e o trabalho da sua empresa em um só lugar.",
+                      applications:
+                        "Seus aplicativos e o trabalho da sua empresa em um só lugar.",
                       daily: "Uma visão clara do que importa agora.",
                       contacts:
                         "Cada relacionamento com contexto e continuidade.",
                       tasks: "Compromissos com responsável, prazo e resultado.",
                       messages:
                         "Acompanhe a conversa e confirme cada resposta.",
+                      mail: "Prepare, revise e acompanhe e-mails ligados aos seus relacionamentos.",
                       documents:
                         "Arquivos comerciais privados, com revisão e versões.",
                       settings: "Acessos e registros da sua empresa.",
@@ -1179,7 +1336,35 @@ export function App() {
               }}
             />
           )}
-          {view === "applications" && <PlatformApplications key={[me.userId, me.tenantId, me.role, me.portfolio, refresh].join("|")} onOpenConnect={() => navigate("daily")} />}
+          {view === "applications" && (
+            <PlatformApplications
+              key={[
+                me.userId,
+                me.tenantId,
+                me.role,
+                me.portfolio,
+                refresh,
+              ].join("|")}
+              onOpenConnect={() => navigate("daily")}
+            />
+          )}
+          {view === "mail" && (
+            <MailPanel
+              key={[
+                me.userId,
+                me.tenantId,
+                me.role,
+                me.portfolio,
+                refresh,
+              ].join("|")}
+              me={me}
+              onContact={(id) =>
+                void run(async () => {
+                  openContact(await api<Contact>(route + "/contacts/" + id));
+                }, "")
+              }
+            />
+          )}
           {view === "daily" && (
             <>
               <div className="welcome-card">
@@ -1224,7 +1409,12 @@ export function App() {
                     Contatos na sua carteira <Icon name="arrow" />
                   </small>
                 </button>
-                <button onClick={() => navigate("tasks")}>
+                <button
+                  onClick={() => {
+                    navigate("tasks");
+                    setTaskFilter("open");
+                  }}
+                >
                   <span>Próximos compromissos</span>
                   <strong>{summary.openTasks}</strong>
                   <small>
@@ -1233,12 +1423,31 @@ export function App() {
                 </button>
                 <button
                   className={summary.overdue ? "attention" : ""}
-                  onClick={() => navigate("tasks")}
+                  onClick={() => {
+                    navigate("tasks");
+                    setTaskFilter("open");
+                    setTaskWindow("late");
+                    setTaskFrom("");
+                    setTaskTo("");
+                  }}
                 >
                   <span>Precisam de atenção</span>
                   <strong>{summary.overdue}</strong>
                   <small>
                     Prazos vencidos <Icon name="arrow" />
+                  </small>
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("contacts");
+                    setWithoutNext(true);
+                    setPage(1);
+                  }}
+                >
+                  <span>Sem próxima ação</span>
+                  <strong>{summary.withoutNextAction ?? 0}</strong>
+                  <small>
+                    Defina o próximo passo <Icon name="arrow" />
                   </small>
                 </button>
               </div>
@@ -1258,7 +1467,7 @@ export function App() {
                       tasks.filter((t) => t.state === "open").slice(0, 5),
                     )
                   ) : (
-                    <Empty title="Sua agenda está em dia">
+                    <Empty title="Nenhuma tarefa agendada">
                       Crie uma tarefa no contato para definir o próximo passo.
                     </Empty>
                   )}
@@ -1444,23 +1653,63 @@ export function App() {
                   <span className="avatar large">{selected.name[0]}</span>
                   <h2>{selected.name}</h2>
                   <Badge value={selected.stage} />
+                  {selected.stage === "ganho" && selected.activeSince && (
+                    <p className="muted">
+                      Cliente ativo desde {date(selected.activeSince)}
+                    </p>
+                  )}
                   <dl>
                     <dt>E-mail</dt>
                     <dd>{selected.email || "Não informado"}</dd>
                     <dt>Telefone</dt>
                     <dd>
-                      {selected.phone ? "+" + selected.phone : "Não informado"}
+                      {selected.phone ? (
+                        <a href={"tel:+" + selected.phone}>
+                          {"+" + selected.phone}
+                        </a>
+                      ) : (
+                        "Não informado"
+                      )}
                     </dd>
                     <dt>Organização</dt>
                     <dd>
-                      {orgs.find((o) => o.id === selected.organizationId)
-                        ?.name ?? "Não vinculada"}
+                      {selected.organizationName ??
+                        (selected.organizationId
+                          ? "Organização vinculada"
+                          : "Não vinculada")}
                     </dd>
                     <dt>Responsável</dt>
                     <dd>
                       {members.find((m) => m.userId === selected.ownerId)
                         ?.name ?? "Responsável"}
                     </dd>
+                    {selected.prospection?.contactRole && (
+                      <>
+                        <dt>Cargo</dt>
+                        <dd>{selected.prospection.contactRole}</dd>
+                      </>
+                    )}
+                    {selected.prospection?.preferredChannel && (
+                      <>
+                        <dt>Canal preferido</dt>
+                        <dd>
+                          {
+                            {
+                              email: "E-mail",
+                              whatsapp: "WhatsApp",
+                              phone: "Telefone",
+                              meeting: "Reunião",
+                            }[selected.prospection.preferredChannel]
+                          }
+                        </dd>
+                      </>
+                    )}
+                    {selected.prospection?.bestTime && (
+                      <>
+                        <dt>Melhor horário</dt>
+                        <dd>{selected.prospection.bestTime}</dd>
+                      </>
+                    )}
                     <dt>Carteira</dt>
                     <dd>{selected.portfolio}</dd>
                     <dt>ID do contato</dt>
@@ -1493,6 +1742,58 @@ export function App() {
                   </div>
                 </section>
                 <div className="detail-content">
+                  <CommercialTemplates
+                    key={
+                      me.tenantId +
+                      me.userId +
+                      me.role +
+                      me.portfolio +
+                      selected.id +
+                      selected.version
+                    }
+                    contact={selected}
+                    writable={writable}
+                  />
+                  <details className="card qualification-detail">
+                    <summary>Contexto da prospecção</summary>
+                    <dl>
+                      <dt>Origem</dt>
+                      <dd>
+                        {selected.prospection?.source || "Ainda não informada"}
+                      </dd>
+                      <dt>Segmento</dt>
+                      <dd>
+                        {selected.prospection?.segment || "Ainda não informado"}
+                      </dd>
+                      <dt>Decisor</dt>
+                      <dd>
+                        {selected.prospection?.decisionMaker === "yes"
+                          ? "Confirmado"
+                          : selected.prospection?.decisionMaker === "no"
+                            ? "Não"
+                            : "Ainda não confirmado"}
+                      </dd>
+                      <dt>Necessidade</dt>
+                      <dd className="preserve-lines">
+                        {selected.prospection?.need ||
+                          "Registrar no próximo contato"}
+                      </dd>
+                      {selected.prospection?.sourceUrl && (
+                        <>
+                          <dt>Fonte</dt>
+                          <dd>
+                            <a
+                              href={selected.prospection.sourceUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Consultar fonte registrada
+                            </a>
+                          </dd>
+                        </>
+                      )}
+                    </dl>
+                  </details>
                   <section className="card">
                     <header>
                       <h2>Histórico do relacionamento</h2>
@@ -1531,6 +1832,7 @@ export function App() {
                         Registre uma nota interna ou conclua uma tarefa.
                       </Empty>
                     )}
+                    {pages(historyPage, historyTotal, setHistoryPage)}
                   </section>
                   <section className="card">
                     <header>
@@ -1551,6 +1853,7 @@ export function App() {
                         Defina um compromisso com prazo e responsável.
                       </Empty>
                     )}
+                    {pages(taskPage, taskTotal, setTaskPage)}
                   </section>
                   <section className="card">
                     <header>
@@ -1614,11 +1917,36 @@ export function App() {
                   Crie tarefas dentro de um relacionamento
                 </span>
               </header>
+              <div className="mail-tools">
+                {[
+                  ["", "Todos"],
+                  ["late", "Atrasados"],
+                  ["today", "Hoje"],
+                  ["week", "Próximos 7 dias"],
+                ].map(([id, title]) => (
+                  <button
+                    className={taskWindow === id ? "primary" : "secondary"}
+                    key={id}
+                    onClick={() => {
+                      setTaskWindow(id);
+                      setTaskPage(1);
+                      setTaskFrom("");
+                      setTaskTo("");
+                      setTaskFilter(id ? "open" : "");
+                    }}
+                  >
+                    {title}
+                  </button>
+                ))}
+              </div>
               <label className="task-filter">
                 Situação
                 <select
                   value={taskFilter}
-                  onChange={(e) => setTaskFilter(e.target.value)}
+                  onChange={(e) => {
+                    setTaskFilter(e.target.value);
+                    setTaskPage(1);
+                  }}
                 >
                   <option value="">Todas</option>
                   <option value="open">Abertas</option>
@@ -1626,46 +1954,58 @@ export function App() {
                   <option value="cancelled">Canceladas</option>
                 </select>
               </label>
-              <div className="task-filters">
-                <label>
-                  Responsável
-                  <select
-                    value={taskOwner}
-                    onChange={(e) => setTaskOwner(e.target.value)}
-                  >
-                    <option value="">Todos</option>
-                    {members
-                      .filter(
-                        (m) =>
-                          m.active && ["admin", "operator"].includes(m.role),
-                      )
-                      .map((m) => (
-                        <option key={m.userId} value={m.userId}>
-                          {m.name}
-                        </option>
-                      ))}
-                  </select>
-                </label>
-                <label>
-                  Desde
-                  <input
-                    type="date"
-                    value={taskFrom}
-                    onChange={(e) => setTaskFrom(e.target.value)}
-                  />
-                </label>
-                <label>
-                  Antes de
-                  <input
-                    type="date"
-                    value={taskTo}
-                    onChange={(e) => setTaskTo(e.target.value)}
-                  />
-                </label>
-              </div>
+              <details className="task-filter-details">
+                <summary>Responsável e período</summary>
+                <div className="task-filters">
+                  <label>
+                    Responsável
+                    <select
+                      value={taskOwner}
+                      onChange={(e) => {
+                        setTaskOwner(e.target.value);
+                        setTaskPage(1);
+                      }}
+                    >
+                      <option value="">Todos</option>
+                      {members
+                        .filter(
+                          (m) =>
+                            m.active && ["admin", "operator"].includes(m.role),
+                        )
+                        .map((m) => (
+                          <option key={m.userId} value={m.userId}>
+                            {m.name}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
+                  <label>
+                    Desde
+                    <input
+                      type="date"
+                      value={taskFrom}
+                      onChange={(e) => {
+                        setTaskFrom(e.target.value);
+                        setTaskPage(1);
+                      }}
+                    />
+                  </label>
+                  <label>
+                    Antes de
+                    <input
+                      type="date"
+                      value={taskTo}
+                      onChange={(e) => {
+                        setTaskTo(e.target.value);
+                        setTaskPage(1);
+                      }}
+                    />
+                  </label>
+                </div>
+              </details>
               <p className="small muted">
-                Até 100 compromissos por consulta. Use os filtros para delimitar
-                o período.
+                {taskTotal} compromissos no filtro atual. Todas as páginas estão
+                disponíveis.
               </p>
               {tasks.length ? (
                 taskRows(tasks)
@@ -1676,6 +2016,7 @@ export function App() {
               )}
             </section>
           )}
+          {view === "tasks" && pages(taskPage, taskTotal, setTaskPage)}
           {view === "messages" && (
             <div className="inbox">
               <section className="card conversation-list">
@@ -2011,7 +2352,8 @@ export function App() {
         <footer className="page-footer">
           EBT Enterprise{" "}
           <span>
-            {view === "applications" ? "Platform" : "Connect"} · {labels[me.role]} ·{" "}
+            {view === "applications" ? "Platform" : "Connect"} ·{" "}
+            {labels[me.role]} ·{" "}
             {me.tenants.find((t) => t.id === me.tenantId)?.name}
           </span>
         </footer>
@@ -2098,6 +2440,7 @@ export function App() {
                     E-mail
                     <input
                       name="email"
+                      onChange={(e) => setDuplicateEmail(e.target.value)}
                       type="email"
                       maxLength={254}
                       defaultValue={dialog === "edit" ? selected?.email : ""}
@@ -2107,12 +2450,26 @@ export function App() {
                     Telefone com DDI
                     <input
                       name="phone"
+                      onChange={(e) => setDuplicatePhone(e.target.value)}
                       placeholder="5511999990001"
                       maxLength={24}
                       defaultValue={dialog === "edit" ? selected?.phone : ""}
                     />
                   </label>
                 </div>
+                <DuplicateHints
+                  email={duplicateEmail}
+                  phone={duplicatePhone}
+                  exclude={dialog === "edit" ? selected?.id : undefined}
+                  onContact={(id) =>
+                    void run(async () => {
+                      openContact(
+                        await api<Contact>(route + "/contacts/" + id),
+                      );
+                      setDialog(null);
+                    }, "")
+                  }
+                />
                 {dialog === "contact" && (
                   <label>
                     Chave externa (opcional)
@@ -2157,6 +2514,148 @@ export function App() {
                     </select>
                   </label>
                 </div>
+                <details
+                  className="qualification-form"
+                  open={dialog === "contact"}
+                >
+                  <summary>Qualificação e contexto comercial</summary>
+                  <div className="form-grid">
+                    <label>
+                      Origem do contato
+                      <input
+                        name="source"
+                        maxLength={160}
+                        defaultValue={
+                          dialog === "edit" ? selected?.prospection?.source : ""
+                        }
+                        placeholder="Indicação, evento, pesquisa…"
+                      />
+                    </label>
+                    <label>
+                      Segmento
+                      <input
+                        name="segment"
+                        maxLength={100}
+                        defaultValue={
+                          dialog === "edit"
+                            ? selected?.prospection?.segment
+                            : ""
+                        }
+                      />
+                    </label>
+                    <label>
+                      Cargo ou função
+                      <input
+                        name="contactRole"
+                        maxLength={100}
+                        defaultValue={
+                          dialog === "edit"
+                            ? selected?.prospection?.contactRole
+                            : ""
+                        }
+                      />
+                    </label>
+                    <label>
+                      Participa da decisão?
+                      <select
+                        name="decisionMaker"
+                        defaultValue={
+                          dialog === "edit"
+                            ? (selected?.prospection?.decisionMaker ??
+                              "unknown")
+                            : "unknown"
+                        }
+                      >
+                        <option value="unknown">Ainda não confirmado</option>
+                        <option value="yes">Sim, confirmado</option>
+                        <option value="no">Não</option>
+                      </select>
+                    </label>
+                    <label>
+                      Canal preferido
+                      <select
+                        name="preferredChannel"
+                        defaultValue={
+                          dialog === "edit"
+                            ? selected?.prospection?.preferredChannel
+                            : ""
+                        }
+                      >
+                        <option value="">Não informado</option>
+                        <option value="email">E-mail</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="phone">Telefone</option>
+                        <option value="meeting">Reunião</option>
+                      </select>
+                    </label>
+                    <label>
+                      Melhor horário para contato
+                      <input
+                        name="bestTime"
+                        maxLength={160}
+                        defaultValue={
+                          dialog === "edit"
+                            ? selected?.prospection?.bestTime
+                            : ""
+                        }
+                      />
+                    </label>
+                  </div>
+                  <label>
+                    Fonte da informação
+                    <input
+                      name="sourceUrl"
+                      type="url"
+                      maxLength={500}
+                      placeholder="https://…"
+                      defaultValue={
+                        dialog === "edit"
+                          ? selected?.prospection?.sourceUrl
+                          : ""
+                      }
+                    />
+                  </label>
+                  <label>
+                    Necessidade identificada
+                    <textarea
+                      name="need"
+                      rows={3}
+                      maxLength={2000}
+                      defaultValue={
+                        dialog === "edit" ? selected?.prospection?.need : ""
+                      }
+                    />
+                  </label>
+                </details>
+                <label>
+                  Buscar organização
+                  <input
+                    value={orgSearch}
+                    onChange={(e) => {
+                      setOrgSearch(e.target.value);
+                      setOrgPage(1);
+                    }}
+                  />
+                </label>
+                <div className="pagination">
+                  <button
+                    type="button"
+                    className="secondary"
+                    disabled={orgPage <= 1 || busy}
+                    onClick={() => setOrgPage((x) => x - 1)}
+                  >
+                    Organizações anteriores
+                  </button>
+                  <span>{orgTotal} organizações</span>
+                  <button
+                    type="button"
+                    className="secondary"
+                    disabled={orgPage * 25 >= orgTotal || busy}
+                    onClick={() => setOrgPage((x) => x + 1)}
+                  >
+                    Próximas organizações
+                  </button>
+                </div>
                 <label>
                   Organização
                   <select
@@ -2166,6 +2665,13 @@ export function App() {
                     }
                   >
                     <option value="">Sem organização</option>
+                    {dialog === "edit" &&
+                      selected?.organizationId &&
+                      !orgs.some((o) => o.id === selected.organizationId) && (
+                        <option value={selected.organizationId}>
+                          {selected.organizationName ?? "Organização vinculada"}
+                        </option>
+                      )}
                     {orgs.map((o) => (
                       <option key={o.id} value={o.id}>
                         {o.name}

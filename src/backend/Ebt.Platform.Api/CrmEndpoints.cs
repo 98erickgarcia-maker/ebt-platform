@@ -8,7 +8,9 @@ public static class CrmEndpoints
     public static object TaskView(ContactTask x) => new { x.Id, x.ContactId, x.Title, x.OwnerId, x.DueAt, x.State, x.Result, x.ClosedAt, x.Version };
     public static async Task<object> ContactView(Contact x, PlatformDb db) => new
     {
-        x.Id, x.Name, x.Email, x.Phone, x.ExternalKey, x.OrganizationId, x.OwnerId, x.Portfolio, x.Stage, x.Version, x.CreatedAt,
+        x.Id, x.Name, x.Email, x.Phone, x.ExternalKey, x.OrganizationId, x.OwnerId, x.Portfolio, x.Stage, x.Version, x.CreatedAt, x.ActiveSince,
+        prospection = new { x.Source, x.SourceUrl, x.Segment, x.ContactRole, x.Need, x.PreferredChannel, x.BestTime, x.DecisionMaker },
+        organizationName = await db.Organizations.Where(o => o.Id == x.OrganizationId && o.Portfolio == x.Portfolio).Select(o => o.Name).SingleOrDefaultAsync(),
         nextAction = await db.Tasks.Where(t => t.ContactId == x.Id && t.State == "open").OrderBy(t => t.DueAt).ThenBy(t => t.Id)
             .Select(t => new { t.Id, t.Title, t.DueAt, t.OwnerId }).FirstOrDefaultAsync()
     };
@@ -18,9 +20,26 @@ public static class CrmEndpoints
         if (portfolio == "") portfolio = access.Portfolio;
         var stage = command.Stage ?? "novo";
         if (!Contract.Stages.Contains(stage)) throw new ApiFault(400, "invalid_stage", "Etapa inválida.");
-        return new Contact { TenantId = access.TenantId, Name = Contract.Required(command.Name, 160, "Nome"), Email = Contract.Email(command.Email),
+        var row = new Contact { TenantId = access.TenantId, Name = Contract.Required(command.Name, 160, "Nome"), Email = Contract.Email(command.Email),
             Phone = Contract.Phone(command.Phone), ExternalKey = Contract.Optional(command.ExternalKey, 100, "Chave externa"), OrganizationId = command.OrganizationId,
-            OwnerId = command.OwnerId ?? access.UserId, Portfolio = portfolio, Stage = stage };
+            OwnerId = command.OwnerId ?? access.UserId, Portfolio = portfolio, Stage = stage, ActiveSince = stage == "ganho" ? DateTimeOffset.UtcNow : null };
+        if (command.Prospection != null) ApplyProspection(row, command.Prospection);
+        return row;
+    }
+    public static void ApplyProspection(Contact row, ProspectionCommand input)
+    {
+        row.Source = Contract.Optional(input.Source, 160, "Origem");
+        row.SourceUrl = Contract.Optional(input.SourceUrl, 500, "Fonte da informação");
+        if (row.SourceUrl != "" && (!Uri.TryCreate(row.SourceUrl, UriKind.Absolute, out var url) || url.Scheme != "https" || url.UserInfo != ""))
+            throw new ApiFault(400, "invalid_source_url", "Use um endereço HTTPS sem credenciais para a fonte.");
+        row.Segment = Contract.Optional(input.Segment, 100, "Segmento");
+        row.ContactRole = Contract.Optional(input.ContactRole, 100, "Cargo");
+        row.Need = Contract.Optional(input.Need, 2000, "Necessidade identificada", true);
+        row.BestTime = Contract.Optional(input.BestTime, 160, "Melhor horário");
+        row.PreferredChannel = Contract.Optional(input.PreferredChannel, 20, "Canal preferido");
+        row.DecisionMaker = input.DecisionMaker ?? "unknown";
+        if (row.PreferredChannel is not ("" or "email" or "whatsapp" or "phone" or "meeting") || row.DecisionMaker is not ("unknown" or "yes" or "no"))
+            throw new ApiFault(400, "invalid_qualification", "Selecione canal e decisão nas opções disponíveis.");
     }
     public static async Task ValidateLinks(Contact contact, AccessScope access, PlatformDb db)
     {
@@ -37,18 +56,22 @@ public static class CrmEndpoints
             var tasks = db.Tasks.Where(x => contacts.Any(c => c.Id == x.ContactId) && x.State == "open");
             var now = DateTimeOffset.UtcNow;
             return Results.Ok(new { contacts = await contacts.CountAsync(), openTasks = await tasks.CountAsync(), overdue = await tasks.CountAsync(x => x.DueAt < now),
+                withoutNextAction = await contacts.CountAsync(c => !db.Tasks.Any(t => t.ContactId == c.Id && t.State == "open")),
                 stages = await contacts.GroupBy(x => x.Stage).Select(g => new { stage = g.Key, count = g.Count() }).ToListAsync() });
         });
-        app.MapGet(prefix + "/contacts", async (string? search, string? stage, int? page, int? limit, PlatformDb db, AccessScope access) =>
+        app.MapGet(prefix + "/contacts", async (string? search, string? stage, bool? withoutNextAction, int? page, int? limit, PlatformDb db, AccessScope access) =>
         {
             var query = db.VisibleContacts(access).AsNoTracking();
             var text = Contract.Optional(search, 160, "Busca");
             if (text != "") query = query.Where(x => x.Name.Contains(text) || x.Email.Contains(text) || x.Phone.Contains(text));
             if (!string.IsNullOrEmpty(stage)) query = query.Where(x => x.Stage == stage);
+            if (withoutNextAction == true) query = query.Where(x => !db.Tasks.Any(t => t.ContactId == x.Id && t.State == "open"));
             var p = Math.Clamp(page ?? 1, 1, 10000); var size = Math.Clamp(limit ?? 25, 1, 100);
             var count = await query.CountAsync();
             var items = await query.OrderByDescending(x => x.CreatedAt).ThenBy(x => x.Id).Skip((p - 1) * size).Take(size).Select(x => new {
-                x.Id, x.Name, x.Email, x.Phone, x.ExternalKey, x.OrganizationId, x.OwnerId, x.Portfolio, x.Stage, x.Version, x.CreatedAt,
+                x.Id, x.Name, x.Email, x.Phone, x.ExternalKey, x.OrganizationId, x.OwnerId, x.Portfolio, x.Stage, x.Version, x.CreatedAt, x.ActiveSince,
+        prospection = new { x.Source, x.SourceUrl, x.Segment, x.ContactRole, x.Need, x.PreferredChannel, x.BestTime, x.DecisionMaker },
+                organizationName = db.Organizations.Where(o => o.Id == x.OrganizationId && o.Portfolio == x.Portfolio).Select(o => o.Name).FirstOrDefault(),
                 nextAction = db.Tasks.Where(t => t.ContactId == x.Id && t.State == "open").OrderBy(t => t.DueAt).ThenBy(t => t.Id).Select(t => new { t.Id, t.Title, t.DueAt, t.OwnerId }).FirstOrDefault()
             }).ToListAsync();
             return Results.Ok(new { items, total = count, page = p, limit = size });
@@ -90,12 +113,22 @@ public static class CrmEndpoints
             if (!access.IsAdmin && candidate.Portfolio != row.Portfolio) throw new ApiFault(403, "forbidden", "Não é permitido mover este contato de carteira.");
             if (candidate.Portfolio != row.Portfolio && await db.Conversations.AnyAsync(x => x.ContactId == row.Id))
                 throw new ApiFault(409, "contact_channel_transfer_required", "Este contato possui conversa vinculada a um canal. Mantenha a carteira até existir uma transferência segura do canal e do histórico.");
+            if (candidate.Portfolio != row.Portfolio && await db.MailDrafts.AnyAsync(x => x.ContactId == row.Id))
+                throw new ApiFault(409, "contact_mail_transfer_required", "Este contato possui histórico de e-mail. A transferência exige revisão do canal e das permissões.");
             row.Name = candidate.Name; row.Email = candidate.Email; row.Phone = candidate.Phone; row.OrganizationId = candidate.OrganizationId;
             row.OwnerId = candidate.OwnerId; row.Stage = candidate.Stage; row.Portfolio = candidate.Portfolio;
+            if (row.Stage == "ganho" && row.ActiveSince == null) row.ActiveSince = DateTimeOffset.UtcNow;
+            if (command.Prospection != null) ApplyProspection(row, command.Prospection);
             db.Interactions.Add(new Interaction { TenantId = access.TenantId, ContactId = id, ActorId = access.UserId, Kind = "change", Content = "Cadastro, etapa ou responsável atualizado.", OccurredAt = DateTimeOffset.UtcNow, OperationKey = Guid.NewGuid().ToString("N") });
             db.Record(access, "contact.changed", id, http.TraceIdentifier); await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(await ContactView(row, db));
         });
-        app.MapGet(prefix + "/organizations", async (AccessScope access, PlatformDb db) => Results.Ok(await db.Organizations.Where(x => access.IsAdmin || x.Portfolio == access.Portfolio).AsNoTracking().OrderBy(x => x.Name).Take(100).Select(x => new { x.Id, x.Name, x.ExternalKey, x.Portfolio, x.Version }).ToListAsync()));
+        app.MapGet(prefix + "/organizations", async (bool? paged, int? page, int? limit, string? search, AccessScope access, PlatformDb db) =>
+        {
+            var query = db.Organizations.Where(x => access.IsAdmin || x.Portfolio == access.Portfolio).AsNoTracking(); var term = Contract.Optional(search, 160, "Busca");
+            if (term != "") query = query.Where(x => x.Name.Contains(term)); var index = Math.Clamp(page ?? 1, 1, 1000000); var size = Math.Clamp(limit ?? 25, 1, 100);
+            var count = await query.CountAsync(); var items = await query.OrderBy(x => x.Name).ThenBy(x => x.Id).Skip(paged == true ? (index - 1) * size : 0).Take(paged == true ? size : 100).Select(x => new { x.Id, x.Name, x.ExternalKey, x.Portfolio, x.Version }).ToListAsync();
+            return paged == true ? Results.Ok(new { items, total = count, page = index, limit = size }) : Results.Ok(items);
+        });
         app.MapPost(prefix + "/organizations", async (OrganizationCommand command, AccessScope access, PlatformDb db, HttpContext http) =>
         {
             access.RequireWrite(); var key = Contract.Required(command.ExternalKey, 100, "Chave externa");
@@ -107,11 +140,12 @@ public static class CrmEndpoints
             var row = new Organization { TenantId = access.TenantId, Name = name, ExternalKey = key, Portfolio = portfolio };
             db.Organizations.Add(row); db.Record(access, "organization.created", row.Id, http.TraceIdentifier); await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(new { row.Id, row.Name, row.Portfolio, row.Version });
         });
-        app.MapGet(prefix + "/contacts/{id:guid}/history", async (Guid id, AccessScope access, PlatformDb db) =>
+        app.MapGet(prefix + "/contacts/{id:guid}/history", async (Guid id, bool? paged, int? page, int? limit, AccessScope access, PlatformDb db) =>
         {
             await db.Contact(id, access);
-            return Results.Ok(await db.Interactions.Where(x => x.ContactId == id).AsNoTracking().OrderByDescending(x => x.OccurredAt).ThenByDescending(x => x.Id).Take(100)
-                .Select(x => new { x.Id, x.Kind, x.Content, x.ActorId, x.OccurredAt, x.RecordedAt, x.Version }).ToListAsync());
+            var query = db.Interactions.Where(x => x.ContactId == id).AsNoTracking(); var index = Math.Clamp(page ?? 1, 1, 1000000); var size = Math.Clamp(limit ?? 25, 1, 100); var count = await query.CountAsync();
+            var items = await query.OrderByDescending(x => x.OccurredAt).ThenByDescending(x => x.Id).Skip(paged == true ? (index - 1) * size : 0).Take(paged == true ? size : 100).Select(x => new { x.Id, x.Kind, x.Content, x.ActorId, x.OccurredAt, x.RecordedAt, x.Version }).ToListAsync();
+            return paged == true ? Results.Ok(new { items, total = count, page = index, limit = size }) : Results.Ok(items);
         });
         app.MapPost(prefix + "/contacts/{id:guid}/history", async (Guid id, NoteCommand command, AccessScope access, PlatformDb db, HttpContext http) =>
         {
@@ -124,7 +158,7 @@ public static class CrmEndpoints
             var row = new Interaction { TenantId = access.TenantId, ContactId = id, ActorId = access.UserId, Content = content, OccurredAt = occurred, OperationKey = key, PayloadHash = hash };
             db.Interactions.Add(row); db.Record(access, "note.created", row.Id, http.TraceIdentifier); await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(new { row.Id });
         });
-        app.MapGet(prefix + "/tasks", async (Guid? contactId, Guid? ownerId, string? state, DateTimeOffset? dueFrom, DateTimeOffset? dueTo, AccessScope access, PlatformDb db, HttpContext http) =>
+        app.MapGet(prefix + "/tasks", async (Guid? contactId, Guid? ownerId, string? state, string? window, DateTimeOffset? dueFrom, DateTimeOffset? dueTo, bool? paged, int? page, int? limit, AccessScope access, PlatformDb db, HttpContext http) =>
         {
             if (contactId != null) await db.Contact(contactId.Value, access);
             var contacts = db.VisibleContacts(access); var query = db.Tasks.AsNoTracking().Where(x => contacts.Any(c => c.Id == x.ContactId));
@@ -133,9 +167,15 @@ public static class CrmEndpoints
             if (!string.IsNullOrEmpty(state)) query = query.Where(x => x.State == state);
             if (dueFrom != null) query = query.Where(x => x.DueAt >= dueFrom);
             if (dueTo != null) query = query.Where(x => x.DueAt < dueTo);
-            http.Response.Headers["X-Total-Count"] = (await query.CountAsync()).ToString(System.Globalization.CultureInfo.InvariantCulture);
-            var rows = await query.OrderBy(x => x.State == "open" ? 0 : 1).ThenBy(x => x.DueAt).ThenBy(x => x.Id).Take(100).ToListAsync();
-            return Results.Ok(rows.Select(TaskView));
+            var now = DateTimeOffset.UtcNow; var (today, tomorrow) = ConnectImprovements.Today(now);
+            if (window == "late") query = query.Where(x => x.State == "open" && x.DueAt < now);
+            else if (window == "today") query = query.Where(x => x.State == "open" && x.DueAt >= today && x.DueAt < tomorrow);
+            else if (window == "week") query = query.Where(x => x.State == "open" && x.DueAt >= today && x.DueAt < today.AddDays(7));
+            else if (!string.IsNullOrEmpty(window)) throw new ApiFault(400, "task_window", "Período inválido.");
+            var count = await query.CountAsync(); http.Response.Headers["X-Total-Count"] = count.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var index = Math.Clamp(page ?? 1, 1, 1000000); var size = Math.Clamp(limit ?? 25, 1, 100);
+            var rows = await query.OrderBy(x => x.State == "open" ? 0 : 1).ThenBy(x => x.DueAt).ThenBy(x => x.Id).Skip(paged == true ? (index - 1) * size : 0).Take(paged == true ? size : 100).ToListAsync();
+            return paged == true ? Results.Ok(new { items = rows.Select(TaskView), total = count, page = index, limit = size }) : Results.Ok(rows.Select(TaskView));
         });
         app.MapPost(prefix + "/contacts/{id:guid}/tasks", async (Guid id, TaskCommand command, AccessScope access, PlatformDb db, HttpContext http) =>
         {

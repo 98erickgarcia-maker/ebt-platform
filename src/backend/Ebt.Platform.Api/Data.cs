@@ -43,6 +43,12 @@ public sealed class PlatformDb(DbContextOptions<PlatformDb> options, AccessScope
     public DbSet<CommercialDocument> Documents => Set<CommercialDocument>();
     public DbSet<DocumentVersion> DocumentVersions => Set<DocumentVersion>();
     public DbSet<AuditEntry> Audit => Set<AuditEntry>();
+    public DbSet<MailTemplate> MailTemplates => Set<MailTemplate>();
+    public DbSet<MailDraft> MailDrafts => Set<MailDraft>();
+    public DbSet<MailRevision> MailRevisions => Set<MailRevision>();
+    public DbSet<MailSettings> MailSettings => Set<MailSettings>();
+    public DbSet<MailSuppression> MailSuppressions => Set<MailSuppression>();
+    public DbSet<MailQuota> MailQuotas => Set<MailQuota>();
 
     private void Configure<T>(EntityTypeBuilder<T> entity) where T : TenantRow
     {
@@ -63,6 +69,22 @@ public sealed class PlatformDb(DbContextOptions<PlatformDb> options, AccessScope
         Configure(b.Entity<Conversation>()); Configure(b.Entity<ConnectMessage>()); Configure(b.Entity<OutboxOperation>());
         Configure(b.Entity<DeliveryEvent>()); Configure(b.Entity<CommercialDocument>()); Configure(b.Entity<DocumentVersion>());
         Configure(b.Entity<AuditEntry>());
+        Configure(b.Entity<MailTemplate>()); Configure(b.Entity<MailDraft>()); Configure(b.Entity<MailRevision>());
+        Configure(b.Entity<MailSettings>()); Configure(b.Entity<MailSuppression>()); Configure(b.Entity<MailQuota>());
+        b.Entity<MailTemplate>().Property(x => x.CreationKey).HasMaxLength(100);
+        b.Entity<MailTemplate>().HasIndex(x => new { x.TenantId, x.CreationKey }).IsUnique();
+        b.Entity<MailDraft>().Property(x => x.CreationKey).HasMaxLength(100);
+        b.Entity<MailDraft>().HasIndex(x => new { x.TenantId, x.CreationKey }).IsUnique();
+        b.Entity<MailDraft>().HasOne<Contact>().WithMany().HasForeignKey(x => new { x.TenantId, x.ContactId }).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<MailDraft>().HasOne<CommercialDocument>().WithMany().HasForeignKey(x => new { x.TenantId, x.DocumentId }).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<MailRevision>().HasOne<MailDraft>().WithMany().HasForeignKey(x => new { x.TenantId, x.DraftId }).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<MailRevision>().Property(x => x.OperationKey).HasMaxLength(100);
+        b.Entity<MailRevision>().HasIndex(x => new { x.TenantId, x.DraftId, x.OperationKey }).IsUnique().HasFilter("[OperationKey] <> ''");
+        b.Entity<MailSettings>().HasIndex(x => x.TenantId).IsUnique();
+        b.Entity<MailSuppression>().Property(x => x.Value).HasMaxLength(254);
+        b.Entity<MailSuppression>().HasIndex(x => new { x.TenantId, x.Value }).IsUnique();
+        b.Entity<MailQuota>().Property(x => x.Day).HasMaxLength(10);
+        b.Entity<MailQuota>().HasIndex(x => new { x.TenantId, x.Day }).IsUnique();
         b.Entity<PlatformUser>().HasIndex(x => x.Email).IsUnique();
         b.Entity<PlatformUser>().Property(x => x.Email).HasMaxLength(254);
         b.Entity<Membership>().HasIndex(x => new { x.TenantId, x.UserId }).IsUnique();
@@ -75,6 +97,16 @@ public sealed class PlatformDb(DbContextOptions<PlatformDb> options, AccessScope
         b.Entity<ApiCredential>().HasIndex(x => x.TokenHash).IsUnique();
         b.Entity<ApiCredential>().HasOne<PlatformUser>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Contact>().Property(x => x.ExternalKey).HasMaxLength(100);
+        b.Entity<Contact>().Property(x => x.Source).HasMaxLength(160);
+        b.Entity<Contact>().Property(x => x.SourceUrl).HasMaxLength(500);
+        b.Entity<Contact>().Property(x => x.Segment).HasMaxLength(100);
+        b.Entity<Contact>().Property(x => x.ContactRole).HasMaxLength(100);
+        b.Entity<Contact>().Property(x => x.Need).HasMaxLength(2000);
+        b.Entity<Contact>().Property(x => x.BestTime).HasMaxLength(160);
+        b.Entity<Contact>().Property(x => x.PreferredChannel).HasMaxLength(20);
+        b.Entity<Contact>().Property(x => x.DecisionMaker).HasMaxLength(20);
+        b.Entity<MailTemplate>().Property(x => x.Channel).HasMaxLength(20);
+        b.Entity<MailTemplate>().Property(x => x.Purpose).HasMaxLength(20);
         b.Entity<Contact>().HasIndex(x => new { x.TenantId, x.ExternalKey }).IsUnique();
         b.Entity<Contact>().HasOne<Organization>().WithMany().HasForeignKey(x => new { x.TenantId, x.OrganizationId }).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Contact>().HasOne<Membership>().WithMany().HasForeignKey(x => new { x.TenantId, x.OwnerId }).HasPrincipalKey(x => new { x.TenantId, x.UserId }).OnDelete(DeleteBehavior.Restrict);

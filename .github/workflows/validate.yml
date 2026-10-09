@@ -27,8 +27,10 @@ jobs:
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-restore -c Release
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --proxy
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --scanner
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --mail
       - run: npm ci
         working-directory: src/frontend
+      - run: python scripts/verify_sql_runtime.py
       - run: npm run test:unit
         working-directory: src/frontend
       - run: npm run build
@@ -38,4 +40,124 @@ jobs:
       - run: python scripts/verificar_plano.py
       - run: python scripts/verificar_organizacao.py --no-write
       - run: git diff --check
-      # SQL/HTTP/restore/E2E require the isolated local SQL fixture; no cloud secrets.
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server@sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_PID: Developer
+          MSSQL_SA_PASSWORD: 'EbtQa_${{ github.run_id }}!X'
+          MSSQL_MEMORY_LIMIT_MB: '2048'
+        ports:
+          - 1433:1433
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
+      EBT_SQL_PASSWORD: 'EbtQa_${{ github.run_id }}!X'
+      EBT_RUNTIME_CONFIG: '${{ github.workspace }}/tmp/runtime/local-config.json'
+      MSBuildEnableWorkloadResolver: 'false'
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Real ClamAV on private loopback with official signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y clamav clamav-daemon
+          sudo systemctl stop clamav-daemon.socket clamav-daemon clamav-freshclam || true
+          sudo freshclam --stdout
+          sudo install -d -o clamav -g clamav /var/run/clamav /var/log/clamav
+          sudo python - <<'PY'
+          from pathlib import Path
+          p = Path('/etc/clamav/clamd.conf')
+          settings = {'TCPSocket': '3310', 'TCPAddr': '127.0.0.1', 'StreamMaxLength': '3M'}
+          lines = [line for line in p.read_text().splitlines() if not line.split() or line.split()[0] not in settings]
+          p.write_text('\n'.join(lines + [key+' '+value for key, value in settings.items()])+'\n')
+          PY
+          sudo clamd --config-file=/etc/clamav/clamd.conf
+          python - <<'PY'
+          import socket, time
+          for attempt in range(60):
+              try:
+                  with socket.create_connection(('127.0.0.1', 3310), 2) as peer:
+                      peer.sendall(b'zPING\0')
+                      assert peer.recv(32) == b'PONG\0'
+                  break
+              except (OSError, AssertionError): time.sleep(0.5)
+          else: raise RuntimeError('Private scanner unavailable')
+          PY
+      - name: Prepare isolated synthetic QA configuration
+        run: python tests/integration/prepare_ci_fixture.py
+      - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
+      - run: dotnet build tests/WazVox.ProtocolTests --no-restore -c Release
+      - name: Verify clean and EICAR streams with real engine
+        run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --scanner-engine
+      - run: npm ci
+        working-directory: src/frontend
+      - run: npm run build
+        working-directory: src/frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: src/frontend
+      - name: Fresh SQL migrations and synthetic seed
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 20); do
+            if dotnet run --project src/backend/Ebt.Platform.Api --no-build -c Release -- --init-qa; then break; fi
+            if [ "$attempt" = 20 ]; then exit 1; fi
+            sleep 2
+          done
+      - name: Authenticated HTTP, SQL and browser regression
+        shell: bash
+        env:
+          EBT_QA_SQL_CONTAINER: '${{ job.services.sqlserver.id }}'
+        run: |
+          set -euo pipefail
+          dotnet run --project src/backend/Ebt.Platform.Api --no-build -c Release --urls http://127.0.0.1:5186 > "$RUNNER_TEMP/ebt-api.log" 2>&1 &
+          qa_api_pid=$!
+          trap 'kill "$qa_api_pid" 2>/dev/null || true' EXIT
+          python tests/integration/connect_qa.py
+          sleep 62
+          python tests/integration/mail_connect_qa.py
+          dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --mail-sql
+          sleep 62
+          dotnet run --project src/backend/Ebt.Platform.Api --no-build -c Release -- --verify-sql-qa
+          kill "$qa_api_pid"
+          wait "$qa_api_pid" || true
+          dotnet run --project src/backend/Ebt.Platform.Api --no-build -c Release --urls http://127.0.0.1:5186 > "$RUNNER_TEMP/ebt-browser-api.log" 2>&1 &
+          qa_api_pid=$!
+          python -c "import time, urllib.request; exec('for attempt in range(40):\n try:\n  urllib.request.urlopen(\"http://127.0.0.1:5186/health/ready\"); break\n except OSError: time.sleep(0.5)\nelse: raise RuntimeError(\"QA restart unavailable\")')"
+          cd src/frontend
+          npm run test:e2e
+          cd ../..
+          kill "$qa_api_pid"
+          wait "$qa_api_pid" || true
+          python tests/integration/recovery_ci.py
+      - name: Save sanitized QA results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: connect-qa-results
+          path: |
+            evidencias/mail_connect_qa_20261009.json
+            evidencias/mail_worker_sql_20261009.json
+            evidencias/runtime_sql_20261009.json
+            evidencias/testes_connect_sql_http.json
+            evidencias/testes_connect_browser.json
+            evidencias/generic_sql_qa.json
+            evidencias/testes_scanner_real_ci.json
+            evidencias/testes_restore_ci.json
+            evidencias/testes_restore_ci_integridade.json
+          if-no-files-found: ignore

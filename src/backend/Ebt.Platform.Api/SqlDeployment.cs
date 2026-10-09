@@ -30,17 +30,25 @@ public static class SqlDeployment
             while(await reader.ReadAsync()){var row=new object[reader.FieldCount];reader.GetValues(row);values.Add(row);}
             return Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(values)))).ToLowerInvariant();
         }
+        async Task<string> OtherTableCountsFingerprint()
+        {
+            using var command=new SqlCommand("SELECT s.name,t.name,SUM(p.rows) FROM sys.tables t JOIN sys.schemas s ON t.schema_id=s.schema_id JOIN sys.partitions p ON p.object_id=t.object_id AND p.index_id IN (0,1) WHERE s.name<>'ebt_connect' GROUP BY s.name,t.name ORDER BY s.name,t.name",connection);
+            using var reader=await command.ExecuteReaderAsync();var values=new List<object[]>();
+            while(await reader.ReadAsync()){var row=new object[reader.FieldCount];reader.GetValues(row);values.Add(row);}
+            return Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(values)))).ToLowerInvariant();
+        }
+        var countsBefore=await OtherTableCountsFingerprint();
         var before=await OtherSchemasFingerprint();
         foreach(var batch in Regex.Split(script,@"^\s*GO\s*$",RegexOptions.Multiline|RegexOptions.IgnoreCase))
         {
             if(string.IsNullOrWhiteSpace(batch))continue;
             using var command=new SqlCommand(batch,connection){CommandTimeout=120};await command.ExecuteNonQueryAsync();
         }
-        var after=await OtherSchemasFingerprint();
+        var after=await OtherSchemasFingerprint(); var countsAfter=await OtherTableCountsFingerprint();
         using var ledger=new SqlCommand("SELECT MigrationId FROM ebt_connect.__EFMigrationsHistory ORDER BY MigrationId",connection);using var history=await ledger.ExecuteReaderAsync();var migrations=new List<string>();while(await history.ReadAsync())migrations.Add(history.GetString(0));
-        var report=new{generatedUtc=DateTimeOffset.UtcNow,database=settings.InitialCatalog,schema="ebt_connect",scriptSha256=hash,migrations,otherSchemasBefore=before,otherSchemasAfter=after,otherSchemasUnchanged=before==after,newDatabaseCreated=false,seedApplied=false,identityGrantsApplied=false};
+        var report=new{generatedUtc=DateTimeOffset.UtcNow,database=settings.InitialCatalog,schema="ebt_connect",scriptSha256=hash,migrations,otherSchemasBefore=before,otherSchemasAfter=after,otherSchemasUnchanged=before==after,otherTableCountsBefore=countsBefore,otherTableCountsAfter=countsAfter,otherTableCountsUnchanged=countsBefore==countsAfter,newDatabaseCreated=false,seedApplied=false,identityGrantsApplied=false};
         await File.WriteAllTextAsync(output,JsonSerializer.Serialize(report,new JsonSerializerOptions{WriteIndented=true}));
-        if(before!=after)throw new InvalidOperationException("Catálogo de outros schemas mudou; conferir evidência antes de prosseguir.");
+        if(before!=after || countsBefore!=countsAfter)throw new InvalidOperationException("Catálogo de outros schemas mudou; conferir evidência antes de prosseguir.");
         Console.WriteLine($"Schema ebt_connect aplicado: {migrations.Count} migrations; catálogo dos outros schemas preservado. Nenhum seed ou banco novo.");
     }
 }

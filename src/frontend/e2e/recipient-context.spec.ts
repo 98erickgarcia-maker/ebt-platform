@@ -142,7 +142,7 @@ for (const failure of [false, true]) {
       started = resolve;
     });
     await page.route(
-      `**/api/connect/v1/tasks?contactId=${b.id}`,
+      url => url.pathname === "/api/connect/v1/tasks" && url.searchParams.get("contactId") === b.id,
       async (route) => {
         started();
         await held;

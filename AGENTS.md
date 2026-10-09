@@ -19,3 +19,7 @@ O pedido posterior autoriza verificar atualizações do GitHub e implementar as 
 ## Autorizacao explicita de 09/10/2026
 
 O usuario pediu area exclusiva da EBT Platform no banco compartilhado e publicacao online. Esse pedido autoriza catalogo aditivo e publicacao do candidato revisado no host existente, com backup/configuracao anterior, isolamento e prova online. Nao autoriza inferir implementacao dos aplicativos planejados nem alterar SKU/banco/dados dos outros sistemas.
+
+## Correções comerciais autorizadas em 09/10/2026
+
+O usuário autorizou adaptar melhorias de CASST, Vikings e Mail no Connect, retirar simulação, melhorar templates e substituir a dependência MongoDB pelo SQL existente. Connect acompanha prospecção, qualificação, venda e cliente ativo, incluindo relacionamento comercial. Não expandir para pedidos, execução ou financeiro. Integração Outlook registra o retorno do provedor automaticamente; abertura externa não prova envio, e aceite não prova entrega/leitura. Preservar fontes históricas, sem importar dados reais por inferência. Publicação no host existente já foi solicitada, condicionada à verificação do candidato e isolamento do schema. Orçamento 180h + 20h permanece; horas reais desconhecidas.
