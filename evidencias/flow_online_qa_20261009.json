@@ -1,0 +1,108 @@
+{
+  "generatedUtc": "2026-10-09T21:11:23.782226+00:00",
+  "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+  "version": "0.4.0",
+  "environment": "published authorized synthetic QA tenants only",
+  "passed": true,
+  "checks": [
+    {
+      "name": "HTTPS live and ready version 0.4.0",
+      "passed": true
+    },
+    {
+      "name": "Authenticated identity matches synthetic QA fixture",
+      "passed": true
+    },
+    {
+      "name": "Catalog Flow available in authorized QA tenant",
+      "passed": true
+    },
+    {
+      "name": "Anonymous protocol and history require authentication",
+      "passed": true
+    },
+    {
+      "name": "Connect read preserved before Flow mutation",
+      "passed": true
+    },
+    {
+      "name": "Create persisted open protocol",
+      "passed": true
+    },
+    {
+      "name": "Replay has same ID and sequential number",
+      "passed": true
+    },
+    {
+      "name": "Conflicting idempotency payload denied",
+      "passed": true
+    },
+    {
+      "name": "Empty subject denied",
+      "passed": true
+    },
+    {
+      "name": "Stale If-Match denied",
+      "passed": true
+    },
+    {
+      "name": "Start persists state and version",
+      "passed": true
+    },
+    {
+      "name": "Completion needs nonempty result",
+      "passed": true
+    },
+    {
+      "name": "Complete persists state and version",
+      "passed": true
+    },
+    {
+      "name": "History exposes three movements and exact QA result",
+      "passed": true
+    },
+    {
+      "name": "Repeated completed transition denied",
+      "passed": true
+    },
+    {
+      "name": "Reload preserves ID number state version",
+      "passed": true
+    },
+    {
+      "name": "Tenant B list hides tenant A protocol",
+      "passed": true
+    },
+    {
+      "name": "Tenant B direct history denied",
+      "passed": true
+    },
+    {
+      "name": "Tenant B direct transition denied",
+      "passed": true
+    },
+    {
+      "name": "Returning to A preserves completed history",
+      "passed": true
+    },
+    {
+      "name": "Existing Connect contact IDs preserved after Flow",
+      "passed": true
+    }
+  ],
+  "syntheticProtocolId": "7904e4cb-4568-45f3-b985-e043d7561b62",
+  "contactIdsBeforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "contactIdsAfterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "credentialCopied": false,
+  "realMessagesSent": 0,
+  "limits": [
+    "No customer or user homologation",
+    "No Azure restore performed",
+    "No changes to existing Connect contact rows",
+    "Protocol created only in authorized synthetic QA tenant"
+  ],
+  "browserEvidence": "evidencias/flow_online_browser_qa_20261009.json",
+  "browserPassed": true,
+  "sourceCommit": "558740f77ab09ae518b623cc730fdbac33c7b13f",
+  "imageDigest": "sha256:55b1845b0ff4c19c3da387c356b43fa1675414f96b14b57301ab2d572ede8195"
+}

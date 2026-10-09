@@ -5,10 +5,14 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-User=ebt-scout
+User=root
 Group=ebt-scout
-Environment=CODEX_HOME=/var/lib/ebt-scout/.codex
+Environment=CODEX_HOME=/var/lib/ebt-engineering/codex-profile
+Environment=PATH=/opt/ebt-engineering/node/bin:/opt/ebt-engineering/dotnet:/usr/local/bin:/usr/bin:/bin
+Environment=DOTNET_ROOT=/opt/ebt-engineering/dotnet
+Environment=MSBuildEnableWorkloadResolver=false
 Environment=HOME=/var/lib/ebt-engineering
+Environment=GIT_CONFIG_GLOBAL=/opt/ebt-engineering/model.gitconfig
 Environment=PYTHONDONTWRITEBYTECODE=1
 WorkingDirectory=/var/lib/ebt-engineering/workspace
 ExecStart=/usr/bin/python3 -B /opt/ebt-engineering/engineering_runner.py --workspace /var/lib/ebt-engineering/workspace --state /var/lib/ebt-engineering/state --manifest /opt/ebt-engineering/engineering_blocks.json
@@ -20,9 +24,10 @@ PrivateTmp=true
 PrivateDevices=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/var/lib/ebt-engineering /var/lib/ebt-scout/.codex
-InaccessiblePaths=/opt/ebt-scout /var/lib/ebt-scout/contacts /etc/ebt-scout.env
-CapabilityBoundingSet=
+ReadWritePaths=/var/lib/ebt-engineering
+BindPaths=/var/lib/ebt-scout/.codex:/var/lib/ebt-engineering/codex-profile
+InaccessiblePaths=/opt/ebt-scout /var/lib/ebt-scout /var/lib/ebt-platform -/etc/ebt-scout.env
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_KILL CAP_DAC_READ_SEARCH
 RestrictSUIDSGID=true
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 MemoryMax=2G

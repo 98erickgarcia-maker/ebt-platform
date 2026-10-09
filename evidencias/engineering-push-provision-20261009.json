@@ -1,0 +1,21 @@
+{
+  "repository": "98erickgarcia-maker/ebt-platform",
+  "host_keys_source": "https://api.github.com/meta",
+  "private_key_exported": false,
+  "target_branch": "codex/flow-history-proposal-vps-20261009",
+  "checkpoint_status": "quota",
+  "authenticated_ls_remote": "PASS",
+  "deploy_key_id": 165954305,
+  "authenticated_push_dry_run": "PASS",
+  "calls_today": 1,
+  "remote_runner_installed": true,
+  "cooldown_until": 1791601068.944287,
+  "checked_at_utc": "2026-10-09T21:08:32.1490645Z",
+  "real_push_performed": false,
+  "timers_active": [
+    "ebt-engineering-runner.timer",
+    "ebt-engineering-watch.timer"
+  ],
+  "read_only": false,
+  "remote_push_enabled": true
+}

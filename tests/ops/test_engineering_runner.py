@@ -4,6 +4,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 
 MODULE = Path(__file__).resolve().parents[2] / 'scripts/ops/engineering_runner.py'
 spec = importlib.util.spec_from_file_location('engineering_runner', MODULE)
@@ -41,7 +42,7 @@ class RunnerTests(unittest.TestCase):
             out = 'proof.md\n' if (self.workspace / 'proof.md').exists() else ''
         if argv[:2] == ['codex', 'exec']:
             (self.workspace / 'proof.md').write_text('synthetic evidence')
-            (self.state / 'result.json').write_text(json.dumps(
+            (self.state / 'model-io/result.json').write_text(json.dumps(
                 {'status': 'completed', 'summary': 'reviewed', 'evidence_paths': ['proof.md']}))
         return subprocess.CompletedProcess(argv, 0, out, '')
 
@@ -92,7 +93,7 @@ class RunnerTests(unittest.TestCase):
     def test_summary_does_not_prove_progress(self):
         def empty(argv, **kwargs):
             if argv[:2] == ['codex', 'exec']:
-                (self.state / 'result.json').write_text(json.dumps(
+                (self.state / 'model-io/result.json').write_text(json.dumps(
                     {'status': 'completed', 'summary': 'done', 'evidence_paths': []}))
                 return subprocess.CompletedProcess(argv, 0, '', '')
             return self.fake(argv, **kwargs)
@@ -102,6 +103,94 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(mod.classify('401 Unauthorized'), 'auth')
         self.assertEqual(mod.classify('stream disconnected'), 'network')
         self.assertEqual(mod.classify('other private info'), 'model_failed')
+
+    def test_controller_git_disables_hooks_and_fsmonitor(self):
+        argv = mod.controller_git(['git', 'push', 'origin', 'sha:ref'], self.workspace)
+        self.assertIn('core.hooksPath=/dev/null', argv)
+        self.assertIn('core.fsmonitor=false', argv)
+        self.assertIn('commit.gpgsign=false', argv)
+        self.assertEqual(argv[-3:], ['push', 'origin', 'sha:ref'])
+
+    def test_generated_check_drops_identity_and_key_environment(self):
+        process = mock.Mock()
+        process.communicate.return_value = ('synthetic', '')
+        process.returncode = 0
+        with mock.patch.object(mod, 'untrusted_identity', return_value={'user': 111, 'group': 222, 'extra_groups': []}), \
+             mock.patch.object(mod.subprocess, 'Popen', return_value=process) as spawn, \
+             mock.patch.dict(mod.os.environ, {'EBT_ENGINEERING_GIT_KEY': '/outside/private-fixture',
+                                            'DATABASE_PASSWORD': 'private-fixture'}):
+            mod.command(['dotnet', 'run', '--project', 'synthetic'], cwd=self.workspace)
+        kwargs = spawn.call_args.kwargs
+        self.assertEqual(kwargs['user'], 111)
+        self.assertEqual(kwargs['group'], 222)
+        self.assertEqual(kwargs['extra_groups'], [])
+        self.assertNotIn('EBT_ENGINEERING_GIT_KEY', kwargs['env'])
+        self.assertNotIn('DATABASE_PASSWORD', kwargs['env'])
+
+    def test_git_controller_not_dropped_and_hooks_disabled(self):
+        process = mock.Mock()
+        process.communicate.return_value = ('', '')
+        process.returncode = 0
+        with mock.patch.object(mod.subprocess, 'Popen', return_value=process) as spawn:
+            mod.command(['git', 'commit', '-m', 'fixed'], cwd=self.workspace)
+        self.assertNotIn('user', spawn.call_args.kwargs)
+        self.assertIn('core.hooksPath=/dev/null', spawn.call_args.args[0])
+
+    def enable_push(self):
+        self.policy.update(allow_push=True, repository=mod.PUSH_REPO, branch=mod.PUSH_BRANCH)
+        self.manifest.write_text(json.dumps(self.policy))
+
+    def push_fake(self, argv, **kwargs):
+        if argv == ['git', 'branch', '--show-current']:
+            return subprocess.CompletedProcess(argv, 0, mod.PUSH_BRANCH + '\n', '')
+        if argv[:3] == ['git', 'remote', 'get-url']:
+            return subprocess.CompletedProcess(argv, 0, mod.PUSH_REMOTE + '\n', '')
+        if argv[:2] == ['git', 'ls-remote']:
+            self.calls.append(argv)
+            return subprocess.CompletedProcess(argv, 0, 'a' * 40 + '\trefs/heads/' + mod.PUSH_BRANCH + '\n', '')
+        return self.fake(argv, **kwargs)
+
+    def test_controlled_push_advances_only_on_exact_remote(self):
+        self.enable_push()
+        self.assertEqual(self.runner(self.push_fake).cycle()['status'], 'task_verified')
+        data = json.loads((self.state / 'checkpoint.json').read_text())
+        self.assertEqual(data['completed'], ['T1'])
+        self.assertEqual(data['synced_sha'], 'a' * 40)
+        self.assertIn(['git', 'add', '--', 'proof.md'], self.calls)
+        self.assertIn(['git', 'push', 'origin', 'a' * 40 + ':refs/heads/' + mod.PUSH_BRANCH], self.calls)
+        self.assertFalse(any('--force' in arg for argv in self.calls for arg in argv))
+
+    def test_push_failure_retries_same_commit_without_model(self):
+        self.enable_push()
+        def failing(argv, **kwargs):
+            if argv[:2] == ['git', 'push']:
+                return subprocess.CompletedProcess(argv, 1, '', 'network private server detail')
+            return self.push_fake(argv, **kwargs)
+        self.assertEqual(self.runner(failing).cycle()['status'], 'awaiting_sync')
+        self.calls.clear()
+        self.assertEqual(self.runner(self.push_fake).cycle()['status'], 'task_verified')
+        self.assertFalse(any(argv[:2] in (['codex', 'exec'], ['git', 'commit']) for argv in self.calls))
+        self.assertEqual(json.loads((self.state / 'checkpoint.json').read_text())['completed'], ['T1'])
+
+    def test_remote_mismatch_keeps_task_pending(self):
+        self.enable_push()
+        def wrong(argv, **kwargs):
+            if argv[:2] == ['git', 'ls-remote']:
+                return subprocess.CompletedProcess(argv, 0, 'b' * 40 + '\trefs/heads/' + mod.PUSH_BRANCH, '')
+            return self.push_fake(argv, **kwargs)
+        self.assertEqual(self.runner(wrong).cycle()['status'], 'awaiting_sync')
+        data = json.loads((self.state / 'checkpoint.json').read_text())
+        self.assertEqual(data['completed'], [])
+        self.assertEqual(data['sync_error'], 'remote_mismatch')
+
+    def test_wrong_push_remote_never_commits(self):
+        self.enable_push()
+        def wrong(argv, **kwargs):
+            if argv[:3] == ['git', 'remote', 'get-url']:
+                return subprocess.CompletedProcess(argv, 0, 'git@github.com:other/repo.git', '')
+            return self.push_fake(argv, **kwargs)
+        self.assertEqual(self.runner(wrong).cycle()['status'], 'unsafe_push_target')
+        self.assertFalse(any(argv[:2] == ['git', 'commit'] for argv in self.calls))
 
     def test_model_commit_is_rejected(self):
         heads = []

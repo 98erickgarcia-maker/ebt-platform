@@ -1,0 +1,12 @@
+{
+  "generatedUtc": "2026-10-09T21:02:59.0110404+00:00",
+  "schema": "ebt_flow",
+  "scriptSha256": "b1186a061e0173feddb355a1b1a94d8978bd33aee9942d09d5eabcfcca20f60e",
+  "otherSchemasBefore": "5d0d236658c8d1a61b13a6f89f527ac70837288b3d491d2cd6e7f7e902224df4",
+  "otherSchemasAfter": "5d0d236658c8d1a61b13a6f89f527ac70837288b3d491d2cd6e7f7e902224df4",
+  "otherSchemasUnchanged": true,
+  "explicitObjectGrants": true,
+  "seedApplied": false,
+  "newDatabaseCreated": false,
+  "catalogEnabled": false
+}

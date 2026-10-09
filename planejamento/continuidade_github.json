@@ -29,7 +29,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "reviewed_sha256": "575004d00ad68c37111e5d52b3128806671b9d0ea23a2ef78a54a39841a73f30"
+      "reviewed_sha256": "5416b64a0ff4059f445402a95776aaf82bf0c2e8c5382b6ee1b9765b98dff7ba"
     },
     {
       "path": ".gitignore",
@@ -37,7 +37,7 @@
     },
     {
       "path": "AGENTS.md",
-      "reviewed_sha256": "553c54ea3548c7a79ebac10e72fdc6b005be14e11a7156cc6f07468603a5af44"
+      "reviewed_sha256": "a6cffbb38dd88e6c0ed6e71a11b826f0a544492a461b1190f3f0c74601821198"
     },
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
@@ -863,7 +863,7 @@
     },
     {
       "path": "evidencias/connect_container_preparado.json",
-      "reviewed_sha256": "b193da72513e5d9751a23842a7b41c3c8e1820ac5920e3b3b94bbf2c88dae274"
+      "reviewed_sha256": "4f1ff25fee96f0de5e6db55886c7e563fd3e69d6b0db76107b5f1037ff7c31ce"
     },
     {
       "path": "evidencias/connect_continuidade_disponibilidade.json",
@@ -1155,7 +1155,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "bee09b6dd8b82846a8de64d487d9e4ce21ff171a8079e4b49c2241f64a541b3a"
+      "reviewed_sha256": "0bb2eea4e081b6b805500d3bef0751cbc4f6d3dd005b476f731a9705f6ea3e66"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1215,7 +1215,7 @@
     },
     {
       "path": "scripts/Prepare-ConnectContainer.py",
-      "reviewed_sha256": "ffb366715f9459c2777993051d8975bcfeb4ee9965b4c87bcc42e958dba29594"
+      "reviewed_sha256": "514aee1e96a0ec987781406ef98e62a27e8b5ac399aace2ab1cb36f3c118b4c9"
     },
     {
       "path": "scripts/Prepare-WazVoxQa.py",
@@ -1499,7 +1499,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/PlatformCatalog.cs",
-      "reviewed_sha256": "5b57d024ed142ae050990a002e37307c1a5641b12b959c94c2523e921584f7ec"
+      "reviewed_sha256": "b1d11be52b8b39b8aa3dc3074d225baa78893635f51818bf51e50201dc3e4318"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/PlatformDatabaseAdmin.cs",
@@ -1507,7 +1507,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Program.cs",
-      "reviewed_sha256": "0d838dac479e9556ef710576c0b1b2c535bbf40b7d5133ed7f1ea8331b57cb11"
+      "reviewed_sha256": "b71ebb8b3b907221ad82e2e6b6af105a46fafd0828dee06815a0c3c8dfdd23f5"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
@@ -1620,7 +1620,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "42fe6bfa90dcf17d7b889d9c8a8d47c2ba2d4bf1bc07961b948b82489907c6ea"
+      "reviewed_sha256": "6c82abc4eec5a29860a02a0a24b5008a9aebf73322c446683f23cf4feebb5618"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1636,7 +1636,7 @@
     },
     {
       "path": "src/frontend/src/PlatformApplications.tsx",
-      "reviewed_sha256": "cd0f05829f8619331193fb8b4be75798a39cb587ee3df9d8ea529df758ab762e"
+      "reviewed_sha256": "1362c63dbf4a7d3c1985bc46b77ae0c9891b582509fd1abed50190e4558f4830"
     },
     {
       "path": "src/frontend/src/QuickSearch.tsx",
@@ -1656,7 +1656,7 @@
     },
     {
       "path": "src/frontend/src/style.css",
-      "reviewed_sha256": "08d833841b7e76c51de60de8826eb528354aad50d310329e8a50c84453926fe9"
+      "reviewed_sha256": "2cd823405833ff63fb208aaa64a2d030bbe30105c0715b7cc6507e226dcf3f4d"
     },
     {
       "path": "src/frontend/tests/api.test.js",
@@ -1772,7 +1772,7 @@
     },
     {
       "path": "tests/integration/prepare_ci_fixture.py",
-      "reviewed_sha256": "47fcf7cae66ae5f9bfe32c13e3b335f8ed112f923b330ee18638d9eacc7ee024"
+      "reviewed_sha256": "3139760097274c00c6e1ca886ee5c81963f614061927ced6382d390dfcac93c0"
     },
     {
       "path": "tests/integration/recovery_ci.py",
@@ -1795,5 +1795,5 @@
       "reviewed_sha256": "92ebbf2313927fbb9bc87e08019bf0ee8ed3af8c7cd01a2fcb6f84c0a6124418"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T17:56:43.575Z"
+  "reviewed_at_utc": "2026-10-09T22:25:29.052013+00:00"
 }
