@@ -18,23 +18,23 @@
   "corrections": {
     "R01": {
       "status": "passed_integrated_qa",
-      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
+      "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def"
     },
     "R02": {
       "status": "passed_integrated_qa",
-      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
+      "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def"
     },
     "R03": {
       "status": "passed_integrated_qa",
-      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
+      "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def"
     },
     "R04": {
       "status": "passed_integrated_qa",
-      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
+      "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def"
     },
     "R05": {
       "status": "passed_integrated_qa",
-      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
+      "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def"
     }
   },
   "local_validation": {
@@ -70,21 +70,26 @@
     }
   },
   "ci": {
-    "status": "passed_before_next_document_increment",
-    "sha": "bbd884255b7421272aed04d4f047e56a86197390",
+    "status": "passed",
+    "sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def",
     "runs": [
       {
-        "id": 37872017575,
-        "name": "Build EBT Connect",
+        "id": 37873213833,
+        "name": "Validar planejamento EBT",
         "conclusion": "success",
-        "http_passed": 29,
-        "sql_passed": 7,
-        "browser_passed": 11
+        "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213833"
       },
       {
-        "id": 37872017667,
+        "id": 37873213897,
         "name": "Validate EBT Enterprise continuity",
-        "conclusion": "success"
+        "conclusion": "success",
+        "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213897"
+      },
+      {
+        "id": 37873213936,
+        "name": "Build EBT Connect",
+        "conclusion": "success",
+        "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213936"
       }
     ],
     "attempts": [
@@ -105,8 +110,38 @@
         "browser_passed": 7,
         "browser_failed": 4,
         "result": "failed_browser_harness"
+      },
+      {
+        "sha": "99f40faf1431ed35e4ad46a47dd216da7e78ee62",
+        "build_run_observed": false,
+        "finding": "job.services context moved from job env to step env"
+      },
+      {
+        "sha": "cf2066472bae474ddf610488816e99b95cea9830",
+        "run_id": 37872654280,
+        "result": "failed_scanner_auxiliary_config"
+      },
+      {
+        "sha": "95a23b5af08b7c7faeb8216c2bdf976a987f2d13",
+        "run_id": 37872807064,
+        "result": "failed_python_readiness_escape"
+      },
+      {
+        "sha": "f8b00fde8af5e09da64dd153103eb0c0812702db",
+        "run_id": 37872942384,
+        "result": "failed_tcp_engine_version_confirmation"
       }
-    ]
+    ],
+    "proof": "evidencias/ci_pac_documental_20261008.json",
+    "counts": {
+      "passed": true,
+      "job_id": 113635747910,
+      "http_cases": 30,
+      "sql_cases": 7,
+      "browser_cases": 11,
+      "real_scanner_cases": 2,
+      "recovery_cases": 10
+    }
   },
   "limits": [
     "Docker SQL image download denied by local restricted network; integration delegated to isolated GitHub CI",
@@ -295,7 +330,7 @@
         "P06-04"
       ],
       "gate": "G-GED",
-      "review": "documentos presentes; scanner privado e restore Azure permanecem pendentes",
+      "review": "scanner ClamAV real, EICAR e restore isolado aprovados na CI; scanner privado e restore/certificado Azure pendentes",
       "gate_promoted": false
     },
     {
@@ -308,7 +343,7 @@
         "P06-08"
       ],
       "gate": "G-GED",
-      "review": "documentos presentes; scanner privado e restore Azure permanecem pendentes",
+      "review": "scanner ClamAV real, EICAR e restore isolado aprovados na CI; scanner privado e restore/certificado Azure pendentes",
       "gate_promoted": false
     },
     {
@@ -321,7 +356,7 @@
         "P09-04"
       ],
       "gate": "G-RC",
-      "review": "aguarda regressão integrada, scanner privado, restore Azure e aceite operacional",
+      "review": "regressão integrada aprovada em CI; scanner privado Azure, restore/certificado Azure e aceite operacional pendentes",
       "gate_promoted": false
     },
     {
@@ -334,13 +369,14 @@
         "P09-08"
       ],
       "gate": "G-RC",
-      "review": "aguarda regressão integrada, scanner privado, restore Azure e aceite operacional",
+      "review": "regressão integrada aprovada em CI; scanner privado Azure, restore/certificado Azure e aceite operacional pendentes",
       "gate_promoted": false
     }
   ],
   "next_document_increment": {
-    "real_engine_and_eicar": "implemented_pending_ci",
-    "isolated_restore": "implemented_pending_ci",
+    "real_engine_and_eicar": "passed_ci",
+    "isolated_restore": "passed_ci",
+    "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def",
     "production_azure_operations": false
   }
 }

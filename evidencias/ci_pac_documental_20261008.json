@@ -1,0 +1,93 @@
+{
+  "reference_date_local": "2026-10-08",
+  "timezone": "America/Sao_Paulo",
+  "validated_sha": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def",
+  "repository": "98erickgarcia-maker/ebt-platform",
+  "pr": "https://github.com/98erickgarcia-maker/ebt-platform/pull/13",
+  "verification_method": "GitHub job conclusions and completed job logs inspected by the same Codex agent",
+  "independent_review": false,
+  "build": {
+    "passed": true,
+    "job_id": 113635748134
+  },
+  "qa": {
+    "passed": true,
+    "job_id": 113635747910,
+    "http_cases": 30,
+    "sql_cases": 7,
+    "browser_cases": 11,
+    "real_scanner_cases": 2,
+    "recovery_cases": 10
+  },
+  "scanner": {
+    "engine": "ClamAV 1.5.4/28147/Thu Oct 8 06:24:12 2026",
+    "signatures": "official ClamAV databases",
+    "bind": "127.0.0.1:3310",
+    "clean_stream_accepted": true,
+    "eicar_stream_blocked": true,
+    "eicar_upload_blocked_without_document_persistence": true,
+    "production_scanner_configured": false
+  },
+  "recovery": {
+    "document_versions_verified": 3,
+    "encrypted_receipts_verified": 7,
+    "checks": [
+      "COPY_ONLY backup checksum verified",
+      "Restored table fingerprints and other-schema sentinel match",
+      "Reviewed migration reapplied twice preserves data and other schema",
+      "Copied key ring decrypts restored envelopes; every document hash matches",
+      "Restored runtime ready; worker preserves unknown/terminal sends without resending",
+      "Restored account login and contact query work",
+      "Authorized restored download bytes match stored SHA256",
+      "Tenant B cannot download restored tenant A document by ID",
+      "Restored negative request returns traceId without fixture secrets",
+      "Source database preserved by isolated restore"
+    ],
+    "original_database_preserved": true,
+    "existing_database_overwritten": false,
+    "azure_pitr_executed": false,
+    "production_certificates_tested": false
+  },
+  "runs": [
+    {
+      "id": 37873213833,
+      "name": "Validar planejamento EBT",
+      "conclusion": "success",
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213833"
+    },
+    {
+      "id": 37873213897,
+      "name": "Validate EBT Enterprise continuity",
+      "conclusion": "success",
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213897"
+    },
+    {
+      "id": 37873213936,
+      "name": "Build EBT Connect",
+      "conclusion": "success",
+      "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213936"
+    }
+  ],
+  "artifacts": {
+    "id": 11591406230,
+    "name": "connect-qa-results",
+    "digest": "sha256:da3d8087e5d609f1d5dcdad8a798c96bf6dccbecc2b7bc0735902743850f4fd8",
+    "expires_at": "2027-01-07T02:09:22Z",
+    "url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213936/artifacts/11591406230"
+  },
+  "validated_git_objects": {
+    "src": "09564cc82f733720e639f9f79cae1b092decdc88",
+    "tests": "5fe5d61bfae54c3298ec3561f2fa68825dd21cf8",
+    ".github/workflows/validate.yml": "c70c9cfaee4357b817b669ad945d3f63b7f5e888",
+    "sql": "9ff938de8a98c96e8185dc4e25a5d1cb124c55f5"
+  },
+  "product_gates_promoted": false,
+  "production_deployed": false,
+  "real_messages_sent": 0,
+  "limits": [
+    "Synthetic GitHub CI SQL service and test users; no production data",
+    "Copied Development file keyring; Azure SQL encrypted certificate keyring still needs its own recovery proof",
+    "Azure private scanner, isolated Azure PITR and operational acceptance remain pending; this environment has no configured Azure identity/credentials",
+    "Historical online release 0.1.5 evidence retains its original scope"
+  ]
+}

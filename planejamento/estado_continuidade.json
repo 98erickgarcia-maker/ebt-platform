@@ -18,16 +18,16 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "29 HTTP, sete SQL e 11 browser aprovados no SHA bbd8842; próximo incremento scanner real/restore CI implementado, validação pendente",
+  "review_status": "CI aprovada no SHA 1fef14d: build, 30 HTTP, sete SQL, 11 browser, ClamAV real/EICAR e dez verificações de restore isolado",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Scanner real, restore Azure e aceite permanecem pendentes nos registros. CI hospedada de build/protocolo/proxy/documentos aprovada no SHA 92e4006; consultar prova e versão vigente.",
+    "Scanner real e restore isolado aprovados na CI sintética; scanner privado Azure, PITR/certificado Azure e aceite operacional pendentes. Fonte: evidencias/ci_pac_documental_20261008.json.",
     "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Validar incremento de scanner real e restauração isolada em CI, corrigir falhas e registrar SHA; homologação privada Azure e aceite dependem das próprias provas",
+  "next_authorized_step": "Conferir acesso ao Azure e preparar homologação do scanner privado e PITR em destino isolado, incluindo certificado/keyring SQL; registrar aceite operacional antes de promover gates ou extrair Core",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",

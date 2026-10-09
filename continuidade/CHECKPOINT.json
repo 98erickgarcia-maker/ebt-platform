@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T02:09:17.158413+00:00",
+  "created_at_utc": "2026-10-09T02:15:46.218664+00:00",
   "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
-  "parent_checkpoint": "f8b00fde8af5e09da64dd153103eb0c0812702db",
-  "base": "f8b00fde8af5e09da64dd153103eb0c0812702db",
-  "source_head": "9d28165aa2ddc3ea32926bd5bd822a9c45d8f005",
+  "parent_checkpoint": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def",
+  "base": "1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def",
+  "source_head": "aed22ae3997359c23b66672320278ecd59612892",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
@@ -186,7 +186,7 @@
     },
     {
       "path": "docs/execucao/VERIFICACAO_SEQUENCIA_PAC_20261008.md",
-      "sha256": "dad8ed1cfb46642019f58eb25cb3925b2856be9c1cd41e4d37cf18faa92ea04a"
+      "sha256": "39b0b0a4117831845dea6e8259aacf9f0b3e5aa783f3a50bffb9031b2bdcfb40"
     },
     {
       "path": "docs/execucao/entregas/P01-01.md",
@@ -778,7 +778,7 @@
     },
     {
       "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
-      "sha256": "08e932990c24d8dd7898ed09cc916b0f83d54921817a719507c15c673e1d695c"
+      "sha256": "c2ee40f0928efa1d9cf0c9463f89d7eea82066f4fc7946a91a1057fee7749404"
     },
     {
       "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
@@ -823,6 +823,10 @@
     {
       "path": "evidencias/baseline_execucao_20261007.json",
       "sha256": "fe82153ceec6f024e3b7b1a47d8b8e7c1ad2782358bd155368eaed6bcfe1c36a"
+    },
+    {
+      "path": "evidencias/ci_pac_documental_20261008.json",
+      "sha256": "fdecffbe8be35aa33c179f80370013cee0f82c9af0afdf03bb3d8825d1ac55b2"
     },
     {
       "path": "evidencias/connect_container_preparado.json",
@@ -1034,7 +1038,7 @@
     },
     {
       "path": "evidencias/verificacao_sequencia_pac_20261008.json",
-      "sha256": "41f74bbcbca681a662e356dd30d6edf4bae24d294cb890d9a26514af8dadbfde"
+      "sha256": "c749bcd4faa1f048fbe154b80b316c947a1472f9f7c4632fdd6d10c63f275b06"
     },
     {
       "path": "output/pdf/EBT_Plano_Primeiras_200_Horas.pdf",
@@ -1058,7 +1062,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "ae05f7a59a5dba5f9213cb4ab62d93d7f9e91ccf33254cb07c38ea020933e39f"
+      "sha256": "4ad168a17e990ab91a4ba7702d5a976d933a6c957e82f518b482d9200cfa415e"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1070,7 +1074,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "946079d9e73a463625bbe67c481963c0dd55a463f24cadd64e8a5b2689d0bbc0"
+      "sha256": "bede91412c7add50815b020fc57320f50c6f16289c9a1275abd148a13af156e3"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",

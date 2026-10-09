@@ -34,12 +34,16 @@ A [CI integrada 37872017575](https://github.com/98erickgarcia-maker/ebt-platform
 
 ## Próximo incremento PAC-11/PAC-12
 
-Por autorização para avançar na sequência, a CI passa a instalar ClamAV com as assinaturas oficiais, escutar apenas em `127.0.0.1` e verificar streams limpo/EICAR. A fixture habilita o motor; HTTP exige que o upload EICAR seja recusado sem persistir documento. O incremento está implementado e aguarda sua CI, com relatório próprio de versão do motor.
+Por autorização para avançar na sequência, a CI instala ClamAV com as assinaturas oficiais, escuta apenas em `127.0.0.1` e verifica streams limpo/EICAR. A fixture habilita o motor; HTTP confirma que o upload EICAR é recusado sem persistir documento. O incremento passou na CI, com relatório próprio da versão do motor.
 
 O ensaio `tests/integration/recovery_ci.py` aceita exclusivamente o serviço SQL sintético do GitHub e cria destino novo, sem `WITH REPLACE`. Verifica backup COPY_ONLY/CHECKSUM, fingerprints, migrations repetidas, cópia das chaves, todos os hashes/envelopes, runtime/worker, login, download, negativa B e diagnóstico com traceId. O banco original deve permanecer intacto. Relatórios e limites são separados dos restores históricos. Isso não executa PITR nem configura o scanner privado em Azure; ambas as provas e o aceite operacional continuam pendentes.
+
+A [execução 37873213936](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873213936), SHA `1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def`, passou em build, 30 HTTP, sete SQL, 11 browser, dois testes do ClamAV real e dez verificações de restore. Foram recuperadas três versões documentais e sete envelopes cifrados, com banco original preservado. Motor: ClamAV 1.5.4, assinaturas 28147. Planejamento e continuidade também passaram. [Registro sanitizado, objetos Git e artefatos](../../evidencias/ci_pac_documental_20261008.json).
+
+O keyring dessa fixture é de arquivos em Development; a prova Azure deve incluir o certificado privado e keyring SQL cifrado usados na publicação. Neste ambiente não há identidade/credenciais Azure configuradas para executar essa homologação. O próximo passo é obter acesso efetivo ao ambiente e preparar PITR exclusivo e scanner privado, preservando o banco compartilhado, antes do aceite operacional e extração de Core.
 
 Revisão do diff pelo mesmo agente; não foi declarada revisão independente. Estado de CI, SHA validado e pendências ficam na conferência estruturada. Nenhum merge em main, deploy ou envio real foi realizado. Os PRs de origem permanecem preservados.
 
 ## Continuidade
 
-O checkpoint desta revisão aponta exclusivamente para `codex/ebt-enterprise-continuity-pac-review-20261008`. Usar `python scripts/checkpoint_github.py --approve --push` somente após rever o diff; confirmar SHA remoto. A branch original de continuidade não é sobrescrita. Após passar a CI integrada, preparar as provas externas pendentes com o ambiente e credenciais adequados, antes de promover os gates dependentes.
+O checkpoint desta revisão aponta exclusivamente para `codex/ebt-enterprise-continuity-pac-review-20261008`. Usar `python scripts/checkpoint_github.py --approve --push` somente após rever o diff; confirmar SHA remoto. A branch original de continuidade não é sobrescrita. Atualizações finais de evidência devem conservar os objetos Git de código, testes, workflow e SQL registrados na prova. `python scripts/exportar_continuidade.py` exporta os bytes revisados para retomada; não é pacote publicado nem backup de dados. Preparar as provas externas pendentes com o ambiente e credenciais adequados antes de promover os gates dependentes.
