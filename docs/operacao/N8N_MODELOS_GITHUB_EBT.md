@@ -4,7 +4,7 @@ n8n 2.42.6 instalado na VPS com imagem oficial fixada por digest. Painel e bridg
 
 Workflow EbtEngineering15min01 publicado: ManualTrigger e ScheduleTrigger15min solicitam POST na bridge privada. Credencial de cabecalho exclusiva cifrada pelo n8n, sem exportacao ao GitHub. A bridge aceita somente endpoints fixos e corpo vazio, limita repeticoes e retorna estado sanitizado. Solicita apenas watcher/runner via systemctl sem shell. Durante cooldown somente watcher; timers systemd permanecem fallback e o lock evita sobreposicao.
 
-57 testes locais passaram. Executar workflow pela CLI do n8n passou ao vivo: quota, runnerQueuedfalse, observerQueuedtrue. Export publicado confirmado. Esta prova nao demonstra a primeira execucao automatica agendada nem chamada real de IA durante a cota. Python task runner do n8n nao esta instalado; este fluxo nao usa node Python.
+57 testes locais passaram. Executar workflow pela CLI do n8n passou ao vivo: quota, runnerQueuedfalse, observerQueuedtrue. Export publicado confirmado. Em 09/10, a interface registrou execucoes automaticas bem-sucedidas as 19h45 (ID2) e 20h00 (ID3), horario de Sao Paulo. Elas comprovam o agendamento e o acionamento da bridge, nao programacao concluida por IA durante a cota. Python task runner do n8n nao esta instalado; este fluxo nao usa node Python. Snapshot detalhado: [VERIFICACAO_AGENTES_MCP_20261009.md](VERIFICACAO_AGENTES_MCP_20261009.md).
 
 ## Credenciais de modelos (09/10/2026)
 
