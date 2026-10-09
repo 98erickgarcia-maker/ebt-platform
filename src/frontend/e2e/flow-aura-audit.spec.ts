@@ -110,7 +110,7 @@ test("FLOW AURA audit: persisted long text, spacing and 200 percent text resize"
   console.log(JSON.stringify({ scenario: "text-spacing", found: spaced }));
   await capture(page, "text-spacing-390");
   expect.soft(spaced, "User text spacing must not clip information").toEqual([]);
-  await spacing.evaluate(node => node.remove());
+  await spacing.evaluate(node => node.parentNode?.removeChild(node));
 
   // Text-only enlargement, deliberately NOT labelled native browser zoom.
   await page.setViewportSize({ width: 1280, height: 900 });
