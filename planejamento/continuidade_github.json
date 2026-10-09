@@ -1796,7 +1796,7 @@
     },
     {
       "path": "src/frontend/src/useMobileNavigation.ts",
-      "reviewed_sha256": "f9c1ef834e8ff79ac4523c609519ceb7f78a8c0f4bfa68469fb44a4309ca3bd1"
+      "reviewed_sha256": "018de7c18d709f4c6c5fa0dcd0c89ad31dd2136b7753b4fd4e6dbdea6e2a5982"
     },
     {
       "path": "src/frontend/src/flow-aura-audit.css",
@@ -1808,7 +1808,7 @@
     },
     {
       "path": "src/frontend/e2e/flow-aura-native-zoom.spec.ts",
-      "reviewed_sha256": "443d9f2ad6e8b33d467188b195867a41269ad943531b877e79f21256c571dace"
+      "reviewed_sha256": "a5deaec8e20ef69a10afdb5886dedc8942537b7bc98ef42f103a966abbcb5995"
     }
   ],
   "reviewed_at_utc": "2026-10-09T17:56:43.575Z"

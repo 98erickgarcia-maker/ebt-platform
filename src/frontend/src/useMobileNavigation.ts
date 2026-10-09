@@ -22,17 +22,22 @@ export function useMobileNavigation(
     active?.focus({ preventScroll: true });
     active?.scrollIntoView({ block: "nearest", inline: "nearest" });
 
+    // A pointer click on the trigger must keep its normal toggle behavior.
+    // Keyboard/programmatic focus returning there must close the covering panel.
+    let pointerOnTrigger = false;
     const outside = (target: EventTarget | null) =>
-      target instanceof Node && !sidebar.contains(target) && target !== trigger;
+      target instanceof Node && !sidebar.contains(target);
     const leave = (event: FocusEvent) => {
-      if (outside(event.target)) setOpen(false);
+      const triggerPointerFocus = event.target === trigger && pointerOnTrigger;
+      pointerOnTrigger = false;
+      if (outside(event.target) && !triggerPointerFocus) setOpen(false);
     };
     const pointer = (event: PointerEvent) => {
-      if (outside(event.target) && !trigger?.contains(event.target as Node)) {
-        setOpen(false);
-      }
+      pointerOnTrigger = event.target instanceof Node && !!trigger?.contains(event.target);
+      if (outside(event.target) && !pointerOnTrigger) setOpen(false);
     };
     const escape = (event: KeyboardEvent) => {
+      pointerOnTrigger = false;
       if (event.key !== "Escape") return;
       event.preventDefault();
       setOpen(false);

@@ -121,6 +121,11 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
     await page.keyboard.press("Enter");
     for (let n = 0; n < 12 && await page.locator("#ebt-sidebar-navigation").isVisible(); n++) {
       await page.keyboard.press("Tab");
+      const returnedToTrigger = await page.locator(".mobile-menu").evaluate(node => node === document.activeElement);
+      if (returnedToTrigger) {
+        await expect(page.locator("#ebt-sidebar-navigation"), "Tab must not leave the trigger focused behind the open panel").toBeHidden();
+        await expect(opener).toBeFocused();
+      }
     }
     await expect(page.locator("#ebt-sidebar-navigation")).toBeHidden();
     expect.soft(errors, "No uncaught application errors").toEqual([]);
