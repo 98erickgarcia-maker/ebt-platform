@@ -47,6 +47,8 @@ export type Note = {
 export type Conversation = {
   id: string;
   contactId: string;
+  contactName: string;
+  recipient: string;
   state: string;
   lastInboundAt: string | null;
   version: number;
@@ -106,13 +108,92 @@ export class ApiError extends Error {
 let csrf: string | undefined;
 let generation = 0;
 let accessFingerprint: string | undefined;
+let accessIdentity: string | undefined;
+let csrfRequest: { generation: number; promise: Promise<string> } | undefined;
 export function setAccess(me: Me) {
+  const identity = `${me.userId}|${me.tenantId}|${me.role}|${me.portfolio}`;
+  if (accessIdentity && accessIdentity !== identity) resetContext();
+  accessIdentity = identity;
   accessFingerprint = `${me.tenantId}|${me.role}|${me.portfolio}`;
 }
 export function resetContext() {
   csrf = undefined;
   accessFingerprint = undefined;
+  accessIdentity = undefined;
+  csrfRequest = undefined;
   generation++;
+}
+function assertCurrent(current: number) {
+  if (current !== generation)
+    throw new ApiError(0, "context_changed", "Contexto alterado.");
+}
+function apiPath(path: string): string {
+  const url = new URL(path, window.location.origin);
+  if (
+    url.origin !== window.location.origin ||
+    !url.pathname.startsWith("/api/")
+  )
+    throw new Error("Destino de API inválido.");
+  return url.pathname + url.search;
+}
+function checkScope(response: Response, current: number) {
+  assertCurrent(current);
+  const signature = response.headers.get("X-Access-Scope");
+  if (signature && accessFingerprint && signature !== accessFingerprint) {
+    resetContext();
+    window.dispatchEvent(new Event("ebt:access-changed"));
+    throw new ApiError(0, "context_changed", "Permissões alteradas.");
+  }
+}
+async function csrfToken(current: number): Promise<string> {
+  assertCurrent(current);
+  if (csrf) return csrf;
+  if (csrfRequest?.generation === current) return csrfRequest.promise;
+  const request = fetch("/api/security/csrf", {
+    credentials: "same-origin",
+    cache: "no-store",
+    redirect: "error",
+  })
+    .then(async (response) => {
+      assertCurrent(current);
+      if (!response.ok) throw new Error("Não foi possível validar a sessão.");
+      const payload = (await response.json()) as { token?: string };
+      assertCurrent(current);
+      if (typeof payload.token !== "string" || !payload.token)
+        throw new Error("Resposta de sessão inválida.");
+      csrf = payload.token;
+      return csrf;
+    })
+    .finally(() => {
+      if (csrfRequest?.promise === request) csrfRequest = undefined;
+    });
+  csrfRequest = { generation: current, promise: request };
+  return request;
+}
+async function responseError(
+  response: Response,
+  current: number,
+): Promise<never> {
+  const problem = (await response.json().catch(() => ({}))) as {
+    code?: string;
+    title?: string;
+    traceId?: string;
+  };
+  assertCurrent(current);
+  if (response.status === 401) {
+    resetContext();
+    window.dispatchEvent(new Event("ebt:unauthorized"));
+  }
+  if (problem.code === "csrf_invalid") {
+    csrf = undefined;
+    csrfRequest = undefined;
+  }
+  throw new ApiError(
+    response.status,
+    problem.code ?? "request_failed",
+    (problem.title ?? "A solicitação não pôde ser concluída.") +
+      (problem.traceId ? ` Código: ${problem.traceId}` : ""),
+  );
 }
 export async function api<T>(
   path: string,
@@ -120,24 +201,14 @@ export async function api<T>(
   body?: unknown,
   headers: Record<string, string> = {},
 ): Promise<T> {
-  const url = new URL(path, window.location.origin);
-  if (
-    url.origin !== window.location.origin ||
-    !url.pathname.startsWith("/api/")
-  )
-    throw new Error("Destino de API inválido.");
+  const destination = apiPath(path);
   const current = generation;
-  if (method !== "GET") {
+  method = method.toUpperCase();
+  headers = { ...headers };
+  if (!["GET", "HEAD", "OPTIONS"].includes(method)) {
     if (accessFingerprint)
       headers["X-Expected-Tenant"] = accessFingerprint.split("|")[0];
-    if (!csrf) {
-      const response = await fetch("/api/security/csrf", {
-        credentials: "same-origin",
-      });
-      if (!response.ok) throw new Error("Não foi possível validar a sessão.");
-      csrf = ((await response.json()) as { token: string }).token;
-    }
-    headers["X-CSRF-TOKEN"] = csrf!;
+    headers["X-CSRF-TOKEN"] = await csrfToken(current);
   }
   const isForm = body instanceof FormData;
   if (current !== generation)
@@ -146,60 +217,52 @@ export async function api<T>(
     headers["Content-Type"] = "application/json";
   let response: Response;
   try {
-    response = await fetch(url.pathname + url.search, {
+    response = await fetch(destination, {
       method,
       credentials: "same-origin",
+      cache: "no-store",
+      redirect: "error",
       headers,
       body:
         body === undefined ? undefined : isForm ? body : JSON.stringify(body),
     });
   } catch {
+    assertCurrent(current);
     throw new ApiError(
       0,
       "network_uncertain",
       "Não foi possível confirmar o resultado. Atualize o registro antes de repetir.",
     );
   }
-  if (current !== generation)
-    throw new ApiError(0, "context_changed", "Contexto alterado.");
-  const signature = response.headers.get("X-Access-Scope");
-  if (signature && accessFingerprint && signature !== accessFingerprint) {
-    resetContext();
-    window.dispatchEvent(new Event("ebt:access-changed"));
-    throw new ApiError(0, "context_changed", "Permissões alteradas.");
-  }
-  if (!response.ok) {
-    const problem = (await response.json().catch(() => ({}))) as {
-      code?: string;
-      title?: string;
-      traceId?: string;
-    };
-    if (response.status === 401)
-      window.dispatchEvent(new Event("ebt:unauthorized"));
-    throw new ApiError(
-      response.status,
-      problem.code ?? "request_failed",
-      (problem.title ?? "A solicitação não pôde ser concluída.") +
-        (problem.traceId ? ` Código: ${problem.traceId}` : ""),
-    );
-  }
+  checkScope(response, current);
+  if (!response.ok) return responseError(response, current);
   if (response.status === 204) return undefined as T;
-  return (await response.json()) as T;
+  const payload = (await response.json()) as T;
+  assertCurrent(current);
+  return payload;
 }
 export async function download(path: string): Promise<void> {
-  const response = await fetch(path, { credentials: "same-origin" });
-  if (!response.ok) {
-    const p = (await response.json()) as { title: string };
-    throw new Error(p.title);
-  }
+  const destination = apiPath(path);
+  const current = generation;
+  const response = await fetch(destination, {
+    credentials: "same-origin",
+    cache: "no-store",
+    redirect: "error",
+  });
+  checkScope(response, current);
+  if (!response.ok) return responseError(response, current);
   const blob = await response.blob();
+  assertCurrent(current);
   const url = URL.createObjectURL(blob);
-  const link = window.document.createElement("a");
-  const header = response.headers.get("content-disposition") ?? "";
-  link.download = header.match(/filename="?([^";]+)/)?.[1] ?? "documento";
-  link.href = url;
-  link.click();
-  URL.revokeObjectURL(url);
+  try {
+    const link = window.document.createElement("a");
+    const header = response.headers.get("content-disposition") ?? "";
+    link.download = header.match(/filename="?([^";]+)/)?.[1] ?? "documento";
+    link.href = url;
+    link.click();
+  } finally {
+    URL.revokeObjectURL(url);
+  }
 }
 export const route = "/api/connect/v1";
 export const stages = ["novo", "contato", "proposta", "ganho", "encerrado"];

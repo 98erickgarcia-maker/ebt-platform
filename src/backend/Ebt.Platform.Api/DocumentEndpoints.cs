@@ -36,7 +36,7 @@ public static class DocumentEndpoints
             access.RequireAdmin(); if (command.State is not ("approved" or "rejected")) throw new ApiFault(400, "invalid_review", "Escolha aprovar ou rejeitar.");
             await using var tx = await db.Lock("global:document-storage"); var doc = await Visible(id, access, db); Contract.Match(http.Request, doc.Version);
             var version = await db.DocumentVersions.SingleAsync(x => x.DocumentId == id && x.Number == doc.CurrentVersion);
-            if (command.State == "approved" && !app.Environment.IsDevelopment() && version.ScanState != "clean") throw new ApiFault(503, "document_scanner_unavailable", "A versão deve passar pela verificação de segurança antes da liberação.");
+            if (command.State == "approved") DocumentSafety.RequireRelease(app.Environment.IsDevelopment(), version.ScanState);
             version.ReviewState = command.State; version.ReviewReason = command.State == "rejected" ? Contract.Required(command.Reason, 2000, "Motivo da rejeição", true) : Contract.Optional(command.Reason, 2000, "Motivo", true);
             version.ReviewedBy = access.UserId; version.ReviewedAt = DateTimeOffset.UtcNow;
             doc.ReviewState = command.State; db.Record(access, "document." + command.State, id, http.TraceIdentifier); await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(View(doc));
@@ -46,6 +46,7 @@ public static class DocumentEndpoints
             var doc = await Visible(id, access, db);
             var version = await db.DocumentVersions.AsNoTracking().SingleOrDefaultAsync(x => x.DocumentId == id && x.Number == number) ?? throw ApiFault.NotFound();
             if (version.ReviewState != "approved" && !access.CanWrite) throw new ApiFault(403, "document_not_approved", "Esta versão aguarda revisão.");
+            DocumentSafety.RequireRelease(app.Environment.IsDevelopment(), version.ScanState);
             if (Convert.ToHexString(SHA256.HashData(version.Content)).ToLowerInvariant() != version.Sha256) throw new ApiFault(503, "document_integrity", "A integridade do arquivo precisa de conferência.");
             db.Record(access, "document.downloaded", id, http.TraceIdentifier); await db.SaveChangesAsync();
             return Results.File(version.Content, version.MediaType, version.FileName, enableRangeProcessing: false);
@@ -71,7 +72,7 @@ public static class DocumentEndpoints
             catch (DecoderFallbackException) { throw new ApiFault(400, "document_type", "O texto deve ser UTF-8 válido."); }
         }
         if (media == "") throw new ApiFault(400, "document_type", "Envie PDF ou texto UTF-8.");
-        var scanned = await CommercialScanner.Scan(bytes, http.RequestServices.GetRequiredService<IConfiguration>());
+        var scanned = await CommercialScanner.Scan(bytes, http.RequestServices.GetRequiredService<IConfiguration>(), http.RequestAborted);
         var title = Contract.Required(form["title"].ToString(), 200, "Título");
         Guid? taskId = null; if (!string.IsNullOrEmpty(form["taskId"])) { if (!Guid.TryParse(form["taskId"], out var task)) throw new ApiFault(400, "invalid_task", "Tarefa inválida."); taskId = task; }
         var sha = Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant(); var hash = Contract.Payload(new { title, taskId, name, sha });

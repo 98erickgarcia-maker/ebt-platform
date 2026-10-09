@@ -1,6 +1,8 @@
 # Estado de implementação do Connect
 
-**Estado vigente de 07/10/2026:** primeira entrega publicada e 26 verificações ao vivo aprovadas. [Acesso e provas](../../PASSO_A_PASSO_PUBLICACAO_CONNECT.md). Banco pago compartilhado preservado; valor variável autorizado posteriormente. Referências abaixo a host inexistente/F1/R$30 fixos descrevem o cenário anterior e foram superadas por esta publicação. Fluxo real de texto WazVox demonstrado na 0.1.5; scanner, restore Azure e aceite continuam pendentes. CI hospedada de build/protocolo/proxy/documentos aprovada para o checkpoint `92e4006`, conforme prova ao final.
+**Revisão vigente de 08/10/2026:** 17 PAC conferidos; R01–R05 e proteções de scanner/liberação aplicados em candidato isolado. CI no SHA `1fef14d4dc9a0ee7ac1ed9ffa6dbeccea48b7def` passou em build, 30 HTTP, sete SQL, 11 browser, ClamAV real/EICAR e dez verificações de restore. [Prova por versão e ambiente](../../evidencias/ci_pac_documental_20261008.json) e [sequência aplicada](../execucao/VERIFICACAO_SEQUENCIA_PAC_20261008.md). Scanner privado em Azure, PITR/certificado Azure e aceite operacional permanecem pendentes; nenhum gate integral foi promovido. O candidato está no [PR #13](https://github.com/98erickgarcia-maker/ebt-platform/pull/13), sem deploy desta revisão.
+
+**Histórico da publicação de 07/10/2026:** primeira entrega publicada e 26 verificações ao vivo aprovadas. [Acesso e provas](../../PASSO_A_PASSO_PUBLICACAO_CONNECT.md). Banco pago compartilhado preservado; valor variável autorizado posteriormente. Referências abaixo a host inexistente/F1/R$30 fixos descrevem o cenário anterior e foram superadas por esta publicação. Fluxo real de texto WazVox demonstrado na 0.1.5. CI hospedada de build/protocolo/proxy/documentos aprovada para o checkpoint `92e4006`, conforme prova ao final.
 
 
 07/10/2026. O pedido de programação substituiu a restrição anterior de planejamento. Código novo em `src/backend` e `src/frontend`, com fontes existentes preservadas. Estimativa mantida em 180h + 20h; não foi preenchido consumo fictício de horas.
@@ -23,18 +25,22 @@ O backlog e as 238 linhas da matriz documental são o plano-base, não o registr
 | Gate | Prova disponível | Estado honesto |
 |---|---|---|
 | G0 | Baseline de nove fontes e hashes preservados; implementação original e decisões | Baseline local registrada; não é cessão de direitos das fontes |
-| G1 | Build .NET/frontend, lockfiles, health, fixture SQL; CI de build/protocolo/proxy/documentos no SHA 92e4006 | Provas por cenário; CI aprovada, sem novo aceite operacional ou promoção integral do gate |
+| G1 | Build .NET/frontend, lockfiles, health, fixture SQL; CI integrada no SHA 1fef14d | Provas por cenário; CI aprovada, sem novo aceite operacional ou promoção integral do gate |
 | G-SEG | A/B/carteira/ID, CSRF, onboarding, revogação e SQL RLS; navegador troca contexto/perfil | QA sintético, limitado aos cenários registrados |
 | G-CRM | ID persistente, concorrência, histórico, importação e consumidor B | QA sintético, sem aceite operacional |
 | G-TASK | Próxima ação/encerramento/repetição/contador e jornada na tela | QA sintético; não inclui calendário externo |
 | G-MSG | Assinatura, ACK persistido, fila, A/B, eventos, unknown e reinício do adapter local; texto real WazVox na 0.1.5 | Recebimento, resposta, entrega e leitura demonstrados no WazVox; aceite operacional pendente. Meta direto não homologado |
-| G-GED | Versões/hashes/revisão/acesso e restore local | QA sintético; scanner real e restore Azure pendentes |
-| G-RC | Fontes, pacote, migration/restore local, guia e limites | Primeira entrega online; homologação externa/aceite pendentes |
+| G-GED | Versões/hashes/revisão/acesso, ClamAV real/EICAR e restore isolado na CI | QA sintético; scanner privado Azure e restore/certificado Azure pendentes |
+| G-RC | Fontes, migration/restore isolado, runtime recuperado, download/A-B/traceId e guia | Candidato em CI; homologação externa/aceite pendentes |
 | G-SITE / G-FLOW | Especificações anteriores preservadas | Adiados, fora deste recorte |
 
 Build, CI hospedada, autenticação real, demonstração sintética, aceite do usuário e publicação não são equivalentes. Não foi declarado que toda a plataforma/verticais do PDF está pronta.
 
 ## Próxima fronteira concreta
+
+Homologar scanner privado e PITR em destino Azure exclusivo, incluindo recuperação do certificado/keyring SQL cifrado, e obter aceite operacional. A fixture aprovada usa keyring de arquivos em Development. Ambiente desta revisão sem identidade/credenciais Azure configuradas; fonte atual de continuidade em [estado_continuidade.json](../../planejamento/estado_continuidade.json). As próximas provas devem registrar a própria versão/ambiente e preservar os outros schemas.
+
+## Histórico ao vivo de 07/10/2026
 
 26 checks ao vivo e sessão preservada após reinício. SQL: identidade limitada, keyring cifrado e catálogo dos outros schemas preservado. [Prova online](../../evidencias/connect_primeira_entrega_online.json).
 

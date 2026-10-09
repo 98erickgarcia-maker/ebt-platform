@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5187",
     "build": "tsc -b && vite build",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:unit": "tsc --ignoreConfig src/api.ts --outDir ../../tmp/frontend-unit --module nodenext --target es2022 --lib es2022,dom --skipLibCheck && node --test tests/*.test.mjs"
   },
   "dependencies": {
     "react": "19.3.0",

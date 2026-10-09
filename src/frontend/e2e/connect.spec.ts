@@ -15,6 +15,11 @@ async function login(page: Page, email = "operador@ebt.example") {
     page.getByRole("heading", { name: "Meu dia", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Atualizando dados…")).not.toBeVisible();
+  if (await page.getByLabel("Empresa", { exact: true }).inputValue() !== qa.tenantA) {
+    await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
+    await expect(page.locator(".alert.success")).toContainText("Empresa selecionada");
+  }
+  await expect(page.getByText("Atualizando dados…")).not.toBeVisible();
 }
 test("Desktop CRM journey: create, reload, note, next action, close, document", async ({
   page,
@@ -127,7 +132,11 @@ test("Permission change clears a loaded contact and removes write controls", asy
     .getByRole("button", { name: /Contato Exemplo A contato@cliente.example/ })
     .click();
   await expect(
-    page.getByRole("heading", { name: "Contato Exemplo A", exact: true, level: 1 }),
+    page.getByRole("heading", {
+      name: "Contato Exemplo A",
+      exact: true,
+      level: 1,
+    }),
   ).toBeVisible();
   const context = await browser.newContext();
   const adminPage = await context.newPage();
@@ -161,7 +170,11 @@ test("Permission change clears a loaded contact and removes write controls", asy
       ),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "Contato Exemplo A", exact: true, level: 1 }),
+      page.getByRole("heading", {
+        name: "Contato Exemplo A",
+        exact: true,
+        level: 1,
+      }),
     ).not.toBeVisible();
     await page
       .getByRole("button", { name: "Relacionamentos", exact: true })

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "reference_date_local": "2026-10-07",
+  "reference_date_local": "2026-10-08",
   "timezone": "America/Sao_Paulo",
   "family": "EBT Enterprise",
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
-  "current_scope": "auditoria de coerência, planejamento integral e ferramentas de continuidade; sem executar novos módulos",
+  "current_scope": "Implementação autorizada: 17 PAC conferidos, R01–R05 aprovados na CI; avanço PAC-11/PAC-12 com scanner real e recuperação isolada em CI",
   "budget": {
     "delivery_hours": 180,
     "reserve_hours": 20,
@@ -18,16 +18,16 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "planejamento/contrato/hashes verificados; checkpoint GitHub e tarefa Windows comprovados; CI registrada por SHA",
+  "review_status": "CI aprovada no SHA 1fef14d: build, 30 HTTP, sete SQL, 11 browser, ClamAV real/EICAR e dez verificações de restore isolado",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Scanner real, restore Azure e aceite permanecem pendentes nos registros. CI hospedada de build/protocolo/proxy/documentos aprovada no SHA 92e4006; consultar prova e versão vigente.",
+    "Scanner real e restore isolado aprovados na CI sintética; scanner privado Azure, PITR/certificado Azure e aceite operacional pendentes. Fonte: evidencias/ci_pac_documental_20261008.json.",
     "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Confirmar SHA remoto e checks do checkpoint; revisar o relatório de coerência e planejar o fechamento das provas pendentes do Connect sem alterar produto/produção neste pedido",
+  "next_authorized_step": "Conferir acesso ao Azure e preparar homologação do scanner privado e PITR em destino isolado, incluindo certificado/keyring SQL; registrar aceite operacional antes de promover gates ou extrair Core",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -38,5 +38,6 @@
   "checkpoint_configuration": "planejamento/continuidade_github.json",
   "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
   "automatic_chat_transfer": false,
-  "automatic_new_content_approval": false
+  "automatic_new_content_approval": false,
+  "sequence_review_source": "evidencias/verificacao_sequencia_pac_20261008.json"
 }
