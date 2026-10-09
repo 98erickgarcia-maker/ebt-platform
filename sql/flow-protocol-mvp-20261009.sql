@@ -41,4 +41,4 @@ BEGIN
   CONSTRAINT CK_FlowAction CHECK ([Action] IN ('created','start','complete'))
  );
 END;
-COMMIT;
+-- Grants are intentionally left for a separate reviewed deployment step.\nCOMMIT;
