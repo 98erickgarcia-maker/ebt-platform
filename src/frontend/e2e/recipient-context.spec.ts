@@ -64,7 +64,7 @@ test("R01: switching contacts does not display previous contact notes or tasks",
   await expect(
     page.getByRole("heading", { name: "Contato Exemplo A", level: 1 }),
   ).toBeVisible();
-  await expect(page.getByText("Apresentar o EBT Connect")).toBeVisible();
+  await expect(page.locator("section.card").filter({has:page.getByRole("heading",{name:"Tarefas do contato",exact:true})}).getByText("Apresentar o EBT Connect",{exact:true})).toBeVisible();
   await page
     .getByRole("button", { name: /Voltar aos relacionamentos/ })
     .click();
@@ -83,7 +83,7 @@ test("R01: switching contacts does not display previous contact notes or tasks",
     .getByRole("button", { name: "Abrir " + name, exact: true })
     .click();
   await expect(page.getByRole("heading", { name, level: 1 })).toBeVisible();
-  await expect(page.getByText("Apresentar o EBT Connect")).not.toBeVisible();
+  await expect(page.getByText("Apresentar o EBT Connect",{exact:true})).toHaveCount(0);
 });
 
 async function post(page: Page, url: string, body: unknown) {
