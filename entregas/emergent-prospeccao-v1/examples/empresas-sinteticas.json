@@ -1,0 +1,4 @@
+[
+  {"cnpj":"11.222.333/0001-81","company_name":"Empresa Exemplo A","city":"São Paulo","uf":"SP","cnae":"6201501","email":"comercial-a@example.com","phone":"5511999999999","status":"02","company_size":"Não informado"},
+  {"cnpj":"12.ABC.345/01DE-35","company_name":"Empresa Exemplo B","city":"Vitória","uf":"ES","cnae":"6201501","email":"comercial-b@example.com","phone":"5527999999999","status":"02","company_size":"Não informado"}
+]
