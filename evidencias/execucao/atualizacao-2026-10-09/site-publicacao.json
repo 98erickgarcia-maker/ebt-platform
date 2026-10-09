@@ -1,0 +1,2127 @@
+{
+  "verified_at_utc": "2026-10-09T09:25:27.615461+00:00",
+  "status": "blocked",
+  "production_verified": false,
+  "mode": "publication",
+  "origins": [
+    "https://ebtenterprise.com.br",
+    "https://www.ebtenterprise.com.br"
+  ],
+  "package_html_documents": 18,
+  "resources_per_origin": 58,
+  "middleware_checks": "required",
+  "expected_site_header": "shared-static-20261006",
+  "required_security_headers": {
+    "X-Content-Type-Options": "nosniff",
+    "Content-Security-Policy": {
+      "connect-src": [
+        "'none'"
+      ],
+      "object-src": [
+        "'none'"
+      ],
+      "form-action": [
+        "'none'"
+      ],
+      "frame-ancestors": [
+        "'self'"
+      ]
+    }
+  },
+  "network_policy": "default_proxy_and_tls; no bypass; GET/HEAD only",
+  "summary": {
+    "passed": 0,
+    "failed": 0,
+    "blocked": 232
+  },
+  "results": [
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/404.html",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/404.html",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/404/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/404/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/aplicacoes/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/aplicacoes/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/EBT_Enterprise_Apresentacao_Comercial.pdf",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/EBT_Enterprise_Apresentacao_Comercial.pdf",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-agenda-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-agenda-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-certificados-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-certificados-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-funil-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-funil-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-funil.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-funil.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-funil.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-funil.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-historico-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-historico-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-historico.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-historico.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-historico.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-historico.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-presenca-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-presenca-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-compartilhamento.jpg",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-compartilhamento.jpg",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-240.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-240.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-480.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-480.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-oficial.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-oficial.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-1122.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-1122.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-560.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-560.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-840.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-840.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane.jpeg",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane.jpeg",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/favicon.svg",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/favicon.svg",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/no-script.css",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/no-script.css",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/premium.css",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/premium.css",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/retry.js",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/retry.js",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/site-data.js",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/site-data.js",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/site.js",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/site.js",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/styles.css",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/assets/styles.css",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/consultoria/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/consultoria/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/contato/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/contato/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/organizar-antes-de-automatizar/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/organizar-antes-de-automatizar/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/proxima-acao-no-comercial/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/proxima-acao-no-comercial/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/site-ou-crm-por-onde-comecar/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/conteudos/site-ou-crm-por-onde-comecar/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/crm/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/crm/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/metodo/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/metodo/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/privacidade/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/privacidade/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/robots.txt",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/robots.txt",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sistemas/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sistemas/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sitemap.xml",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sitemap.xml",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sites/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sites/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sobre/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/sobre/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/solucoes/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/solucoes/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/unavailable.html",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/unavailable.html",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/__ebt_publication_probe__",
+      "method": "GET",
+      "kind": "missing_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/__ebt_publication_probe__",
+      "method": "HEAD",
+      "kind": "missing_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/health",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/health",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/health/ready",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/health/ready",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/auth/me",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/leads",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/api/leads",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/swagger/index.html",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/swagger/index.html",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/Account/Login",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://ebtenterprise.com.br",
+      "path": "/Account/Login",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/404.html",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/404.html",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/404/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/404/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/aplicacoes/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/aplicacoes/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/EBT_Enterprise_Apresentacao_Comercial.pdf",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/EBT_Enterprise_Apresentacao_Comercial.pdf",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-agenda-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-agenda-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-agenda.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-certificados-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-certificados-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-certificados.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-funil-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-funil-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-funil.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-funil.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-funil.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-funil.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-historico-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-historico-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-historico.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-historico.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-historico.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-historico.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-presenca-800.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-presenca-800.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/crm-presenca.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-compartilhamento.jpg",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-compartilhamento.jpg",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-240.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-240.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-480.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-480.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-oficial.png",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/ebt-logo-oficial.png",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-1122.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-1122.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-560.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-560.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-840.webp",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane-840.webp",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane.jpeg",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/erick-thaiane.jpeg",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/favicon.svg",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/favicon.svg",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/no-script.css",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/no-script.css",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/premium.css",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/premium.css",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/retry.js",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/retry.js",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/site-data.js",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/site-data.js",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/site.js",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/site.js",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/styles.css",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/assets/styles.css",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/consultoria/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/consultoria/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/contato/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/contato/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/organizar-antes-de-automatizar/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/organizar-antes-de-automatizar/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/proxima-acao-no-comercial/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/proxima-acao-no-comercial/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/site-ou-crm-por-onde-comecar/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/conteudos/site-ou-crm-por-onde-comecar/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/crm/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/crm/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/metodo/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/metodo/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/privacidade/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/privacidade/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/robots.txt",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/robots.txt",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sistemas/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sistemas/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sitemap.xml",
+      "method": "GET",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sitemap.xml",
+      "method": "HEAD",
+      "kind": "asset",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sites/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sites/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sobre/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/sobre/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/solucoes/",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/solucoes/",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/unavailable.html",
+      "method": "GET",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/unavailable.html",
+      "method": "HEAD",
+      "kind": "document",
+      "expected_status": 200,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/__ebt_publication_probe__",
+      "method": "GET",
+      "kind": "missing_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/__ebt_publication_probe__",
+      "method": "HEAD",
+      "kind": "missing_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/health",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/health",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/health/ready",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/health/ready",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/auth/me",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/leads",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/api/leads",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/swagger/index.html",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/swagger/index.html",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/Account/Login",
+      "method": "GET",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    },
+    {
+      "origin": "https://www.ebtenterprise.com.br",
+      "path": "/Account/Login",
+      "method": "HEAD",
+      "kind": "anonymous_crm_route",
+      "expected_status": 404,
+      "status": "blocked",
+      "reason": "proxy_connect_denied"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "verified_at_utc": "2026-10-09T09:25:29.786997+00:00",
+  "project": "app-mail",
+  "validation_results": [
+    {
+      "check": "offline_regressions",
+      "result": "passed",
+      "count": 22,
+      "command": "python -m unittest discover -s backend/tests -p test_safety_regressions.py -v",
+      "executed_by": "mail_today_audit"
+    },
+    {
+      "check": "python_compileall",
+      "result": "passed",
+      "executed_by": "mail_today_audit"
+    },
+    {
+      "check": "frontend_build_without_preview_plugins",
+      "result": "passed",
+      "executed_by": "mail_today_audit",
+      "modules_transformed": 1833,
+      "source_copy": "/tmp/app-mail-frontend-verify"
+    },
+    {
+      "check": "temporary_build_source_equality",
+      "result": "passed",
+      "files_compared": 70,
+      "differences": [],
+      "executed_by": "root"
+    }
+  ],
+  "original_installation": "blocked by React peer conflict and proxy denial for assets.emergent.sh; no lockfile in checkout",
+  "limitations": [
+    "Microsoft login/Graph/MongoDB not tested live",
+    "original frontend installation/build not fully reproducible in this environment",
+    "backend integration suite not executed; database remains unchanged",
+    "no deployment"
+  ],
+  "authentication_effect": "legacy sessions without auth_provider require new login after deployment",
+  "independent_review": "platform_today_audit reviewed security/contract diff; stale legacy-test expectations were corrected",
+  "artifacts": [
+    {
+      "path": "build/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "build/assets/index-DFpSwWf_.css",
+      "sha256": "60a9d02ae0149ec3b8570a75e5b712aa365b275837eb8f6feccca22338673e92",
+      "bytes": 72721
+    },
+    {
+      "path": "build/assets/index-LORWgLuu.js",
+      "sha256": "fc3ce2a4b6f7f6133f9d9960172d61302817990147de82f787dd9c2a2fbe1280",
+      "bytes": 479087
+    },
+    {
+      "path": "build/index.html",
+      "sha256": "32e6137b99b1cf6aa505742e77c357c7c3fdaab9c5198dac51469d508fe849a4",
+      "bytes": 5523
+    }
+  ]
+}

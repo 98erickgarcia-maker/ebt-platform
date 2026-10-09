@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "errors": [],
+  "total_h": 200,
+  "entregas_h": 180,
+  "reserva_h": 20,
+  "total_itens": 77,
+  "entregas": 72,
+  "reservas": 5,
+  "local_links": 184,
+  "pdf_pages": 40,
+  "pdf_sha256": "31eb859ae71989765fc7bff93fc2c866d82bf405ccc5f736cc98528008bd7b35",
+  "verification_scope": "integridade documental, orçamento, dependências, links e conteúdo PDF; não testa aplicações",
+  "visual_review": "40 páginas renderizadas e inspecionadas; sem corte, sobreposição, página vazia ou tabela fora dos limites.",
+  "visual_review_passed": true,
+  "layout_bounds_issues": [],
+  "credential_pattern_hits": [],
+  "files_checked": 181,
+  "checked_at_utc": "2026-10-09T09:20:01.951356+00:00"
+}

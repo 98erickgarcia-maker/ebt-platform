@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-10-09T09:16:21.710081+00:00",
+  "source": "native git ls-remote --symref origin HEAD, scoped HTTPS Git proxy; no token displayed",
+  "repositories": [
+    {
+      "repository": "ebt-platform",
+      "head_at_audit": "fdc3a9fa76c713c41323739ba816491293a6381a",
+      "remote_head_checked_today": "fdc3a9fa76c713c41323739ba816491293a6381a",
+      "matches_remote": true
+    },
+    {
+      "repository": "ebt-enterprise-site",
+      "head_at_audit": "9c5e12c84f7dd7dff8aeb99314ce9ff505d5d4f7",
+      "remote_head_checked_today": "9c5e12c84f7dd7dff8aeb99314ce9ff505d5d4f7",
+      "matches_remote": true
+    },
+    {
+      "repository": "app-mail",
+      "head_at_audit": "00939998ed18313941af8646795e5684ba7e93a5",
+      "remote_head_checked_today": "00939998ed18313941af8646795e5684ba7e93a5",
+      "matches_remote": true
+    }
+  ],
+  "github_ci_state": "not_checked",
+  "production_state": "not_verified_network_blocked",
+  "product_modules_implemented": false
+}

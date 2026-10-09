@@ -1,0 +1,197 @@
+{
+  "verified_at_utc": "2026-10-09T09:21:48.913565+00:00",
+  "scope": "local package only",
+  "production_verified": false,
+  "viewports": [
+    {
+      "width": 390,
+      "pages": [
+        {
+          "path": "/aplicacoes/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/consultoria/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/contato/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/organizar-antes-de-automatizar/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/proxima-acao-no-comercial/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/site-ou-crm-por-onde-comecar/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/crm/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/metodo/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/privacidade/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/sistemas/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/sites/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/sobre/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/solucoes/",
+          "status": 200,
+          "overflow_px": 0
+        }
+      ],
+      "interactions": [
+        "explorer Escape/focus",
+        "mobile menu Escape/focus",
+        "five solution selectors",
+        "demo modal Escape/focus",
+        "contact validation",
+        "context preservation",
+        "safe preview",
+        "WhatsApp href without sending",
+        "clipboard",
+        "edit focus",
+        "no network/storage"
+      ]
+    },
+    {
+      "width": 1440,
+      "pages": [
+        {
+          "path": "/aplicacoes/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/consultoria/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/contato/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/organizar-antes-de-automatizar/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/proxima-acao-no-comercial/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/conteudos/site-ou-crm-por-onde-comecar/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/crm/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/metodo/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/privacidade/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/sistemas/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/sites/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/sobre/",
+          "status": 200,
+          "overflow_px": 0
+        },
+        {
+          "path": "/solucoes/",
+          "status": 200,
+          "overflow_px": 0
+        }
+      ],
+      "interactions": [
+        "explorer Escape/focus",
+        "desktop navigation",
+        "five solution selectors",
+        "demo modal Escape/focus",
+        "contact validation",
+        "context preservation",
+        "safe preview",
+        "WhatsApp href without sending",
+        "clipboard",
+        "edit focus",
+        "no network/storage"
+      ]
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "browser_version": "151.0.7922.173",
+  "status": "passed"
+}

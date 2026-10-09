@@ -5,7 +5,7 @@
   "arquivos_gerados": [
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
-      "sha256": "6b8fbf2ed7a1b719ac8aea76155a95877c8f8572253d63f06497c75046f50e12"
+      "sha256": "827e6bd39cd4d91ad6d89168e1061a4c4788214256a7fb834ac0db90a97fa613"
     },
     {
       "path": "README.md",
@@ -57,7 +57,7 @@
     },
     {
       "path": "docs/execucao/COMO_EXECUTAR_E_CONTINUAR.md",
-      "sha256": "d49ee6eeb4f6f9145d3485d5bfcbb69fa4849de9dc9abda435e27964788677e8"
+      "sha256": "403d10d5820a8a6b9eb87447fc205234b7474e342e3614b1c884a4b649e9a1b5"
     },
     {
       "path": "docs/execucao/DEPENDENCIAS.md",
@@ -557,7 +557,7 @@
     },
     {
       "path": "evidencias/execucao/README.md",
-      "sha256": "439bc4215cf06b4dcb697c2013e01e9ad867a229ce6398c0a1270b4b3b1e6b0a"
+      "sha256": "d49a79618b4ef3c9c67228c256708333ef42e2615ff5c03efa9340eab5194d9d"
     },
     {
       "path": "planejamento/cenarios_verificacao.json",
@@ -631,11 +631,11 @@
     },
     {
       "path": "scripts/conteudo_organizacao.py",
-      "sha256": "2c4edfacf6a2405999b370b7a588dcb786d9fe2d16152051f9b65d0274d40914"
+      "sha256": "f84d4323aa2cdd8d9ec802139147408108ccf05e3e28a1d8c4da327e4c4c05db"
     },
     {
       "path": "scripts/organizar_projeto.py",
-      "sha256": "cab49c3f5ee73180e314da1d8acf166a2e4f10619bcbce5b5e243b0cb8aac457"
+      "sha256": "d4bc0d2c661cc5b46e3126135454e53764c639bbe336d15a8d364d42a59146c9"
     },
     {
       "path": "scripts/pacotes_codex.py",

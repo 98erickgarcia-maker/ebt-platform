@@ -1,6 +1,6 @@
 """Confere orçamento, dependências, links e integridade do plano, sem fontes locais."""
 from pathlib import Path
-import hashlib, json, re
+import hashlib, json, re, sys
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -70,7 +70,8 @@ def main():
         if previous.get('pdf_sha256')==report['pdf_sha256']:
             for key in ('visual_review','visual_review_passed','layout_bounds_issues','credential_pattern_hits','files_checked'):
                 if key in previous: report[key]=previous[key]
-    (ROOT/'evidencias/verificacao_plano.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+    if '--no-write' not in sys.argv:
+        (ROOT/'evidencias/verificacao_plano.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if errors: raise SystemExit(1)
 

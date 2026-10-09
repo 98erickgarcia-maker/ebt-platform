@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://ebtenterprise.com.br/",
+    "checked_at_utc": "2026-10-09T09:11:19.838534+00:00",
+    "result": "connection_error",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.ebtenterprise.com.br/",
+    "checked_at_utc": "2026-10-09T09:11:19.856612+00:00",
+    "result": "connection_error",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://ebt-site-prod.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io/",
+    "checked_at_utc": "2026-10-09T09:11:19.859894+00:00",
+    "result": "connection_error",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  }
+]

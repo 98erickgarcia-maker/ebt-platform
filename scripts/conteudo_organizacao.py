@@ -402,7 +402,13 @@ DOCUMENTS.update({
 
 ## Estado atual
 
-O repositório contém planejamento finalizado e detalhado. Os 77 itens de produto estão planejados; a documentação concluída não os marca executados. Começar por P01-01 quando houver solicitação de implementar o plano.
+O repositório contém planejamento finalizado e detalhado. Os 77 itens permanecem planejados no backlog; os estados ainda não foram reconciliados com os registros documentais P01-01 a P01-06 de 07/10/2026. Os módulos do produto ainda não foram implementados.
+
+Ao retomar, consultar a [baseline de 07/10](PAC01_BASELINE_EBT_CONNECT_2026-10-07.md), os registros em evidencias/execucao/P01-01 a P01-06 e o [fechamento do G0](../../evidencias/execucao/P01-06/registro.md). O G0 documental libera a fundação PAC-02 condicionado ao CI documental verde do commit efetivamente mesclado. Ele não comprova runtime, segurança multiempresa ou produção.
+
+Antes de alterar estados, reconciliar os critérios antigos com a fonte escolhida: P01-01 ainda exige a árvore local modificada/não rastreada, excluída da baseline remota; P01-04 inclui consumidor, cache e efeito após salvar, cuja prova depende da implementação. Preservar essas pendências e as horas reais sem preenchimento por inferência.
+
+Quando a implementação da fundação estiver em escopo e a condição do G0 estiver verificada, seguir PAC-02A (estrutura), PAC-02B (Design System e shell) e PAC-02C (configuração e dados sintéticos). Não reiniciar PAC-01 por rotina; reabrir o gate apenas se mudar fonte, recorte ou condição relevante. Esta orientação atualiza a continuidade documental, sem executar módulos.
 
 ## Uma entrega por recorte
 

@@ -1,0 +1,166 @@
+{
+  "verified_at_utc": "2026-10-09T09:12:03.597488+00:00",
+  "requested_review_date": "2026-10-09",
+  "repository": "/workspace/ebt-enterprise-site",
+  "commit": "9c5e12c84f7dd7dff8aeb99314ce9ff505d5d4f7",
+  "source_tree_modified": true,
+  "built_from": "cópia byte a byte dos 46 arquivos rastreados de site/ no commit atual",
+  "source_copy": "/workspace/ebt-enterprise-site/qa/atualizacao-2026-10-09/source-site",
+  "original_dist_preexisted": false,
+  "results": [
+    {
+      "name": "build",
+      "command": "node scripts/build.mjs",
+      "cwd": "/workspace/ebt-enterprise-site/qa/atualizacao-2026-10-09/source-site",
+      "exit_code": 0,
+      "output": "EBT: 15 páginas, página 404 e recursos gerados."
+    },
+    {
+      "name": "check",
+      "command": "node scripts/check.mjs",
+      "cwd": "/workspace/ebt-enterprise-site/qa/atualizacao-2026-10-09/source-site",
+      "exit_code": 0,
+      "output": "OK: 15 páginas; títulos, links, recursos, âncoras, WhatsApp, apresentação institucional completa e contato sem armazenamento."
+    },
+    {
+      "name": "javascript_syntax",
+      "command": "node --check [todos os .mjs/.js da cópia e saída gerada]",
+      "files": 15,
+      "exit_code": 0,
+      "failures": []
+    },
+    {
+      "name": "html_count_and_404",
+      "html_documents": 18,
+      "404_files_equal": true,
+      "original_photo_sha256_matches": true,
+      "exit_code": 0
+    }
+  ],
+  "artifact": {
+    "path": "/workspace/ebt-enterprise-site/qa/atualizacao-2026-10-09/ebt-static-site-2026-10-09.zip",
+    "sha256": "b3ab3ad091e3a46108df04c9cc22748dae79051388df85037fa6946d8d6b2bbb",
+    "bytes": 4260196,
+    "archive_root": "ebt-public/",
+    "files": 52,
+    "html_documents": 18,
+    "contents": "somente arquivos estáticos de site/dist; não contém binários .NET, configuração do CRM, SQL ou credenciais"
+  },
+  "editorial_status": {
+    "revision_commit": "c4463b3",
+    "revision_date": "2026-10-06",
+    "404_consistency_commit": "9c5e12c",
+    "scope": "15 páginas públicas, 404.html, 404/index.html e unavailable.html",
+    "trajectory_content": "Nossa trajetória já contém 6 parágrafos no código; a indicação de pendência no README e plano de implementação está desatualizada"
+  },
+  "shared_host_static_review": {
+    "project": "shared-host/Ebt.StaticHost",
+    "target_framework": "net10.0",
+    "enable_setting": "EbtPublicSite:Enabled",
+    "served_directory": "ebt-public",
+    "hosts": [
+      "ebtenterprise.com.br",
+      "www.ebtenterprise.com.br"
+    ],
+    "site_header": "X-EBT-Site: shared-static-20261006",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "other_methods_status": 405,
+    "unknown_routes_status": 404,
+    "asset_cache_seconds": 300,
+    "authentication_boundary": "roteamento estático por host exato precede pipeline CRM",
+    "verification": "somente inspeção do código; não houve build/execução .NET nem teste do middleware em produção"
+  },
+  "public_state": "Não verificado em rede nesta tarefa; documentos locais registram preparação/revisão de 06/10, mas não provam atualização atual em produção.",
+  "limits": [
+    "Nenhuma publicação",
+    "Produção inacessível por política do proxy: CONNECT 403",
+    "Sem build/execução .NET da camada compartilhada",
+    "Sem comparação do Git remoto",
+    "Middleware/header/isolation real da produção não comprovados pelo smoke local"
+  ],
+  "real_pending": [
+    "Liberar hosts EBT pela configuração suportada do ambiente",
+    "Reexecutar scripts/verificar_publicacao.py nos defaults raiz/www e obter igualdade de todos os recursos",
+    "Confirmar saúde e acesso anônimo do CRM no host próprio",
+    "Publicar somente se existir diferença aprovada em relação à produção"
+  ],
+  "additional_verified_at_utc": "2026-10-09T09:26:35.056257+00:00",
+  "initial_source_tree_modified": false,
+  "tracked_changes_authorized": [
+    "site/README.md (correção da indicação desatualizada de história pendente)",
+    "scripts/verificar_publicacao.py (novo utilitário de verificação GET/HEAD)"
+  ],
+  "site_product_sources_changed": false,
+  "additional_verification": {
+    "http_local": {
+      "status": "passed",
+      "summary": {
+        "passed": 104,
+        "failed": 0,
+        "blocked": 0
+      },
+      "production_verified": false,
+      "report": "http-local.json"
+    },
+    "browser": {
+      "status": "passed",
+      "widths": [
+        390,
+        1440
+      ],
+      "pages_per_width": [
+        15,
+        15
+      ],
+      "page_errors": [],
+      "external_requests": [],
+      "report": "browser-smoke.json",
+      "visual_observation": "Nas capturas do Chromium Linux, alguns glifos de seta aparecem como quadrados. Layout e interações passaram; não houve alteração de estilos/assets."
+    },
+    "utility_regressions": {
+      "status": "passed",
+      "tests": 8,
+      "report": "utility-tests.txt",
+      "note": "Classificação de erros simulada somente como teste unitário; HTTP local real para checksum e indisponibilidade. Não foram simulados cabeçalhos de produção."
+    },
+    "production": {
+      "status": "blocked",
+      "summary": {
+        "passed": 0,
+        "failed": 0,
+        "blocked": 232
+      },
+      "production_verified": false,
+      "network_reason": "proxy_connect_denied",
+      "report": "publicacao-production.json",
+      "note": "Uma tentativa GET por origem; após falha CONNECT, demais verificações marcadas blocked sem novas tentativas.",
+      "required_security_headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": {
+          "connect-src": [
+            "'none'"
+          ],
+          "object-src": [
+            "'none'"
+          ],
+          "form-action": [
+            "'none'"
+          ],
+          "frame-ancestors": [
+            "'self'"
+          ]
+        }
+      }
+    },
+    "security_header_negative_test": {
+      "status": "passed",
+      "tests": 1,
+      "command": "python qa/atualizacao-2026-10-09/utility_tests.py PublicationTests.test_missing_security_headers_cannot_pass",
+      "result": "cabeçalhos de segurança ausentes: nosniff e as quatro diretivas CSP não aprovados",
+      "scope": "teste unitário da validação; não representa prova de cabeçalho real em produção"
+    }
+  }
+}

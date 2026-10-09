@@ -1,0 +1,27 @@
+{
+  "config": {
+    "network": {
+      "allowed_domains": [
+        "ebtenterprise.com.br",
+        "www.ebtenterprise.com.br",
+        "ebt-site-prod.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+        "management.azure.com",
+        "login.microsoftonline.com",
+        "assets.emergent.sh"
+      ]
+    },
+    "start_skill": "Trabalhe nos checkouts existentes /workspace/ebt-enterprise-site, /workspace/ebt-platform e /workspace/app-mail. Não crie worktrees sem pedido explícito. Leia AGENTS e a baseline documental EBT Connect de 07/10 antes da fundação. Confira git status e as versões remotas; preserve alterações do usuário. Para Platform execute python scripts/verificar_plano.py --no-write e python scripts/verificar_organizacao.py --no-write. Para site use node scripts/build.mjs e node scripts/check.mjs numa cópia isolada de site/; consulte o pacote e relatório qa/atualizacao-2026-10-09. Com rede liberada, use scripts/verificar_publicacao.py contra raiz/www com o pacote atual, sem desabilitar TLS/proxy. Registre evidência da execução e confira acesso Azure antes de publicar. Não execute Publish-SharedAzure.ps1 como atualização editorial: é implantação inicial/retomada e exige diários ausentes desta cópia. Siga as metas documentadas em docs/execucao/ATUALIZACAO_EBT_2026-10-09.md. Continue etapas independentes quando uma integração estiver indisponível. Não declare publicação com base em build local. Não rode testes app-mail contra banco existente; use banco isolado e teste envio com doubles. O opt-in de login local, se necessário, só é permitido em development e deve permanecer desabilitado em produção."
+  },
+  "save_status": "not_saved",
+  "reason": "update_environment_config_draft returned draft_not_editable / CONFLICT; read-back confirms unchanged revision 1",
+  "azure_requirement": "Autenticação Azure autorizada para consultar a aplicação existente e seu rollback antes de publicação; nenhuma identidade está configurada neste ambiente. Não colocar credenciais neste arquivo ou no chat.",
+  "created_at_utc": "2026-10-09T09:15:38.784322+00:00",
+  "network_destination_purposes": {
+    "ebtenterprise.com.br": "comparação pública do site",
+    "www.ebtenterprise.com.br": "comparação pública do site",
+    "ebt-site-prod.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io": "consulta do destino Azure histórico, sem inferir destino atual de atualização",
+    "management.azure.com": "consulta e atualização autorizada da aplicação Azure existente",
+    "login.microsoftonline.com": "autenticação Azure configurada pelo ambiente",
+    "assets.emergent.sh": "dependências de desenvolvimento declaradas pelo frontend da central de e-mail; instalação original bloqueada pelo proxy"
+  }
+}
