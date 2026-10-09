@@ -16,7 +16,7 @@ Os commits de R01/R02 e do backend R04/R05 foram selecionados da mesma base `efb
 
 Backend Debug e frontend compilados. SQL/HTTP executado em banco novo `EbtPlatformQa_Review20261008`, local, com senha/canais sintéticos exclusivos: 27/27 cenários aprovados. O teste não envia ao provedor. Os testes de browser foram ampliados para latência, erro HTTP, mais de 25 contatos, filtro e bloqueio de destinatário não identificado; resultado final registrado na evidência da revisão.
 
-## Próxima parte
+## Sequência planejada após a parte 1 (concluída abaixo)
 
 Completar R03 (mudança de carteira de contato com canal) e a interface de inventário/revogação e convite para conta existente. Repetir negativas pertinentes e revisar o diff antes do checkpoint. Continuidade deve registrar os hashes efetivamente revisados, sem desligar seu controle para esconder a falha de CI.
 
@@ -34,9 +34,9 @@ Verificação final desta parte: 27/27 SQL/HTTP, 7/7 cenários focados R02-R05, 
 
 A parte 1 foi salva em `e34ad441bb7ad81b1ec641dae39d14dcd1935ede`: [build 37870433485](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37870433485) e [continuidade 37870433478](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37870433478) aprovados.
 
-## Próximo incremento de segurança do cliente
+## Regressões reproduzidas antes da parte 3
 
-A seleção de testes do PR 9 reproduziu seis falhas em sete casos no cliente atual: JSON tardio, troca de usuário com mesmo tenant/perfil, download após logout, destino externo de download, CSRF antigo e erro 401 de sessão anterior. O candidato será selecionado somente para este cliente e seus testes; nenhum runtime/scanner alternativo foi importado. Essas falhas ficam abertas até o próximo incremento testado.
+A seleção de testes do PR 9 reproduziu seis falhas em sete casos no cliente atual: JSON tardio, troca de usuário com mesmo tenant/perfil, download após logout, destino externo de download, CSRF antigo e erro 401 de sessão anterior. O candidato será selecionado somente para este cliente e seus testes; nenhum runtime/scanner alternativo foi importado. As falhas foram encerradas nos cenários da parte 3 descrita abaixo.
 
 ## Parte 3 — proteção de sessão e downloads
 
@@ -53,3 +53,15 @@ A parte 2 foi salva em `e21fd82140a7af17868d1441985e7a86b78252e1`: [build 378720
 R01–R05 receberam correções e provas nos cenários descritos. Nenhum erro foi detectado na rodada final desses cenários. Isso não demonstra perfeição da Enterprise completa, scanner privado real, restore Azure isolado, aceite de usuário, Meta direto ou canais adicionais. Manter 180h + 20h, sem horas reais fictícias.
 
 Próximo recorte: conferir a versão final, fechar scanner privado com prova por versão, ensaiar restore em destino Azure isolado com hashes e obter aceite operacional. Preparar cada recorte com seus critérios/rollback e autorização vigente; não extrair todo o Core ou iniciar novos módulos por inferência. A família Enterprise e seus produtos permanecem íntegros.
+
+O checkpoint passou 16/16 testes. JavaScript (.js/.mjs/.cjs) usa revisão UTF-8 e hashes canônicos, mantendo recusa de segredos, NUL e UTF-8 inválido.
+
+Nova atualização concorrente: `codex/ebt-enterprise-continuity-pac-review-20261008`, SHA `f8b00fde`. CI de build passou, mas o job QA falhou em confirmar a versão do ClamAV real (run 37872942384). Não foi incorporada a homologação de scanner ou restore dessa branch. O protocolo do scanner e a guarda de liberação são avaliados separadamente a partir de `cf206647`.
+
+## Parte 4 — scanner e liberação de documentos
+
+A regressão reproduziu `stream: OK` sem terminador como aprovação indevida. A correção exige terminador NUL e resposta completa; resposta incompleta/erro indisponibiliza a liberação, detecção de malware retorna bloqueio. O cancelamento da requisição alcança o scanner. Aprovação e download verificam o estado de scan: produção requer `clean`; Development permite apenas `clean`/`not_scanned`, nunca `infected`/`error`.
+
+Selecionados CommercialScanner, DocumentSafety e DocumentEndpoints de `cf206647`; o teste de protocolo foi ampliado para conferir código/status de erro. Não foram importados o workflow de SQL/ClamAV real ou o restore do candidato concorrente. Provas: 10/10 cenários TCP/guarda simulados, backend Debug/Release sem erros/avisos, 27/27 SQL/HTTP repetidos na versão corrigida. O CI passa a executar os dez cenários do scanner. Scanner real privado e restauração Azure continuam pendentes.
+
+A parte 3 foi salva em `9aeed36f558c435509d4256d20d1ac19612f32f7`, com [build aprovado](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873167479) e [continuidade aprovada](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873167432). Conferir o último SHA no recibo e remoto após a parte 4.

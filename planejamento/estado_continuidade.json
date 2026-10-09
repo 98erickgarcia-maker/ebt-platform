@@ -18,11 +18,11 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Três incrementos verificados: R01-R05 e proteção de sessão do cliente; 27+7 SQL/HTTP, 16 browser finais, 9 unitários, 17 protocolo, 10 proxy. CI das partes 1 e 2 aprovada por SHA; conferir final.",
+  "review_status": "Quatro incrementos verificados: R01-R05, segurança de sessão/downloads e scanner fail-closed/liberação; 27+7 SQL/HTTP, 16 browser, 9 unitários, 10 scanner simulados, 16 checkpoint, 17 protocolo, 10 proxy. Partes 1-3 com CI aprovado por SHA; conferir parte 4.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Build/continuidade das partes 1 e 2 aprovados em e34ad441 e e21fd821; SQL/browser são provas locais sintéticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
+    "Partes 1-3 com build/continuidade aprovados por SHA; SQL/browser e protocolo do scanner usam fixtures sintéticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
     "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"

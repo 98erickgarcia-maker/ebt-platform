@@ -75,7 +75,35 @@
       },
       "frontend_build": "passed",
       "npm_audit_production_vulnerabilities": 0,
-      "ci_added": "npm run test:unit in Build EBT Connect; SQL/browser remain local evidence"
+      "ci_added": "npm run test:unit in Build EBT Connect; SQL/browser remain local evidence",
+      "checkpoint_tests": {
+        "passed": 16,
+        "total": 16
+      },
+      "checkpoint_change": "JavaScript UTF-8 review includes .js/.mjs/.cjs; secret/NUL/invalid UTF-8 rejection maintained"
+    },
+    {
+      "id": 4,
+      "scope": "Scanner framing fail-closed, request cancellation and document release guard",
+      "source_commit": "cf2066472bae474ddf610488816e99b95cea9830",
+      "baseline": "Unterminated stream: OK incorrectly accepted; regression test failed before correction",
+      "scanner_protocol_and_release": {
+        "passed": 10,
+        "total": 10,
+        "fixture": "synthetic loopback TCP; no antivirus engine",
+        "source": "tests/WazVox.ProtocolTests/ScannerChecks.cs"
+      },
+      "limitations": [
+        "No real ClamAV engine certification",
+        "No Azure recovery test",
+        "Synthetic localhost QA; not operational acceptance"
+      ],
+      "sql_http_regression": {
+        "passed": 27,
+        "total": 27,
+        "source": "evidencias/testes_connect_sql_http.json"
+      },
+      "backend_build": "Debug and Release passed; zero warnings/errors"
     }
   ],
   "budget": {
@@ -107,5 +135,21 @@
     "continuity_run": 37872064449,
     "conclusion": "success"
   },
-  "original_sources_proof": "evidencias/fontes_originais_preservadas_20261008.json"
+  "original_sources_proof": "evidencias/fontes_originais_preservadas_20261008.json",
+  "part_3_remote": {
+    "sha": "9aeed36f558c435509d4256d20d1ac19612f32f7",
+    "continuity_run": 37873167432,
+    "continuity": "success",
+    "build_run": 37873167479,
+    "build": "success"
+  },
+  "additional_remote_candidate": {
+    "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
+    "observed_sha": "f8b00fde8af5e09da64dd153103eb0c0812702db",
+    "build_run": 37872942384,
+    "conclusion": "failure",
+    "failed_step": "Verify clean and EICAR streams with real engine",
+    "reason": "Real ClamAV version not confirmed",
+    "selected_for_separate_review": "scanner response framing and document release guard from cf206647"
+  }
 }
