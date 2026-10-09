@@ -1804,7 +1804,11 @@
     },
     {
       "path": "src/frontend/e2e/flow-aura-audit.spec.ts",
-      "reviewed_sha256": "45926137195545d7d8162ff6cabc910d55fd56934fac5f99ea83631052d0c772"
+      "reviewed_sha256": "f4c469b8a15412c569bf66faf3484a0ce58f8716dee2ef5131cc3cf009853a4a"
+    },
+    {
+      "path": "src/frontend/e2e/flow-aura-native-zoom.spec.ts",
+      "reviewed_sha256": "f1368bcdb518993a481fe5535e0b230a9ef44dee2a88a10d8c48da5b3c06ce3b"
     }
   ],
   "reviewed_at_utc": "2026-10-09T17:56:43.575Z"

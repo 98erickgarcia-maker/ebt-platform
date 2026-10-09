@@ -105,12 +105,22 @@ test("FLOW AURA audit: persisted long text, spacing and 200 percent text resize"
     expect.soft(found, "Contact text must not be clipped at " + width + "px").toEqual([]);
   }
   await page.setViewportSize({ width: 390, height: 844 });
-  const spacing = await page.addStyleTag({ content: "main * { line-height:1.5 !important; letter-spacing:.12em !important; word-spacing:.16em !important; } main p { margin-bottom:2em !important; }" });
+  // A test-only same-origin stylesheet respects the real style-src self policy.
+  const spacingUrl = new URL("/__qa__/flow-aura-text-spacing.css", page.url()).href;
+  await page.route(spacingUrl, route => route.fulfill({ status: 200, contentType: "text/css",
+    body: "main * { line-height:1.5 !important; letter-spacing:.12em !important; word-spacing:.16em !important; } main p { margin-bottom:2em !important; }" }));
+  const spacing = await page.addStyleTag({ url: spacingUrl });
+  const tracking = await page.locator(".page-heading h1").evaluate(node => {
+    const style = getComputedStyle(node);
+    return parseFloat(style.letterSpacing) / parseFloat(style.fontSize);
+  });
+  expect(tracking, "User text spacing actually applied").toBeCloseTo(.12, 2);
   const spaced = await clipping(page);
   console.log(JSON.stringify({ scenario: "text-spacing", found: spaced }));
   await capture(page, "text-spacing-390");
   expect.soft(spaced, "User text spacing must not clip information").toEqual([]);
   await spacing.evaluate(node => node.parentNode?.removeChild(node));
+  await page.unroute(spacingUrl);
 
   // Text-only enlargement, deliberately NOT labelled native browser zoom.
   await page.setViewportSize({ width: 1280, height: 900 });
