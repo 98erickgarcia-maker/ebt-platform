@@ -5,6 +5,7 @@ using System.Text.Json;
 using Ebt.Platform.Api;
 
 if(args.Contains("--keyring")){SqlKeyRingChecks.Run();return;}
+if(args.Contains("--scanner")){await ScannerChecks.Run();return;}
 if(args.Contains("--proxy")){await ProxyChecks.Run();return;}
 
 var results = new List<object>();

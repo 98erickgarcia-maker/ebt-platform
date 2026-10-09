@@ -5,11 +5,13 @@ namespace Ebt.Platform.Api;
 
 public static class CommercialScanner
 {
-    public static async Task<bool> Scan(byte[] content, IConfiguration configuration)
+    public static async Task<bool> Scan(byte[] content, IConfiguration configuration, CancellationToken cancellationToken = default)
     {
         if (!configuration.GetValue<bool>("Documents:ScannerEnabled")) return false;
         var host = configuration["Documents:ScannerHost"] ?? throw new ApiFault(503, "document_scanner_unavailable", "Scanner não configurado.");
-        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15)); using var client = new TcpClient();
+        cancellationToken.ThrowIfCancellationRequested();
+        using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        timeout.CancelAfter(TimeSpan.FromSeconds(15)); using var client = new TcpClient();
         try
         {
             await client.ConnectAsync(host, configuration.GetValue("Documents:ScannerPort", 3310), timeout.Token);
@@ -20,7 +22,14 @@ public static class CommercialScanner
                 await stream.WriteAsync(header, timeout.Token); await stream.WriteAsync(content.AsMemory(offset, size), timeout.Token);
             }
             await stream.WriteAsync(new byte[4], timeout.Token); var reply = new List<byte>(); var next = new byte[1];
-            while (reply.Count < 1024 && await stream.ReadAsync(next, timeout.Token) > 0 && next[0] != 0) reply.Add(next[0]);
+            var terminated = false;
+            while (reply.Count < 1024)
+            {
+                if (await stream.ReadAsync(next, timeout.Token) == 0) break;
+                if (next[0] == 0) { terminated = true; break; }
+                reply.Add(next[0]);
+            }
+            if (!terminated) throw new ApiFault(503, "document_scanner_unavailable", "A verificação de segurança não confirmou o arquivo.");
             var result = Encoding.UTF8.GetString(reply.ToArray());
             if (result == "stream: OK") return true;
             if (result.EndsWith(" FOUND", StringComparison.Ordinal)) throw new ApiFault(400, "document_malware_blocked", "O arquivo foi bloqueado pela verificação de segurança.");

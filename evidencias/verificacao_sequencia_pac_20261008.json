@@ -12,7 +12,8 @@
   "sources": {
     "R01_R02": "7624584621600df806a81586321f98d313d1a91b",
     "R04_R05": "658bade690dc39d5245e00fa012280758661fdd1",
-    "http_client": "b57ab86f44da655f35a549a90c05bb60d175989c"
+    "http_client": "b57ab86f44da655f35a549a90c05bb60d175989c",
+    "document_scanner": "b57ab86f44da655f35a549a90c05bb60d175989c"
   },
   "corrections": {
     "R01": {
@@ -56,12 +57,37 @@
     "dependency_audits": {
       "npm_vulnerabilities": 0,
       "dotnet_vulnerable_packages": 0
+    },
+    "scanner_and_document_guards": {
+      "passed": true,
+      "cases": 10,
+      "private_engine_tested": false
     }
   },
   "ci": {
     "status": "pending",
     "sha": null,
-    "runs": []
+    "runs": [],
+    "attempts": [
+      {
+        "sha": "b027e122ca3ae688e7f480fc5ab942524d056265",
+        "run_id": 37871256602,
+        "http_passed": 29,
+        "sql_passed": 7,
+        "browser_passed": 6,
+        "browser_failed": 5,
+        "result": "failed_browser_harness"
+      },
+      {
+        "sha": "1815c685799bce8f915dea9b445b8e5563997ac0",
+        "run_id": 37871504515,
+        "http_passed": 29,
+        "sql_passed": 7,
+        "browser_passed": 7,
+        "browser_failed": 4,
+        "result": "failed_browser_harness"
+      }
+    ]
   },
   "limits": [
     "Docker SQL image download denied by local restricted network; integration delegated to isolated GitHub CI",

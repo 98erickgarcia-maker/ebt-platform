@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "builds, testes HTTP do cliente, protocolo e proxy aprovados localmente; regressão SQL/browser integrada pendente",
+  "review_status": "29 testes HTTP e sete verificações SQL aprovados na CI; seletores/sincronização dos testes de navegador corrigidos, reexecução pendente; dez testes locais de scanner/liberação aprovados",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",

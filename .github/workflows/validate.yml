@@ -26,6 +26,7 @@ jobs:
       - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-restore -c Release
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --proxy
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --scanner
       - run: npm ci
         working-directory: src/frontend
       - run: npm run test:unit

@@ -73,6 +73,7 @@ test("R05: existing account accepts an invitation using its original password", 
   expect(response.ok()).toBe(true);
   const invitation = (await response.json()) as { activationToken: string };
   await page.getByRole("button", { name: "Sair", exact: true }).click();
+  await expect(page.getByLabel("E-mail", { exact: true })).toBeVisible();
   await page.goto("/?activation=" + invitation.activationToken);
   await page
     .getByRole("button", {

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T01:47:50.873171+00:00",
+  "created_at_utc": "2026-10-09T01:54:27.141594+00:00",
   "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
-  "parent_checkpoint": "772ec5669f61d94d2d0e8c9c230029fbb9f5cf14",
-  "base": "772ec5669f61d94d2d0e8c9c230029fbb9f5cf14",
-  "source_head": "5d2154ea0fe59177e2ceb0f59713eea48422c402",
+  "parent_checkpoint": "1815c685799bce8f915dea9b445b8e5563997ac0",
+  "base": "1815c685799bce8f915dea9b445b8e5563997ac0",
+  "source_head": "774d6530695477f17d3f465a325779ce0b51b199",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
@@ -30,7 +30,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "6386efa4a2f189559434ab7862c3b0c1aa7b9e55e1265da099232656e8526238"
+      "sha256": "e8a11969aa72fc8de32390430a7e2b41a6bcb87084d18952a62bf3132fa5974f"
     },
     {
       "path": ".gitignore",
@@ -186,7 +186,7 @@
     },
     {
       "path": "docs/execucao/VERIFICACAO_SEQUENCIA_PAC_20261008.md",
-      "sha256": "3f138927af1814b8000585d7eb2a85268ad631aa305c291c82f2e1fdabef3128"
+      "sha256": "09109bb5e4be752713b3d2ecc30674a0d33c6fdd68ad33059fa06f224fc958da"
     },
     {
       "path": "docs/execucao/entregas/P01-01.md",
@@ -1034,7 +1034,7 @@
     },
     {
       "path": "evidencias/verificacao_sequencia_pac_20261008.json",
-      "sha256": "83088cd39d31eb29d48130ee6f2842f669a9915f684a420fbea8b5ec6f299570"
+      "sha256": "ca42685c6eb461047e5c97057c1dffe8fe90e4dd814e5aca65155a6d69ba8a19"
     },
     {
       "path": "output/pdf/EBT_Plano_Primeiras_200_Horas.pdf",
@@ -1058,7 +1058,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "64cfa397f26b0cccb690aa24cc32a3e011f574b058efb66f44620f51f63c24e0"
+      "sha256": "f78dae6cc6f5f722a0faff11a84d0bcc2dfd569b63e9a2ad69e9c64951f9ae66"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1070,7 +1070,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "48ef34ee85e3dca91dfc98e2df5a9408c5e8bb2fa587ffaea114c43ddda634aa"
+      "sha256": "05a2dfee63f8526361eb38ebf19720f66ad36ba6bd1ed742adafff39af39f960"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1246,7 +1246,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CommercialScanner.cs",
-      "sha256": "02ef8f49022d364e00e46e5054ebc19b86f6d160e7327ee66314e47f48893c10"
+      "sha256": "ab769b9fec96794f53b85cf41b7b8f0f3a915d8350afe03a48bab8ad113e5029"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
@@ -1270,7 +1270,11 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/DocumentEndpoints.cs",
-      "sha256": "757ca38005023cd8877388c7719dc058c97b51e97c9eb1b4ef07a4c11ed4834b"
+      "sha256": "b76fc86dd4b3471f83962d915046d15c5d021de1125f89d19f89994ce16bf919"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/DocumentSafety.cs",
+      "sha256": "228bcbebba03009cc3242de2fa4f39c1888668d9b3337681b47296de60c9526e"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Ebt.Platform.Api.csproj",
@@ -1418,7 +1422,7 @@
     },
     {
       "path": "src/frontend/e2e/admin-corrections.spec.ts",
-      "sha256": "5ccb8a4abe7fe365c165ce37592f02236dc9eb756c2a7d90233dbfabbbb22d2b"
+      "sha256": "153d145c231f00a4c335f0308573026618d29d5a37656e4764e0d0c59acd0f5e"
     },
     {
       "path": "src/frontend/e2e/connect.spec.ts",
@@ -1430,7 +1434,7 @@
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
-      "sha256": "a3a2f3d3cb06fcb2934a0c533bb760aa7bb61eb27bbb7d418bb35f9e4b822b64"
+      "sha256": "0138600c20834e39afdfb78f57d7d677ffbcb7b20de2f63388906991c23f990a"
     },
     {
       "path": "src/frontend/index.html",
@@ -1534,11 +1538,15 @@
     },
     {
       "path": "tests/WazVox.ProtocolTests/Program.cs",
-      "sha256": "1ae73c58cc3d892ded5a1eec9784e9ad4d57543382d3bd8553044f7f492d4c56"
+      "sha256": "44d151062bed093164376088ffe8a50096530ff2bb023e5b688daa9ddeba94b2"
     },
     {
       "path": "tests/WazVox.ProtocolTests/ProxyChecks.cs",
       "sha256": "033e13919c56ed6f5970c443aa1bcd4a61c3e143e5269a2faa607a87559cec92"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/ScannerChecks.cs",
+      "sha256": "d60a6673a45172eeb448f03d389e142dff047a24dd3ef8832bf2aa3f1e294c55"
     },
     {
       "path": "tests/WazVox.ProtocolTests/SqlKeyRingChecks.cs",
