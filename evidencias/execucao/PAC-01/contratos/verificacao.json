@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-09",
+  "kind": "static_manifest_recheck",
+  "passed": true,
+  "checks": [
+    {
+      "path": "src/frontend/src/pages/ProspectsPage.tsx",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/frontend/src/pages/AgendaPage.tsx",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/frontend/src/components/ProspectWorkspaceDrawer.tsx",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/frontend/src/api/contracts.ts",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/frontend/src/api/http.ts",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/frontend/src/auth/AuthProvider.tsx",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ProspectEndpoints.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CustomerEndpoints.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CommercialInteractionEndpoints.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Authorization/TenantPolicies.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Prospecting/ProspectContracts.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Interactions/CommercialInteractionContracts.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Prospecting/ProspectStatus.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Interactions/CommercialInteractionService.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Interactions/CommercialInteractionAccessPolicy.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ProspectConfiguration.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ProspectPersonLinkConfiguration.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/CommercialInteractionConfiguration.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Interactions/CommercialInteractionEndpointTests.cs",
+      "sha256_matches": true
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Prospecting/ProspectEndpointTests.cs",
+      "sha256_matches": true
+    }
+  ],
+  "elapsed_seconds": 0.1126379,
+  "runtime_tested": false,
+  "sql_tested": false,
+  "onboarding_tested": false
+}

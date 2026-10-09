@@ -1,0 +1,67 @@
+{
+  "timestamp_utc": "2026-10-09T17:41:10.707015+00:00",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "scripts/verificar_plano.py"
+      ],
+      "exit_code": 0,
+      "result": {
+        "passed": true,
+        "errors": [],
+        "total_h": 200,
+        "entregas_h": 180,
+        "reserva_h": 20,
+        "total_itens": 77,
+        "entregas": 72,
+        "reservas": 5,
+        "local_links": 184,
+        "pdf_pages": 40,
+        "pdf_sha256": "31eb859ae71989765fc7bff93fc2c866d82bf405ccc5f736cc98528008bd7b35",
+        "verification_scope": "integridade documental, or�amento, depend�ncias, links e conte�do PDF; n�o testa aplica��es",
+        "visual_review": "40 p�ginas renderizadas e inspecionadas; sem corte, sobreposi��o, p�gina vazia ou tabela fora dos limites.",
+        "visual_review_passed": true,
+        "layout_bounds_issues": [],
+        "credential_pattern_hits": [],
+        "files_checked": 181
+      }
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verificar_organizacao.py",
+        "--no-write"
+      ],
+      "exit_code": 0,
+      "result": {
+        "passed": true,
+        "errors": [],
+        "versao_organizacao": "1.2",
+        "total_h": 200,
+        "entregas_h": 180,
+        "reserva_h": 20,
+        "total_tickets": 77,
+        "total_cenarios": 234,
+        "casos_nao_executados": 234,
+        "total_fases": 10,
+        "total_gates": 10,
+        "fichas_individuais": 77,
+        "total_pacotes": 17,
+        "templates": 10,
+        "markdown_files": 163,
+        "local_links_checked": 1221,
+        "generated_files": 154,
+        "hashes_checked": 159,
+        "product_states": {
+          "em_verificacao": 5,
+          "bloqueado": 1,
+          "planejado": 71
+        },
+        "verification_scope": "documentos, or�amento, depend�ncias, fichas, casos e hashes; n�o verifica funcionamento das aplica��es"
+      }
+    }
+  ],
+  "passed": true,
+  "scope": "verificação documental; sem testes de aplicações ou inspeção visual nova"
+}

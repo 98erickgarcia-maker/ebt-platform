@@ -1,0 +1,1559 @@
+{
+  "head": "046e7c62359220aaf6ab30832f0fbff5b6f675f0",
+  "branch": "codex/reconcile-crm-casst-20260828",
+  "all_status_count": 387,
+  "technical_status": [
+    {
+      "path": "src/backend/CrmCasst.Api/Authorization/TenantPolicies.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Documents/CasstPdfFactory.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/AdminAnalyticsEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/AuthEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CertificateEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ClientDossierEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ClientPortalEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CommercialCatalogEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CommercialInteractionEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CommunicationEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CustomerEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CustomerLocationEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/MetaWhatsAppEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/OpenCourseSessionEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/OpportunityEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/PeopleEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ProposalEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ProspectEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/SalesOrderEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ServiceOrderEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/SstDocumentEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/TeamEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/TrainingClassEndpoints.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Program.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Catalog/CommercialCatalogValidation.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Communications/CommunicationContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Customers/CustomerContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Documents/SstDocumentContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Documents/Storage/ISstDocumentStorage.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Identity/AuthContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Interactions/CommercialInteractionContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Opportunities/OpportunityContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/People/PeopleDirectoryContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Proposals/ProposalContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Proposals/ProposalValidation.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Prospecting/DataverseProspectImportMapper.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Prospecting/ProspectContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Teams/TeamContracts.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Catalog/CommercialCatalogItemDefinition.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/ClientDossiers/ClientDossierArtifactReference.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/ClientDossiers/ClientDossierEnums.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Communications/CommunicationTemplate.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Communications/CommunicationTemplateCatalog.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Customers/Customer.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Documents/SstDocument.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Documents/SstDocumentType.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Documents/SstDocumentTypeCatalog.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Documents/SstDocumentVersion.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Identity/TenantRole.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Interactions/CommercialInteraction.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Opportunities/Opportunity.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/Proposal.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/ProposalEnums.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/ProposalLineItem.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/ProposalVersion.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/ProposalVersionLineItem.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Prospecting/Prospect.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Sales/AcceptedProposalVersionSnapshot.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/ServiceOrders/ServiceOrder.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Training/TrainingClass.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Communications/CommunicationAuthorization.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Communications/MetaWhatsAppWebhookProcessor.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Communications/OutboundCommunicationProviders.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Communications/OutboundMessageDispatcher.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/DependencyInjection.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Documents/Storage/SstDocumentStorageServiceCollectionExtensions.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Identity/ApplicationUser.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Interactions/CommercialInteractionService.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/ApplicationDbContext.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ApplicationUserConfiguration.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ClientDossierConfigurations.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/CommercialInteractionConfiguration.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/CommunicationTemplateConfiguration.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/CustomerConfiguration.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ProposalConfigurations.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ServiceOrderConfiguration.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/SstDocumentConfigurations.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/TrainingClassConfigurations.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/ApplicationDbContextModelSnapshot.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Prospecting/ProspectImportService.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Provisioning/ProvisioningCommand.cs",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/App.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/App.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/api/contracts.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/api/http.test.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/api/http.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/auth/AuthLayout.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/auth/AuthProvider.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/auth/AuthSecurity.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/auth/RequireAuth.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/components/PresentationComposer.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/components/QuickInteractionDialog.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/layout/AppShell.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/layout/AppShell.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/main.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/marketing/analytics.test.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/marketing/analytics.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ActivateAccountPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/AdminDashboardPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/AdminDashboardPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/AgendaPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/AgendaPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ClientDossierPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ClientPortalPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CommercialCatalogPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CommercialCatalogPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CommunicationsPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CompanySettingsPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CompanySettingsPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CustomerLocationsPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CustomersPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/CustomersPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ForgotPasswordPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/LandingPage.css",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/LandingPage.tsx",
+      "status": " D"
+    },
+    {
+      "path": "src/frontend/src/pages/LoginPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/MarketingDashboardPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/OpenCoursesPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/OpenCoursesPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/OpportunitiesPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/OpportunitiesPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/PeoplePage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/PeoplePage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ProposalsPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ProposalsPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ProspectsPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ProspectsPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/SalesOrdersPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/SalesOrdersPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/ServiceOrdersPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/SstDocumentsPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/SstDocumentsPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/TeamPage.test.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/TeamPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/AboutPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/ContactPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/InstitutionalLayout.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/PrivacyPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/TrainingPage.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/styles/global.css",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/test/renderApp.tsx",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/test/server.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/src/test/setup.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/frontend/vitest.config.ts",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Administration/AdminAnalyticsEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Administration/AdministrationApiFixture.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Auth/CrmCasstApiFactory.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Auth/ProvisioningCommandTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Auth/ReadOnlyAccessTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Communications/CommunicationEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Customers/CustomerEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Documents/SstDocumentEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Interactions/CommercialInteractionEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Proposals/ProposalEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Prospecting/DataverseProspectImportMapperTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Prospecting/ProspectEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Teams/TeamEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Training/OpenCourseEndpointTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Catalog/CommercialCatalogItemTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Communications/CommunicationDomainTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Customers/CustomerTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Documents/SstDocumentTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Interactions/CommercialInteractionTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Proposals/ProposalTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Prospecting/ProspectTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Sales/AcceptedProposalFulfillmentTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Communications/MetaWhatsAppProviderTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Persistence/ProposalMigrationSqlTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Persistence/ProposalModelTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Persistence/ProposalRowLevelSecurityTests.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Persistence/SqlServerFixture.cs",
+      "status": " M"
+    },
+    {
+      "path": "tests/e2e/foundation.setup.ts",
+      "status": " M"
+    },
+    {
+      "path": "tests/e2e/foundation.spec.ts",
+      "status": " M"
+    },
+    {
+      "path": "tests/e2e/playwright.config.ts",
+      "status": " M"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CertificateSstDocumentLinker.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ContactCenterEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/FinanceEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/FinanceOperationsEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/InstructorEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ManagementRequestEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ProspectAssistantEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ProspectEmailEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/PublicContactEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/RegistrationLookupEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/SalesOrderExecutionReader.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/SalesOrderManualExecutionEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ServiceOrderAttendanceSstLinker.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/SharePointArchiveEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/WazVoxWebhookEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Integrations/MicrosoftCalendar/MicrosoftCalendarConnector.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Integrations/MicrosoftCalendar/MicrosoftCalendarContracts.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Integrations/MicrosoftCalendar/MicrosoftCalendarEndpoints.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Integrations/MicrosoftCalendar/MicrosoftCalendarOptions.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Integrations/MicrosoftCalendar/MicrosoftGraphEmailProvider.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Security/OnboardingGateMiddleware.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Security/RequestDiagnosticsMiddleware.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Identity/CrmTermsCatalog.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Interactions/IFollowUpAgendaSynchronizer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Management/ManagementRequest.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/ProposalCourseAllocation.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Proposals/ProposalPaymentTerms.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Sales/FinancePayment.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Sales/FinanceReceivable.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Sales/SalesOrderLineExecution.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Documents/Storage/DocumentArchive.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Documents/Storage/SharePointArchiveOptions.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Documents/Storage/SharePointArchivePathPlanner.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Documents/Storage/SharePointArchiveWorker.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Interactions/FollowUpAgendaSynchronizer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/FinancePaymentConfiguration.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/FinanceReceivableConfiguration.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ManagementRequestConfiguration.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/SalesOrderLineExecutionConfiguration.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260914120000_AddSstDocumentTypeValidity.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260915023145_AddResponsibleInstructor.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260915023145_AddResponsibleInstructor.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260915035024_AddProposalPaymentSchedule.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260915035024_AddProposalPaymentSchedule.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260915042107_AddExplicitClientDocumentRelease.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260915042107_AddExplicitClientDocumentRelease.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260916003844_AddInteractionReminders.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260916003844_AddInteractionReminders.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260916190000_BackfillNextContactAgenda.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260920065419_SeedExpandedCommunicationTemplates.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260920065419_SeedExpandedCommunicationTemplates.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260922100611_AddCustomerCommercialActivation.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923001044_AddFirstAccessRequirements.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923001044_AddFirstAccessRequirements.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923003000_AddDefaultCommunicationTemplates.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923051731_AddProposalCourseAllocations.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923051731_AddProposalCourseAllocations.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923073000_AddProposalModalityAndTrainingEvidence.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923073000_AddProposalModalityAndTrainingEvidence.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923175616_AddServiceOrderInstructorAttendance.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923175616_AddServiceOrderInstructorAttendance.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923183754_LinkSstTrainingEvidence.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260923183754_LinkSstTrainingEvidence.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260924184946_AddManagementRequests.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260924184946_AddManagementRequests.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260925003740_AddOutlookUserIntegration.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20260925003740_AddOutlookUserIntegration.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20261005040033_AddCommercialInteractionOrigin.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20261005040033_AddCommercialInteractionOrigin.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20261005115637_CompleteCommercialOperations.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20261005115637_CompleteCommercialOperations.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20261006035148_RepairSstDocumentTypeValidity.Designer.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Migrations/20261006035148_RepairSstDocumentTypeValidity.cs",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/auth/passwordPolicy.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ApiFileButton.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ManualLineExecution.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ManualLineExecution.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/OpportunityInteractionDialog.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/OriginInteractionHistory.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/PhoneDuplicateWarning.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ProspectAssistant.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ProspectAssistant.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ProspectEmailReview.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/ProspectWorkspaceDrawer.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/RegistrationCheck.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/RegistrationCheck.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/WhatsAppContactLink.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/WhatsAppContactLink.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/WhatsAppSentDialog.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/contactResponseParser.test.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/contactResponseParser.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/phoneDuplicateCheck.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/prospectRecipients.test.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/prospectRecipients.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/components/whatsappContactUrl.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/hooks/useExecutionStatusFilter.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/hooks/useRecordSelection.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/hooks/useRecordState.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/ContactCenterPage.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/ContactCenterPage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/ExecutionEvidence.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/FinancePage.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/FinancePage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/FirstAccessPage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/InstructorPage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/ManagementIntelligencePage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/ManagementRequestsPage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/OperationsPage.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/OperationsPage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/ServiceOrdersPage.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/SharePointArchiveStatus.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/TrainingClassesPage.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/TrainingClassesPage.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/analyticsPresentation.ts",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/ContactPage.test.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/pages/institutional/TrainingPromotion.tsx",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/styles/approved-commercial-ux.css",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/styles/crm-design-system.css",
+      "status": "??"
+    },
+    {
+      "path": "src/frontend/src/styles/professional-refresh.css",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Administration/ManagementRequestEndpointTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Communications/ContactCenterEndpointTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Communications/WazVoxWebhookEndpointTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Customers/RegistrationLookupEndpointTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Integrations/MicrosoftCalendarEndpointTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Interactions/ProspectAssistantActionTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Marketing/PublicContactEndpointTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Proposals/CommercialJourneySimulationTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Proposals/OperationalCompletionTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Training/DocumentArchiveTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Proposals/ProposalPaymentTermsTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Domain.Tests/Sales/OperationalCompletionTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Communications/MetaWhatsAppWebhookProcessorTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Documents/Storage/SharePointArchiveClientTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/CrmCasst.Infrastructure.Tests/Persistence/OperationalSchemaCompatibilityTests.cs",
+      "status": "??"
+    },
+    {
+      "path": "tests/e2e/operational.spec.ts",
+      "status": "??"
+    }
+  ],
+  "other_status": [
+    {
+      "path_sha256": "a1aa6596787cc04d4c22c2d40526e2bc261ad0895823a27c91a8e3ccd9cdefa2",
+      "status": "M "
+    },
+    {
+      "path_sha256": "ed27923804c6d8d4eb5adfa5f818d2f1bf4bd5ac06107922ad6f87fee48d5177",
+      "status": " M"
+    },
+    {
+      "path_sha256": "f651e5261d010937e1f80ad7b02328b7974d7b0036c3ae8e08d0cd0fb2a05299",
+      "status": " M"
+    },
+    {
+      "path_sha256": "4b5098533ab59d3169478b737a0e09a4719889cfa45821d1b0721ec07b6d6d7b",
+      "status": " D"
+    },
+    {
+      "path_sha256": "f26229a7222b84473ea0428fe44bbc74b2ac5ebfca78528ce7e7f667f006f6fa",
+      "status": " M"
+    },
+    {
+      "path_sha256": "e866c9a6e6121ba13c76648e2a653c6418dfb62077c50c6f54bd1e66f9b7283b",
+      "status": " M"
+    },
+    {
+      "path_sha256": "2d5f05d0ad213068f47cc68b8e48f69564a0d02fcd52350d5fdcd47de0c90c80",
+      "status": " M"
+    },
+    {
+      "path_sha256": "9eaa8c31e85b60ae25c139f2d6363cc9dcb6926125b5bf1d0cac092547e8cfcb",
+      "status": " M"
+    },
+    {
+      "path_sha256": "12ee508ecc1901fe1a1d71ed459dba8454f3160983ee18b2c51b76ade45235d3",
+      "status": " M"
+    },
+    {
+      "path_sha256": "62bd3826b060f4d6bfb8cc3117c9646a4a7b8d5d544d784fa0afffac7664b41f",
+      "status": " M"
+    },
+    {
+      "path_sha256": "998ea174f0ad7f6ee85cfe6ab5e3defcd68dd87272a9f925e81c0ddbcc94cf8e",
+      "status": " M"
+    },
+    {
+      "path_sha256": "ce2809a1c1a2ada5ac71dc708b4df755b166e5a98453c3598fb081d7a20ef2e6",
+      "status": " M"
+    },
+    {
+      "path_sha256": "a54ff182c7e8acf56acfd6e4b9c3ff41e2c41a31c9b211b2deb9df75d9a478f9",
+      "status": "??"
+    },
+    {
+      "path_sha256": "88d0dad8a44524cd4f3c2dc04f8756b477278b48242237ac728de9d58f87bf82",
+      "status": "??"
+    },
+    {
+      "path_sha256": "d0e0265bb6a464a7fef8e70ebb27742d662501a8a0cac3e441bb60f5535a4b63",
+      "status": "??"
+    },
+    {
+      "path_sha256": "7e32a47d2fe6023a51c02dee22b4699d712e6bd5f64ee04fe9845dfa554df191",
+      "status": "??"
+    },
+    {
+      "path_sha256": "c004fa23fbac487166523409c469d0701d651ee6fec411169c5f8b3561d82216",
+      "status": "??"
+    },
+    {
+      "path_sha256": "def8c3a29acd397ee66daa3de95914a2b074660ab2a68d02eb104c52df50528a",
+      "status": "??"
+    },
+    {
+      "path_sha256": "bee8920df1e85f12d2670e0dcfd796a474266ff870ce6cd97bce599eea01608e",
+      "status": "??"
+    },
+    {
+      "path_sha256": "d3996c9acd6a6e03a14468c2581dedf00c7b10c0f627639f87d86fb67df79a4e",
+      "status": "??"
+    },
+    {
+      "path_sha256": "c217889a01471a5796c4bd1e3d0570e6f221050d23319a9bd148580ad5f24442",
+      "status": "??"
+    },
+    {
+      "path_sha256": "a9b0b1b064026da011b5ef24dfcedba04d7412e5d8da01f26a822d5068cee239",
+      "status": "??"
+    },
+    {
+      "path_sha256": "3e95ae6f4ba3598f326f676c17fe5a949095f32c9e39798822f2e29abbe3b4fb",
+      "status": "??"
+    },
+    {
+      "path_sha256": "41c21de4b4d744dda10fce3f12f1f5ccc3f1d82969b0a8e5f01fed61fcd3c453",
+      "status": "??"
+    },
+    {
+      "path_sha256": "1efb0e06c548b5dd5589203173d8655d2e2973bada5cc4b3939b5df4dc27b660",
+      "status": "??"
+    },
+    {
+      "path_sha256": "a9fe9f1f7af7ef41657ccea5ed24f837cd874bf3e181e1da1e512de3ae5cc388",
+      "status": "??"
+    },
+    {
+      "path_sha256": "860f0d2d84f75d43b317941391d1a77f61cdae575c73997b4018f3b00654b129",
+      "status": "??"
+    },
+    {
+      "path_sha256": "79d7f95f9eec5e43ee6b8cf891ae6b2f11caa5de9b3403e038cb8e5ba410a181",
+      "status": "??"
+    },
+    {
+      "path_sha256": "c9302ef48bd676c5c9c092c98733c7e31f75a6a1afa448da84a664cadc9a3efa",
+      "status": "??"
+    },
+    {
+      "path_sha256": "9c57a42236db54680b142ded31d7f0a1a710968f98552f3e2576f476f652220c",
+      "status": "??"
+    },
+    {
+      "path_sha256": "199ba138524bbedd599b0c12313c945f0207460ae0c8a67623ece7466a749b44",
+      "status": "??"
+    },
+    {
+      "path_sha256": "1db75d4cd3da59872e1046bbc18b8d3b447cf77390ed186eafec980b34a218ed",
+      "status": "??"
+    },
+    {
+      "path_sha256": "44aa611a75a68bce8e23d8c8977d230ff9bb87694debacc48fcd978bf9e17795",
+      "status": "??"
+    },
+    {
+      "path_sha256": "608173b5b009e0713678d87703372a39b58ba05cf5cc3c8787a52c8f777fb948",
+      "status": "??"
+    },
+    {
+      "path_sha256": "715026af22891f98886169c20137ddd3e60dd3a14ff36de505f6a904a1c5f6ca",
+      "status": "??"
+    },
+    {
+      "path_sha256": "c0810bd72ace84870d4e74a99e74579f6ef608339e911c2bee4019c4309c0296",
+      "status": "??"
+    },
+    {
+      "path_sha256": "4c48e67e3d81d570f37a555c9200ff0af9965f4f2ede556d87e6e4d6f8321992",
+      "status": "??"
+    },
+    {
+      "path_sha256": "f73e79bbb2a15cdac02ff4bacd0169bcc657f50f256e3254b0b93d515ab1a969",
+      "status": "??"
+    },
+    {
+      "path_sha256": "a009dc306f849f125bb3ad9641473cc68fc9eb5c6b5f9c8702814af85c671adb",
+      "status": "??"
+    },
+    {
+      "path_sha256": "f915776c8b21af2e8de9c09b13aa2e71f9a2ab2ebf04ea148183b37be06f530b",
+      "status": "??"
+    },
+    {
+      "path_sha256": "608a716bb472f365ef112881fec1371b306c809c17bb8d30f4ca99e74e5ed48d",
+      "status": "??"
+    },
+    {
+      "path_sha256": "020efe5a366f3375e32248dfbbe94a3d3354be0f52cfa2a5d7129cb3986cbd60",
+      "status": "??"
+    },
+    {
+      "path_sha256": "74dc19f54b1809c875b487e9e9805bb165fcb22b0e237622c99b97c2594a6693",
+      "status": "??"
+    },
+    {
+      "path_sha256": "e74cfadad88727264fc3269002d9a03e6a40572a44643c9c2ed3ea5ffdde45f8",
+      "status": "??"
+    },
+    {
+      "path_sha256": "f832691c5c3609c48ba1ac8439d452f0ddb1ba439e34d789d3a501d10a1dd5c3",
+      "status": "??"
+    },
+    {
+      "path_sha256": "f79db95dbab840b0c6020edd83d0998ca826eb795f7b90ff851b97faddd803f7",
+      "status": "??"
+    },
+    {
+      "path_sha256": "337e91ac7e32daecb37daabc970131c150a04cff16c70d35f7c2e41985e155b9",
+      "status": "??"
+    },
+    {
+      "path_sha256": "03c09d7901b38c5f94c5dc840fd03db730fffd3bca11a9620ec5669f0cbb178b",
+      "status": "??"
+    },
+    {
+      "path_sha256": "6d067cc323254a4e4b29529b72315f759c16f842e57c1341e41a5c96da61aba0",
+      "status": "??"
+    },
+    {
+      "path_sha256": "c2e7f208fc668a0fa18f0b2dffd558f5706270c022f54170a799d859d5f59404",
+      "status": "??"
+    },
+    {
+      "path_sha256": "3580f1d68d1745602d22c9ee849a33916613bff8991d3a20f3fba7f72deb6ae5",
+      "status": "??"
+    },
+    {
+      "path_sha256": "aea3acb41e1a5d93d087a11860c7bde97c912da18ddf7b1140da114e7862fb1c",
+      "status": "??"
+    },
+    {
+      "path_sha256": "1f1d41c2e498275c90a9b67fc3f75010e2ee0e7d8c0102201e85a5db4beb5670",
+      "status": "??"
+    },
+    {
+      "path_sha256": "d8d21eda73a12a28f5a5e91136fee04285c4c862e34720cea60428ffa31a1f2f",
+      "status": "??"
+    },
+    {
+      "path_sha256": "da48af47b48eb5e4d7d0b6f6159c9ae73715e8cf93b14876315a0f64388bd7a1",
+      "status": "??"
+    },
+    {
+      "path_sha256": "88263f44463854ab08f229ca7366fd02fb2ca9ca4602cec19d0ce82a3658cae8",
+      "status": "??"
+    },
+    {
+      "path_sha256": "01190866966158a44f2a96029cab7efec976b44ec5dec8223d2aa2781442ea50",
+      "status": "??"
+    },
+    {
+      "path_sha256": "a0055dab0c425d6ee203ca502e467e8795f08df9ad23633bbade6a8d6c495f56",
+      "status": "??"
+    },
+    {
+      "path_sha256": "e83bf9ae1455d706273301e5ecc961244dabf2448fb4c048a3c9e52d24e9e643",
+      "status": "??"
+    },
+    {
+      "path_sha256": "96841b966791ab4628eba41bfcd051487a8a8b3a436bbdac09565d15c00396aa",
+      "status": "??"
+    },
+    {
+      "path_sha256": "df9e8cb7c53e9fb242990f4761c3774555495b6a2f0e5807386a0bcb7501c5a4",
+      "status": "??"
+    },
+    {
+      "path_sha256": "af2636102dbac42819454e2647f774c909df9120a77ff47677fcbb46329a6f22",
+      "status": "??"
+    },
+    {
+      "path_sha256": "82795c6ef3179668491c9b185c0258c24d97e5d74db9a67c6151c4a1552f1ea9",
+      "status": "??"
+    },
+    {
+      "path_sha256": "dc210a3812e0e0010fe1c819a70f1c8b06c7ea7729f74109323ec82caccf27c2",
+      "status": "??"
+    },
+    {
+      "path_sha256": "94bccf3c4981c5d28663536b1afe829533c54ac89e6f780544c132d7bf79ead7",
+      "status": "??"
+    },
+    {
+      "path_sha256": "a72767fe1eccf054c9318a5a62d5600723e3101105826627c194126dbe484e7c",
+      "status": "??"
+    },
+    {
+      "path_sha256": "e8e7d7cef4a338a73f880f410af41ceec3d7e04286c7e4a88e2a3278d53a0077",
+      "status": "??"
+    },
+    {
+      "path_sha256": "a1faa5f88067cf7000e20440d890abde1eae54e8e8a82b292d0c2a035c1d9c73",
+      "status": "??"
+    },
+    {
+      "path_sha256": "577f8e87ee168c69382ffb45b9af8d8be845c8ed7aede53b7dedebd3248ae770",
+      "status": "??"
+    },
+    {
+      "path_sha256": "e2611ba9982220ad35185497bbb5233a130f34b9ba2b281cc9771959c000951e",
+      "status": "??"
+    },
+    {
+      "path_sha256": "d51b95416047483807cc24e60f4ae32ac9e639e9af8fc53289ed83dae737a39c",
+      "status": "??"
+    },
+    {
+      "path_sha256": "2d6f3a4251df6f7f45b92ec247f9f3eb35471eb30bc4589cd900526cccdd2597",
+      "status": "??"
+    },
+    {
+      "path_sha256": "598fd4c41f0a2e82fd3f8636998456a901a4dcf151073069fbef7f4ee0684e43",
+      "status": "??"
+    },
+    {
+      "path_sha256": "663039af4c3c1535d7c19e93bbfd7c9ae330721a7441ad6e16cee5da003d0b3e",
+      "status": "??"
+    },
+    {
+      "path_sha256": "eb209ffeada8265d531803631cea209462fee8adcea505889b5c346e944d538c",
+      "status": "??"
+    },
+    {
+      "path_sha256": "ce123af8a492d24a36ca9598012bc78fd00ab1ba935f2ce71e998add08499ab5",
+      "status": "??"
+    },
+    {
+      "path_sha256": "8ef6d0893936b380bdbe13e69a47aa544b306c6c137a8fc0e4549af8465fa34e",
+      "status": "??"
+    },
+    {
+      "path_sha256": "b0d56b9dec8b65630fabb430f50c75e1cf02137d4cf9b44dae15669c17b38d7a",
+      "status": "??"
+    }
+  ],
+  "note": "Caminhos fora do recorte técnico substituídos por hash para não divulgar nomes de clientes. Nenhum diff/conteúdo copiado.",
+  "status_unchanged": true
+}

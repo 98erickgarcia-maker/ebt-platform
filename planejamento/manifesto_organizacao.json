@@ -73,27 +73,27 @@
     },
     {
       "path": "docs/execucao/entregas/P01-01.md",
-      "sha256": "6f2f5f512decec198f7a67564cdfbfede8b3e9825312bed530fb63cea7fb8f8d"
+      "sha256": "f6d53b7169f8e9f680754ddd44ab7ddd85664061a879705cc57ee0ed9da42895"
     },
     {
       "path": "docs/execucao/entregas/P01-02.md",
-      "sha256": "812ac912699d2bd87b183c8147a708435170865b2f763929aac9933dab88099d"
+      "sha256": "5ddd5a2fbb18015a2d309d1caa124e45811fe0ee8cbbeff7f51b7a26e5723981"
     },
     {
       "path": "docs/execucao/entregas/P01-03.md",
-      "sha256": "adfb3eba74c8d3d84bcdb904f2bb48b32aad9b869036e2d0cd96568aad7b0a6c"
+      "sha256": "ddc2f33cb9a023ab55476046c285c1baac5b7463570809506a9df72d5465a221"
     },
     {
       "path": "docs/execucao/entregas/P01-04.md",
-      "sha256": "97cb7c63c56ae4b98616ad18a571d650580036b386d0f8712ff71a65da530560"
+      "sha256": "c285cf1512799441bd9ad67917dd017e6f6e74d68cfee68422ceecef4f3a194f"
     },
     {
       "path": "docs/execucao/entregas/P01-05.md",
-      "sha256": "02eab709fbd3b4ebcebc3501d880aad17fb1f244b9b98500578ea2182fa62504"
+      "sha256": "19db4324c37345544a5e55f117ad39ffff7f62602bf619381452b00e88e4040d"
     },
     {
       "path": "docs/execucao/entregas/P01-06.md",
-      "sha256": "ba5e1365279940d67358506b7618ed5685c0b8e861a7c6a11f334ccfd23ca77f"
+      "sha256": "8fa4323d446051ef546e111fe6443d3570d114c1d238380a895907ea406a3c0a"
     },
     {
       "path": "docs/execucao/entregas/P02-01.md",
@@ -565,7 +565,7 @@
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
-      "sha256": "3eac1526fb0691659ef1fc11c668a75737a6e22be7e5d17fd08e14b740d3cd34"
+      "sha256": "687fc0794f36748c050f99541fbd4c1289ebb12acaefe6a84ef83c7fc7e62ef8"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -623,7 +623,7 @@
   "entradas": [
     {
       "path": "planejamento/backlog_200_horas.json",
-      "sha256": "2fc91fb877ce2c62dddfe997d46216caad712bc01a457c058205e49214331d29"
+      "sha256": "c3b5080b9899b83871b385e079fffd94b7e5a0deb83996264095dcaf217d4f96"
     },
     {
       "path": "scripts/catalogo_organizacao.py",

@@ -258,10 +258,12 @@
       "dependencias": [],
       "criterio_aceite": "Snapshot inclui arquivos modificados e não rastreados; um commit antigo não substitui o conteúdo local.",
       "evidencia_esperada": "Registro P01-01: versão/hash, ambiente, cenário e resultado conforme trilha R2",
-      "status": "planejado",
+      "status": "em_verificacao",
       "horas_reais": 0,
       "responsavel_proposto": "desenvolvimento EBT",
-      "gate": "G0"
+      "gate": "G0",
+      "evidencia_execucao": "evidencias/execucao/PAC-01/registro.md",
+      "horas_reais_nota": "Contador não totalizado; atividade parcialmente medida, ver registro PAC-01. Não equivale a zero esforço."
     },
     {
       "id": "P01-02",
@@ -281,10 +283,12 @@
       ],
       "criterio_aceite": "Cada capacidade tem arquivo, data, versão e nível de prova; falhas antigas e repetições finais ficam distintas.",
       "evidencia_esperada": "Registro P01-02: versão/hash, ambiente, cenário e resultado conforme trilha R1",
-      "status": "planejado",
+      "status": "em_verificacao",
       "horas_reais": 0,
       "responsavel_proposto": "desenvolvimento EBT",
-      "gate": "G0"
+      "gate": "G0",
+      "evidencia_execucao": "evidencias/execucao/PAC-01/registro.md",
+      "horas_reais_nota": "Contador não totalizado; atividade parcialmente medida, ver registro PAC-01. Não equivale a zero esforço."
     },
     {
       "id": "P01-03",
@@ -304,10 +308,12 @@
       ],
       "criterio_aceite": "Escopo fechado: contato, organização, histórico, responsável e próxima ação; financeiro e OS ficam fora.",
       "evidencia_esperada": "Registro P01-03: versão/hash, ambiente, cenário e resultado conforme trilha R2",
-      "status": "planejado",
+      "status": "em_verificacao",
       "horas_reais": 0,
       "responsavel_proposto": "desenvolvimento EBT",
-      "gate": "G0"
+      "gate": "G0",
+      "evidencia_execucao": "evidencias/execucao/PAC-01/registro.md",
+      "horas_reais_nota": "Contador não totalizado; atividade parcialmente medida, ver registro PAC-01. Não equivale a zero esforço."
     },
     {
       "id": "P01-04",
@@ -327,10 +333,12 @@
       ],
       "criterio_aceite": "Registrar IDs, endpoints, produtor, consumidor, cache e efeito após salvar sem renomear contratos persistidos.",
       "evidencia_esperada": "Registro P01-04: versão/hash, ambiente, cenário e resultado conforme trilha R2",
-      "status": "planejado",
+      "status": "em_verificacao",
       "horas_reais": 0,
       "responsavel_proposto": "desenvolvimento EBT",
-      "gate": "G0"
+      "gate": "G0",
+      "evidencia_execucao": "evidencias/execucao/PAC-01/registro.md",
+      "horas_reais_nota": "Contador não totalizado; atividade parcialmente medida, ver registro PAC-01. Não equivale a zero esforço."
     },
     {
       "id": "P01-05",
@@ -350,10 +358,12 @@
       ],
       "criterio_aceite": "Registrar autoria/licenças e pendências do código/assets; componente com direito de uso incerto não entra no pacote comercial.",
       "evidencia_esperada": "Registro P01-05: versão/hash, ambiente, cenário e resultado conforme trilha R2",
-      "status": "planejado",
+      "status": "em_verificacao",
       "horas_reais": 0,
       "responsavel_proposto": "desenvolvimento EBT",
-      "gate": "G0"
+      "gate": "G0",
+      "evidencia_execucao": "evidencias/execucao/PAC-01/registro.md",
+      "horas_reais_nota": "Contador não totalizado; atividade parcialmente medida, ver registro PAC-01. Não equivale a zero esforço."
     },
     {
       "id": "P01-06",
@@ -373,10 +383,13 @@
       ],
       "criterio_aceite": "G0 registra o que pode ser copiado, adaptado ou apenas consultado; nenhuma extração parte de teste relevante falhando.",
       "evidencia_esperada": "Registro P01-06: versão/hash, ambiente, cenário e resultado conforme trilha R2",
-      "status": "planejado",
+      "status": "bloqueado",
       "horas_reais": 0,
       "responsavel_proposto": "desenvolvimento EBT",
-      "gate": "G0"
+      "gate": "G0",
+      "evidencia_execucao": "evidencias/execucao/PAC-01/registro.md",
+      "horas_reais_nota": "Contador não totalizado; atividade parcialmente medida, ver registro PAC-01. Não equivale a zero esforço.",
+      "motivo_bloqueio": "G0 pendente: manifesto não é versão recuperável sanitizada; provas e direitos do recorte selecionado precisam de fechamento."
     },
     {
       "id": "P02-01",

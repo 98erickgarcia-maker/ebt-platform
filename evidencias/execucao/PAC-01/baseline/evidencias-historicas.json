@@ -1,0 +1,227 @@
+[
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/testes-backend/infra-sql-conclusivo.trx",
+    "sha256": "9177dbbe26ec7e8eacf1e740365ff8732299b476a73a090ccfdc3fcd0e321626",
+    "times": {
+      "creation": "2026-10-06T01:08:14.5412917-03:00",
+      "queuing": "2026-10-06T01:08:14.5412923-03:00",
+      "start": "2026-10-06T01:08:02.7532782-03:00",
+      "finish": "2026-10-06T01:09:41.7497357-03:00"
+    },
+    "counters": {
+      "total": "131",
+      "executed": "131",
+      "passed": "131",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "level": "histórico/local",
+    "version_binding": "Não há manifesto da árvore executada no TRX; hash do log não certifica equivalência ao snapshot atual."
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/testes-backend/infra-sql-final.trx",
+    "sha256": "fde7bee340e9ba64c3a80eeeae88807ff21cc90146593a036325c253fa6aaba7",
+    "times": {
+      "creation": "2026-10-06T01:01:40.1683734-03:00",
+      "queuing": "2026-10-06T01:01:40.1683742-03:00",
+      "start": "2026-10-06T01:01:34.3740574-03:00",
+      "finish": "2026-10-06T01:02:52.0150707-03:00"
+    },
+    "counters": {
+      "total": "131",
+      "executed": "131",
+      "passed": "130",
+      "failed": "1",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "level": "histórico/local",
+    "version_binding": "Não há manifesto da árvore executada no TRX; hash do log não certifica equivalência ao snapshot atual."
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/testes-backend/infra-sql-retest.trx",
+    "sha256": "4bd73e7b28b4b23aeff5203ef4e58616fe047f548ba5cd43f9a2eacfa7dd8bdf",
+    "times": {
+      "creation": "2026-10-06T00:44:06.1581753-03:00",
+      "queuing": "2026-10-06T00:44:06.1581760-03:00",
+      "start": "2026-10-06T00:43:20.8313532-03:00",
+      "finish": "2026-10-06T00:46:30.5895522-03:00"
+    },
+    "counters": {
+      "total": "129",
+      "executed": "129",
+      "passed": "113",
+      "failed": "16",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "level": "histórico/local",
+    "version_binding": "Não há manifesto da árvore executada no TRX; hash do log não certifica equivalência ao snapshot atual."
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/testes-backend/regressao-sql-final_net10.0_20261006003416.trx",
+    "sha256": "adc051cc3aa94681d93445fe2440ec50bdb8c78cfa2d5a00d4d1565a371abd83",
+    "times": {
+      "creation": "2026-10-06T00:34:14.8748116-03:00",
+      "queuing": "2026-10-06T00:34:14.8748119-03:00",
+      "start": "2026-10-06T00:34:01.3073727-03:00",
+      "finish": "2026-10-06T00:34:15.9746524-03:00"
+    },
+    "counters": {
+      "total": "321",
+      "executed": "321",
+      "passed": "321",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "level": "histórico/local",
+    "version_binding": "Não há manifesto da árvore executada no TRX; hash do log não certifica equivalência ao snapshot atual."
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/testes-backend/regressao-sql-final_net10.0_20261006003533.trx",
+    "sha256": "5f83ccd35880d2d8c72f757c17c6a6043bc82829b8cf3d37be4120d116be8c19",
+    "times": {
+      "creation": "2026-10-06T00:34:15.8530132-03:00",
+      "queuing": "2026-10-06T00:34:15.8530139-03:00",
+      "start": "2026-10-06T00:34:01.3073332-03:00",
+      "finish": "2026-10-06T00:35:33.7634437-03:00"
+    },
+    "counters": {
+      "total": "129",
+      "executed": "129",
+      "passed": "113",
+      "failed": "16",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "level": "histórico/local",
+    "version_binding": "Não há manifesto da árvore executada no TRX; hash do log não certifica equivalência ao snapshot atual."
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/infra-sql-final.log",
+    "sha256": "b8c9b9d22b6a19e84751ee5dd3fb94219da8ccbb557da315a4aa480d52690264",
+    "file_modified_utc": "2026-10-06T04:02:53.612878+00:00",
+    "level": "histórico/local",
+    "summary_counts": [],
+    "mentions_onboarding": false,
+    "mentions_cancelled": false,
+    "version_binding": "Ausente; mtime é metadado, não horário confirmado da execução. Conteúdo privado não copiado.",
+    "node_counters": []
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/infra-sql-retest.log",
+    "sha256": "85adb5c18228008f18639b3a1dfe3735dcb6e41f602ac8567f0cbbf99264c4da",
+    "file_modified_utc": "2026-10-06T03:46:31.204280+00:00",
+    "level": "histórico/local",
+    "summary_counts": [],
+    "mentions_onboarding": false,
+    "mentions_cancelled": false,
+    "version_binding": "Ausente; mtime é metadado, não horário confirmado da execução. Conteúdo privado não copiado.",
+    "node_counters": []
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/infra-sql-conclusivo.log",
+    "sha256": "cccab5684af277227bd926149dc9ab8122feddd3befceb70f556d0c182a28724",
+    "file_modified_utc": "2026-10-06T04:09:44.280607+00:00",
+    "level": "histórico/local",
+    "summary_counts": [],
+    "mentions_onboarding": false,
+    "mentions_cancelled": false,
+    "version_binding": "Ausente; mtime é metadado, não horário confirmado da execução. Conteúdo privado não copiado.",
+    "node_counters": []
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/testes-backend-final.log",
+    "sha256": "20def228c0d3b0927ca93d9ef15fcf3b4d26934b58490842e2c9b5162239a8be",
+    "file_modified_utc": "2026-10-06T03:46:32.166258+00:00",
+    "level": "histórico/local",
+    "summary_counts": [],
+    "mentions_onboarding": false,
+    "mentions_cancelled": true,
+    "version_binding": "Ausente; mtime é metadado, não horário confirmado da execução. Conteúdo privado não copiado.",
+    "node_counters": []
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/e2e-quarta.log",
+    "sha256": "c78b79fc23b22ab09f382828f15e1add91a87f106193579bf98a9a4d33107163",
+    "file_modified_utc": "2026-10-06T04:14:39.722761+00:00",
+    "level": "histórico/local",
+    "summary_counts": [
+      "1 failed",
+      "4 did not run"
+    ],
+    "mentions_onboarding": true,
+    "mentions_cancelled": false,
+    "version_binding": "Ausente; mtime é metadado, não horário confirmado da execução. Conteúdo privado não copiado.",
+    "node_counters": []
+  },
+  {
+    "path": "outputs/melhorias-operacionais-2026-10-05/e2e-hardening-final.log",
+    "sha256": "67f2bf766a03eb9dee4357c3bc23ba7a14ea04228060108e2fb173a0836a6bfe",
+    "file_modified_utc": "2026-10-06T04:02:06.348321+00:00",
+    "level": "histórico/local",
+    "summary_counts": [],
+    "mentions_onboarding": true,
+    "mentions_cancelled": true,
+    "version_binding": "Ausente; mtime é metadado, não horário confirmado da execução. Conteúdo privado não copiado.",
+    "node_counters": [
+      "tests 17",
+      "pass 17",
+      "fail 0",
+      "cancelled 0",
+      "skipped 0"
+    ]
+  }
+]

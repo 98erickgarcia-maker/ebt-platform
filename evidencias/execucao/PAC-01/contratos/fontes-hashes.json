@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-09",
+  "source": "C:\\Users\\Ivair Silva\\Documents\\Codex\\2026-08-18\\CRM_CASST_WEB\\.worktrees\\crm-casst-foundation",
+  "head": "046e7c62359220aaf6ab30832f0fbff5b6f675f0",
+  "method": "SHA256 do arquivo local integral; consulta somente leitura; evidencia estatica",
+  "files": [
+    {
+      "path": "src/frontend/src/pages/ProspectsPage.tsx",
+      "sha256": "2322231605de266836145057c79a07bbd6f878a5cae4a1d53ed0463e73e2338b",
+      "lines": 4893
+    },
+    {
+      "path": "src/frontend/src/pages/AgendaPage.tsx",
+      "sha256": "7d7170b1cd46260066367ef98653999bb78aa50d3adb31248e01ddd789fa9108",
+      "lines": 602
+    },
+    {
+      "path": "src/frontend/src/components/ProspectWorkspaceDrawer.tsx",
+      "sha256": "e81ea0c348d67efa088d96be782af045d9fbb4489869d9212e701e836538cf07",
+      "lines": 465
+    },
+    {
+      "path": "src/frontend/src/api/contracts.ts",
+      "sha256": "f70dc89e1864fbccc38ecf71e7c1a62ddcf57384959d15c25a5d1006115ad9d4",
+      "lines": 1754
+    },
+    {
+      "path": "src/frontend/src/api/http.ts",
+      "sha256": "306e293000c6efe8b92f83020eb4f6638893768f118cd5a1359bec72e0e74ba2",
+      "lines": 195
+    },
+    {
+      "path": "src/frontend/src/auth/AuthProvider.tsx",
+      "sha256": "8b394ef3c9ecc275658dfbc9c34791335682183f479c9f65b239cead9cad6d60",
+      "lines": 71
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/ProspectEndpoints.cs",
+      "sha256": "f24be31f638c8a983d858429ee376dc6eafd17f44ce39c5f513ee8b322fb67b6",
+      "lines": 1443
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CustomerEndpoints.cs",
+      "sha256": "29956c8535f36c6549ebc016a0c670ba0e4e03453a4e3c668169a408bc2f8d9e",
+      "lines": 800
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Endpoints/CommercialInteractionEndpoints.cs",
+      "sha256": "ac2c6da42535871234ede35e47fb926e77e36a47ccf7603b2236c9827ebfb4c3",
+      "lines": 876
+    },
+    {
+      "path": "src/backend/CrmCasst.Api/Authorization/TenantPolicies.cs",
+      "sha256": "567d7b8c446db4a4849501bd2a21aa04e372e8ddab11cf533ccf0f64aa304f7d",
+      "lines": 122
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Prospecting/ProspectContracts.cs",
+      "sha256": "03cc6ee4d8022c7dabe8e5f739489d48a41cd3396c1b9a64ac510d270d7b8965",
+      "lines": 324
+    },
+    {
+      "path": "src/backend/CrmCasst.Application/Interactions/CommercialInteractionContracts.cs",
+      "sha256": "e7b89802b75f1e7d024af311edf8cce30b2d82968eb82bd8fe10813882edf070",
+      "lines": 296
+    },
+    {
+      "path": "src/backend/CrmCasst.Domain/Prospecting/ProspectStatus.cs",
+      "sha256": "5618839fedb4cf8e07ceccaec044bd772a12d6237e853b98031d11935ee1f9d4",
+      "lines": 12
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Interactions/CommercialInteractionService.cs",
+      "sha256": "7e96e1f93260394b1a4776543bc623094be5219cccd470c5aad88639a292b18f",
+      "lines": 910
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Interactions/CommercialInteractionAccessPolicy.cs",
+      "sha256": "6a1be5a2d8e04cfc2894a7da59073d3e43fbc8832c403caacdbf78dbd98c4453",
+      "lines": 46
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ProspectConfiguration.cs",
+      "sha256": "373514a517162c6d80f0f97d27f219c652b0d0347dcde8df706e07dc32746d9e",
+      "lines": 75
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/ProspectPersonLinkConfiguration.cs",
+      "sha256": "55299e6165c38c1cabfa1e6828c1904e42d35ce956094265d48506e8da13f1b4",
+      "lines": 48
+    },
+    {
+      "path": "src/backend/CrmCasst.Infrastructure/Persistence/Configurations/CommercialInteractionConfiguration.cs",
+      "sha256": "a434e0088ec3f838504629aca7511af345f78d21609c8fb3a4d548ca06c84d23",
+      "lines": 97
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Interactions/CommercialInteractionEndpointTests.cs",
+      "sha256": "9f96dc4515ca1ae48906b3ba1639b364bc7e7f69cb74a697ecac8631b1901d51",
+      "lines": 911
+    },
+    {
+      "path": "tests/CrmCasst.Api.Tests/Prospecting/ProspectEndpointTests.cs",
+      "sha256": "ff3188cc579900d157676ae01f0f3bf8fe81e82b35db4b9b90e341d07c8a0901",
+      "lines": 701
+    }
+  ]
+}
