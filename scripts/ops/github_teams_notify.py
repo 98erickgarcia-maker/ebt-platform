@@ -153,7 +153,7 @@ def report_message(report, run_id):
     uncertain = sum(row.get("state") == "INCONCLUSIVE" for row in checks)
     description = {"create": "novo incidente", "update": "incidente atualizado", "close": "incidente encerrado"}[transition]
     action_url = BASE_URL + "/actions/runs/" + str(run_id) if _int_or_none(run_id) else BASE_URL + "/actions"
-    return (f"[EBT] Monitor de produção: {description}.\n"
+    return (f"[EBT] Monitor de homologação: {description}.\n"
             f"Falhas: {failures} | Inconclusivos: {uncertain}\n{action_url}")
 
 
