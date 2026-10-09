@@ -37,7 +37,7 @@ test("R04: an administrator can find and revoke a key after reloading", async ({
     .getByRole("button", { name: "Criar chave de API", exact: true })
     .click();
   const key = (await (await created).json()) as { id: string };
-  await expect(page.getByRole("status")).toContainText("Chave criada");
+  await expect(page.locator(".alert.success")).toContainText("Chave criada");
   await page.reload();
   await page
     .getByRole("button", { name: "Configurações", exact: true })
@@ -57,7 +57,7 @@ test("R05: existing account accepts an invitation using its original password", 
 }) => {
   await login(page);
   await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantB);
-  await expect(page.getByRole("status")).toContainText("Empresa selecionada");
+  await expect(page.locator(".alert.success")).toContainText("Empresa selecionada");
   const token = await (await page.request.get("/api/security/csrf")).json();
   const response = await page.request.post("/api/admin/invitations", {
     data: {

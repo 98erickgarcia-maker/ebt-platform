@@ -1552,7 +1552,7 @@
     },
     {
       "path": "src/frontend/e2e/admin-corrections.spec.ts",
-      "reviewed_sha256": "2e2673039574bdb17cc54fd2bdb5f730b9c45d43c2e8c17952ef0a0ecf06a1b6"
+      "reviewed_sha256": "32647b488256c6c97e0dfe95bd5e3f5f324e1c5edb548c4d1e5f8529d67c7e23"
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
@@ -1575,5 +1575,5 @@
       "reviewed_sha256": "3f138927af1814b8000585d7eb2a85268ad631aa305c291c82f2e1fdabef3128"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T01:45:57.852320+00:00"
+  "reviewed_at_utc": "2026-10-09T01:46:12.247287+00:00"
 }
