@@ -1,0 +1,71 @@
+name: Finalize reviewed FLOW AURA audit harness
+on:
+  push:
+    branches: ['test/flow-aura-deep-audit-20261009-1835']
+    paths: ['.github/workflows/finalize-flow-aura-audit.yml']
+permissions:
+  contents: write
+jobs:
+  finalize:
+    if: github.ref == 'refs/heads/test/flow-aura-deep-audit-20261009-1835'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Correct only the reviewed test fixture and record its hashes
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, hashlib
+          p = Path('src/frontend/e2e/flow-aura-audit.spec.ts')
+          assert hashlib.sha256(p.read_bytes()).hexdigest() == '45926137195545d7d8162ff6cabc910d55fd56934fac5f99ea83631052d0c772'
+          text = p.read_text(encoding='utf-8')
+          old = '  const spacing = await page.addStyleTag({ content: "main * { line-height:1.5 !important; letter-spacing:.12em !important; word-spacing:.16em !important; } main p { margin-bottom:2em !important; }" });'
+          new = '''  // A test-only same-origin stylesheet respects the real style-src self policy.
+            const spacingUrl = new URL("/__qa__/flow-aura-text-spacing.css", page.url()).href;
+            await page.route(spacingUrl, route => route.fulfill({ status: 200, contentType: "text/css",
+              body: "main * { line-height:1.5 !important; letter-spacing:.12em !important; word-spacing:.16em !important; } main p { margin-bottom:2em !important; }" }));
+            const spacing = await page.addStyleTag({ url: spacingUrl });
+            const tracking = await page.locator(".page-heading h1").evaluate(node => {
+              const style = getComputedStyle(node);
+              return parseFloat(style.letterSpacing) / parseFloat(style.fontSize);
+            });
+            expect(tracking, "User text spacing actually applied").toBeCloseTo(.12, 2);'''
+          assert text.count(old) == 1
+          text = text.replace(old, new)
+          text = text.replace('  await spacing.evaluate(node => node.parentNode?.removeChild(node));', '  await spacing.evaluate(node => node.parentNode?.removeChild(node));\n  await page.unroute(spacingUrl);')
+          p.write_text(text, encoding='utf-8', newline='\n')
+          manifest_path = Path('planejamento/continuidade_github.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          for name in ['src/frontend/e2e/flow-aura-audit.spec.ts', 'src/frontend/e2e/flow-aura-native-zoom.spec.ts']:
+            entry = next((e for e in manifest['files'] if e['path'] == name), None)
+            if entry is None:
+              entry = {'path': name}; manifest['files'].append(entry)
+            entry['reviewed_sha256'] = hashlib.sha256(Path(name).read_bytes()).hexdigest()
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
+          Path('.github/workflows/finalize-flow-aura-audit.yml').unlink()
+      - run: npm ci
+        working-directory: src/frontend
+      - run: npm run build && npm run test:unit
+        working-directory: src/frontend
+      - run: python scripts/verificar_continuidade.py
+      - name: Save only the finite reviewed test change on the isolated branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git add -- src/frontend/e2e/flow-aura-audit.spec.ts planejamento/continuidade_github.json .github/workflows/finalize-flow-aura-audit.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'test(ui): respect CSP in text-spacing audit and track native zoom coverage'
+          git push origin HEAD:refs/heads/test/flow-aura-deep-audit-20261009-1835
+          git archive --format=tar HEAD > "$RUNNER_TEMP/flow-aura-final-source.tar"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: flow-aura-final-source
+          path: ${{ runner.temp }}/flow-aura-final-source.tar
+          retention-days: 1
+          if-no-files-found: error
