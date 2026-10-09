@@ -34,6 +34,7 @@ import { ApiKeyPanel, InvitationAcceptance } from "./AccessTools";
 import { CommercialTemplates } from "./CommercialTemplates";
 import { MailPanel } from "./MailPanel";
 import { QuickSearch, DuplicateHints } from "./QuickSearch";
+import { useMobileNavigation } from "./useMobileNavigation";
 
 type View =
   | "applications"
@@ -500,17 +501,7 @@ export function App() {
     if (me) setAccess(me);
   }, [me]);
   const mobileMenuButton = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (!menu) return;
-    const dismiss = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenu(false);
-        mobileMenuButton.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", dismiss);
-    return () => window.removeEventListener("keydown", dismiss);
-  }, [menu]);
+  const sidebarRef = useMobileNavigation(menu, setMenu, mobileMenuButton);
   const selectedId = selected?.id;
   const load = useCallback(async () => {
     if (!me) return;
@@ -1174,7 +1165,7 @@ export function App() {
   const currentView = views.find((v) => v.id === view)!;
   return (
     <div className="workspace">
-      <aside id="ebt-sidebar-navigation" className={"sidebar " + (menu ? "mobile-open" : "")}>
+      <aside ref={sidebarRef} id="ebt-sidebar-navigation" className={"sidebar " + (menu ? "mobile-open" : "")}>
         <a
           className="brand"
           href="#"
