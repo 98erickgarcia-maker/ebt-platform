@@ -1,0 +1,11 @@
+[Unit]
+Description=Check EBT GitHub recurrence every five minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+AccuracySec=15s
+Unit=ebt-schedule-watchdog.service
+
+[Install]
+WantedBy=timers.target
