@@ -1,0 +1,195 @@
+{
+  "utc": "2026-10-09T03:52:55.627512+00:00",
+  "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+  "version": "0.2.0",
+  "sourceCommit": "18a454c725478819ab79a3f032e4321ca0e74d76",
+  "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:3cbba51b9440fff7f042f650d8396dd6a9eca218cf2c37d115450f39ed9d6ad1",
+  "checks": [
+    {
+      "name": "HTTPS root without redirect",
+      "passed": true
+    },
+    {
+      "name": "/health/live version",
+      "passed": true
+    },
+    {
+      "name": "/health/ready version",
+      "passed": true
+    },
+    {
+      "name": "Shared schemas ready",
+      "passed": true
+    },
+    {
+      "name": "Existing cookie preserved across image",
+      "passed": true
+    },
+    {
+      "name": "Same active identity and tenant",
+      "passed": true
+    },
+    {
+      "name": "Connect read preserved",
+      "passed": true
+    },
+    {
+      "name": "Existing contact IDs preserved",
+      "passed": true
+    },
+    {
+      "name": "Authenticated Platform catalog",
+      "passed": true
+    },
+    {
+      "name": "9 apps with only Connect available",
+      "passed": true
+    },
+    {
+      "name": "Unicode catalog names",
+      "passed": true
+    },
+    {
+      "name": "Current tenant bound",
+      "passed": true
+    },
+    {
+      "name": "Anonymous denied /api/platform/v1/applications",
+      "passed": true
+    },
+    {
+      "name": "Anonymous denied /api/connect/v1/contacts",
+      "passed": true
+    },
+    {
+      "name": "Proxy observation disabled",
+      "passed": true
+    },
+    {
+      "name": "HTTP ingress redirects to HTTPS",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    },
+    {
+      "name": "HTTPS request stable",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "contactPageCount": 5,
+  "contactIdsSha256": "6f1bd7e22035b386dc349297c9434c8f98c77689ad6e1914e25e2ef302313560",
+  "dataWrites": false,
+  "limitations": [
+    "Read checks and row IDs are not byte-by-byte validation of all data",
+    "No new real message, scanner or isolated restore validation"
+  ],
+  "browser": {
+    "utc": "2026-10-09T03:54:49.821Z",
+    "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+    "version": "0.2.0",
+    "sourceCommit": "18a454c725478819ab79a3f032e4321ca0e74d76",
+    "passed": true,
+    "checks": [
+      {
+        "viewport": "desktop",
+        "catalogCards": 9,
+        "connectNavigation": true,
+        "existingCookieAccepted": true,
+        "overflow": false
+      },
+      {
+        "viewport": "mobile",
+        "catalogCards": 9,
+        "connectNavigation": true,
+        "existingCookieAccepted": true,
+        "overflow": false
+      }
+    ],
+    "pageErrors": [],
+    "dataWrites": false,
+    "privateScreenshots": true
+  },
+  "configuration": {
+    "changedEnvironmentKeys": [
+      "Platform__TrustedProxies"
+    ],
+    "expectedEnvironmentOnly": true,
+    "proxyAuditDisabled": true,
+    "identityPreserved": true,
+    "scalePreserved": true,
+    "resourcesPreserved": true,
+    "secretsPreserved": true,
+    "ingressPreserved": true,
+    "keyProtectionEnvPreserved": true,
+    "latestRevision": "ebt-connect-hml--platform020-18a454c",
+    "readyRevision": "ebt-connect-hml--platform020-18a454c",
+    "newImage": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:3cbba51b9440fff7f042f650d8396dd6a9eca218cf2c37d115450f39ed9d6ad1",
+    "normalization": "Secret references compared semantically; omitted and null values equivalent"
+  },
+  "databaseProof": "evidencias/platform_azure_apply_20261009.json",
+  "temporaryFirewallRemoved": true,
+  "ci": [
+    {
+      "id": 37880358388,
+      "name": "Build EBT Connect",
+      "conclusion": "success",
+      "sha": "18a454c725478819ab79a3f032e4321ca0e74d76"
+    },
+    {
+      "id": 37880358380,
+      "name": "Validate EBT Enterprise continuity",
+      "conclusion": "success",
+      "sha": "18a454c725478819ab79a3f032e4321ca0e74d76"
+    }
+  ],
+  "acrRun": {
+    "id": "cqr",
+    "status": "Succeeded"
+  },
+  "proxyFix": {
+    "observedPeers": [
+      "::ffff:100.100.0.159",
+      "::ffff:100.100.0.60"
+    ],
+    "exactAddressesOnly": true,
+    "universalTrust": false,
+    "auditRemoved": true,
+    "previousAddressesPreserved": true,
+    "limit": "Azure proxy peer addresses may change; reobserve with temporary protected audit before altering the exact allowlist"
+  }
+}

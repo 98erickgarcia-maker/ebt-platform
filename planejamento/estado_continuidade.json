@@ -18,20 +18,20 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Catalogo Platform implementado: 19/19 browser, 8/8 catalogo/permissoes SQL/HTTP, 27/27 regressao Connect, backend Debug/Release e frontend build aprovados. Publicacao ainda pendente; nao declarar online antes da verificacao.",
+  "review_status": "Platform 0.2.0 publicada e verificada: catalogo no Azure compartilhado, 26 checks HTTP online, navegador desktop/mobile, mesma sessao e mesmos IDs consultados; CI de fonte 18a454c aprovado. Provas locais 19 browser, 8 catalogo SQL/HTTP e 27 regressao Connect. Sem promocao global de gates.",
   "no_product_gate_promotion": true,
   "product_limits": [
-    "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Build/continuidade das quatro partes aprovados por SHA. SQL/browser e protocolo do scanner usam fixtures sintéticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
-    "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
-    "Dois tenants do Connect não comprovam isoladamente Core universal",
-    "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
+    "Provas anteriores do Connect nÃ£o sÃ£o reexecuÃ§Ã£o ao vivo desta auditoria",
+    "Build/continuidade das quatro partes aprovados por SHA. SQL/browser e protocolo do scanner usam fixtures sintÃ©ticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
+    "Meta direto, campanhas, templates, mÃ­dia e omnichannel nÃ£o sÃ£o homologados pelo texto WazVox",
+    "Dois tenants do Connect nÃ£o comprovam isoladamente Core universal",
+    "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates prÃ³prios"
   ],
-  "next_authorized_step": "Aplicar catalogo aditivo revisado no banco existente, verificar limites de identidade/catalogo dos outros schemas, publicar imagem imutavel no host existente e validar HTTPS/login/navegacao/sessao apos a troca.",
+  "next_authorized_step": "Recorte solicitado publicado. Proxima evolucao: definir scanner privado real e ensaio de restore isolado conforme escopo e custos; demais aplicativos mantidos no planejamento. Revisar qualquer conteudo novo antes de checkpoint.",
   "next_product_steps_require_scope": [
-    "scanner privado com prova por versão",
-    "restauração Azure isolada e comparação de hashes",
-    "conferir CI da próxima mudança de produto",
+    "scanner privado com prova por versÃ£o",
+    "restauraÃ§Ã£o Azure isolada e comparaÃ§Ã£o de hashes",
+    "conferir CI da prÃ³xima mudanÃ§a de produto",
     "aceite operacional do recorte Connect"
   ],
   "fallback_prompt": "prompts/RETOMAR_EBT_ENTERPRISE.md",
@@ -42,5 +42,28 @@
   "incremental_review_source": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
   "active_checkout_local": ".worktrees/revisao-github-20261008",
   "source_preservation": "evidencias/fontes_originais_preservadas_20261008.json",
-  "scheduler_source": "evidencias/revisao_github_incremental_20261008.json"
+  "scheduler_source": "evidencias/revisao_github_incremental_20261008.json",
+  "online": {
+    "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+    "version": "0.2.0",
+    "source_commit": "18a454c725478819ab79a3f032e4321ca0e74d76",
+    "revision": "ebt-connect-hml--platform020-18a454c",
+    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:3cbba51b9440fff7f042f650d8396dd6a9eca218cf2c37d115450f39ed9d6ad1",
+    "evidence": "evidencias/platform_online_20261009.json",
+    "database_evidence": "evidencias/platform_azure_apply_20261009.json",
+    "status": "published_verified",
+    "available_applications": [
+      "connect"
+    ],
+    "planned_applications": [
+      "flow",
+      "portal",
+      "sites",
+      "contracts",
+      "sst",
+      "legislativo",
+      "educacao",
+      "saude"
+    ]
+  }
 }

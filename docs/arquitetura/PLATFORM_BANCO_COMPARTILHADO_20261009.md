@@ -1,4 +1,4 @@
-# EBT Platform no banco compartilhado — 09/10/2026
+# EBT Platform no banco compartilhado â€” 09/10/2026
 
 Pedido explicito: area exclusiva da Platform no banco que atende os aplicativos e publicacao online. A EBT Enterprise continua a familia; Platform a fundacao; Connect o primeiro aplicativo.
 
@@ -12,6 +12,8 @@ Validacao local: script SQL aplicado duas vezes, segunda vez sem novas linhas; 2
 
 Antes da mudanca Azure: schema Platform ausente; catalogo e contagem de 110 tabelas dos demais aplicativos registrados por hashes, sem exportar linhas. Ponto de restauracao Azure disponivel a partir de 02/10/2026; isso nao comprova ensaio de restore. Configuracao/imagem anterior guardadas em tmp privado. Aplicacao e imagem imutavel podem voltar para r015 sem restaurar/excluir o banco; catalogo aditivo pode permanecer. Firewall temporario limitado ao IP do operador deve ser removido e sua ausencia confirmada.
 
-Publicacao pendente neste registro: atualizar prova online, SHA, imagem, revision e checks depois da verificacao. Provas historicas de WazVox nao sao novo envio real. Scanner real e restore Azure isolado continuam com prova propria; documentos sem scan clean nao sao liberados em producao.
+Publicacao verificada: versao 0.2.0, fonte `18a454c`, revisao `ebt-connect-hml--platform020-18a454c`, imagem imutavel registrada em `evidencias/platform_online_20261009.json`. HTTPS, sessao anterior, IDs consultados, catalogo e navegador desktop/mobile passaram. Firewall temporario removido. Estruturas/contagens dos demais schemas permaneceram iguais; isso nao certifica byte a byte todas as linhas. Provas historicas de WazVox nao sao novo envio real. Scanner real e restore Azure isolado continuam com prova propria; documentos sem scan clean nao sao liberados em producao.
 
 Referencias: [CREATE SCHEMA](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-schema-transact-sql), [permissoes](https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-schema-permissions-transact-sql), [revisoes Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/revisions-manage).
+
+O acesso anterior apresentava loop HTTPS: peers observados `::ffff:100.100.0.60` e `::ffff:100.100.0.159` faltavam na lista explicita. Foram incluidos IPv4 e mapeamentos IPv6, preservando enderecos anteriores; nao houve confianca global nos headers. A observacao temporaria protegida foi removida. Uma mudanca futura dos peers Azure requer nova observacao e revisao da configuracao. [Headers no ingresso Azure](https://learn.microsoft.com/en-us/azure/container-apps/ingress-overview).

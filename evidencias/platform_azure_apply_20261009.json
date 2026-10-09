@@ -1,0 +1,88 @@
+{
+  "generatedUtc": "2026-10-09T03:41:15.6391467+00:00",
+  "database": "sqldb-crm-casst-dev-v2",
+  "schema": "ebt_platform",
+  "mode": "apply",
+  "scriptSha256": "ca070eab14f1356bcffb7ba18431b3d50d71886d81018b9faea8db0c8e6dbd14",
+  "otherSchemasBefore": "6620a656ac96b04573b6f6ba0b554cc23f2d507355ea55dd4e89c357668fdf8b",
+  "otherSchemasAfter": "6620a656ac96b04573b6f6ba0b554cc23f2d507355ea55dd4e89c357668fdf8b",
+  "otherSchemasUnchanged": true,
+  "otherTableCount": 110,
+  "otherTableCountsBeforeSha256": "5b208bd46a8fb61653161d65bbf8b4737879ca6088b17a75e5892d2740299e70",
+  "otherTableCountsAfterSha256": "5b208bd46a8fb61653161d65bbf8b4737879ca6088b17a75e5892d2740299e70",
+  "otherTableCountsUnchanged": true,
+  "applications": [
+    {
+      "Code": "connect",
+      "Name": "EBT Connect",
+      "State": "available",
+      "DataSchema": "ebt_connect"
+    },
+    {
+      "Code": "flow",
+      "Name": "EBT Flow",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "portal",
+      "Name": "EBT Portal",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "sites",
+      "Name": "EBT Sites",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "contracts",
+      "Name": "EBT Contracts",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "sst",
+      "Name": "EBT SST",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "legislativo",
+      "Name": "EBT Legislativo",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "educacao",
+      "Name": "EBT Educa\u00E7\u00E3o",
+      "State": "planned",
+      "DataSchema": ""
+    },
+    {
+      "Code": "saude",
+      "Name": "EBT Sa\u00FAde",
+      "State": "planned",
+      "DataSchema": ""
+    }
+  ],
+  "permissions": [
+    {
+      "catalogRead": 1,
+      "catalogInsert": 0,
+      "platformAlter": 0,
+      "connectRead": 1,
+      "dboRead": 0,
+      "siteRead": 0,
+      "crpRead": 0,
+      "thaianeRead": 0
+    }
+  ],
+  "newDatabaseCreated": false,
+  "movedApplicationData": false,
+  "limits": [
+    "Catalog hashes and table counts do not certify unchanged contents of every row",
+    "Future application catalog entries are planned, not implemented modules"
+  ]
+}

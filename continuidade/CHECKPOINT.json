@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T03:40:33.118465+00:00",
+  "created_at_utc": "2026-10-09T03:57:14.706262+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "3c8f0700014981ac8b4addfd0416b426993ae4d1",
-  "base": "3c8f0700014981ac8b4addfd0416b426993ae4d1",
+  "parent_checkpoint": "18a454c725478819ab79a3f032e4321ca0e74d76",
+  "base": "18a454c725478819ab79a3f032e4321ca0e74d76",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -49,6 +49,10 @@
       "sha256": "6588d76d894bf94834d9d931697e1d3c90f422025c10bb5b08d4798743dafec9"
     },
     {
+      "path": "PASSO_A_PASSO_EBT_PLATFORM.md",
+      "sha256": "f93012a574b1fc4917a726a2d126c2396f27bf8105b0fe6c28fc841fd31e3a59"
+    },
+    {
       "path": "PASSO_A_PASSO_PUBLICACAO_CONNECT.md",
       "sha256": "51e448775a7c841a9bb4ab8e9f12d0d1401fda03ad01180e1ff13a1ac6cecc35"
     },
@@ -62,7 +66,7 @@
     },
     {
       "path": "RETOMADA_EBT_ENTERPRISE_ATUAL.md",
-      "sha256": "4561ba669b091905896b7f5e760dbb7a8a64cfb892d54e6aa6c9efbbd2f6d8d0"
+      "sha256": "2185397e5f0409601ae0db69b9d3beefea8ff1cd5f78ad61712cedeb1f870c8c"
     },
     {
       "path": "deployment/connect/Dockerfile",
@@ -138,7 +142,7 @@
     },
     {
       "path": "docs/arquitetura/PLATFORM_BANCO_COMPARTILHADO_20261009.md",
-      "sha256": "809087b9ac750f308cd3bec0406359b8c6e56cfab20f2bf1f2683e6a45bae2e6"
+      "sha256": "bd064a1400c2a4fa58e7ba0fb6a130f2aaaa47796d9f51e0257fed86da912d2e"
     },
     {
       "path": "docs/arquitetura/adr/ADR-001_REAPROVEITAMENTO.md",
@@ -786,7 +790,7 @@
     },
     {
       "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
-      "sha256": "f79b15a2f6b8e6975273338f2ea650465e44adeb3b95c325f6e5cef1c5938ef6"
+      "sha256": "ae79d95b9d0df1c942c80b41574525f45e67f19edc6b6ea3a35b7bc15eb5eabc"
     },
     {
       "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
@@ -945,12 +949,20 @@
       "sha256": "838daafd35f5c3aa6e2637a3e06318f02f9d9cd20097f3f07a393b172041394f"
     },
     {
+      "path": "evidencias/platform_azure_apply_20261009.json",
+      "sha256": "a1c2ba29ab3d16061998cd5119ef88e860cec7c10031288a66fa9b573d78d4bd"
+    },
+    {
       "path": "evidencias/platform_azure_inspect_20261009.json",
       "sha256": "e3c94b4a3656531aa5a8aa8b69880deb0d258c3d2ff114057c427185b61b462a"
     },
     {
       "path": "evidencias/platform_catalog_qa_20261009.json",
       "sha256": "d223e4be2feb56cd943ba02dee2f006c262540bf876918c60ce23cd4f9b34e54"
+    },
+    {
+      "path": "evidencias/platform_online_20261009.json",
+      "sha256": "c9acbc73c8524504eb9b2c7b7b7f4c2cc879c6b7a46528136b61aab2a180c91f"
     },
     {
       "path": "evidencias/revisao_connect_planejamento.json",
@@ -1082,7 +1094,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "4f9ee8ff7409a775cf3bc3f2ab7f81e91027c7f65883911a2c95b8596f9c4f05"
+      "sha256": "3f48efe34dd471021d04d531a5dd720e4075370711752c5495bd3137bfd1d9bb"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1094,7 +1106,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "653c89d684a4036ca267e678fdfed45a3fcc0bca8d1ca4361c5953ad3082a84b"
+      "sha256": "da1c3e13fa0488cdc3a6a8425d3e567c1f99b681b137eda6adfd5b68cf2ed866"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1122,7 +1134,7 @@
     },
     {
       "path": "prompts/RETOMAR_EBT_ENTERPRISE.md",
-      "sha256": "d45ae7664a27eb0232d44e31eefb9d3f6d19ef5ce43e8eaf34482babdb2d193b"
+      "sha256": "3c3618abbba630fef0c4fcd825a2a4f820f1c756531cf58aaff544cfaf6cfb4a"
     },
     {
       "path": "scripts/Apply-ConnectAzureSchema.ps1",
