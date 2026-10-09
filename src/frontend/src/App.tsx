@@ -499,6 +499,18 @@ export function App() {
   useEffect(() => {
     if (me) setAccess(me);
   }, [me]);
+  const mobileMenuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!menu) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenu(false);
+        mobileMenuButton.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", dismiss);
+    return () => window.removeEventListener("keydown", dismiss);
+  }, [menu]);
   const selectedId = selected?.id;
   const load = useCallback(async () => {
     if (!me) return;
@@ -694,6 +706,7 @@ export function App() {
     setWithoutNext(false);
     // The same view must replace a load invalidated by navigation too.
     setRefresh((current) => current + 1);
+    if (menu) mobileMenuButton.current?.focus();
     setMenu(false);
     setSelected(null);
     setError("");
@@ -1161,7 +1174,7 @@ export function App() {
   const currentView = views.find((v) => v.id === view)!;
   return (
     <div className="workspace">
-      <aside className={"sidebar " + (menu ? "mobile-open" : "")}>
+      <aside id="ebt-sidebar-navigation" className={"sidebar " + (menu ? "mobile-open" : "")}>
         <a
           className="brand"
           href="#"
@@ -1218,8 +1231,11 @@ export function App() {
       <div className="main-area">
         <header className="topbar">
           <button
+            ref={mobileMenuButton}
             className="mobile-menu icon-button"
-            aria-label="Abrir navegação"
+            aria-label={menu ? "Fechar navegação" : "Abrir navegação"}
+            aria-expanded={menu}
+            aria-controls="ebt-sidebar-navigation"
             onClick={() => setMenu(!menu)}
           >
             <Icon name="grid" />

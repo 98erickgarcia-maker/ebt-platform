@@ -1583,7 +1583,7 @@
     },
     {
       "path": "src/frontend/e2e/platform.spec.ts",
-      "reviewed_sha256": "2279b64229684ce8764d84838edd8838c25ccf2db020b64e8730a7ad224158fe"
+      "reviewed_sha256": "97069a97d99fdd80d29765e5957823dbcfefacdffde52f2db2aca5863134d4aa"
     },
     {
       "path": "src/frontend/e2e/qa-auth-budget.ts",
@@ -1620,7 +1620,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "069e8dd63c9984e25efbcfe097860fefd9142104e9fee6e20b5bdb4d102b334a"
+      "reviewed_sha256": "041362ca63b487ba47004793cccc8e21f0a00fae09f6d1d5d8929ae1e198950b"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1656,7 +1656,7 @@
     },
     {
       "path": "src/frontend/src/style.css",
-      "reviewed_sha256": "8e9b1e22a09482275800fa7edddb7f4ecc1321e0b06cb4bc91003db6c3a10fda"
+      "reviewed_sha256": "3a3348eacc9bacb898e8ebdd80ed1f4ec2413549181f2e779f732047e24f14cb"
     },
     {
       "path": "src/frontend/tests/api.test.js",
@@ -1787,5 +1787,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:52:30.782916+00:00"
+  "reviewed_at_utc": "2026-10-09T17:22:58.921Z"
 }
