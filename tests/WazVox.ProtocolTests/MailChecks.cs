@@ -20,17 +20,30 @@ static class MailChecks
             Check(message.GetProperty("body").GetProperty("contentType").GetString()=="Text" && message.GetProperty("body").GetProperty("content").GetString()==row.Body && payload.RootElement.GetProperty("saveToSentItems").GetBoolean(),"Plain text and Sent Items copy preserve reviewed content");
             Check(message.GetProperty("internetMessageHeaders")[0].GetProperty("value").GetString()==row.Id.ToString(),"Stable operation reference for manual reconciliation");
         }
+        handler.Status=HttpStatusCode.Forbidden; result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
+        Check(result.State=="failed" && result.Code=="graph_rejected" && handler.Posts==2,"Graph 403 rejects without provider-text leakage or retry");
         handler.Status=HttpStatusCode.TooManyRequests; result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
-        Check(result.Code=="graph_throttled" && handler.Posts==2,"429 classified without automatic HTTP retry");
+        Check(result.State=="failed" && result.Code=="graph_throttled" && handler.Posts==3,"429 classified without automatic HTTP retry");
         handler.Status=HttpStatusCode.BadGateway; result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
-        Check(result.State=="unknown" && handler.Posts==3,"5xx remains uncertain; no resend");
+        Check(result.State=="unknown" && handler.Posts==4,"5xx remains uncertain; no resend");
         handler.BreakConnection=true; result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
-        Check(result.State=="unknown" && handler.Posts==4,"Interrupted send remains uncertain");
+        Check(result.State=="unknown" && handler.Posts==5,"Interrupted send remains uncertain");
         handler.BreakConnection=false; handler.TokenDenied=true; result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
-        Check(result.State=="failed" && result.Code=="graph_authentication_failed" && handler.Posts==4,"Token failure does not attempt send or expose provider text");
+        Check(result.State=="failed" && result.Code=="graph_authentication_failed" && handler.Posts==5,"Token failure does not attempt send or expose provider text");
         row.TenantId=Guid.NewGuid(); result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
-        Check(result.Code=="mail_unconfigured" && handler.Posts==4,"Other EBT tenant cannot use bound Microsoft mailbox");
+        Check(result.Code=="mail_unconfigured" && handler.Posts==5,"Other EBT tenant cannot use bound Microsoft mailbox");
         row.TenantId=tenant; handler.TokenDenied=false; handler.Status=HttpStatusCode.Accepted;
+        config["Mail:Enabled"]="false"; result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
+        Check(result.State=="failed" && result.Code=="mail_unconfigured" && handler.Posts==5,"Disabled mailbox never attempts Microsoft requests");
+        config["Mail:Enabled"]="true";
+        foreach(var tokenBody in new[] { "{}", "{\"access_token\":null}", "{\"access_token\":\"   \"}", "{\"access_token\":17}", "[]", "not-json" })
+        {
+            handler.TokenBody=tokenBody;
+            result=await GraphMail.Send(client,config,row,null,CancellationToken.None);
+            Check(result.State=="failed" && result.Code=="graph_authentication_failed" && handler.Posts==5,
+                "Invalid token response safely rejected before send: " + tokenBody);
+        }
+        handler.TokenBody="{\"access_token\":\"synthetic-token\"}";
         var attachment=new DocumentVersion { FileName="synthetic.txt",MediaType="text/plain",Content=Encoding.UTF8.GetBytes("synthetic file") };
         await GraphMail.Send(client,config,row,attachment,CancellationToken.None);
         using(var payload=JsonDocument.Parse(handler.Body)) Check(payload.RootElement.GetProperty("message").GetProperty("attachments")[0].GetProperty("contentBytes").GetString()==Convert.ToBase64String(attachment.Content),"Approved attachment payload encodes exact bytes");
@@ -43,9 +56,10 @@ static class MailChecks
     sealed class MailHandler : HttpMessageHandler
     {
         public int Posts; public string Body=""; public HttpStatusCode Status=HttpStatusCode.Accepted; public bool BreakConnection,TokenDenied;
+        public string TokenBody="{\"access_token\":\"synthetic-token\"}";
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,CancellationToken ct)
         {
-            if(request.RequestUri!.Host=="login.microsoftonline.com") return new HttpResponseMessage(TokenDenied?HttpStatusCode.Unauthorized:HttpStatusCode.OK){Content=new StringContent("{\"access_token\":\"synthetic-token\"}")};
+            if(request.RequestUri!.Host=="login.microsoftonline.com") return new HttpResponseMessage(TokenDenied?HttpStatusCode.Unauthorized:HttpStatusCode.OK){Content=new StringContent(TokenBody)};
             if(request.RequestUri.Host!="graph.microsoft.com" || request.Method!=HttpMethod.Post) throw new Exception("Unexpected endpoint");
             Posts++; Body=await request.Content!.ReadAsStringAsync(ct); if(BreakConnection) throw new HttpRequestException("Synthetic transport loss");
             return new HttpResponseMessage(Status){Content=new StringContent("{\"private\":\"provider detail not returned\"}")};
