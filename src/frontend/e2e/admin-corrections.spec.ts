@@ -18,7 +18,10 @@ async function login(page: Page) {
   await expect(
     page.getByRole("heading", { name: "Meu dia", exact: true }),
   ).toBeVisible();
-  await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
+  if (await page.getByLabel("Empresa", { exact: true }).inputValue() !== qa.tenantA) {
+    await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
+    await expect(page.locator(".alert.success")).toContainText("Empresa selecionada");
+  }
   await expect(page.locator(".loading-bar")).not.toBeVisible();
 }
 test("R04: an administrator can find and revoke a key after reloading", async ({

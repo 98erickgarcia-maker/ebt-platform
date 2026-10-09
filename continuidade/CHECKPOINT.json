@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T01:46:12.625246+00:00",
+  "created_at_utc": "2026-10-09T01:47:50.873171+00:00",
   "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
-  "parent_checkpoint": "e9bb3f7b2c644fc1ae3560485017ad81eded3509",
-  "base": "e9bb3f7b2c644fc1ae3560485017ad81eded3509",
-  "source_head": "c21bca5053f77bc1b3144a3c50e2e413fb8ae390",
+  "parent_checkpoint": "772ec5669f61d94d2d0e8c9c230029fbb9f5cf14",
+  "base": "772ec5669f61d94d2d0e8c9c230029fbb9f5cf14",
+  "source_head": "5d2154ea0fe59177e2ceb0f59713eea48422c402",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
@@ -1058,7 +1058,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "2bdfa517a8ac4a599fdb3ccefb16ecd82f9adea80ca87902c6bb29568467ee8b"
+      "sha256": "64cfa397f26b0cccb690aa24cc32a3e011f574b058efb66f44620f51f63c24e0"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1418,11 +1418,11 @@
     },
     {
       "path": "src/frontend/e2e/admin-corrections.spec.ts",
-      "sha256": "32647b488256c6c97e0dfe95bd5e3f5f324e1c5edb548c4d1e5f8529d67c7e23"
+      "sha256": "5ccb8a4abe7fe365c165ce37592f02236dc9eb756c2a7d90233dbfabbbb22d2b"
     },
     {
       "path": "src/frontend/e2e/connect.spec.ts",
-      "sha256": "8661c783eae80cb131ef51a066060e6ecff16e29ec9d8a05d3be3dc860467274"
+      "sha256": "b516b4dfa06e3bf9f75c5e51f5ba5275c8dc64f1a956ed6936ddd4c5afd543d7"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",

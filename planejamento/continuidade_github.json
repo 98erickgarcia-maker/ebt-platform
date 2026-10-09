@@ -1411,7 +1411,7 @@
     },
     {
       "path": "src/frontend/e2e/connect.spec.ts",
-      "reviewed_sha256": "8661c783eae80cb131ef51a066060e6ecff16e29ec9d8a05d3be3dc860467274"
+      "reviewed_sha256": "b516b4dfa06e3bf9f75c5e51f5ba5275c8dc64f1a956ed6936ddd4c5afd543d7"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",
@@ -1552,7 +1552,7 @@
     },
     {
       "path": "src/frontend/e2e/admin-corrections.spec.ts",
-      "reviewed_sha256": "32647b488256c6c97e0dfe95bd5e3f5f324e1c5edb548c4d1e5f8529d67c7e23"
+      "reviewed_sha256": "5ccb8a4abe7fe365c165ce37592f02236dc9eb756c2a7d90233dbfabbbb22d2b"
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
@@ -1575,5 +1575,5 @@
       "reviewed_sha256": "3f138927af1814b8000585d7eb2a85268ad631aa305c291c82f2e1fdabef3128"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T01:46:12.247287+00:00"
+  "reviewed_at_utc": "2026-10-09T01:47:50.430278+00:00"
 }

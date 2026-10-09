@@ -15,7 +15,10 @@ async function login(page: Page, email = "operador@ebt.example") {
     page.getByRole("heading", { name: "Meu dia", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Atualizando dados…")).not.toBeVisible();
-  await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
+  if (await page.getByLabel("Empresa", { exact: true }).inputValue() !== qa.tenantA) {
+    await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
+    await expect(page.locator(".alert.success")).toContainText("Empresa selecionada");
+  }
   await expect(page.getByText("Atualizando dados…")).not.toBeVisible();
 }
 test("Desktop CRM journey: create, reload, note, next action, close, document", async ({
