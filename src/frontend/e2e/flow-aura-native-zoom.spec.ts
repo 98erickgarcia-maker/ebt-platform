@@ -108,11 +108,14 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
     await opener.focus(); await page.keyboard.press("Enter");
     const nav = page.getByRole("navigation", { name: "Navegação principal" });
     await expect(nav.locator('[aria-current="page"]')).toBeFocused();
-    const visible = await nav.locator('[aria-current="page"]').evaluate(node => {
+    const focusedBox = await nav.locator('[aria-current="page"]').evaluate(node => {
       const box = node.getBoundingClientRect();
-      return box.top >= 0 && box.bottom <= innerHeight;
+      return { top: box.top, bottom: box.bottom, height: innerHeight };
     });
-    expect(visible, "Focused navigation remains visible at native 400 percent zoom").toBe(true);
+    console.log(JSON.stringify({ scenario: "native-400-focus-geometry", ...focusedBox }));
+    await page.screenshot({ path: path.join(evidence, "audit-native-menu-focus-400.png"), animations: "disabled" });
+    expect(focusedBox.top >= 0 && focusedBox.bottom <= focusedBox.height,
+      "Focused navigation remains visible at native 400 percent zoom").toBe(true);
     await page.keyboard.press("Shift+Tab");
     await page.keyboard.press("Tab");
     await expect(nav.locator('[aria-current="page"]')).toBeFocused();

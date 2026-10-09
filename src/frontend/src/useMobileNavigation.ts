@@ -20,7 +20,8 @@ export function useMobileNavigation(
       'nav button[aria-current="page"]',
     ) ?? sidebar.querySelector<HTMLButtonElement>("nav button");
     active?.focus({ preventScroll: true });
-    active?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    // Keep the focused item and its outline away from the viewport edge at 400% zoom.
+    active?.scrollIntoView({ block: "center", inline: "nearest" });
 
     // A pointer click on the trigger must keep its normal toggle behavior.
     // Keyboard/programmatic focus returning there must close the covering panel.
