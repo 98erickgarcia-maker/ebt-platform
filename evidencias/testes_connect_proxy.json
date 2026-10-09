@@ -1,0 +1,17 @@
+{
+  "generatedUtc": "2026-10-08T00:30:56.4845083+00:00",
+  "passed": true,
+  "cases": 10,
+  "checks": [
+    "Explicit proxy restores HTTPS and rightmost client IP",
+    "Untrusted sender cannot spoof HTTPS or client IP",
+    "Forward limit and ignored host reject spoofed values",
+    "Wildcard proxy fails configuration",
+    "Private observation exposes only ingress metadata",
+    "Observation rejects missing key",
+    "Observation rejects wrong key",
+    "Observation disabled without configuration",
+    "Exact health endpoints serve internal probes",
+    "Other application paths still require HTTPS"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "generatedUtc": "2026-10-07T15:31:18.781787+00:00",
+  "version": "0.1.5",
+  "revision": "ebt-connect-hml--r015",
+  "environment": "Azure live / real WazVox test conversation",
+  "passed": true,
+  "cases": 10,
+  "results": [
+    {
+      "name": "/health/live",
+      "passed": true
+    },
+    {
+      "name": "/health/ready",
+      "passed": true
+    },
+    {
+      "name": "/api/auth/me",
+      "passed": true
+    },
+    {
+      "name": "Real incoming message persisted with provider reference",
+      "passed": true
+    },
+    {
+      "name": "Same outgoing ID and provider reference reaches read through callback",
+      "passed": true
+    },
+    {
+      "name": "No duplicate outgoing message during callback recovery",
+      "passed": true
+    },
+    {
+      "name": "Independent provider message lookup confirms read",
+      "passed": true
+    },
+    {
+      "name": "Outbox remains one accepted operation with no pending or unknown",
+      "passed": true
+    },
+    {
+      "name": "Unsigned webhook remains rejected after contract fix",
+      "passed": true
+    },
+    {
+      "name": "17 synthetic protocol and negative identity cases pass",
+      "passed": true
+    }
+  ],
+  "inbound": {
+    "received": true,
+    "providerReferenceVerified": true,
+    "createdAt": "2026-10-07T14:56:40+00:00"
+  },
+  "outbound": {
+    "initiatedThroughConnectUiByHuman": true,
+    "acceptedByProvider": true,
+    "deliveryConfirmed": true,
+    "readConfirmed": true,
+    "sameMessageIdAfterRecovery": true,
+    "providerReferenceSha256": "bd44a53f86a3c7e7fd309c4ea2aba08ba9755562748ff09b514341ffca6e59e2",
+    "createdAt": "2026-10-07T14:59:29.8997075+00:00"
+  },
+  "callback": {
+    "signatureValidatedOnOriginalIngress": true,
+    "rawProtectedReceiptsPreserved": true,
+    "observedTypes": [
+      "sent",
+      "delivered",
+      "read"
+    ],
+    "observedDataFields": [
+      "id",
+      "status",
+      "timestamp",
+      "recipient_id",
+      "recipient_user_id",
+      "pricing"
+    ],
+    "identifiedRootCause": "Live status callback uses data.id wamid and recipient_id instead of candidate data.waMessageId/to",
+    "selectedPreservedStatusReceiptsReplayed": 3,
+    "finalConnectStatus": "read"
+  },
+  "newOutgoingMessagesSentByAgent": 0,
+  "privateCustomerDataIncluded": false,
+  "limits": [
+    "This proves the observed real text conversation, not campaigns, templates, media, calls or mirrored history",
+    "Lost provider acknowledgement without WhatsApp reference still needs operational reconciliation; no automatic resend",
+    "Scanner, hosted CI, Azure restore exercise and business acceptance remain pending"
+  ],
+  "browserVerification": {
+    "realInboundLabel": "Recebida",
+    "realOutboundLabel": "Lida",
+    "observed": true,
+    "captureKeptPrivateOutsideZip": true
+  }
+}

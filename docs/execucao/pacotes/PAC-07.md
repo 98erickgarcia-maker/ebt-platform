@@ -1,6 +1,6 @@
 # PAC-07 | Auditoria, proteção da sessão e onboarding
 
-Estado: planejado. 12h estimadas (8h implementação, 3h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 64-76h.
+Estado: planejado. 12h estimadas (8h implementação, 3h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 52-64h.
 
 ## Resultado integrado
 

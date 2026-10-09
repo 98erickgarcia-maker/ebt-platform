@@ -1,0 +1,151 @@
+{
+  "project": "EBT Platform",
+  "date": "2026-10-07",
+  "source": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
+  "source_sha256": "840c5d637d21847043ea800b5cf76ac21a12fbef24ea9ff53322da62a89fabb1",
+  "authority": "O PDF e contexto arquitetural; instrucoes vigentes do usuario prevalecem",
+  "budget": {
+    "delivery_h": 180,
+    "reserve_h": 20,
+    "actual_h": null
+  },
+  "current_product": "Connect",
+  "reference_projects": [
+    "CASST",
+    "Vikings",
+    "EBT institucional",
+    "CRP",
+    "Nutricao"
+  ],
+  "core": [
+    {
+      "id": "C0",
+      "name": "Baseline",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "evidencias/baseline_execucao_20261007.json",
+      "next_gap": "Origem, versao e direitos por extracao",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C1",
+      "name": "Fundacao",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": ".github/workflows/validate.yml",
+      "next_gap": "CI SQL/navegador/scanner hospedada",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C2",
+      "name": "Tenancy",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/TenantSqlContext.cs",
+      "next_gap": "Ativacao persistida de modulos por tenant",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C3",
+      "name": "Identidade e acesso",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/Security.cs",
+      "next_gap": "SSO/OIDC corporativo",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C4",
+      "name": "Auditoria",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/Data.cs",
+      "next_gap": "Retencao versionada de eventos",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C5",
+      "name": "People e Contexto",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "next_gap": "Vinculos genericos e contratos entre consumidores",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C6",
+      "name": "Documentos/GED",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/DocumentEndpoints.cs",
+      "next_gap": "Scanner real e recuperacao cloud ensaiada",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C7",
+      "name": "Tarefas/SLA",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "next_gap": "SLA e escalonamento versionados",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C8",
+      "name": "Protocolo",
+      "current_state": "planejado_nao_implementado",
+      "source_path": null,
+      "next_gap": "Sequencia concorrente e tramitacao",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C9",
+      "name": "Workflow W1-W4",
+      "current_state": "planejado_nao_implementado",
+      "source_path": null,
+      "next_gap": "Motor generico com regras e aprovacoes",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C10",
+      "name": "Notificacoes",
+      "current_state": "planejado_nao_implementado",
+      "source_path": null,
+      "next_gap": "Adapters de e-mail e notificacoes gerais",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C11",
+      "name": "Integration Hub",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/WazVoxEndpoints.cs",
+      "next_gap": "Outlook/OAuth e contratos externos homologados",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C12",
+      "name": "Entity/Form Builder",
+      "current_state": "planejado_nao_implementado",
+      "source_path": null,
+      "next_gap": "Entidades e formularios dinamicos versionados",
+      "evidence_for_new_changes": null
+    },
+    {
+      "id": "C13",
+      "name": "Busca/Analytics",
+      "current_state": "codigo_no_recorte_nao_core_completo",
+      "source_path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "next_gap": "Busca transversal autorizada e datasets reutilizaveis",
+      "evidence_for_new_changes": null
+    }
+  ],
+  "products": {
+    "Connect": "Primeiro recorte em codigo; CON1 parcial, CON2-CON5 nao declarados completos",
+    "Flow": "FL1-FL4 preservados no roteiro posterior; sem endpoints inventados",
+    "Portal": "Produto futuro sobre contratos do Core",
+    "Contracts": "Produto futuro dependente de Workflow/Documentos",
+    "Sst": "Vertical futura; dominio do Vikings nao e o Core",
+    "Legislative": "Vertical futura; sem requisitos legais presumidos"
+  },
+  "invariants": [
+    "Tenant e permissoes do servidor",
+    "Identidade e IDs preservados",
+    "Produto especifico nao redefine a plataforma",
+    "Fonte externa nao e pacote automaticamente reutilizavel",
+    "Nenhuma estimativa vira hora real ou aceite",
+    "Modulo planejado nao recebe botao operacional",
+    "Dados, segredos e bancos reais nao sao copiados"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "version": "0.1.5-live",
+  "generatedUtc": "2026-10-07T15:32:30.898939+00:00",
+  "status": "real_text_receive_reply_delivery_read_verified",
+  "authorization": {
+    "keyCreation": "Explicit user reply: nao sei, crie ai",
+    "azure": "Published with explicit authorization for variable cost in existing environment and shared paid SQL"
+  },
+  "providerRead": {
+    "generatedUtc": "2026-10-07T09:22:31.5094107+00:00",
+    "provider": "wazvox",
+    "baseUrl": "https://app.wazvox.com/api/v1",
+    "checks": [
+      {
+        "endpoint": "me",
+        "httpStatus": 200,
+        "passed": true
+      },
+      {
+        "endpoint": "numbers",
+        "httpStatus": 200,
+        "passed": true
+      },
+      {
+        "endpoint": "webhook-subscriptions",
+        "httpStatus": 200,
+        "passed": true
+      }
+    ],
+    "numberRegistered": true,
+    "numberConnected": true,
+    "onboardingMode": "business_app_coexistence"
+  },
+  "syntheticChecks": {
+    "protocol": 17,
+    "httpSql": 11,
+    "protocolPassed": true,
+    "httpSqlPassed": true
+  },
+  "realWebhookInstalled": true,
+  "realMessageSent": true,
+  "meta": {
+    "sessionAuthenticated": true,
+    "wabaPortfolioAccess": false,
+    "observedError": "business_access"
+  },
+  "azure": {
+    "existingDatabase": "sqldb-crm-casst-dev-v2",
+    "schema": "ebt_connect",
+    "schemaApplied": true,
+    "firewallChanged": true,
+    "existingContainerEnvironment": "cae-crm-casst-prod",
+    "proposedApp": "ebt-connect-hml",
+    "appCreated": true,
+    "registryBuildExecuted": true,
+    "newDatabaseCreated": false,
+    "skuChanged": false,
+    "pitrRetentionDaysObserved": 7,
+    "additionalMonthlyBudget": "Variable hosting/build cost explicitly authorized; shared existing paid SQL unchanged",
+    "temporaryFirewallRemoved": true
+  },
+  "credential": {
+    "name": "EBT Connect",
+    "storage": "Restricted private directory; Windows DPAPI; outside Git",
+    "plaintextTemporaryFileRemoved": true,
+    "includedInPackage": false
+  },
+  "remaining": [
+    "Business acceptance",
+    "Direct Meta portfolio management blocked by business_access; WazVox channel verified"
+  ],
+  "scopeLimits": [
+    "Real text receive/reply and sent/delivered/read callbacks verified; no automatic resend",
+    "No contact/history synchronization or Business App mirror import",
+    "Calls/media/templates/campaigns remain outside this delivery",
+    "Lost WazVox acknowledgement without waMessageId requires operational reconciliation"
+  ],
+  "sources": [
+    "https://wazvox.com/openapi/wazvox-v1.json",
+    "https://wazvox.com/developers"
+  ],
+  "captures": [
+    "evidencias/capturas/wazvox-chave-connect.jpg",
+    "evidencias/capturas/meta-sem-acesso-waba.jpg"
+  ],
+  "live": {
+    "subscriptionId": "01a116c1-a58c-7360-9f62-0ec37ef402eb",
+    "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io/webhooks/connect/wazvox/wz-ebt",
+    "events": [
+      "message.received",
+      "message.status"
+    ],
+    "enabled": true,
+    "createdStatus": 201,
+    "secretStoredPrivately": true,
+    "realMessagesSent": 1,
+    "realProviderDeliveryVerified": true,
+    "evidence": "evidencias/connect_wazvox_real_015.json",
+    "realProviderReadVerified": true
+  },
+  "realMessageRead": true,
+  "realEvidence": "evidencias/connect_wazvox_real_015.json"
+}

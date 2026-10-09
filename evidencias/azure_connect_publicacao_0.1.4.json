@@ -1,0 +1,45 @@
+{
+  "generatedUtc": "2026-10-07T14:40:56.959897+00:00",
+  "version": "0.1.4",
+  "published": true,
+  "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+  "resourceGroup": "rg-crm-casst-prod",
+  "app": "ebt-connect-hml",
+  "revision": "ebt-connect-hml--r014",
+  "database": "sqldb-crm-casst-dev-v2",
+  "schema": "ebt_connect",
+  "newDatabaseCreated": false,
+  "skuChanged": false,
+  "identity": "id-ebt-connect-hml",
+  "resources": {
+    "cpu": 0.25,
+    "memoryGiB": 0.5,
+    "minReplicas": 1,
+    "maxReplicas": 1,
+    "existingEnvironment": "cae-crm-casst-prod",
+    "existingRegistry": "acrcrmcasstprod2608.azurecr.io"
+  },
+  "costAuthorization": "User authorized publishing now and variable value; former fixed-only restriction superseded",
+  "temporaryFirewallRemoved": true,
+  "runtimeSqlEvidence": "evidencias/connect_sql_runtime_verificado.json",
+  "liveEvidence": "evidencias/connect_primeira_entrega_online.json",
+  "imageDigest": "sha256:983bafc5cdfc2ebba834d9db3a7695589efc6fafa4a968017f09b7d12c6067d8",
+  "wazvox": {
+    "subscriptionId": "01a116c1-a58c-7360-9f62-0ec37ef402eb",
+    "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io/webhooks/connect/wazvox/wz-ebt",
+    "events": [
+      "message.received",
+      "message.status"
+    ],
+    "enabled": true,
+    "createdStatus": 201,
+    "secretStoredPrivately": true,
+    "realMessagesSent": 0,
+    "realProviderDeliveryVerified": false
+  },
+  "limits": [
+    "Real message receive/reply/status flow needs a defined test recipient",
+    "Real document scanner, hosted CI, Azure restore and business acceptance remain pending"
+  ],
+  "continuationEvidence": "evidencias/connect_continuidade_disponibilidade.json"
+}

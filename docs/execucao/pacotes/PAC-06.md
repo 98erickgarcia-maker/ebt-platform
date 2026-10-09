@@ -1,6 +1,6 @@
 # PAC-06 | SQL, autorização por recurso e cache
 
-Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 52-64h.
+Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 40-52h.
 
 ## Resultado integrado
 

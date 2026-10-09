@@ -1,5 +1,7 @@
 # Roteiro de execução e continuidade
 
+Revisão vigente 1.3 (07/10/2026): Connect com API/webhook primeiro; 70 entregas e cinco reservas, 180h + 20h. Site/Flow estão adiados. Seguir [plano atual](../PLANO_200_HORAS.md) e pacotes em ordem de esforço; as decisões de 06/10 abaixo são contexto do método original.
+
 ## Estado atual
 
 O repositório contém planejamento finalizado e detalhado. Os 77 itens de produto estão planejados; a documentação concluída não os marca executados. Começar por P01-01 quando houver solicitação de implementar o plano.

@@ -1,0 +1,61 @@
+{
+  "generatedUtc": "2026-10-07T12:04:08.476675+00:00",
+  "scope": "Technical source hashes against execution baseline; no client content or credentials read",
+  "passed": true,
+  "projects": [
+    {
+      "project": "CASST",
+      "files": 609,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "Vikings",
+      "files": 141,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "EBT institucional",
+      "files": 62,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "CRP aplicação",
+      "files": 148,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "CRP materiais",
+      "files": 79,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "Nutrição",
+      "files": 149,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "Disparador CASST",
+      "files": 7,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "Power Apps três apps",
+      "files": 328,
+      "unchanged": true,
+      "differences": []
+    },
+    {
+      "project": "Power Apps Portal Free",
+      "files": 4,
+      "unchanged": true,
+      "differences": []
+    }
+  ]
+}

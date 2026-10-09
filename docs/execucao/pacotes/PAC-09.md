@@ -1,6 +1,6 @@
 # PAC-09 | Histórico, próxima ação e funil
 
-Estado: planejado. 9h estimadas (6.75h implementação, 1.5h verificação/revisão e 0.75h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 85-94h.
+Estado: planejado. 9h estimadas (6.75h implementação, 1.5h verificação/revisão e 0.75h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 73-82h.
 
 ## Resultado integrado
 

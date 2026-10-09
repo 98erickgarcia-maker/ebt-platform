@@ -529,211 +529,6 @@
       "registro_previsto": "evidencias/execucao/P02-08/registro.md"
     },
     {
-      "id": "P03-01",
-      "fase": "P03",
-      "horas": 2,
-      "trilha": "R1",
-      "status": "planejado",
-      "produto": "site",
-      "documento": "docs/execucao/entregas/P03-01.md",
-      "entrada": "G0/G1, marca sintética e base de site escolhida.",
-      "fontes": [
-        "F17",
-        "F18",
-        "F19",
-        "F20"
-      ],
-      "dependencias": [
-        "P01-GATE",
-        "P02-GATE"
-      ],
-      "saida_concreta": "Ficha de seleção EBT ou CRP",
-      "passos": [
-        "Comparar páginas/canal/admin existente",
-        "escolher uma base para este pacote",
-        "registrar justificativa e diferenças"
-      ],
-      "cenarios": [
-        "P03-01-C01",
-        "P03-01-C02",
-        "P03-01-C03"
-      ],
-      "falha_a_evitar": "Mesclar bases incompatíveis por aparência",
-      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
-      "gate": "G-SITE",
-      "registro_previsto": "evidencias/execucao/P03-01/registro.md"
-    },
-    {
-      "id": "P03-02",
-      "fase": "P03",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "site",
-      "documento": "docs/execucao/entregas/P03-02.md",
-      "entrada": "G0/G1, marca sintética e base de site escolhida.",
-      "fontes": [
-        "F17",
-        "F18",
-        "F19",
-        "F20"
-      ],
-      "dependencias": [
-        "P03-01"
-      ],
-      "saida_concreta": "Configuração de marca do site",
-      "passos": [
-        "Centralizar nome/logo/canais/serviços",
-        "usar duas marcas fictícias",
-        "conferir origem de texto e foto"
-      ],
-      "cenarios": [
-        "P03-02-C01",
-        "P03-02-C02",
-        "P03-02-C03"
-      ],
-      "falha_a_evitar": "Foto ou contato real de cliente permanece no template",
-      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
-      "gate": "G-SITE",
-      "registro_previsto": "evidencias/execucao/P03-02/registro.md"
-    },
-    {
-      "id": "P03-03",
-      "fase": "P03",
-      "horas": 2,
-      "trilha": "R1",
-      "status": "planejado",
-      "produto": "site",
-      "documento": "docs/execucao/entregas/P03-03.md",
-      "entrada": "G0/G1, marca sintética e base de site escolhida.",
-      "fontes": [
-        "F17",
-        "F18",
-        "F19",
-        "F20"
-      ],
-      "dependencias": [
-        "P03-02"
-      ],
-      "saida_concreta": "Cinco páginas conectadas",
-      "passos": [
-        "Reusar templates e menus",
-        "ajustar home/serviços/sobre/contato/privacidade",
-        "manter estados e links existentes"
-      ],
-      "cenarios": [
-        "P03-03-C01",
-        "P03-03-C02",
-        "P03-03-C03"
-      ],
-      "falha_a_evitar": "Quantidade de páginas gera páginas vazias",
-      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
-      "gate": "G-SITE",
-      "registro_previsto": "evidencias/execucao/P03-03/registro.md"
-    },
-    {
-      "id": "P03-04",
-      "fase": "P03",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "site",
-      "documento": "docs/execucao/entregas/P03-04.md",
-      "entrada": "G0/G1, marca sintética e base de site escolhida.",
-      "fontes": [
-        "F17",
-        "F18",
-        "F19",
-        "F20"
-      ],
-      "dependencias": [
-        "P03-03"
-      ],
-      "saida_concreta": "Contrato de confirmação de contato",
-      "passos": [
-        "Identificar se é link manual ou formulário servidor",
-        "testar confirmação somente após registro",
-        "preservar campos em falha"
-      ],
-      "cenarios": [
-        "P03-04-C01",
-        "P03-04-C02",
-        "P03-04-C03"
-      ],
-      "falha_a_evitar": "Mensagem enviada declarada por abertura de link",
-      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
-      "gate": "G-SITE",
-      "registro_previsto": "evidencias/execucao/P03-04/registro.md"
-    },
-    {
-      "id": "P03-05",
-      "fase": "P03",
-      "horas": 2,
-      "trilha": "R1",
-      "status": "planejado",
-      "produto": "site",
-      "documento": "docs/execucao/entregas/P03-05.md",
-      "entrada": "G0/G1, marca sintética e base de site escolhida.",
-      "fontes": [
-        "F17",
-        "F18",
-        "F19",
-        "F20"
-      ],
-      "dependencias": [
-        "P03-04"
-      ],
-      "saida_concreta": "Relatório visual focal do site",
-      "passos": [
-        "Conferir páginas alteradas em celular/computador",
-        "testar foco e contraste",
-        "verificar proteção de painel existente"
-      ],
-      "cenarios": [
-        "P03-05-C01",
-        "P03-05-C02",
-        "P03-05-C03"
-      ],
-      "falha_a_evitar": "Revisão visual ignora rota administrativa",
-      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
-      "gate": "G-SITE",
-      "registro_previsto": "evidencias/execucao/P03-05/registro.md"
-    },
-    {
-      "id": "P03-06",
-      "fase": "P03",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "site",
-      "documento": "docs/execucao/entregas/P03-06.md",
-      "entrada": "G0/G1, marca sintética e base de site escolhida.",
-      "fontes": [
-        "F17",
-        "F18",
-        "F19",
-        "F20"
-      ],
-      "dependencias": [
-        "P03-05"
-      ],
-      "saida_concreta": "Pacote site e manual",
-      "passos": [
-        "Reunir fontes/config/assets licenciados",
-        "registrar conteúdo e canal escolhidos",
-        "documentar implantação e retorno no ambiente que será definido"
-      ],
-      "cenarios": [
-        "P03-06-C01",
-        "P03-06-C02",
-        "P03-06-C03"
-      ],
-      "falha_a_evitar": "Pacote preparado confundido com site novo online",
-      "fora_do_escopo": "Não construir CMS completo, transparência, e-SIC ou portal administrativo novo.",
-      "gate": "G-SITE",
-      "registro_previsto": "evidencias/execucao/P03-06/registro.md"
-    },
-    {
       "id": "P04-01",
       "fase": "P04",
       "horas": 3,
@@ -1265,7 +1060,7 @@
       "id": "P05-03",
       "fase": "P05",
       "horas": 3,
-      "trilha": "R1",
+      "trilha": "R2",
       "status": "planejado",
       "produto": "crm",
       "documento": "docs/execucao/entregas/P05-03.md",
@@ -1283,14 +1078,17 @@
       ],
       "saida_concreta": "Lista e busca contratadas",
       "passos": [
-        "Reusar tabela/filtros/paginação",
-        "ligar contrato existente",
-        "conferir estados e exportação já incluída"
+        "Reusar tabela/filtros/paginação e conferir contrato",
+        "registrar exportação existente/formato/colunas/limite",
+        "verificar escopo e estados"
       ],
       "cenarios": [
         "P05-03-C01",
         "P05-03-C02",
-        "P05-03-C03"
+        "P05-03-C03",
+        "P05-03-C04",
+        "P05-03-C05",
+        "P05-03-C06"
       ],
       "falha_a_evitar": "R1 mantido apesar de alteração em filtro/autorização",
       "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
@@ -1499,14 +1297,18 @@
       ],
       "saida_concreta": "Importação fixa de até 100 contatos QA",
       "passos": [
-        "Definir um layout",
-        "validar área de preparação",
-        "confirmar commit explícito e chave de repetição"
+        "Definir layout/lote/hash e chave escopada",
+        "validar preview sem persistência final",
+        "revalidar permissão e confirmar em transação"
       ],
       "cenarios": [
         "P05-09-C01",
         "P05-09-C02",
-        "P05-09-C03"
+        "P05-09-C03",
+        "P05-09-C04",
+        "P05-09-C05",
+        "P05-09-C06",
+        "P05-09-C07"
       ],
       "falha_a_evitar": "Planilha real importada por inferência",
       "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
@@ -1548,6 +1350,582 @@
       "fora_do_escopo": "Não incluir financeiro, OS, propostas completas, caixa de entrada coletiva ou canais externos automáticos.",
       "gate": "G-CRM",
       "registro_previsto": "evidencias/execucao/P05-10/registro.md"
+    },
+    {
+      "id": "P07-01",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-01.md",
+      "entrada": "G-CRM e G-SEG vigentes; responsável e contato de origem.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P05-GATE"
+      ],
+      "saida_concreta": "Contrato da tarefa vinculada",
+      "passos": [
+        "Mapear tipo de origem e ID",
+        "reusar responsável/prazo/estado",
+        "definir fechamento e vínculo de empresa"
+      ],
+      "cenarios": [
+        "P07-01-C01",
+        "P07-01-C02",
+        "P07-01-C03"
+      ],
+      "falha_a_evitar": "Tarefa gera segundo cadastro para armazenar contexto",
+      "fora_do_escopo": "A primeira origem é contato; vínculo documental só após P06. Não adicionar escalonamento externo ou calendário de fornecedor.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-01/registro.md"
+    },
+    {
+      "id": "P07-02",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-02.md",
+      "entrada": "G-CRM e G-SEG vigentes; responsável e contato de origem.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-01"
+      ],
+      "saida_concreta": "Lista de tarefas por escopo",
+      "passos": [
+        "Reusar criação/filtros",
+        "ligar contrato",
+        "conferir prazo/responsável nos estados de lista"
+      ],
+      "cenarios": [
+        "P07-02-C01",
+        "P07-02-C02",
+        "P07-02-C03"
+      ],
+      "falha_a_evitar": "Mudança funcional passa como ajuste visual",
+      "fora_do_escopo": "A primeira origem é contato; vínculo documental só após P06. Não adicionar escalonamento externo ou calendário de fornecedor.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-02/registro.md"
+    },
+    {
+      "id": "P07-03",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-03.md",
+      "entrada": "G-CRM e G-SEG vigentes; responsável e contato de origem.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-02"
+      ],
+      "saida_concreta": "Fechamento/cancelamento auditado",
+      "passos": [
+        "Exigir resultado ou motivo pertinente",
+        "preservar transições",
+        "conferir retry do comando"
+      ],
+      "cenarios": [
+        "P07-03-C01",
+        "P07-03-C02",
+        "P07-03-C03"
+      ],
+      "falha_a_evitar": "Fechar apaga histórico da pendência",
+      "fora_do_escopo": "A primeira origem é contato; vínculo documental só após P06. Não adicionar escalonamento externo ou calendário de fornecedor.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-03/registro.md"
+    },
+    {
+      "id": "P07-04",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-04.md",
+      "entrada": "G-CRM e G-SEG vigentes; responsável e contato de origem.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-03"
+      ],
+      "saida_concreta": "Regra temporal de atraso",
+      "passos": [
+        "Persistir instante sem ambiguidade",
+        "exibir Brasília",
+        "usar relógio controlado e prazo opcional explícito"
+      ],
+      "cenarios": [
+        "P07-04-C01",
+        "P07-04-C02",
+        "P07-04-C03"
+      ],
+      "falha_a_evitar": "Data local armazenada sem fuso muda vencimento",
+      "fora_do_escopo": "A primeira origem é contato; vínculo documental só após P06. Não adicionar escalonamento externo ou calendário de fornecedor.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-04/registro.md"
+    },
+    {
+      "id": "P07-05",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-05.md",
+      "entrada": "G-CRM e G-SEG vigentes; responsável e contato de origem.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-04"
+      ],
+      "saida_concreta": "Próxima ação coerente com tarefa",
+      "passos": [
+        "Exibir pendência por usuário",
+        "ligar contato/estado à fonte coerente de tarefa",
+        "reconciliar fechamento e painel"
+      ],
+      "cenarios": [
+        "P07-05-C01",
+        "P07-05-C02",
+        "P07-05-C03",
+        "P07-05-C04",
+        "P07-05-C05"
+      ],
+      "falha_a_evitar": "Duas cópias editáveis divergem em prazo/responsável",
+      "fora_do_escopo": "A primeira origem é contato; vínculo documental só após P06. Não adicionar escalonamento externo ou calendário de fornecedor.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-05/registro.md"
+    },
+    {
+      "id": "P07-06",
+      "fase": "P07",
+      "horas": 2,
+      "trilha": "R2",
+      "status": "planejado",
+      "produto": "tarefas",
+      "documento": "docs/execucao/entregas/P07-06.md",
+      "entrada": "G-CRM e G-SEG vigentes; responsável e contato de origem.",
+      "fontes": [
+        "F02",
+        "F03",
+        "F14"
+      ],
+      "dependencias": [
+        "P07-05"
+      ],
+      "saida_concreta": "Ficha G-TASK e checkpoint Connect CRM/tarefas",
+      "passos": [
+        "Definir numerador/período/escopo",
+        "comparar lista e cartão",
+        "demonstrar CRM/tarefas e conferir versão dos gates"
+      ],
+      "cenarios": [
+        "P07-06-C01",
+        "P07-06-C02",
+        "P07-06-C03",
+        "P07-06-C04",
+        "P07-06-C05"
+      ],
+      "falha_a_evitar": "Métrica conta registros fora da vigência",
+      "fora_do_escopo": "A primeira origem é contato; vínculo documental só após P06. Não adicionar escalonamento externo ou calendário de fornecedor.",
+      "gate": "G-TASK",
+      "registro_previsto": "evidencias/execucao/P07-06/registro.md"
+    },
+    {
+      "id": "P11-01",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-01.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P04-GATE",
+        "P05-GATE",
+        "P07-GATE"
+      ],
+      "saida_concreta": "Ficha de conexão e dependências externas",
+      "passos": [
+        "Identificar canal/versão/conta de QA",
+        "mapear conexão/tenant",
+        "registrar políticas e aprovação pendente"
+      ],
+      "cenarios": [
+        "P11-01-C01",
+        "P11-01-C02",
+        "P11-01-C03"
+      ],
+      "falha_a_evitar": "Provedor escolhido por inferência vira conta contratada",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-01/registro.md"
+    },
+    {
+      "id": "P11-02",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-02.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-01"
+      ],
+      "saida_concreta": "Contrato neutro de conversa e mensagem",
+      "passos": [
+        "Fixar IDs e vínculos",
+        "revisar API e estados",
+        "validar schemas de request/response"
+      ],
+      "cenarios": [
+        "P11-02-C01",
+        "P11-02-C02",
+        "P11-02-C03"
+      ],
+      "falha_a_evitar": "Telefone vira identidade global da conversa",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-02/registro.md"
+    },
+    {
+      "id": "P11-03",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-03.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-02"
+      ],
+      "saida_concreta": "Webhook autenticado",
+      "passos": [
+        "Separar handshake",
+        "conferir assinatura nos bytes originais",
+        "resolver conexões confiáveis"
+      ],
+      "cenarios": [
+        "P11-03-C01",
+        "P11-03-C02",
+        "P11-03-C03"
+      ],
+      "falha_a_evitar": "Re-serializar JSON antes de validar assinatura",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-03/registro.md"
+    },
+    {
+      "id": "P11-04",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-04.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-03"
+      ],
+      "saida_concreta": "Ledger durável de recebimento",
+      "passos": [
+        "Persistir envelope e eventos",
+        "definir chaves únicas",
+        "responder ACK depois do commit"
+      ],
+      "cenarios": [
+        "P11-04-C01",
+        "P11-04-C02",
+        "P11-04-C03"
+      ],
+      "falha_a_evitar": "HTTP 200 confirma evento ainda em memória",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-04/registro.md"
+    },
+    {
+      "id": "P11-05",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-05.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-04"
+      ],
+      "saida_concreta": "Normalização e conversa persistidas",
+      "passos": [
+        "Executar worker idempotente",
+        "resolver contato e canal",
+        "persistir mensagem e histórico"
+      ],
+      "cenarios": [
+        "P11-05-C01",
+        "P11-05-C02",
+        "P11-05-C03"
+      ],
+      "falha_a_evitar": "Webhook cria cadastro diferente a cada recebimento",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-05/registro.md"
+    },
+    {
+      "id": "P11-06",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-06.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-05"
+      ],
+      "saida_concreta": "Resposta enfileirada com outbox",
+      "passos": [
+        "Autorizar recurso",
+        "conferir versão/idempotência",
+        "salvar mensagem e intenção na mesma transação"
+      ],
+      "cenarios": [
+        "P11-06-C01",
+        "P11-06-C02",
+        "P11-06-C03"
+      ],
+      "falha_a_evitar": "API responde enviado antes do commit",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-06/registro.md"
+    },
+    {
+      "id": "P11-07",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-07.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-06"
+      ],
+      "saida_concreta": "Adapter de texto e resultado externo",
+      "passos": [
+        "Conferir política/conta vigente",
+        "transmitir por API oficial",
+        "guardar vínculo da operação com ID externo"
+      ],
+      "cenarios": [
+        "P11-07-C01",
+        "P11-07-C02",
+        "P11-07-C03"
+      ],
+      "falha_a_evitar": "Client escolhe arbitrariamente destinatário fora da conversa",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-07/registro.md"
+    },
+    {
+      "id": "P11-08",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-08.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-07"
+      ],
+      "saida_concreta": "Ledger de status conciliado",
+      "passos": [
+        "Persistir callback",
+        "ligar ID externo à mensagem",
+        "reduzir estado sem regressão indevida"
+      ],
+      "cenarios": [
+        "P11-08-C01",
+        "P11-08-C02",
+        "P11-08-C03"
+      ],
+      "falha_a_evitar": "Último callback recebido rebaixa status",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-08/registro.md"
+    },
+    {
+      "id": "P11-09",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-09.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-08"
+      ],
+      "saida_concreta": "Falhas e reconciliação auditadas",
+      "passos": [
+        "Classificar erro seguro/incerto",
+        "aplicar retry limitado somente seguro",
+        "resolver envio desconhecido com prova"
+      ],
+      "cenarios": [
+        "P11-09-C01",
+        "P11-09-C02",
+        "P11-09-C03"
+      ],
+      "falha_a_evitar": "Retry local promete envio externo exatamente uma vez",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-09/registro.md"
+    },
+    {
+      "id": "P11-10",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-10.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-09"
+      ],
+      "saida_concreta": "Tela de conversa e resposta",
+      "passos": [
+        "Manter lista/detalhe no mesmo contato",
+        "mostrar fila e estados observados",
+        "preservar rascunho e negar ação indevida"
+      ],
+      "cenarios": [
+        "P11-10-C01",
+        "P11-10-C02",
+        "P11-10-C03"
+      ],
+      "falha_a_evitar": "Toast de sucesso simula entrega",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-10/registro.md"
+    },
+    {
+      "id": "P11-11",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-11.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-10"
+      ],
+      "saida_concreta": "Jornada do canal em QA",
+      "passos": [
+        "Validar cenário ponta a ponta",
+        "disputar workers/chaves",
+        "conferir A/B e recuperação"
+      ],
+      "cenarios": [
+        "P11-11-C01",
+        "P11-11-C02",
+        "P11-11-C03"
+      ],
+      "falha_a_evitar": "Adapter mock tratado como WhatsApp homologado",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-11/registro.md"
+    },
+    {
+      "id": "P11-12",
+      "fase": "P11",
+      "horas": 3,
+      "trilha": "N",
+      "status": "planejado",
+      "produto": "comunicacao",
+      "documento": "docs/execucao/entregas/P11-12.md",
+      "entrada": "G-SEG/G-CRM/G-TASK, canal de QA próprio e contratos versionados.",
+      "fontes": [
+        "F26"
+      ],
+      "dependencias": [
+        "P11-11"
+      ],
+      "saida_concreta": "Ficha G-MSG e runbook",
+      "passos": [
+        "Reconciliar casos e versão",
+        "registrar canal e prova externa",
+        "documentar reprocessamento/limites"
+      ],
+      "cenarios": [
+        "P11-12-C01",
+        "P11-12-C02",
+        "P11-12-C03"
+      ],
+      "falha_a_evitar": "Fim do timebox vira aceite fictício",
+      "fora_do_escopo": "Somente texto e resposta do atendente; sem campanha, chatbot, omnichannel ou fila coletiva avançada.",
+      "gate": "G-MSG",
+      "registro_previsto": "evidencias/execucao/P11-12/registro.md"
     },
     {
       "id": "P06-01",
@@ -1831,11 +2209,11 @@
       "dependencias": [
         "P06-07"
       ],
-      "saida_concreta": "Ficha G-GED A/B",
+      "saida_concreta": "Ficha G-GED com composição documental",
       "passos": [
-        "Demonstrar upload/revisão/liberação/download",
-        "repetir com segunda configuração",
-        "reconciliar negativo e restore"
+        "Repetir fluxo documento nos dois contextos",
+        "conferir hashes/permissão e restore",
+        "ligar documento a tarefa existente sem ampliar acesso"
       ],
       "cenarios": [
         "P06-08-C01",
@@ -1843,460 +2221,10 @@
         "P06-08-C03",
         "P06-08-C04"
       ],
-      "falha_a_evitar": "Aprovação interna apresentada como assinatura digital",
+      "falha_a_evitar": "Tarefa é usada como autorização implícita de arquivo",
       "fora_do_escopo": "Não incluir dado clínico, assinatura digital ou liberação ampla sem política de scan.",
       "gate": "G-GED",
       "registro_previsto": "evidencias/execucao/P06-08/registro.md"
-    },
-    {
-      "id": "P07-01",
-      "fase": "P07",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "tarefas",
-      "documento": "docs/execucao/entregas/P07-01.md",
-      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
-      "fontes": [
-        "F02",
-        "F03",
-        "F14"
-      ],
-      "dependencias": [
-        "P05-GATE",
-        "P06-GATE"
-      ],
-      "saida_concreta": "Contrato da tarefa vinculada",
-      "passos": [
-        "Mapear tipo de origem e ID",
-        "reusar responsável/prazo/estado",
-        "definir fechamento e vínculo de empresa"
-      ],
-      "cenarios": [
-        "P07-01-C01",
-        "P07-01-C02",
-        "P07-01-C03"
-      ],
-      "falha_a_evitar": "Tarefa gera segundo cadastro para armazenar contexto",
-      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
-      "gate": "G-TASK",
-      "registro_previsto": "evidencias/execucao/P07-01/registro.md"
-    },
-    {
-      "id": "P07-02",
-      "fase": "P07",
-      "horas": 2,
-      "trilha": "R1",
-      "status": "planejado",
-      "produto": "tarefas",
-      "documento": "docs/execucao/entregas/P07-02.md",
-      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
-      "fontes": [
-        "F02",
-        "F03",
-        "F14"
-      ],
-      "dependencias": [
-        "P07-01"
-      ],
-      "saida_concreta": "Lista de tarefas por escopo",
-      "passos": [
-        "Reusar criação/filtros",
-        "ligar contrato",
-        "conferir prazo/responsável nos estados de lista"
-      ],
-      "cenarios": [
-        "P07-02-C01",
-        "P07-02-C02",
-        "P07-02-C03"
-      ],
-      "falha_a_evitar": "Mudança funcional passa como ajuste visual",
-      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
-      "gate": "G-TASK",
-      "registro_previsto": "evidencias/execucao/P07-02/registro.md"
-    },
-    {
-      "id": "P07-03",
-      "fase": "P07",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "tarefas",
-      "documento": "docs/execucao/entregas/P07-03.md",
-      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
-      "fontes": [
-        "F02",
-        "F03",
-        "F14"
-      ],
-      "dependencias": [
-        "P07-02"
-      ],
-      "saida_concreta": "Fechamento/cancelamento auditado",
-      "passos": [
-        "Exigir resultado ou motivo pertinente",
-        "preservar transições",
-        "conferir retry do comando"
-      ],
-      "cenarios": [
-        "P07-03-C01",
-        "P07-03-C02",
-        "P07-03-C03"
-      ],
-      "falha_a_evitar": "Fechar apaga histórico da pendência",
-      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
-      "gate": "G-TASK",
-      "registro_previsto": "evidencias/execucao/P07-03/registro.md"
-    },
-    {
-      "id": "P07-04",
-      "fase": "P07",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "tarefas",
-      "documento": "docs/execucao/entregas/P07-04.md",
-      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
-      "fontes": [
-        "F02",
-        "F03",
-        "F14"
-      ],
-      "dependencias": [
-        "P07-03"
-      ],
-      "saida_concreta": "Regra temporal de atraso",
-      "passos": [
-        "Persistir instante sem ambiguidade",
-        "exibir Brasília",
-        "usar relógio controlado e prazo opcional explícito"
-      ],
-      "cenarios": [
-        "P07-04-C01",
-        "P07-04-C02",
-        "P07-04-C03"
-      ],
-      "falha_a_evitar": "Data local armazenada sem fuso muda vencimento",
-      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
-      "gate": "G-TASK",
-      "registro_previsto": "evidencias/execucao/P07-04/registro.md"
-    },
-    {
-      "id": "P07-05",
-      "fase": "P07",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "tarefas",
-      "documento": "docs/execucao/entregas/P07-05.md",
-      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
-      "fontes": [
-        "F02",
-        "F03",
-        "F14"
-      ],
-      "dependencias": [
-        "P07-04"
-      ],
-      "saida_concreta": "Próxima ação dentro da aplicação",
-      "passos": [
-        "Exibir pendência por usuário",
-        "ligar origem e estado",
-        "separar comunicação de anotação local"
-      ],
-      "cenarios": [
-        "P07-05-C01",
-        "P07-05-C02",
-        "P07-05-C03"
-      ],
-      "falha_a_evitar": "Indicador de notificação implica mensagem enviada",
-      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
-      "gate": "G-TASK",
-      "registro_previsto": "evidencias/execucao/P07-05/registro.md"
-    },
-    {
-      "id": "P07-06",
-      "fase": "P07",
-      "horas": 2,
-      "trilha": "R2",
-      "status": "planejado",
-      "produto": "tarefas",
-      "documento": "docs/execucao/entregas/P07-06.md",
-      "entrada": "G-CRM/G-GED, responsável e origem do registro.",
-      "fontes": [
-        "F02",
-        "F03",
-        "F14"
-      ],
-      "dependencias": [
-        "P07-05"
-      ],
-      "saida_concreta": "Ficha G-TASK e contador reconciliado",
-      "passos": [
-        "Definir numerador/período/escopo",
-        "comparar lista e cartão",
-        "testar alteração autorizada"
-      ],
-      "cenarios": [
-        "P07-06-C01",
-        "P07-06-C02",
-        "P07-06-C03"
-      ],
-      "falha_a_evitar": "Métrica conta registros fora da vigência",
-      "fora_do_escopo": "Não adicionar escalonamento externo, calendário de fornecedor ou notificações enviadas.",
-      "gate": "G-TASK",
-      "registro_previsto": "evidencias/execucao/P07-06/registro.md"
-    },
-    {
-      "id": "P08-01",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-01.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P04-GATE",
-        "P06-GATE",
-        "P07-GATE"
-      ],
-      "saida_concreta": "Especificação do protocolo piloto",
-      "passos": [
-        "Fixar um tipo/ano/tenant",
-        "listar campos e transições",
-        "definir ator para cada mudança"
-      ],
-      "cenarios": [
-        "P08-01-C01",
-        "P08-01-C02",
-        "P08-01-C03"
-      ],
-      "falha_a_evitar": "Protótipo recebe requisitos de workflow completo",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-01/registro.md"
-    },
-    {
-      "id": "P08-02",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-02.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-01"
-      ],
-      "saida_concreta": "Abertura transacional idempotente",
-      "passos": [
-        "Criar índice/regra de sequência SQL",
-        "serializar incremento conforme desenho",
-        "vincular chave de operação ao protocolo"
-      ],
-      "cenarios": [
-        "P08-02-C01",
-        "P08-02-C02",
-        "P08-02-C03"
-      ],
-      "falha_a_evitar": "Numeração calcula max+1 sem proteção",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-02/registro.md"
-    },
-    {
-      "id": "P08-03",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-03.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-02"
-      ],
-      "saida_concreta": "Vínculos de interessado/anexo/responsável",
-      "passos": [
-        "Validar cadastros existentes",
-        "ligar documento do tenant",
-        "guardar IDs sem duplicar entidade"
-      ],
-      "cenarios": [
-        "P08-03-C01",
-        "P08-03-C02",
-        "P08-03-C03"
-      ],
-      "falha_a_evitar": "Vínculo contorna fronteira entre módulos",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-03/registro.md"
-    },
-    {
-      "id": "P08-04",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-04.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-03"
-      ],
-      "saida_concreta": "Consulta e linha de movimentações",
-      "passos": [
-        "Listar por perfil e sigilo",
-        "mostrar detalhes/histórico",
-        "manter ator/origem/destino e instante"
-      ],
-      "cenarios": [
-        "P08-04-C01",
-        "P08-04-C02",
-        "P08-04-C03"
-      ],
-      "falha_a_evitar": "Consulta detalhada expõe registro oculto na listagem",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-04/registro.md"
-    },
-    {
-      "id": "P08-05",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-05.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-04"
-      ],
-      "saida_concreta": "Transição aberto -> em análise",
-      "passos": [
-        "Validar ator e versão esperada",
-        "gravar estado e histórico atomicamente",
-        "recusar transição fora da tabela"
-      ],
-      "cenarios": [
-        "P08-05-C01",
-        "P08-05-C02",
-        "P08-05-C03"
-      ],
-      "falha_a_evitar": "Gravar histórico e estado em operações divergentes",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-05/registro.md"
-    },
-    {
-      "id": "P08-06",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-06.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-05"
-      ],
-      "saida_concreta": "Encerramento com resultado",
-      "passos": [
-        "Exigir resultado e versão vigente",
-        "tornar repetição segura",
-        "preservar encerramento para consulta"
-      ],
-      "cenarios": [
-        "P08-06-C01",
-        "P08-06-C02",
-        "P08-06-C03"
-      ],
-      "falha_a_evitar": "Segunda pessoa altera encerramento confirmado",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-06/registro.md"
-    },
-    {
-      "id": "P08-07",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-07.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-06"
-      ],
-      "saida_concreta": "Regressão SQL do fluxo",
-      "passos": [
-        "Executar sucesso/negativo/retry",
-        "disputar versão em duas sessões",
-        "conferir reload/restart e transação"
-      ],
-      "cenarios": [
-        "P08-07-C01",
-        "P08-07-C02",
-        "P08-07-C03",
-        "P08-07-C04"
-      ],
-      "falha_a_evitar": "Teste em memória substitui concorrência SQL",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-07/registro.md"
-    },
-    {
-      "id": "P08-08",
-      "fase": "P08",
-      "horas": 3,
-      "trilha": "N",
-      "status": "planejado",
-      "produto": "flow",
-      "documento": "docs/execucao/entregas/P08-08.md",
-      "entrada": "G-SEG/G-GED/G-TASK e especificação do fluxo fixo.",
-      "fontes": [
-        "F26"
-      ],
-      "dependencias": [
-        "P08-07"
-      ],
-      "saida_concreta": "Ficha G-FLOW do fluxo fixo",
-      "passos": [
-        "Demonstrar abertura/anexo/tramitação/conclusão",
-        "mostrar histórico e negativa",
-        "declarar recursos excluídos"
-      ],
-      "cenarios": [
-        "P08-08-C01",
-        "P08-08-C02",
-        "P08-08-C03"
-      ],
-      "falha_a_evitar": "Piloto anunciado como Workflow profissional",
-      "fora_do_escopo": "Não implementar designer, regras dinâmicas, W3/W4, timers ou consulta pública.",
-      "gate": "G-FLOW",
-      "registro_previsto": "evidencias/execucao/P08-08/registro.md"
     },
     {
       "id": "P09-01",
@@ -2306,7 +2234,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-01.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2317,11 +2245,10 @@
         "F26"
       ],
       "dependencias": [
-        "P03-GATE",
         "P05-GATE",
-        "P06-GATE",
         "P07-GATE",
-        "P08-GATE"
+        "P11-GATE",
+        "P06-GATE"
       ],
       "saida_concreta": "Manifesto único do candidato",
       "passos": [
@@ -2347,7 +2274,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-02.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2360,18 +2287,18 @@
       "dependencias": [
         "P09-01"
       ],
-      "saida_concreta": "Jornada site -> canal/registro QA",
+      "saida_concreta": "Jornada integrada contato e tarefas",
       "passos": [
-        "Usar base e canal escolhidos",
-        "abrir fluxo a partir da página",
-        "conferir resultado efetivo quando servidor existir"
+        "Executar criação e consulta",
+        "percorrer histórico e fechamento da tarefa",
+        "conferir mesmo ID em nova sessão"
       ],
       "cenarios": [
         "P09-02-C01",
         "P09-02-C02",
         "P09-02-C03"
       ],
-      "falha_a_evitar": "Canal alternativo mascara perda silenciosa do formulário",
+      "falha_a_evitar": "Frontend aprovado sem persistência do resultado",
       "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
       "gate": "G-RC",
       "registro_previsto": "evidencias/execucao/P09-02/registro.md"
@@ -2384,7 +2311,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-03.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2421,7 +2348,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-04.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2434,18 +2361,18 @@
       "dependencias": [
         "P09-03"
       ],
-      "saida_concreta": "Jornada Flow + GED integrada",
+      "saida_concreta": "Jornada comunicação e documento",
       "passos": [
-        "Abrir protocolo e anexar documento",
-        "tramitar e concluir",
-        "tentar consultar/baixar de B"
+        "Receber e responder mensagem",
+        "conciliar callbacks e documento do contato",
+        "repetir negativas e recuperação"
       ],
       "cenarios": [
         "P09-04-C01",
         "P09-04-C02",
         "P09-04-C03"
       ],
-      "falha_a_evitar": "Composição amplia permissão concedida pelo GED",
+      "falha_a_evitar": "ACK ou status de fila apresentado como entrega",
       "fora_do_escopo": "Não implantar em produção nem executar operações comerciais reais neste planejamento.",
       "gate": "G-RC",
       "registro_previsto": "evidencias/execucao/P09-04/registro.md"
@@ -2458,7 +2385,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-05.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2495,7 +2422,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-06.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2532,7 +2459,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-07.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2569,7 +2496,7 @@
       "status": "planejado",
       "produto": "release",
       "documento": "docs/execucao/entregas/P09-08.md",
-      "entrada": "G-SITE/G-CRM/G-GED/G-TASK/G-FLOW e manifesto do candidato.",
+      "entrada": "G-SEG/G-CRM/G-TASK/G-MSG/G-GED e manifesto do candidato.",
       "fontes": [
         "F07",
         "F08",
@@ -2582,11 +2509,11 @@
       "dependencias": [
         "P09-07"
       ],
-      "saida_concreta": "Fechamento do ciclo e próximo backlog",
+      "saida_concreta": "Fechamento do ciclo e backlog posterior",
       "passos": [
         "Reconciliar resultados e esforço",
-        "listar blocos que passaram e faltantes",
-        "registrar candidato e próximas prioridades"
+        "registrar gates e pendências",
+        "preservar site/Flow adiados e próximos recortes"
       ],
       "cenarios": [
         "P09-08-C01",

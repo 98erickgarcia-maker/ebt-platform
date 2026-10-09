@@ -1,6 +1,6 @@
 # PAC-05 | Identidade e escopo de tenant
 
-Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 40-52h.
+Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 28-40h.
 
 ## Resultado integrado
 

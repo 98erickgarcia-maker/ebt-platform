@@ -1,0 +1,13 @@
+{
+  "generatedUtc": "2026-10-07T11:44:04.0435419+00:00",
+  "environment": "Synthetic localhost SQL keyring and independent runtimes",
+  "database": "EbtPlatformQa_KeyRing_fd5fe8064b434f96846278e16cfeb59e",
+  "passed": true,
+  "cases": 4,
+  "checks": [
+    "Persistent SQL key XML encrypted by certificate",
+    "New runtime recovers protected envelope",
+    "Wrong certificate cannot recover envelope",
+    "Missing certificate fails startup"
+  ]
+}

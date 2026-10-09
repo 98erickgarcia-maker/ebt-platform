@@ -1,0 +1,383 @@
+{
+  "revisao": "07/10/2026",
+  "motivo": "Priorizar resposta por API/webhook no Connect",
+  "horas_alocadas_neste_ciclo": 0,
+  "estimativa_anterior_h": 36,
+  "fases": [
+    {
+      "id": "P03",
+      "nome": "Primeiro pacote: site essencial reutilizável",
+      "horas": 12,
+      "resultado": "Pacote de site pronto para demonstração e implantação delimitada",
+      "dependencias": [
+        "P01",
+        "P02"
+      ],
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "gate": "G-SITE",
+      "inicio_h": 28,
+      "fim_h": 40,
+      "tickets": [
+        "P03-01",
+        "P03-02",
+        "P03-03",
+        "P03-04",
+        "P03-05",
+        "P03-06"
+      ]
+    },
+    {
+      "id": "P08",
+      "nome": "Terceiro pacote: protocolo e tramitação mínima",
+      "horas": 24,
+      "resultado": "Flow piloto com um tipo de protocolo e um fluxo fixo",
+      "dependencias": [
+        "P04",
+        "P06",
+        "P07"
+      ],
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "gate": "G-FLOW",
+      "inicio_h": 140,
+      "fim_h": 164,
+      "tickets": [
+        "P08-01",
+        "P08-02",
+        "P08-03",
+        "P08-04",
+        "P08-05",
+        "P08-06",
+        "P08-07",
+        "P08-08"
+      ]
+    }
+  ],
+  "itens": [
+    {
+      "id": "P03-01",
+      "fase": "P03",
+      "titulo": "Escolher uma única base de site existente",
+      "horas": 2,
+      "implementacao_h": 1.5,
+      "verificacao_h": 0.25,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 28,
+      "fim_h": 30,
+      "trilha": "R1",
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "dependencias": [
+        "P01-GATE",
+        "P02-GATE"
+      ],
+      "criterio_aceite": "Comparar EBT estático e CRP Razor e escolher conforme pedido; escopo até cinco páginas, conteúdo fornecido.",
+      "evidencia_esperada": "Registro P03-01: versão/hash, ambiente, cenário e resultado conforme trilha R1",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-SITE"
+    },
+    {
+      "id": "P03-02",
+      "fase": "P03",
+      "titulo": "Centralizar marca, contato e serviços do pacote",
+      "horas": 2,
+      "implementacao_h": 1.25,
+      "verificacao_h": 0.5,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 30,
+      "fim_h": 32,
+      "trilha": "R2",
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "dependencias": [
+        "P03-01"
+      ],
+      "criterio_aceite": "Duas marcas sintéticas aparecem por configuração; conteúdo e fotos autorizados têm origem registrada.",
+      "evidencia_esperada": "Registro P03-02: versão/hash, ambiente, cenário e resultado conforme trilha R2",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-SITE"
+    },
+    {
+      "id": "P03-03",
+      "fase": "P03",
+      "titulo": "Reaproveitar páginas e navegação",
+      "horas": 2,
+      "implementacao_h": 1.5,
+      "verificacao_h": 0.25,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 32,
+      "fim_h": 34,
+      "trilha": "R1",
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "dependencias": [
+        "P03-02"
+      ],
+      "criterio_aceite": "Home, serviços, sobre, contato e privacidade navegam em celular/computador; links e assets válidos.",
+      "evidencia_esperada": "Registro P03-03: versão/hash, ambiente, cenário e resultado conforme trilha R1",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-SITE"
+    },
+    {
+      "id": "P03-04",
+      "fase": "P03",
+      "titulo": "Conferir formulário e canal efetivo",
+      "horas": 2,
+      "implementacao_h": 1.25,
+      "verificacao_h": 0.5,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 34,
+      "fim_h": 36,
+      "trilha": "R2",
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "dependencias": [
+        "P03-03"
+      ],
+      "criterio_aceite": "Se houver registro servidor, validar persistência e falha; wa.me é abertura manual e aparece descrito assim.",
+      "evidencia_esperada": "Registro P03-04: versão/hash, ambiente, cenário e resultado conforme trilha R2",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-SITE"
+    },
+    {
+      "id": "P03-05",
+      "fase": "P03",
+      "titulo": "Executar regressão visual e de acesso focal",
+      "horas": 2,
+      "implementacao_h": 1.5,
+      "verificacao_h": 0.25,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 36,
+      "fim_h": 38,
+      "trilha": "R1",
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "dependencias": [
+        "P03-04"
+      ],
+      "criterio_aceite": "Conferir páginas alteradas, foco, contraste e overflow; painel privado existente continua protegido.",
+      "evidencia_esperada": "Registro P03-05: versão/hash, ambiente, cenário e resultado conforme trilha R1",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-SITE"
+    },
+    {
+      "id": "P03-06",
+      "fase": "P03",
+      "titulo": "Preparar entrega, manual e retorno do site",
+      "horas": 2,
+      "implementacao_h": 1.25,
+      "verificacao_h": 0.5,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 38,
+      "fim_h": 40,
+      "trilha": "R2",
+      "origem": "EBT institucional e CRP; sem depender do Core novo",
+      "dependencias": [
+        "P03-05"
+      ],
+      "criterio_aceite": "Demo e pacote reproduzíveis com escopo fechado; publicação real permanece condicionada ao ambiente e aceite do cliente.",
+      "evidencia_esperada": "Registro P03-06: versão/hash, ambiente, cenário e resultado conforme trilha R2",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-SITE"
+    },
+    {
+      "id": "P08-01",
+      "fase": "P08",
+      "titulo": "Especificar fluxo e numeração do piloto",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 140,
+      "fim_h": 143,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P04-GATE",
+        "P06-GATE",
+        "P07-GATE"
+      ],
+      "criterio_aceite": "Um tipo, sequência por tenant/ano, um responsável e estados aberto/em análise/concluído; sem designer.",
+      "evidencia_esperada": "Registro P08-01: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-02",
+      "fase": "P08",
+      "titulo": "Criar protocolo e sequência transacional",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 143,
+      "fim_h": 146,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-01"
+      ],
+      "criterio_aceite": "Criação concorrente em SQL não repete número; retry da mesma operação devolve o mesmo protocolo.",
+      "evidencia_esperada": "Registro P08-02: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-03",
+      "fase": "P08",
+      "titulo": "Vincular interessado, documento e responsável",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 146,
+      "fim_h": 149,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-02"
+      ],
+      "criterio_aceite": "IDs existentes usados; anexos privados e interessado do tenant correto; inexistente/empresa divergente é recusado.",
+      "evidencia_esperada": "Registro P08-03: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-04",
+      "fase": "P08",
+      "titulo": "Criar consulta e histórico de movimentação",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 149,
+      "fim_h": 152,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-03"
+      ],
+      "criterio_aceite": "Listagem/detalhe/consulta por ID aplicam sigilo e tenant; histórico mantém origem, destino e ator.",
+      "evidencia_esperada": "Registro P08-04: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-05",
+      "fase": "P08",
+      "titulo": "Implementar uma transição manual autorizada",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 152,
+      "fim_h": 155,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-04"
+      ],
+      "criterio_aceite": "Aberto -> em análise exige perfil previsto e versão atual; transição inválida não modifica estado.",
+      "evidencia_esperada": "Registro P08-05: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-06",
+      "fase": "P08",
+      "titulo": "Implementar encerramento com resultado",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 155,
+      "fim_h": 158,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-05"
+      ],
+      "criterio_aceite": "Concluído exige resultado; segundo encerramento não duplica evento; edição concorrente gera conflito seguro.",
+      "evidencia_esperada": "Registro P08-06: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-07",
+      "fase": "P08",
+      "titulo": "Conferir falhas e persistência do fluxo",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 158,
+      "fim_h": 161,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-06"
+      ],
+      "criterio_aceite": "Caminho feliz, ID de B, reenvio, duas pessoas, reload/restart e rollback transacional conferidos em SQL.",
+      "evidencia_esperada": "Registro P08-07: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    },
+    {
+      "id": "P08-08",
+      "fase": "P08",
+      "titulo": "Demonstrar G-FLOW e limites do piloto",
+      "horas": 3,
+      "implementacao_h": 1.75,
+      "verificacao_h": 1,
+      "registro_h": 0.25,
+      "reserva_h": 0,
+      "inicio_h": 161,
+      "fim_h": 164,
+      "trilha": "N",
+      "origem": "Novo, usando contratos de pessoas/documentos/tarefas",
+      "dependencias": [
+        "P08-07"
+      ],
+      "criterio_aceite": "Abrir -> anexar -> tramitar -> concluir -> consultar auditado; W1/W2 parcial, sem W3/W4, timers ou portal público.",
+      "evidencia_esperada": "Registro P08-08: versão/hash, ambiente, cenário e resultado conforme trilha N",
+      "status": "planejado",
+      "horas_reais": 0,
+      "responsavel_proposto": "desenvolvimento EBT",
+      "gate": "G-FLOW"
+    }
+  ],
+  "regra": "Estimativas anteriores não são compromisso novo; reestimar antes de executar."
+}

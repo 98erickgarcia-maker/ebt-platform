@@ -1,5 +1,7 @@
 # Revisão automatizada local e online
 
+Revisão vigente 1.3 (07/10/2026): Connect com API/webhook primeiro; 70 entregas e cinco reservas, 180h + 20h. Site/Flow estão adiados. Seguir [plano atual](../PLANO_200_HORAS.md) e pacotes em ordem de esforço; as decisões de 06/10 abaixo são contexto do método original.
+
 ## Decisão de execução
 
 Visualizar online significa principalmente executar código de verificação contra o endereço de homologação. A conferência manual complementa a automação na avaliação visual e no aceite de negócio. Esta especificação é futura: este repositório ainda não contém suíte de aplicação/browser implementada.
@@ -17,7 +19,7 @@ Os testes ficam em projeto/pasta de QA apropriada à stack escolhida, separados 
 | Ambiente online | Identificar versão implantada, health/configuração, sessão, banco e storage do destino | URL, ambiente, versão e dados persistidos; pacote gerado não comprova deploy |
 | Visual e negócio | Capturas em larguras previstas e comparação pertinente; percurso do usuário | Automação ajuda a localizar diferenças, mas não substitui leitura visual ou aceite real do piloto |
 
-Os cenários são os [234 casos já planejados](MATRIZ_CENARIOS.md); esta organização não cria uma nova bateria obrigatória por cima de todos eles. Selecionar os casos afetados conforme R1/R2/N, registrar casos não aplicáveis com motivo e fechar a jornada integrada no pacote pertinente.
+Os cenários são os [238 casos já planejados](MATRIZ_CENARIOS.md); esta organização não cria uma nova bateria obrigatória por cima de todos eles. Selecionar os casos afetados conforme R1/R2/N, registrar casos não aplicáveis com motivo e fechar a jornada integrada no pacote pertinente.
 
 ## Cobertura online do recorte
 

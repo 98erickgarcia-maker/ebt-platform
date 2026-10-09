@@ -1,0 +1,49 @@
+{
+  "generatedUtc": "2026-10-07T11:55:39.7786561+00:00",
+  "environment": "Azure SQL shared database",
+  "server": "tcp:sql-crm-casst-dev-crmenterprise98.database.windows.net,1433",
+  "database": "sqldb-crm-casst-dev-v2",
+  "mode": "read-only metadata",
+  "reports": {
+    "schemas": [
+      {
+        "name": "crp",
+        "tables": 17
+      },
+      {
+        "name": "dbo",
+        "tables": 55
+      },
+      {
+        "name": "ebt_connect",
+        "tables": 23
+      },
+      {
+        "name": "ebt_site",
+        "tables": 3
+      },
+      {
+        "name": "thaiane",
+        "tables": 12
+      }
+    ],
+    "storage": [
+      {
+        "usedBytes": 71041024,
+        "allocatedBytes": 83886080
+      }
+    ],
+    "securityPolicies": [
+      {
+        "schemaName": "security",
+        "name": "tenant_access_policy",
+        "is_enabled": true
+      },
+      {
+        "schemaName": "ebt_connect",
+        "name": "tenant_barrier",
+        "is_enabled": true
+      }
+    ]
+  }
+}

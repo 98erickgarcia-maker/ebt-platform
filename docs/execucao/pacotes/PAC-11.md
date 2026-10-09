@@ -1,6 +1,6 @@
 # PAC-11 | Documento privado e acesso autorizado
 
-Estado: planejado. 12h estimadas (8.5h implementação, 2.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 104-116h.
+Estado: planejado. 12h estimadas (8.5h implementação, 2.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 140-152h.
 
 ## Resultado integrado
 

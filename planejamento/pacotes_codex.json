@@ -1,11 +1,30 @@
 {
-  "versao": "1.2",
-  "decisao": "Pacotes maiores e revisão mais profunda, mantendo 200h",
+  "versao": "1.3",
+  "decisao": "Connect com API/webhook primeiro; site e Flow adiados, mantendo 200h",
   "fonte_orcamento": "planejamento/backlog_200_horas.json",
   "total_h": 200,
   "entregas_h": 180,
   "reserva_h": 20,
   "horas_incluem_revisao_verificacao_registro": true,
+  "ordem_execucao": [
+    "PAC-01",
+    "PAC-02",
+    "PAC-03",
+    "PAC-05",
+    "PAC-06",
+    "PAC-07",
+    "PAC-08",
+    "PAC-09",
+    "PAC-10",
+    "PAC-13",
+    "PAC-18",
+    "PAC-19",
+    "PAC-20",
+    "PAC-11",
+    "PAC-12",
+    "PAC-16",
+    "PAC-17"
+  ],
   "reservas": [
     "P10-01",
     "P10-02",
@@ -103,40 +122,6 @@
       "fecha_gate_fase": true
     },
     {
-      "id": "PAC-04",
-      "fase": "P03",
-      "nome": "Site essencial completo",
-      "tickets": [
-        "P03-01",
-        "P03-02",
-        "P03-03",
-        "P03-04",
-        "P03-05",
-        "P03-06"
-      ],
-      "horas": 12,
-      "implementacao_h": 8.25,
-      "verificacao_h": 2.25,
-      "registro_h": 1.5,
-      "inicio_h": 28,
-      "fim_h": 40,
-      "saida_integrada": "Pacote de site com navegação, identidade, contato, manual e retorno",
-      "revisao_especifica": "Percorrer páginas em celular/computador; conferir canal efetivo e diferenças da fonte aprovada",
-      "estado": "planejado",
-      "evidencia": null,
-      "documento": "docs/execucao/pacotes/PAC-04.md",
-      "dependencias_tickets_gates": [
-        "P01-GATE",
-        "P02-GATE"
-      ],
-      "dependencias_pacotes": [
-        "PAC-01",
-        "PAC-03"
-      ],
-      "gate_fase": "G-SITE",
-      "fecha_gate_fase": true
-    },
-    {
       "id": "PAC-05",
       "fase": "P04",
       "nome": "Identidade e escopo de tenant",
@@ -150,8 +135,8 @@
       "implementacao_h": 7.5,
       "verificacao_h": 3.5,
       "registro_h": 1.0,
-      "inicio_h": 40,
-      "fim_h": 52,
+      "inicio_h": 28,
+      "fim_h": 40,
       "saida_integrada": "Identidade alimenta o contexto e restringe consultas/gravações",
       "revisao_especifica": "Tentar manipular tenant recebido do cliente e cruzar leitura/gravação entre A e B",
       "estado": "planejado",
@@ -180,8 +165,8 @@
       "implementacao_h": 7.5,
       "verificacao_h": 3.5,
       "registro_h": 1.0,
-      "inicio_h": 52,
-      "fim_h": 64,
+      "inicio_h": 40,
+      "fim_h": 52,
       "saida_integrada": "Banco e autorização mantêm o isolamento inclusive em acesso por ID",
       "revisao_especifica": "Conferir migration/índices no SQL real, ID direto, cache e troca de perfil",
       "estado": "planejado",
@@ -210,8 +195,8 @@
       "implementacao_h": 8.0,
       "verificacao_h": 3.0,
       "registro_h": 1.0,
-      "inicio_h": 64,
-      "fim_h": 76,
+      "inicio_h": 52,
+      "fim_h": 64,
       "saida_integrada": "Onboarding e trilha de auditoria fecham o gate de segurança",
       "revisao_especifica": "Reproduzir onboarding, verificar negativas, proteção de sessão e ausência de segredo nos eventos",
       "estado": "planejado",
@@ -236,11 +221,11 @@
         "P05-03"
       ],
       "horas": 9,
-      "implementacao_h": 7.0,
-      "verificacao_h": 1.25,
+      "implementacao_h": 6.75,
+      "verificacao_h": 1.5,
       "registro_h": 0.75,
-      "inicio_h": 76,
-      "fim_h": 85,
+      "inicio_h": 64,
+      "fim_h": 73,
       "saida_integrada": "Pessoa/organização cadastradas uma vez e recuperadas na consulta",
       "revisao_especifica": "Conferir duplicidade, ID estável, vínculos, recarregamento e paginação com dados sintéticos",
       "estado": "planejado",
@@ -268,8 +253,8 @@
       "implementacao_h": 6.75,
       "verificacao_h": 1.5,
       "registro_h": 0.75,
-      "inicio_h": 85,
-      "fim_h": 94,
+      "inicio_h": 73,
+      "fim_h": 82,
       "saida_integrada": "Interação, responsável, próxima ação e mudança de etapa persistem juntos",
       "revisao_especifica": "Percorrer jornada comercial e conferir autoria, ordenação, negativa de perfil e tenant",
       "estado": "planejado",
@@ -298,8 +283,8 @@
       "implementacao_h": 6.5,
       "verificacao_h": 2.5,
       "registro_h": 1.0,
-      "inicio_h": 94,
-      "fim_h": 104,
+      "inicio_h": 82,
+      "fim_h": 92,
       "saida_integrada": "CRM demonstrável em dois consumidores, com importação delimitada e manual",
       "revisao_especifica": "Conferir marca sem fork de regra, repetição da importação e resultado persistido de G-CRM",
       "estado": "planejado",
@@ -312,6 +297,132 @@
         "PAC-09"
       ],
       "gate_fase": "G-CRM",
+      "fecha_gate_fase": true
+    },
+    {
+      "id": "PAC-13",
+      "fase": "P07",
+      "nome": "Tarefas vinculadas e prazos",
+      "tickets": [
+        "P07-01",
+        "P07-02",
+        "P07-03",
+        "P07-04",
+        "P07-05",
+        "P07-06"
+      ],
+      "horas": 12,
+      "implementacao_h": 7.5,
+      "verificacao_h": 3.0,
+      "registro_h": 1.5,
+      "inicio_h": 92,
+      "fim_h": 104,
+      "saida_integrada": "Tarefa passa por criação, conclusão/cancelamento e atualização das pendências",
+      "revisao_especifica": "Reconciliar contador, prazo/atraso, histórico e alterações permitidas/proibidas de G-TASK",
+      "estado": "planejado",
+      "evidencia": null,
+      "documento": "docs/execucao/pacotes/PAC-13.md",
+      "dependencias_tickets_gates": [
+        "P05-GATE"
+      ],
+      "dependencias_pacotes": [
+        "PAC-10"
+      ],
+      "gate_fase": "G-TASK",
+      "fecha_gate_fase": true
+    },
+    {
+      "id": "PAC-18",
+      "fase": "P11",
+      "nome": "Contrato do canal e recebimento durável",
+      "tickets": [
+        "P11-01",
+        "P11-02",
+        "P11-03",
+        "P11-04"
+      ],
+      "horas": 12,
+      "implementacao_h": 7.0,
+      "verificacao_h": 4,
+      "registro_h": 1.0,
+      "inicio_h": 104,
+      "fim_h": 116,
+      "saida_integrada": "Contrato do canal e recebimento durável",
+      "revisao_especifica": "Conferir API, assinatura, persistência, A/B, duplicatas e status observados na versão do canal; mock não homologa provedor",
+      "estado": "planejado",
+      "evidencia": null,
+      "documento": "docs/execucao/pacotes/PAC-18.md",
+      "dependencias_tickets_gates": [
+        "P04-GATE",
+        "P05-GATE",
+        "P07-GATE"
+      ],
+      "dependencias_pacotes": [
+        "PAC-07",
+        "PAC-10",
+        "PAC-13"
+      ],
+      "gate_fase": "G-MSG",
+      "fecha_gate_fase": false
+    },
+    {
+      "id": "PAC-19",
+      "fase": "P11",
+      "nome": "Conversa, resposta e callbacks",
+      "tickets": [
+        "P11-05",
+        "P11-06",
+        "P11-07",
+        "P11-08"
+      ],
+      "horas": 12,
+      "implementacao_h": 7.0,
+      "verificacao_h": 4,
+      "registro_h": 1.0,
+      "inicio_h": 116,
+      "fim_h": 128,
+      "saida_integrada": "Conversa, resposta e callbacks",
+      "revisao_especifica": "Conferir API, assinatura, persistência, A/B, duplicatas e status observados na versão do canal; mock não homologa provedor",
+      "estado": "planejado",
+      "evidencia": null,
+      "documento": "docs/execucao/pacotes/PAC-19.md",
+      "dependencias_tickets_gates": [
+        "P11-04"
+      ],
+      "dependencias_pacotes": [
+        "PAC-18"
+      ],
+      "gate_fase": "G-MSG",
+      "fecha_gate_fase": false
+    },
+    {
+      "id": "PAC-20",
+      "fase": "P11",
+      "nome": "Falhas, interface e gate de comunicação",
+      "tickets": [
+        "P11-09",
+        "P11-10",
+        "P11-11",
+        "P11-12"
+      ],
+      "horas": 12,
+      "implementacao_h": 7.0,
+      "verificacao_h": 4,
+      "registro_h": 1.0,
+      "inicio_h": 128,
+      "fim_h": 140,
+      "saida_integrada": "Falhas, interface e gate de comunicação",
+      "revisao_especifica": "Conferir API, assinatura, persistência, A/B, duplicatas e status observados na versão do canal; mock não homologa provedor",
+      "estado": "planejado",
+      "evidencia": null,
+      "documento": "docs/execucao/pacotes/PAC-20.md",
+      "dependencias_tickets_gates": [
+        "P11-08"
+      ],
+      "dependencias_pacotes": [
+        "PAC-19"
+      ],
+      "gate_fase": "G-MSG",
       "fecha_gate_fase": true
     },
     {
@@ -328,8 +439,8 @@
       "implementacao_h": 8.5,
       "verificacao_h": 2.5,
       "registro_h": 1.0,
-      "inicio_h": 104,
-      "fim_h": 116,
+      "inicio_h": 140,
+      "fim_h": 152,
       "saida_integrada": "Documento vinculado pode ser enviado e baixado apenas por ator autorizado",
       "revisao_especifica": "Exercitar upload inválido, acesso por ID, negativa de B e falha entre metadado e arquivo",
       "estado": "planejado",
@@ -360,8 +471,8 @@
       "implementacao_h": 7.5,
       "verificacao_h": 3.5,
       "registro_h": 1.0,
-      "inicio_h": 116,
-      "fim_h": 128,
+      "inicio_h": 152,
+      "fim_h": 164,
       "saida_integrada": "Revisão/versionamento e restore preservam documento e histórico",
       "revisao_especifica": "Conferir repetição, concorrência, hash dos bytes restaurados e segundo consumidor de G-GED",
       "estado": "planejado",
@@ -374,104 +485,6 @@
         "PAC-11"
       ],
       "gate_fase": "G-GED",
-      "fecha_gate_fase": true
-    },
-    {
-      "id": "PAC-13",
-      "fase": "P07",
-      "nome": "Tarefas vinculadas e prazos",
-      "tickets": [
-        "P07-01",
-        "P07-02",
-        "P07-03",
-        "P07-04",
-        "P07-05",
-        "P07-06"
-      ],
-      "horas": 12,
-      "implementacao_h": 7.75,
-      "verificacao_h": 2.75,
-      "registro_h": 1.5,
-      "inicio_h": 128,
-      "fim_h": 140,
-      "saida_integrada": "Tarefa passa por criação, conclusão/cancelamento e atualização das pendências",
-      "revisao_especifica": "Reconciliar contador, prazo/atraso, histórico e alterações permitidas/proibidas de G-TASK",
-      "estado": "planejado",
-      "evidencia": null,
-      "documento": "docs/execucao/pacotes/PAC-13.md",
-      "dependencias_tickets_gates": [
-        "P05-GATE",
-        "P06-GATE"
-      ],
-      "dependencias_pacotes": [
-        "PAC-10",
-        "PAC-12"
-      ],
-      "gate_fase": "G-TASK",
-      "fecha_gate_fase": true
-    },
-    {
-      "id": "PAC-14",
-      "fase": "P08",
-      "nome": "Protocolo, numeração e consulta",
-      "tickets": [
-        "P08-01",
-        "P08-02",
-        "P08-03",
-        "P08-04"
-      ],
-      "horas": 12,
-      "implementacao_h": 7.0,
-      "verificacao_h": 4,
-      "registro_h": 1.0,
-      "inicio_h": 140,
-      "fim_h": 152,
-      "saida_integrada": "Protocolo vincula interessado/documento e apresenta histórico coerente",
-      "revisao_especifica": "Criar concorrente e repetir solicitação no SQL real; conferir unicidade e vínculos",
-      "estado": "planejado",
-      "evidencia": null,
-      "documento": "docs/execucao/pacotes/PAC-14.md",
-      "dependencias_tickets_gates": [
-        "P04-GATE",
-        "P06-GATE",
-        "P07-GATE"
-      ],
-      "dependencias_pacotes": [
-        "PAC-07",
-        "PAC-12",
-        "PAC-13"
-      ],
-      "gate_fase": "G-FLOW",
-      "fecha_gate_fase": false
-    },
-    {
-      "id": "PAC-15",
-      "fase": "P08",
-      "nome": "Tramitação e encerramento do Flow",
-      "tickets": [
-        "P08-05",
-        "P08-06",
-        "P08-07",
-        "P08-08"
-      ],
-      "horas": 12,
-      "implementacao_h": 7.0,
-      "verificacao_h": 4,
-      "registro_h": 1.0,
-      "inicio_h": 152,
-      "fim_h": 164,
-      "saida_integrada": "Uma transição autorizada e encerramento deixam resultado auditável",
-      "revisao_especifica": "Negar transição inválida, conferir atomicidade estado/histórico e recuperação de G-FLOW",
-      "estado": "planejado",
-      "evidencia": null,
-      "documento": "docs/execucao/pacotes/PAC-15.md",
-      "dependencias_tickets_gates": [
-        "P08-04"
-      ],
-      "dependencias_pacotes": [
-        "PAC-14"
-      ],
-      "gate_fase": "G-FLOW",
       "fecha_gate_fase": true
     },
     {
@@ -496,18 +509,16 @@
       "evidencia": null,
       "documento": "docs/execucao/pacotes/PAC-16.md",
       "dependencias_tickets_gates": [
-        "P03-GATE",
         "P05-GATE",
         "P06-GATE",
         "P07-GATE",
-        "P08-GATE"
+        "P11-GATE"
       ],
       "dependencias_pacotes": [
-        "PAC-04",
         "PAC-10",
         "PAC-12",
         "PAC-13",
-        "PAC-15"
+        "PAC-20"
       ],
       "gate_fase": "G-RC",
       "fecha_gate_fase": false

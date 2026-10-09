@@ -1,0 +1,145 @@
+{
+  "versao": "1.2",
+  "escopo": "sugestões de frontend; não execução",
+  "fonte": "evidencias/revisao_frontend_fontes.json",
+  "itens": [
+    {
+      "id": "UX-01",
+      "prioridade": "Alta",
+      "sugestao": "Consolidar contrato visual e retirar sobreposições confirmadas",
+      "resultado_proposto": "Uma fonte de tokens e componentes; CSS por escopo sem nova camada global de correção",
+      "tickets_relacionados": [
+        "P02-01",
+        "P02-02",
+        "P05-07"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-02",
+      "prioridade": "Alta",
+      "sugestao": "Organizar navegação por fluxo e capacidade ativa",
+      "resultado_proposto": "Acesso claro a início, contatos, tarefas, documentos e protocolo; perfil e empresa visíveis",
+      "tickets_relacionados": [
+        "P04-01",
+        "P05-07"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-03",
+      "prioridade": "Alta",
+      "sugestao": "Eliminar affordances de função inexistente",
+      "resultado_proposto": "Busca local real e ações executáveis; função futura não parece disponível",
+      "tickets_relacionados": [
+        "P05-03",
+        "P05-07"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-04",
+      "prioridade": "Alta",
+      "sugestao": "Escolher layout com lista e detalhe contextual",
+      "resultado_proposto": "Selecionar cadastro sem perder filtro/página; identidade única e ações vinculadas",
+      "tickets_relacionados": [
+        "P05-02",
+        "P05-03",
+        "P05-07"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-05",
+      "prioridade": "Alta",
+      "sugestao": "Padronizar formulários, mensagens e estados",
+      "resultado_proposto": "Rótulo, validação, loading/vazio/erro/negado/conflito, resultado persistido e retomada",
+      "tickets_relacionados": [
+        "P05-02",
+        "P05-04",
+        "P06-03"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-06",
+      "prioridade": "Alta",
+      "sugestao": "Separar página, componentes e acesso a dados",
+      "resultado_proposto": "Tela compõe componentes e hooks/adapters; contrato e regra permanecem rastreáveis",
+      "tickets_relacionados": [
+        "P02-06",
+        "P05-07",
+        "P05-08"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-07",
+      "prioridade": "Alta",
+      "sugestao": "Conferir responsividade e acessibilidade",
+      "resultado_proposto": "Teclado, foco, reflow, contraste, alvos e conteúdo sem perda nos tamanhos previstos",
+      "tickets_relacionados": [
+        "P03-05",
+        "P05-07",
+        "P09-03"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-08",
+      "prioridade": "Média",
+      "sugestao": "Tornar lista e histórico consistentes",
+      "resultado_proposto": "Tabela com alinhamento/rótulos; horário/autoria coerentes; filtros mantidos e estado de conflito",
+      "tickets_relacionados": [
+        "P05-03",
+        "P05-04",
+        "P07-04"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-09",
+      "prioridade": "Média",
+      "sugestao": "Estabelecer checklist de interface por pacote",
+      "resultado_proposto": "Revisão do conjunto e prova de navegador ligada ao commit/ambiente",
+      "tickets_relacionados": [
+        "P05-10",
+        "P06-08",
+        "P07-06",
+        "P08-08",
+        "P09-01"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    },
+    {
+      "id": "UX-10",
+      "prioridade": "Baixa",
+      "sugestao": "Expandir catálogo e refatorar todas as telas legadas",
+      "resultado_proposto": "Avaliar após padrão escolhido e primeira tela integrada aprovada; reestimar escopo",
+      "tickets_relacionados": [
+        "P09-08"
+      ],
+      "estado": "proposto",
+      "evidencia_implementacao": null,
+      "impacto_orcamento": "Avaliar recorte mínimo nos tickets existentes; expansão geral exige reestimativa/decisão, sem alterar 180h+20h"
+    }
+  ]
+}

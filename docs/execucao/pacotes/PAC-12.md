@@ -1,6 +1,6 @@
 # PAC-12 | Versões, concorrência e recuperação documental
 
-Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 116-128h.
+Estado: planejado. 12h estimadas (7.5h implementação, 3.5h verificação/revisão e 1h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 152-164h.
 
 ## Resultado integrado
 

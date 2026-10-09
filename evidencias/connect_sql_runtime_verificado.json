@@ -1,0 +1,19 @@
+{
+  "generatedUtc": "2026-10-07T15:22:37.1451303+00:00",
+  "database": "sqldb-crm-casst-dev-v2",
+  "schema": "ebt_connect",
+  "identity": "id-ebt-connect-hml",
+  "permissions": {
+    "ownRead": 1,
+    "ownAlter": 0,
+    "databaseControl": 0,
+    "dboRead": 0,
+    "crpRead": 0,
+    "thaianeRead": 0,
+    "ebtSiteRead": 0
+  },
+  "otherSchemasHash": "8ad46129b938a3557b1b987aa63afb8566b90670f850f05041ee491f2fa6a6c2",
+  "otherSchemasUnchanged": true,
+  "persistedKeyCount": 1,
+  "persistedKeysEncrypted": true
+}

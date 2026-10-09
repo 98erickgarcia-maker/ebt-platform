@@ -52,28 +52,6 @@ Casos abaixo são planejados e não executados. Linhas são cenários, não obri
 | P02-08-C01 | [P02-08](../execucao/entregas/P02-08.md) | N | Health e persistência conferidos |
 | P02-08-C02 | [P02-08](../execucao/entregas/P02-08.md) | N | clone reproduz |
 | P02-08-C03 | [P02-08](../execucao/entregas/P02-08.md) | N | nada declarado produção |
-## P03 | G-SITE
-
-| Caso | Ticket | Trilha | Cenário específico |
-|---|---|---|---|
-| P03-01-C01 | [P03-01](../execucao/entregas/P03-01.md) | R1 | Escolha única explícita |
-| P03-01-C02 | [P03-01](../execucao/entregas/P03-01.md) | R1 | source e versão identificados |
-| P03-01-C03 | [P03-01](../execucao/entregas/P03-01.md) | R1 | somente funções comprovadas aproveitadas |
-| P03-02-C01 | [P03-02](../execucao/entregas/P03-02.md) | R2 | Conteúdo muda por config |
-| P03-02-C02 | [P03-02](../execucao/entregas/P03-02.md) | R2 | contato correto por marca |
-| P03-02-C03 | [P03-02](../execucao/entregas/P03-02.md) | R2 | assets autorizados |
-| P03-03-C01 | [P03-03](../execucao/entregas/P03-03.md) | R1 | Links e assets válidos |
-| P03-03-C02 | [P03-03](../execucao/entregas/P03-03.md) | R1 | retorno/menu coerentes |
-| P03-03-C03 | [P03-03](../execucao/entregas/P03-03.md) | R1 | layout mobile e desktop |
-| P03-04-C01 | [P03-04](../execucao/entregas/P03-04.md) | R2 | Registro consultável quando aplicável |
-| P03-04-C02 | [P03-04](../execucao/entregas/P03-04.md) | R2 | erro mostra ausência de confirmação |
-| P03-04-C03 | [P03-04](../execucao/entregas/P03-04.md) | R2 | wa.me é descrito como abertura |
-| P03-05-C01 | [P03-05](../execucao/entregas/P03-05.md) | R1 | Sem overflow externo |
-| P03-05-C02 | [P03-05](../execucao/entregas/P03-05.md) | R1 | teclado alcança controles |
-| P03-05-C03 | [P03-05](../execucao/entregas/P03-05.md) | R1 | visitante não acessa painel privado |
-| P03-06-C01 | [P03-06](../execucao/entregas/P03-06.md) | R2 | Pacote reproduz |
-| P03-06-C02 | [P03-06](../execucao/entregas/P03-06.md) | R2 | checklist de entrada do cliente |
-| P03-06-C03 | [P03-06](../execucao/entregas/P03-06.md) | R2 | publicação futura claramente condicionada |
 ## P04 | G-SEG
 
 | Caso | Ticket | Trilha | Cenário específico |
@@ -124,9 +102,12 @@ Casos abaixo são planejados e não executados. Linhas são cenários, não obri
 | P05-02-C01 | [P05-02](../execucao/entregas/P05-02.md) | R2 | Mesmo comando não duplica |
 | P05-02-C02 | [P05-02](../execucao/entregas/P05-02.md) | R2 | cadastro recarrega |
 | P05-02-C03 | [P05-02](../execucao/entregas/P05-02.md) | R2 | telefone de B não provoca fusão com A |
-| P05-03-C01 | [P05-03](../execucao/entregas/P05-03.md) | R1 | Busca formatada encontra dentro do escopo |
-| P05-03-C02 | [P05-03](../execucao/entregas/P05-03.md) | R1 | vazio/erro claros |
-| P05-03-C03 | [P05-03](../execucao/entregas/P05-03.md) | R1 | limites de página respeitados |
+| P05-03-C01 | [P05-03](../execucao/entregas/P05-03.md) | R2 | Busca formatada encontra dentro do escopo |
+| P05-03-C02 | [P05-03](../execucao/entregas/P05-03.md) | R2 | vazio/erro claros |
+| P05-03-C03 | [P05-03](../execucao/entregas/P05-03.md) | R2 | limites de página respeitados |
+| P05-03-C04 | [P05-03](../execucao/entregas/P05-03.md) | R2 | ID/lista/exportação de B e carteira alheia negados |
+| P05-03-C05 | [P05-03](../execucao/entregas/P05-03.md) | R2 | retorno conserva filtro e seleção |
+| P05-03-C06 | [P05-03](../execucao/entregas/P05-03.md) | R2 | exportação incluída corresponde ao filtro e escopo contratados |
 | P05-04-C01 | [P05-04](../execucao/entregas/P05-04.md) | R2 | Falha mantém texto |
 | P05-04-C02 | [P05-04](../execucao/entregas/P05-04.md) | R2 | conversa antiga não vira última indevidamente |
 | P05-04-C03 | [P05-04](../execucao/entregas/P05-04.md) | R2 | reload preserva autoria |
@@ -145,9 +126,79 @@ Casos abaixo são planejados e não executados. Linhas são cenários, não obri
 | P05-09-C01 | [P05-09](../execucao/entregas/P05-09.md) | R2 | Preview não grava |
 | P05-09-C02 | [P05-09](../execucao/entregas/P05-09.md) | R2 | inválido não confirma |
 | P05-09-C03 | [P05-09](../execucao/entregas/P05-09.md) | R2 | reenvio não duplica e resultado por linha existe |
+| P05-09-C04 | [P05-09](../execucao/entregas/P05-09.md) | R2 | mesma chave com conteúdo diferente conflita |
+| P05-09-C05 | [P05-09](../execucao/entregas/P05-09.md) | R2 | duas confirmações e perda de resposta recuperam um resultado |
+| P05-09-C06 | [P05-09](../execucao/entregas/P05-09.md) | R2 | tenant/carteira e permissão revogada impedem commit |
+| P05-09-C07 | [P05-09](../execucao/entregas/P05-09.md) | R2 | falha SQL não deixa gravação parcial |
 | P05-10-C01 | [P05-10](../execucao/entregas/P05-10.md) | R2 | ID único após reload |
 | P05-10-C02 | [P05-10](../execucao/entregas/P05-10.md) | R2 | gate segurança vigente |
 | P05-10-C03 | [P05-10](../execucao/entregas/P05-10.md) | R2 | manual sem prometer integração externa |
+## P07 | G-TASK
+
+| Caso | Ticket | Trilha | Cenário específico |
+|---|---|---|---|
+| P07-01-C01 | [P07-01](../execucao/entregas/P07-01.md) | R2 | Tarefa aponta cadastro existente |
+| P07-01-C02 | [P07-01](../execucao/entregas/P07-01.md) | R2 | origem preservada |
+| P07-01-C03 | [P07-01](../execucao/entregas/P07-01.md) | R2 | responsável elegível |
+| P07-02-C01 | [P07-02](../execucao/entregas/P07-02.md) | R2 | Salvar/reload conferidos |
+| P07-02-C02 | [P07-02](../execucao/entregas/P07-02.md) | R2 | filtro retorna origem correta |
+| P07-02-C03 | [P07-02](../execucao/entregas/P07-02.md) | R2 | acesso negado claro |
+| P07-03-C01 | [P07-03](../execucao/entregas/P07-03.md) | R2 | Conclusão repetida não duplica |
+| P07-03-C02 | [P07-03](../execucao/entregas/P07-03.md) | R2 | cancelamento rastreável |
+| P07-03-C03 | [P07-03](../execucao/entregas/P07-03.md) | R2 | estado indevido recusado |
+| P07-04-C01 | [P07-04](../execucao/entregas/P07-04.md) | R2 | Virada de dia correta |
+| P07-04-C02 | [P07-04](../execucao/entregas/P07-04.md) | R2 | sem prazo não vira atraso |
+| P07-04-C03 | [P07-04](../execucao/entregas/P07-04.md) | R2 | timezone do host não muda regra |
+| P07-05-C01 | [P07-05](../execucao/entregas/P07-05.md) | R2 | Painel mostra registro persistido |
+| P07-05-C02 | [P07-05](../execucao/entregas/P07-05.md) | R2 | próxima ação acessível |
+| P07-05-C03 | [P07-05](../execucao/entregas/P07-05.md) | R2 | nenhum envio externo declarado |
+| P07-05-C04 | [P07-05](../execucao/entregas/P07-05.md) | R2 | lista/detalhe/tarefa refletem mesma alteração |
+| P07-05-C05 | [P07-05](../execucao/entregas/P07-05.md) | R2 | conclusão ou cancelamento não conserva pendência indevida |
+| P07-06-C01 | [P07-06](../execucao/entregas/P07-06.md) | R2 | Contador bate com lista |
+| P07-06-C02 | [P07-06](../execucao/entregas/P07-06.md) | R2 | filtro/perfil muda contexto |
+| P07-06-C03 | [P07-06](../execucao/entregas/P07-06.md) | R2 | consulta não altera tarefa |
+| P07-06-C04 | [P07-06](../execucao/entregas/P07-06.md) | R2 | mesma identidade percorre CRM e tarefa em A/B após nova sessão |
+| P07-06-C05 | [P07-06](../execucao/entregas/P07-06.md) | R2 | novas operações repetem negativas no G-SEG vigente |
+## P11 | G-MSG
+
+| Caso | Ticket | Trilha | Cenário específico |
+|---|---|---|---|
+| P11-01-C01 | [P11-01](../execucao/entregas/P11-01.md) | N | Massa/conta próprias |
+| P11-01-C02 | [P11-01](../execucao/entregas/P11-01.md) | N | conexão de B negada |
+| P11-01-C03 | [P11-01](../execucao/entregas/P11-01.md) | N | ausência de credencial mantém homologação pendente |
+| P11-02-C01 | [P11-02](../execucao/entregas/P11-02.md) | N | IDs internos estáveis |
+| P11-02-C02 | [P11-02](../execucao/entregas/P11-02.md) | N | nota sem envio |
+| P11-02-C03 | [P11-02](../execucao/entregas/P11-02.md) | N | contrato desconhecido recusado |
+| P11-03-C01 | [P11-03](../execucao/entregas/P11-03.md) | N | Assinatura ausente/inválida recusada |
+| P11-03-C02 | [P11-03](../execucao/entregas/P11-03.md) | N | corpo alterado recusado |
+| P11-03-C03 | [P11-03](../execucao/entregas/P11-03.md) | N | conexão desconhecida não cria tenant |
+| P11-04-C01 | [P11-04](../execucao/entregas/P11-04.md) | N | Duplicata/lote sem perda |
+| P11-04-C02 | [P11-04](../execucao/entregas/P11-04.md) | N | falha SQL não retorna ACK de sucesso |
+| P11-04-C03 | [P11-04](../execucao/entregas/P11-04.md) | N | evento novo guardado sem envio |
+| P11-05-C01 | [P11-05](../execucao/entregas/P11-05.md) | N | Dois workers não duplicam |
+| P11-05-C02 | [P11-05](../execucao/entregas/P11-05.md) | N | restart recupera entrada |
+| P11-05-C03 | [P11-05](../execucao/entregas/P11-05.md) | N | mesmo remetente A/B fica isolado |
+| P11-06-C01 | [P11-06](../execucao/entregas/P11-06.md) | N | Mesmo payload/chave recupera operação |
+| P11-06-C02 | [P11-06](../execucao/entregas/P11-06.md) | N | chave com payload diferente conflita |
+| P11-06-C03 | [P11-06](../execucao/entregas/P11-06.md) | N | rollback não deixa intenção órfã |
+| P11-07-C01 | [P11-07](../execucao/entregas/P11-07.md) | N | Canal indisponível não envia |
+| P11-07-C02 | [P11-07](../execucao/entregas/P11-07.md) | N | aceite não marca entregue |
+| P11-07-C03 | [P11-07](../execucao/entregas/P11-07.md) | N | destinatário de B negado |
+| P11-08-C01 | [P11-08](../execucao/entregas/P11-08.md) | N | Read antes de sent preserva read observado |
+| P11-08-C02 | [P11-08](../execucao/entregas/P11-08.md) | N | callback antes do retorno é conciliado |
+| P11-08-C03 | [P11-08](../execucao/entregas/P11-08.md) | N | status de B não altera A |
+| P11-09-C01 | [P11-09](../execucao/entregas/P11-09.md) | N | Timeout depois de aceite não dispara segunda mensagem |
+| P11-09-C02 | [P11-09](../execucao/entregas/P11-09.md) | N | restart retoma lease |
+| P11-09-C03 | [P11-09](../execucao/entregas/P11-09.md) | N | falha terminal tem diagnóstico |
+| P11-10-C01 | [P11-10](../execucao/entregas/P11-10.md) | N | Reload mantém conversa |
+| P11-10-C02 | [P11-10](../execucao/entregas/P11-10.md) | N | consulta não responde |
+| P11-10-C03 | [P11-10](../execucao/entregas/P11-10.md) | N | nota privada não aparece em mensagem externa |
+| P11-11-C01 | [P11-11](../execucao/entregas/P11-11.md) | N | Recebida/resposta/status ligados |
+| P11-11-C02 | [P11-11](../execucao/entregas/P11-11.md) | N | banco/worker falhos recuperam |
+| P11-11-C03 | [P11-11](../execucao/entregas/P11-11.md) | N | ID direto e assinatura inválida negados |
+| P11-12-C01 | [P11-12](../execucao/entregas/P11-12.md) | N | Gate não passa sem evidência externa exigida |
+| P11-12-C02 | [P11-12](../execucao/entregas/P11-12.md) | N | nenhum caso pendente escondido |
+| P11-12-C03 | [P11-12](../execucao/entregas/P11-12.md) | N | manual distingue fila e entrega |
 ## P06 | G-GED
 
 | Caso | Ticket | Trilha | Cenário específico |
@@ -174,61 +225,10 @@ Casos abaixo são planejados e não executados. Linhas são cenários, não obri
 | P06-07-C02 | [P06-07](../execucao/entregas/P06-07.md) | N | arquivo baixado idêntico |
 | P06-07-C03 | [P06-07](../execucao/entregas/P06-07.md) | N | chave necessária recuperada |
 | P06-07-C04 | [P06-07](../execucao/entregas/P06-07.md) | N | pendência scan mantém restrição |
-| P06-08-C01 | [P06-08](../execucao/entregas/P06-08.md) | N | Jornada válida |
-| P06-08-C02 | [P06-08](../execucao/entregas/P06-08.md) | N | B não baixa A |
-| P06-08-C03 | [P06-08](../execucao/entregas/P06-08.md) | N | recuperação provada |
-| P06-08-C04 | [P06-08](../execucao/entregas/P06-08.md) | N | assinatura externa não inventada |
-## P07 | G-TASK
-
-| Caso | Ticket | Trilha | Cenário específico |
-|---|---|---|---|
-| P07-01-C01 | [P07-01](../execucao/entregas/P07-01.md) | R2 | Tarefa aponta cadastro existente |
-| P07-01-C02 | [P07-01](../execucao/entregas/P07-01.md) | R2 | origem preservada |
-| P07-01-C03 | [P07-01](../execucao/entregas/P07-01.md) | R2 | responsável elegível |
-| P07-02-C01 | [P07-02](../execucao/entregas/P07-02.md) | R1 | Salvar/reload conferidos |
-| P07-02-C02 | [P07-02](../execucao/entregas/P07-02.md) | R1 | filtro retorna origem correta |
-| P07-02-C03 | [P07-02](../execucao/entregas/P07-02.md) | R1 | acesso negado claro |
-| P07-03-C01 | [P07-03](../execucao/entregas/P07-03.md) | R2 | Conclusão repetida não duplica |
-| P07-03-C02 | [P07-03](../execucao/entregas/P07-03.md) | R2 | cancelamento rastreável |
-| P07-03-C03 | [P07-03](../execucao/entregas/P07-03.md) | R2 | estado indevido recusado |
-| P07-04-C01 | [P07-04](../execucao/entregas/P07-04.md) | R2 | Virada de dia correta |
-| P07-04-C02 | [P07-04](../execucao/entregas/P07-04.md) | R2 | sem prazo não vira atraso |
-| P07-04-C03 | [P07-04](../execucao/entregas/P07-04.md) | R2 | timezone do host não muda regra |
-| P07-05-C01 | [P07-05](../execucao/entregas/P07-05.md) | R2 | Painel mostra registro persistido |
-| P07-05-C02 | [P07-05](../execucao/entregas/P07-05.md) | R2 | próxima ação acessível |
-| P07-05-C03 | [P07-05](../execucao/entregas/P07-05.md) | R2 | nenhum envio externo declarado |
-| P07-06-C01 | [P07-06](../execucao/entregas/P07-06.md) | R2 | Contador bate com lista |
-| P07-06-C02 | [P07-06](../execucao/entregas/P07-06.md) | R2 | filtro/perfil muda contexto |
-| P07-06-C03 | [P07-06](../execucao/entregas/P07-06.md) | R2 | consulta não altera tarefa |
-## P08 | G-FLOW
-
-| Caso | Ticket | Trilha | Cenário específico |
-|---|---|---|---|
-| P08-01-C01 | [P08-01](../execucao/entregas/P08-01.md) | N | Fluxo aberto/em análise/concluído definido |
-| P08-01-C02 | [P08-01](../execucao/entregas/P08-01.md) | N | numeração única |
-| P08-01-C03 | [P08-01](../execucao/entregas/P08-01.md) | N | sem designer |
-| P08-02-C01 | [P08-02](../execucao/entregas/P08-02.md) | N | Duas criações não repetem número |
-| P08-02-C02 | [P08-02](../execucao/entregas/P08-02.md) | N | mesma chave retorna mesmo protocolo |
-| P08-02-C03 | [P08-02](../execucao/entregas/P08-02.md) | N | rollback não cria sucesso |
-| P08-03-C01 | [P08-03](../execucao/entregas/P08-03.md) | N | Inexistente negado |
-| P08-03-C02 | [P08-03](../execucao/entregas/P08-03.md) | N | B não vira interessado de A |
-| P08-03-C03 | [P08-03](../execucao/entregas/P08-03.md) | N | download mantém política GED |
-| P08-04-C01 | [P08-04](../execucao/entregas/P08-04.md) | N | Consulta por ID de B negada |
-| P08-04-C02 | [P08-04](../execucao/entregas/P08-04.md) | N | sigilo coerente |
-| P08-04-C03 | [P08-04](../execucao/entregas/P08-04.md) | N | histórico não pode ser reescrito pela UI |
-| P08-05-C01 | [P08-05](../execucao/entregas/P08-05.md) | N | Ator autorizado avança |
-| P08-05-C02 | [P08-05](../execucao/entregas/P08-05.md) | N | consulta não muda |
-| P08-05-C03 | [P08-05](../execucao/entregas/P08-05.md) | N | evento e estado são coerentes |
-| P08-06-C01 | [P08-06](../execucao/entregas/P08-06.md) | N | Sem resultado negado |
-| P08-06-C02 | [P08-06](../execucao/entregas/P08-06.md) | N | reenvio não duplica |
-| P08-06-C03 | [P08-06](../execucao/entregas/P08-06.md) | N | conflito não sobrescreve decisão |
-| P08-07-C01 | [P08-07](../execucao/entregas/P08-07.md) | N | Número único |
-| P08-07-C02 | [P08-07](../execucao/entregas/P08-07.md) | N | histórico consistente |
-| P08-07-C03 | [P08-07](../execucao/entregas/P08-07.md) | N | B negado |
-| P08-07-C04 | [P08-07](../execucao/entregas/P08-07.md) | N | restart mantém protocolo |
-| P08-08-C01 | [P08-08](../execucao/entregas/P08-08.md) | N | Jornada completa em QA |
-| P08-08-C02 | [P08-08](../execucao/entregas/P08-08.md) | N | gate GED vigente |
-| P08-08-C03 | [P08-08](../execucao/entregas/P08-08.md) | N | W3/W4 e consulta pública continuam fora |
+| P06-08-C01 | [P06-08](../execucao/entregas/P06-08.md) | N | Upload/revisão/download negado e permitido |
+| P06-08-C02 | [P06-08](../execucao/entregas/P06-08.md) | N | mesmo componente nos dois |
+| P06-08-C03 | [P06-08](../execucao/entregas/P06-08.md) | N | restore preserva versão e hash |
+| P06-08-C04 | [P06-08](../execucao/entregas/P06-08.md) | N | vínculo de tarefa/documento respeita origem e permissão A/B |
 ## P09 | G-RC
 
 | Caso | Ticket | Trilha | Cenário específico |
@@ -236,15 +236,15 @@ Casos abaixo são planejados e não executados. Linhas são cenários, não obri
 | P09-01-C01 | [P09-01](../execucao/entregas/P09-01.md) | R2 | Todos os recortes rastreáveis |
 | P09-01-C02 | [P09-01](../execucao/entregas/P09-01.md) | R2 | prova temporal preservada |
 | P09-01-C03 | [P09-01](../execucao/entregas/P09-01.md) | R2 | versão exibida concorda |
-| P09-02-C01 | [P09-02](../execucao/entregas/P09-02.md) | R2 | Origem e confirmação coerentes |
-| P09-02-C02 | [P09-02](../execucao/entregas/P09-02.md) | R2 | falha é distinguida |
-| P09-02-C03 | [P09-02](../execucao/entregas/P09-02.md) | R2 | site manual não promete CRM automático |
+| P09-02-C01 | [P09-02](../execucao/entregas/P09-02.md) | R2 | Cadastro único preservado |
+| P09-02-C02 | [P09-02](../execucao/entregas/P09-02.md) | R2 | conclusão persiste |
+| P09-02-C03 | [P09-02](../execucao/entregas/P09-02.md) | R2 | perfil de consulta não escreve |
 | P09-03-C01 | [P09-03](../execucao/entregas/P09-03.md) | N | Mesmo ID nas telas |
 | P09-03-C02 | [P09-03](../execucao/entregas/P09-03.md) | N | outro tenant não lê |
 | P09-03-C03 | [P09-03](../execucao/entregas/P09-03.md) | N | duas configurações sem fork |
-| P09-04-C01 | [P09-04](../execucao/entregas/P09-04.md) | N | Fluxo completo persistido |
-| P09-04-C02 | [P09-04](../execucao/entregas/P09-04.md) | N | permissões coerentes nos módulos |
-| P09-04-C03 | [P09-04](../execucao/entregas/P09-04.md) | N | estado e arquivo reconciliados |
+| P09-04-C01 | [P09-04](../execucao/entregas/P09-04.md) | N | A/B não cruzam mensagem/arquivo |
+| P09-04-C02 | [P09-04](../execucao/entregas/P09-04.md) | N | callback/falha não reenvia indevidamente |
+| P09-04-C03 | [P09-04](../execucao/entregas/P09-04.md) | N | restore preserva ledger e vínculo |
 | P09-05-C01 | [P09-05](../execucao/entregas/P09-05.md) | N | Dados preservados |
 | P09-05-C02 | [P09-05](../execucao/entregas/P09-05.md) | N | esquema compatível |
 | P09-05-C03 | [P09-05](../execucao/entregas/P09-05.md) | N | forward fix ou rollback ensaiado |
@@ -255,7 +255,7 @@ Casos abaixo são planejados e não executados. Linhas são cenários, não obri
 | P09-07-C02 | [P09-07](../execucao/entregas/P09-07.md) | R2 | campos pendentes explícitos |
 | P09-07-C03 | [P09-07](../execucao/entregas/P09-07.md) | R2 | nenhum aceite preenchido por inferência |
 | P09-08-C01 | [P09-08](../execucao/entregas/P09-08.md) | R2 | 180h e consumo reserva claros |
-| P09-08-C02 | [P09-08](../execucao/entregas/P09-08.md) | R2 | Flow retirado se gate não passou |
+| P09-08-C02 | [P09-08](../execucao/entregas/P09-08.md) | R2 | canal sem prova mantém gate pendente |
 | P09-08-C03 | [P09-08](../execucao/entregas/P09-08.md) | R2 | produção não declarada |
 ## P10 | CONDICIONAL
 

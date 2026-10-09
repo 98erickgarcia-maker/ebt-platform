@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "scope": "localhost synthetic SQL, generic catalog only",
+  "cases": 3,
+  "production": false
+}

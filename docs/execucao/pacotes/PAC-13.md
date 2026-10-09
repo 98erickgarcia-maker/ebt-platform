@@ -1,6 +1,6 @@
 # PAC-13 | Tarefas vinculadas e prazos
 
-Estado: planejado. 12h estimadas (7.75h implementação, 2.75h verificação/revisão e 1.5h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 128-140h.
+Estado: planejado. 12h estimadas (7.5h implementação, 3h verificação/revisão e 1.5h registro). Capacidade já contida nos tickets, sem acréscimo. Janela de esforço: 92-104h.
 
 ## Resultado integrado
 
@@ -8,16 +8,16 @@ Tarefa passa por criação, conclusão/cancelamento e atualização das pendênc
 
 ## Dependências
 
-[PAC-10](PAC-10.md), [PAC-12](PAC-12.md)
+[PAC-10](PAC-10.md)
 
-Tickets/gates externos: P05-GATE, P06-GATE. As dependências originais são mantidas; ordenar por pacote não substitui sua prova.
+Tickets/gates externos: P05-GATE. As dependências originais são mantidas; ordenar por pacote não substitui sua prova.
 
 ## Tarefas internas e aceite original
 
 | Ticket | Resultado/atividade | Horas | Trilha |
 |---|---|---:|---|
 | [P07-01](../entregas/P07-01.md) | Fixar contrato da tarefa vinculada | 2h | R2 |
-| [P07-02](../entregas/P07-02.md) | Reaproveitar criação, lista e filtros | 2h | R1 |
+| [P07-02](../entregas/P07-02.md) | Reaproveitar criação, lista e filtros | 2h | R2 |
 | [P07-03](../entregas/P07-03.md) | Reaproveitar conclusão e cancelamento | 2h | R2 |
 | [P07-04](../entregas/P07-04.md) | Conferir datas e indicação de atraso | 2h | R2 |
 | [P07-05](../entregas/P07-05.md) | Exibir pendência interna sem canal externo | 2h | R2 |

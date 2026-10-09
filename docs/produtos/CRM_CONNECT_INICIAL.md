@@ -1,8 +1,8 @@
-# Pacote 2: CRM simples / Connect inicial
+# Cadastro e jornada CRM do EBT Connect
 
 ## Resultado e janela
 
-Cadastro único, organização, contatos, histórico, até cinco etapas fixas, responsável e próxima ação. Segurança P04 e funcionalidades P05 fecham até 104h cumulativas; duas configurações sintéticas usam a mesma regra. Isso não é Connect completo do plano mestre.
+Cadastro único, organização, contatos, histórico, até cinco etapas fixas, responsável e próxima ação. Segurança P04 e funcionalidades P05 fecham até 92h cumulativas; tarefas P07 completam o checkpoint em 104h e comunicação P11 fecha em 140h; duas configurações sintéticas usam a mesma regra. Isso não é Connect completo do plano mestre.
 
 ## Fluxo
 
@@ -22,4 +22,4 @@ Um layout fixo e até 100 contatos sintéticos. Área de preparação com previe
 
 ## Aceite
 
-G-SEG vigente; jornada QA em A/B; permissão por perfil/carteira e ID direto; repetição/conflito; cadastro único após reload; duas marcas sem forks de regra; manual e limites. Fora: inbox multiusuário, campanha/envio automático, WhatsApp oficial, financeiro, OS e proposta comercial completa.
+G-SEG vigente; jornada QA em A/B; permissão por perfil/carteira e ID direto; repetição/conflito; cadastro único após reload; duas marcas sem forks de regra; manual e limites. P05 não implementa canal externo; resposta por API/webhook pertence a P11 e G-MSG. Fora: inbox coletivo avançado, campanha automática, chatbot, financeiro, OS e proposta comercial completa. Ver docs/produtos/ENTREGA_EBT_CONNECT.md.

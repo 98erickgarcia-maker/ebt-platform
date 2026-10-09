@@ -16,4 +16,4 @@ A reserva não é cinco tarefas obrigatórias. Registrar defeito, ticket afetado
 
 ## Critério de corte
 
-Não remover casos de isolamento, autorização por ID, migração ou recuperação do recorte para cumprir prazo. Suspender o recorte afetado quando a prova falhar. Preparar site independente enquanto a segurança do CRM é resolvida. Se a reserva se esgotar, fechar o que passou e transportar esforço restante a uma proposta revisada.
+Não remover casos de isolamento, autorização por ID, migração ou recuperação do recorte para cumprir prazo. Suspender o recorte afetado quando a prova falhar. Site/Flow estão adiados; uma mudança de fila por impedimento precisa de realocação explícita. Se a reserva se esgotar, fechar o que passou e transportar esforço restante a uma proposta revisada.

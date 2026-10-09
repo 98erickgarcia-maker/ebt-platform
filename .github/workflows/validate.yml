@@ -1,0 +1,116 @@
+name: Build EBT Connect
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      MSBuildEnableWorkloadResolver: 'false'
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: src/frontend/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: dotnet restore src/backend/Ebt.Platform.Api --locked-mode
+      - run: dotnet build src/backend/Ebt.Platform.Api --no-restore -c Release
+      - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-restore -c Release
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --proxy
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --scanner
+      - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --platform
+      - run: npm ci --ignore-scripts
+        working-directory: src/frontend
+      - run: npm run test:unit
+        working-directory: src/frontend
+      - run: npm run build
+        working-directory: src/frontend
+      - run: npm audit --omit=dev
+        working-directory: src/frontend
+      - run: python scripts/verificar_plano.py
+      - run: python scripts/verificar_organizacao.py --no-write
+      - run: python scripts/verify_generic_remap.py
+      - run: git diff --check
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server@sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090
+        env:
+          ACCEPT_EULA: 'Y'
+          MSSQL_PID: Developer
+          MSSQL_SA_PASSWORD: 'EbtQa_${{ github.run_id }}!X'
+          MSSQL_MEMORY_LIMIT_MB: '2048'
+        ports:
+          - 1433:1433
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
+      EBT_SQL_PASSWORD: 'EbtQa_${{ github.run_id }}!X'
+      EBT_RUNTIME_CONFIG: '${{ github.workspace }}/tmp/runtime/local-config.json'
+      MSBuildEnableWorkloadResolver: 'false'
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Private loopback ClamAV fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y clamav clamav-daemon
+          qa_clam_root="$RUNNER_TEMP/ebt-clamav"
+          mkdir -p "$qa_clam_root"
+          printf 'DatabaseDirectory %s\nDatabaseOwner %s\nDatabaseMirror database.clamav.net\n' "$qa_clam_root" "$USER" > "$qa_clam_root/freshclam.conf"
+          freshclam --config-file="$qa_clam_root/freshclam.conf"
+          printf 'DatabaseDirectory %s\nUser %s\nTCPSocket 3310\nTCPAddr 127.0.0.1\nPidFile %s/clamd.pid\nLogFile %s/clamd.log\nStreamMaxLength 3M\n' "$qa_clam_root" "$USER" "$qa_clam_root" "$qa_clam_root" > "$qa_clam_root/clamd.conf"
+          clamd --config-file="$qa_clam_root/clamd.conf"
+          clamd --version
+      - run: python tests/integration/prepare_ci_fixture.py
+      - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
+      - run: dotnet build tests/WazVox.ProtocolTests --no-restore
+      - run: npm ci --ignore-scripts
+        working-directory: src/frontend
+      - run: npm run build
+        working-directory: src/frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: src/frontend
+      - name: Fresh SQL migrations and synthetic seed
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 20); do
+            if dotnet run --project src/backend/Ebt.Platform.Api --no-build -- --init-qa; then break; fi
+            if [ "$attempt" = 20 ]; then exit 1; fi
+            sleep 2
+          done
+      - name: Real scanner
+        run: |
+          dotnet run --project tests/WazVox.ProtocolTests --no-build -- --scanner-engine
+      - name: Authenticated HTTP and browser journeys
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet run --project src/backend/Ebt.Platform.Api --no-build --urls http://127.0.0.1:5186 > "$RUNNER_TEMP/ebt-api.log" 2>&1 &
+          python tests/integration/connect_qa.py
+          python tests/integration/platform_qa.py
+          dotnet run --project src/backend/Ebt.Platform.Api --no-build -- --verify-sql-qa
+          cd src/frontend
+          npm run test:e2e

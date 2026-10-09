@@ -1,0 +1,56 @@
+{
+  "generatedUtc": "2026-10-07T11:47:54.728027+00:00",
+  "environment": "localhost synthetic SQL; no external send",
+  "passed": true,
+  "cases": 11,
+  "results": [
+    {
+      "name": "Invalid signature creates no receipt",
+      "passed": true
+    },
+    {
+      "name": "Expired signature creates no receipt",
+      "passed": true
+    },
+    {
+      "name": "Workspace spoof rejected before durable ACK",
+      "passed": true
+    },
+    {
+      "name": "Event header mismatch rejected",
+      "passed": true
+    },
+    {
+      "name": "Durable ACK and identical event replay",
+      "passed": true
+    },
+    {
+      "name": "Same event ID with changed body rejected",
+      "passed": true
+    },
+    {
+      "name": "Canonical inbound processed once",
+      "passed": true
+    },
+    {
+      "name": "Same workspace number B routes only to tenant B",
+      "passed": true
+    },
+    {
+      "name": "Unknown number quarantined without contact creation",
+      "passed": true
+    },
+    {
+      "name": "Business App mirror cannot open incoming service window",
+      "passed": true
+    },
+    {
+      "name": "Status callback persisted with WhatsApp reference",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "Status payload is a strict candidate mapping; real callback remains pending",
+    "No real key is loaded by the QA API"
+  ]
+}

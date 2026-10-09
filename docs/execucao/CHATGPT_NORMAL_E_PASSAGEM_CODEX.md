@@ -1,5 +1,7 @@
 # Fluxo único: desenvolver, revisar e passar ao teste no Codex
 
+Revisão vigente 1.3 (07/10/2026): Connect com API/webhook primeiro; 70 entregas e cinco reservas, 180h + 20h. Site/Flow estão adiados. Seguir [plano atual](../PLANO_200_HORAS.md) e pacotes em ordem de esforço; as decisões de 06/10 abaixo são contexto do método original.
+
 ## Modalidade escolhida
 
 O usuário esclareceu em 06/10/2026 que pretende usar o próprio ChatGPT na conversa normal, sem Work, e retornar ao Codex para testes de navegador. Este documento complementa os 17 pacotes existentes, mantendo 180h de entregas e 20h de reserva. Não inicia implementação nem configura uma automação entre chats.
@@ -37,7 +39,7 @@ Os sinais de passagem abaixo só se aplicam quando a sessão atual não consegue
 | BLOQUEADO_AMBIENTE_OU_DECISAO | Destino, permissão, dependência ou decisão realmente ausente | Informar causa e próximo passo; não simular navegação nem aprovação |
 | RETORNAR_PARA_CORRECAO | Teste observado falhou ou revisão mostrou defeito bloqueante | Registrar reprodução, ambiente/versão e correção necessária |
 
-Esses sinais pertencem ao relatório de passagem e não substituem os estados oficiais dos 77 tickets. A hora de parar é definida pela próxima evidência necessária, não por tempo de relógio ou quantidade de código. Se houver apenas previsão de teste, informar que ainda falta executar; não declarar o sinal de navegador como prova de prontidão sem verificar as entradas.
+Esses sinais pertencem ao relatório de passagem e não substituem os estados oficiais dos 75 tickets. A hora de parar é definida pela próxima evidência necessária, não por tempo de relógio ou quantidade de código. Se houver apenas previsão de teste, informar que ainda falta executar; não declarar o sinal de navegador como prova de prontidão sem verificar as entradas.
 
 Ao surgir a dependência, encerrar a resposta com o sinal e pacote de passagem. Não continuar o consumidor que pressupõe a evidência faltante. Trabalho independente pode continuar apenas no recorte autorizado e deve manter a pendência visível. Se o usuário quiser parada técnica obrigatória de um agente futuro, será necessário integrar o executor a controles de execução e acesso; não é uma capacidade configurada aqui.
 

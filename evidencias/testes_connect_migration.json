@@ -1,0 +1,27 @@
+{
+  "generatedUtc": "2026-10-07T11:44:10.941086+00:00",
+  "environment": "EbtPlatformQa_Migration_f275c6e33a",
+  "passed": true,
+  "cases": [
+    {
+      "name": "All current migrations create own schema beside another application",
+      "result": "passed"
+    },
+    {
+      "name": "Second migration run preserves ledger and other-schema sentinel",
+      "result": "passed"
+    },
+    {
+      "name": "Operator bootstrap creates first administrator without QA seed",
+      "result": "passed"
+    },
+    {
+      "name": "Repeated bootstrap refuses existing records",
+      "result": "passed"
+    }
+  ],
+  "limits": [
+    "Only synthetic localhost; no Azure changes",
+    "Existing databases not overwritten or deleted"
+  ]
+}

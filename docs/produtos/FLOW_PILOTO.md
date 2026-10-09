@@ -2,7 +2,7 @@
 
 ## Delimitação
 
-Novo fluxo, tickets P08-01 a P08-08, 24h de capacidade estimada após os gates de segurança, documentos e tarefas. Um tipo de protocolo, numeração por tenant/ano e três estados fixos. Marco até 164h cumulativas, sujeito ao reaproveitamento e à reserva.
+Recorte adiado fora deste ciclo; tickets P08-01 a P08-08 e estimativa anterior de 24h preservados no backlog posterior. Nenhuma janela cumulativa vigente ou hora alocada. Reestimar após gates de segurança, documentos e tarefas. Escopo anterior: um tipo de protocolo, numeração por tenant/ano e três estados fixos.
 
 ## Estado e ação candidata
 

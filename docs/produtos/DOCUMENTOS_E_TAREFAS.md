@@ -1,4 +1,4 @@
-# Pacote 3: documentos privados e tarefas
+# Documentos privados e composição com tarefas do Connect
 
 ## Documento
 
@@ -10,7 +10,7 @@ A política de scan/liberação deve ser fechada no recorte. Sem a dependência 
 
 ## Tarefa
 
-P07 vincula origem, responsável, prazo, estado e resultado. Criar -> acompanhar -> concluir ou cancelar, com motivo/resultado e histórico. Idempotência do fechamento, concorrência e regra temporal precisam do cenário pertinente. Exibição de pendência interna não implica e-mail, calendário ou WhatsApp enviado.
+P07 já entrega em 104h a tarefa com contato de origem, responsável, prazo, estado e resultado. Ligação documental é demonstrada em P06-02/P06-08 após o GED, sem bloquear a tarefa comercial inicial. Criar -> acompanhar -> concluir ou cancelar, com motivo/resultado e histórico. Idempotência do fechamento, concorrência e regra temporal precisam do cenário pertinente. Exibição de pendência interna não implica e-mail, calendário ou WhatsApp enviado.
 
 ## Composição
 
@@ -18,4 +18,4 @@ O mesmo cadastro pode ter documento e tarefa; vínculo por ID e empresa preserva
 
 ## Entrega
 
-Até 140h cumulativas: fluxo GED de uma categoria, tarefa ligada, prova negativa de acesso, versão/retry/conflito, restore de banco/arquivo/chave e manual. Não é plataforma clínica, GED integral ou assinatura eletrônica homologada.
+Até 164h cumulativas: fluxo GED de uma categoria, tarefa ligada, prova negativa de acesso, versão/retry/conflito, restore de banco/arquivo/chave e manual. Não é plataforma clínica, GED integral ou assinatura eletrônica homologada.

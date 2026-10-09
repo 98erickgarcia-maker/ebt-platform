@@ -1,8 +1,8 @@
-# Pacote 1: site essencial
+# Site essencial: recorte adiado
 
 ## Resultado
 
-Um site de até cinco páginas com marca e conteúdo fornecidos/autorizados, navegação consistente, contato definido e manual. Marco de esforço: 40h cumulativas. Tickets P03-01 a P03-06, após P01/P02. O pacote independe do Core novo e da correção do onboarding CRM.
+Um site de até cinco páginas com marca e conteúdo fornecidos/autorizados, navegação consistente, contato definido e manual. Recorte adiado, com 12h anteriores a reestimar; zero horas alocadas neste ciclo. IDs P03-01 a P03-06 preservados no backlog posterior. O pacote independe do Core novo e da correção do onboarding CRM.
 
 ## Jornada e páginas
 
