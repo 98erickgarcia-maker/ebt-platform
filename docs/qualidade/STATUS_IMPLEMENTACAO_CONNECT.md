@@ -1,5 +1,7 @@
 # Estado de implementação do Connect
 
+**Revisão incremental de 08/10/2026:** quatro partes verificadas no candidato GitHub `b471eaf8`, com build/continuidade aprovados. R01–R05 receberam correções e provas nos cenários descritos; cliente protege sessões/downloads tardios e scanner exige resposta completa. [Relatório da revisão](REVISAO_GITHUB_INCREMENTAL_20261008.md). Scanner real, restore Azure e aceite permanecem pendentes; a publicação 0.1.5 abaixo é histórica e não recebeu deploy desta revisão.
+
 **Estado vigente de 07/10/2026:** primeira entrega publicada e 26 verificações ao vivo aprovadas. [Acesso e provas](../../PASSO_A_PASSO_PUBLICACAO_CONNECT.md). Banco pago compartilhado preservado; valor variável autorizado posteriormente. Referências abaixo a host inexistente/F1/R$30 fixos descrevem o cenário anterior e foram superadas por esta publicação. Fluxo real de texto WazVox demonstrado na 0.1.5; scanner, restore Azure e aceite continuam pendentes. CI hospedada de build/protocolo/proxy/documentos aprovada para o checkpoint `92e4006`, conforme prova ao final.
 
 

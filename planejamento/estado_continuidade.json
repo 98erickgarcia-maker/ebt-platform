@@ -18,16 +18,16 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Quatro incrementos verificados: R01-R05, segurança de sessão/downloads e scanner fail-closed/liberação; 27+7 SQL/HTTP, 16 browser, 9 unitários, 10 scanner simulados, 16 checkpoint, 17 protocolo, 10 proxy. Partes 1-3 com CI aprovado por SHA; conferir parte 4.",
+  "review_status": "Quatro incrementos concluídos e verificados: R01-R05, segurança de sessão/downloads e scanner fail-closed/liberação. Parte 4 em b471eaf8 com build e continuidade aprovados; 27+7 SQL/HTTP, 16 browser, 9 unitários, 10 scanner simulados, 16 checkpoint, 17 protocolo e 10 proxy, conforme versão/cenário da evidência. Fechamento documental sem mudança de código.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Partes 1-3 com build/continuidade aprovados por SHA; SQL/browser e protocolo do scanner usam fixtures sintéticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
+    "Build/continuidade das quatro partes aprovados por SHA. SQL/browser e protocolo do scanner usam fixtures sintéticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
     "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Conferir SHA/checks do último checkpoint e preparar o recorte de scanner privado e restore Azure isolado, sem promover gates ou implantar automaticamente; obter aceite operacional com a versão validada.",
+  "next_authorized_step": "Confirmar acesso efetivo ao último checkpoint e preparar a prova do scanner privado real e de restauração Azure em destino isolado, com hashes e critérios próprios, sem promover gates ou implantar automaticamente; obter aceite operacional.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -41,5 +41,6 @@
   "automatic_new_content_approval": false,
   "incremental_review_source": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
   "active_checkout_local": ".worktrees/revisao-github-20261008",
-  "source_preservation": "evidencias/fontes_originais_preservadas_20261008.json"
+  "source_preservation": "evidencias/fontes_originais_preservadas_20261008.json",
+  "scheduler_source": "evidencias/revisao_github_incremental_20261008.json"
 }

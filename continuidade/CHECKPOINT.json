@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T02:17:53.597269+00:00",
+  "created_at_utc": "2026-10-09T02:31:20.735891+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "ebddc2ad0783621bea06b81a21608ed81df031bc",
-  "base": "ebddc2ad0783621bea06b81a21608ed81df031bc",
+  "parent_checkpoint": "b471eaf867b2d647a3145d0498d14fecd40159b8",
+  "base": "b471eaf867b2d647a3145d0498d14fecd40159b8",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -62,7 +62,7 @@
     },
     {
       "path": "RETOMADA_EBT_ENTERPRISE_ATUAL.md",
-      "sha256": "0b7dc938ec59030d97851532f08e94377eeff0ece96d217b053a76b81cbed51c"
+      "sha256": "4561ba669b091905896b7f5e760dbb7a8a64cfb892d54e6aa6c9efbbd2f6d8d0"
     },
     {
       "path": "deployment/connect/Dockerfile",
@@ -770,7 +770,7 @@
     },
     {
       "path": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
-      "sha256": "9bb9ad3cac05d15c7d522eb668cbedd9fbfa9b71bb926250cfa29fc0faf5db7b"
+      "sha256": "e531f3fddbb3b78a953171ec90d834a0d2cdfac8b04625eb8f83d8d07a5c96b2"
     },
     {
       "path": "docs/qualidade/REVISAO_PROJETO_CONNECT.md",
@@ -782,7 +782,7 @@
     },
     {
       "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
-      "sha256": "08e932990c24d8dd7898ed09cc916b0f83d54921817a719507c15c673e1d695c"
+      "sha256": "f79b15a2f6b8e6975273338f2ea650465e44adeb3b95c325f6e5cef1c5938ef6"
     },
     {
       "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
@@ -950,7 +950,7 @@
     },
     {
       "path": "evidencias/revisao_github_incremental_20261008.json",
-      "sha256": "c011664276fc75ebfd1da67b7dffcfeaf2dd90e4ebc87e8fda769519cbf2d702"
+      "sha256": "0c24317669526591ca4e395f664f438dac1c9423eb3687086d6183a479170c67"
     },
     {
       "path": "evidencias/revisao_promptspellsmith_20261007/contato-b-tarefa-a.png",
@@ -1070,7 +1070,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "af58ce55e6a54df02b4a7e072023d5afefc7fe282fe8e9fa96790eda08b8a97c"
+      "sha256": "cc3f2b08e9cba18768225fa3fab3db5dd848b6673f2b8d6158293bfb745a9ec9"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1082,7 +1082,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "10ed614d8d5dc46c26a006059499a6cf225bd9831941c6a3e9d522a0c8b33de6"
+      "sha256": "1528a138ff1f1deddf6c19d17196699e9295c5510bc62367ab2958139c5fb5bb"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",

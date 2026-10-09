@@ -774,7 +774,7 @@
     },
     {
       "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
-      "reviewed_sha256": "08e932990c24d8dd7898ed09cc916b0f83d54921817a719507c15c673e1d695c"
+      "reviewed_sha256": "f79b15a2f6b8e6975273338f2ea650465e44adeb3b95c325f6e5cef1c5938ef6"
     },
     {
       "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
@@ -1063,7 +1063,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "10ed614d8d5dc46c26a006059499a6cf225bd9831941c6a3e9d522a0c8b33de6"
+      "reviewed_sha256": "1528a138ff1f1deddf6c19d17196699e9295c5510bc62367ab2958139c5fb5bb"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1556,11 +1556,11 @@
     },
     {
       "path": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
-      "reviewed_sha256": "9bb9ad3cac05d15c7d522eb668cbedd9fbfa9b71bb926250cfa29fc0faf5db7b"
+      "reviewed_sha256": "e531f3fddbb3b78a953171ec90d834a0d2cdfac8b04625eb8f83d8d07a5c96b2"
     },
     {
       "path": "evidencias/revisao_github_incremental_20261008.json",
-      "reviewed_sha256": "c011664276fc75ebfd1da67b7dffcfeaf2dd90e4ebc87e8fda769519cbf2d702"
+      "reviewed_sha256": "0c24317669526591ca4e395f664f438dac1c9423eb3687086d6183a479170c67"
     },
     {
       "path": "src/frontend/src/AccessTools.tsx",
@@ -1600,8 +1600,8 @@
     },
     {
       "path": "RETOMADA_EBT_ENTERPRISE_ATUAL.md",
-      "reviewed_sha256": "0b7dc938ec59030d97851532f08e94377eeff0ece96d217b053a76b81cbed51c"
+      "reviewed_sha256": "4561ba669b091905896b7f5e760dbb7a8a64cfb892d54e6aa6c9efbbd2f6d8d0"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T02:17:49.047931+00:00"
+  "reviewed_at_utc": "2026-10-09T02:31:14.310623+00:00"
 }

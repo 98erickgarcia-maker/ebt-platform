@@ -151,5 +151,24 @@
     "failed_step": "Verify clean and EICAR streams with real engine",
     "reason": "Real ClamAV version not confirmed",
     "selected_for_separate_review": "scanner response framing and document release guard from cf206647"
-  }
+  },
+  "part_4_remote": {
+    "sha": "b471eaf867b2d647a3145d0498d14fecd40159b8",
+    "build_run": 37874134343,
+    "continuity_run": 37874134266,
+    "conclusion": "success"
+  },
+  "scheduler": {
+    "name": "EBT-Enterprise-GitHub-Reviewed-Checkpoint",
+    "runner": "active reviewed checkout/scripts/Run-Checkpoint.ps1",
+    "interval_minutes": 5,
+    "automatic_approval": false,
+    "last_verified_run_local": "2026-10-08T23:28:18-03:00",
+    "last_task_result": 0,
+    "remote_verified_sha": "b471eaf867b2d647a3145d0498d14fecd40159b8",
+    "earlier_failure": "ls-remote returned 128; retry succeeded without force or approval",
+    "requires": "Windows running with interactive user session; GitHub/network access",
+    "purpose": "retry already reviewed code without AI credits; no autonomous module development"
+  },
+  "final_status": "Four code increments verified; final documentation checkpoint does not alter tested code"
 }

@@ -65,3 +65,11 @@ A regressão reproduziu `stream: OK` sem terminador como aprovação indevida. A
 Selecionados CommercialScanner, DocumentSafety e DocumentEndpoints de `cf206647`; o teste de protocolo foi ampliado para conferir código/status de erro. Não foram importados o workflow de SQL/ClamAV real ou o restore do candidato concorrente. Provas: 10/10 cenários TCP/guarda simulados, backend Debug/Release sem erros/avisos, 27/27 SQL/HTTP repetidos na versão corrigida. O CI passa a executar os dez cenários do scanner. Scanner real privado e restauração Azure continuam pendentes.
 
 A parte 3 foi salva em `9aeed36f558c435509d4256d20d1ac19612f32f7`, com [build aprovado](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873167479) e [continuidade aprovada](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37873167432). Conferir o último SHA no recibo e remoto após a parte 4.
+
+## Fechamento com prova remota
+
+As quatro partes foram confirmadas por SHA no GitHub. A parte 4 está em [`b471eaf867b2d647a3145d0498d14fecd40159b8`](https://github.com/98erickgarcia-maker/ebt-platform/commit/b471eaf867b2d647a3145d0498d14fecd40159b8), com [build 37874134343 aprovado](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37874134343) e [continuidade 37874134266 aprovada](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37874134266). O fechamento documental posterior conserva o código dessa versão; conferir seu SHA no recibo local/remoto.
+
+O agendador foi direcionado ao checkout revisado. A execução de 08/10 às 23:28:18 (-03:00) retornou 0 e confirmou `b471eaf8` remotamente. Uma consulta anterior falhou; o retry funcionou, sem force ou nova aprovação. A cada cinco minutos ele repete somente bytes revisados, dependendo de Windows ligado, sessão do usuário e acesso GitHub/rede; não implementa módulos nem transfere créditos. ZIP exportado do commit revisado, com CRC/hashes conferidos, sem runtime privado. Use [o apontador de retomada](../../RETOMADA_EBT_ENTERPRISE_ATUAL.md).
+
+A última conferência da origem manteve os 70 arquivos técnicos, HEAD e staging. Foram adicionados somente o apontador de retomada e orientações locais, incluindo ignorar `.worktrees/`. Não houve merge em main, deploy ou envio real. Orçamento 180h + 20h preservado; horas reais não inferidas.
