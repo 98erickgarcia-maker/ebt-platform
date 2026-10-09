@@ -24,6 +24,7 @@ export function CommercialTemplates({
 }) {
   const [templates, setTemplates] = useState<Template[]>([]),
     [choice, setChoice] = useState("");
+  const [reload, setReload] = useState(0);
   const [preview, setPreview] = useState<Preview | null>(null),
     [subject, setSubject] = useState(""),
     [body, setBody] = useState("");
@@ -36,6 +37,7 @@ export function CommercialTemplates({
   useEffect(() => {
     alive.current = true;
     let current = true;
+    setError("");
     api<Template[]>(route + "/mail/templates")
       .then((x) => {
         if (current) setTemplates(x.filter((t) => t.active));
@@ -48,7 +50,7 @@ export function CommercialTemplates({
       alive.current = false;
       sequence.current++;
     };
-  }, []);
+  }, [reload]);
   async function choose(id: string) {
     setChoice(id);
     setPreview(null);
@@ -92,7 +94,6 @@ export function CommercialTemplates({
         "Idempotency-Key": operation.current.key,
       });
       if (alive.current) {
-        operation.current = null;
         setNotice(
           "Rascunho preparado. Acesse E-mail para revisar e aprovar esta versão.",
         );
@@ -158,7 +159,9 @@ export function CommercialTemplates({
           <button
             type="button"
             className="secondary"
-            onClick={() => void choose(choice)}
+            onClick={() =>
+              choice ? void choose(choice) : setReload((n) => n + 1)
+            }
           >
             Tentar novamente
           </button>

@@ -1555,7 +1555,7 @@
     },
     {
       "path": "src/frontend/e2e/mail.spec.ts",
-      "reviewed_sha256": "fe01435f34561e8ba9b63620d14e986fad88f7c71c878a981fea4cf794260307"
+      "reviewed_sha256": "1145b973f86ba3b1c788b73f1bb3204c862f4b215798fa5290e35ee6838ca1a9"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",
@@ -1608,7 +1608,7 @@
     },
     {
       "path": "src/frontend/src/CommercialTemplates.tsx",
-      "reviewed_sha256": "62bb346d5fe8e956c2968425b20c509288f27ad09a1d0d67415ad8095079268a"
+      "reviewed_sha256": "fd782701313a8de71b933b56c24d44b599bab94a7db32186f070fb1ad5822738"
     },
     {
       "path": "src/frontend/src/MailPanel.tsx",
@@ -1765,7 +1765,11 @@
     {
       "path": "tests/test_checkpoint_github.py",
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
+    },
+    {
+      "path": "docs/execucao/OUTLOOK_CONNECT_CONFIGURACAO.md",
+      "reviewed_sha256": "29a4daa21af5d49e4b1781d63498ca5d48570f5696d6c39bbeb8cb896ae26967"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:14:58.218113+00:00"
+  "reviewed_at_utc": "2026-10-09T07:22:26.807671+00:00"
 }

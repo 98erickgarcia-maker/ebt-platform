@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T07:15:01.898767+00:00",
+  "created_at_utc": "2026-10-09T07:22:30.723231+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "3bfa627c4778345b14379189c2865024d95dea53",
-  "base": "3bfa627c4778345b14379189c2865024d95dea53",
+  "parent_checkpoint": "84ee34e025fc339ec15ea996f8ad966fb3bb6744",
+  "base": "84ee34e025fc339ec15ea996f8ad966fb3bb6744",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -191,6 +191,10 @@
     {
       "path": "docs/execucao/IMPLANTACAO_CONNECT_AZURE.md",
       "sha256": "0e96e32a041b0366ba3c6add76ef9815e244b55479ce9ea89d389469897430bd"
+    },
+    {
+      "path": "docs/execucao/OUTLOOK_CONNECT_CONFIGURACAO.md",
+      "sha256": "29a4daa21af5d49e4b1781d63498ca5d48570f5696d6c39bbeb8cb896ae26967"
     },
     {
       "path": "docs/execucao/PACOTES_CODEX.md",
@@ -1122,7 +1126,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "f792114018989aba79710357016d6e7018a75bb390bcb55138331246ee2a51e4"
+      "sha256": "755edee11e61d2a5045970cacd1a4992683a714328702576f87c6d61aaf09c21"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1554,7 +1558,7 @@
     },
     {
       "path": "src/frontend/e2e/mail.spec.ts",
-      "sha256": "fe01435f34561e8ba9b63620d14e986fad88f7c71c878a981fea4cf794260307"
+      "sha256": "1145b973f86ba3b1c788b73f1bb3204c862f4b215798fa5290e35ee6838ca1a9"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",
@@ -1606,7 +1610,7 @@
     },
     {
       "path": "src/frontend/src/CommercialTemplates.tsx",
-      "sha256": "62bb346d5fe8e956c2968425b20c509288f27ad09a1d0d67415ad8095079268a"
+      "sha256": "fd782701313a8de71b933b56c24d44b599bab94a7db32186f070fb1ad5822738"
     },
     {
       "path": "src/frontend/src/MailPanel.tsx",

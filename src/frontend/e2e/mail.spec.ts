@@ -49,6 +49,18 @@ test("Commercial context and templates stay usable at notebook and mobile widths
   );
   expect(templateResponse.status()).toBe(200);
   const template = await templateResponse.json();
+  await page.route("**/api/connect/v1/mail/templates", (route) =>
+    route.request().method() === "GET"
+      ? route.fulfill({
+          status: 503,
+          contentType: "application/problem+json",
+          body: JSON.stringify({
+            title: "Falha sintética dos modelos",
+            code: "service_unavailable",
+          }),
+        })
+      : route.continue(),
+  );
   await page.keyboard.press("Control+k");
   await page
     .getByLabel("Contato, organização, tarefa ou documento")
@@ -64,6 +76,14 @@ test("Commercial context and templates stay usable at notebook and mobile widths
   await expect(
     page.getByText("Cliente ativo", { exact: true }).first(),
   ).toBeVisible();
+  await expect(page.getByRole("alert")).toContainText(
+    "Falha sintética dos modelos",
+  );
+  await page.unroute("**/api/connect/v1/mail/templates");
+  await page
+    .getByRole("button", { name: "Tentar novamente", exact: true })
+    .click();
+  await expect(page.getByRole("alert")).toHaveCount(0);
   await page
     .getByRole("combobox", { name: "Template comercial", exact: true })
     .selectOption(template.id);
@@ -86,6 +106,23 @@ test("Commercial context and templates stay usable at notebook and mobile widths
       { exact: true },
     ),
   ).toBeVisible();
+  await page
+    .getByRole("button", {
+      name: "Preparar e-mail com este modelo",
+      exact: true,
+    })
+    .click();
+  await expect(
+    page.getByRole("button", {
+      name: "Preparar e-mail com este modelo",
+      exact: true,
+    }),
+  ).toBeEnabled();
+  const draftResponse = await page.request.get(
+    "/api/connect/v1/mail/drafts?contactId=" + contact.id,
+  );
+  expect(draftResponse.status()).toBe(200);
+  expect((await draftResponse.json()).total).toBe(1);
   await page.screenshot({
     path: path.join(root, "tmp/e2e/commercial-notebook.png"),
     fullPage: true,
