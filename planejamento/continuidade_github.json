@@ -29,7 +29,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "reviewed_sha256": "7a7c4e9b094383e825ae4e371d5d37a75f80ac1976ff336f300b77ca54c6650f"
+      "reviewed_sha256": "575004d00ad68c37111e5d52b3128806671b9d0ea23a2ef78a54a39841a73f30"
     },
     {
       "path": ".gitignore",
@@ -1620,7 +1620,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "041362ca63b487ba47004793cccc8e21f0a00fae09f6d1d5d8929ae1e198950b"
+      "reviewed_sha256": "42fe6bfa90dcf17d7b889d9c8a8d47c2ba2d4bf1bc07961b948b82489907c6ea"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1656,7 +1656,7 @@
     },
     {
       "path": "src/frontend/src/style.css",
-      "reviewed_sha256": "3a3348eacc9bacb898e8ebdd80ed1f4ec2413549181f2e779f732047e24f14cb"
+      "reviewed_sha256": "08d833841b7e76c51de60de8826eb528354aad50d310329e8a50c84453926fe9"
     },
     {
       "path": "src/frontend/tests/api.test.js",
@@ -1785,7 +1785,15 @@
     {
       "path": "tests/test_checkpoint_github.py",
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
+    },
+    {
+      "path": "src/frontend/e2e/flow-aura.spec.ts",
+      "reviewed_sha256": "73b7ff135d2c055c64f4a3e0cbf3631b997ec1e8a010c24d56f53763c4ec803d"
+    },
+    {
+      "path": "docs/frontend/EBT_FLOW_AURA_MEU_DIA_CONTATO_360_20261009.md",
+      "reviewed_sha256": "92ebbf2313927fbb9bc87e08019bf0ee8ed3af8c7cd01a2fcb6f84c0a6124418"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T17:22:58.921Z"
+  "reviewed_at_utc": "2026-10-09T17:56:43.575Z"
 }
