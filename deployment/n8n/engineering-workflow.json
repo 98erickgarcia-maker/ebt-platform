@@ -1,0 +1,101 @@
+[
+  {
+    "id": "EbtEngineering15min01",
+    "name": "EBT engenharia — supervisao15min e retomada",
+    "active": false,
+    "nodes": [
+      {
+        "id": "manual",
+        "name": "Verificar agora",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "schedule",
+        "name": "A cada15min",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          220
+        ],
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 */15 * * * *"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "tick",
+        "name": "Solicitar engenharia protegida",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          320,
+          100
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "http://127.0.0.1:8766/api/tick",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "{}",
+          "options": {
+            "timeout": 20000
+          }
+        },
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "EbtEngineeringBridge01",
+            "name": "EBT private controller header"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Verificar agora": {
+        "main": [
+          [
+            {
+              "node": "Solicitar engenharia protegida",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "A cada15min": {
+        "main": [
+          [
+            {
+              "node": "Solicitar engenharia protegida",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/Sao_Paulo",
+      "executionTimeout": 60,
+      "saveDataSuccessExecution": "all",
+      "saveDataErrorExecution": "all"
+    },
+    "pinData": {},
+    "tags": []
+  }
+]

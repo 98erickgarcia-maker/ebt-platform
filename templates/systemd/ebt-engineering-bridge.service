@@ -1,0 +1,28 @@
+[Unit]
+Description=EBT private n8n engineering controller bridge
+After=network.target
+
+[Service]
+User=root
+Type=simple
+EnvironmentFile=/etc/ebt-engineering-bridge.env
+ExecStart=/usr/bin/python3 -B /opt/ebt-engineering/engineering_bridge.py
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/var/lib/ebt-engineering/state
+InaccessiblePaths=/var/lib/ebt-engineering/controller /var/lib/ebt-scout /opt/ebt-scout
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryMax=128M
+TasksMax=32
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

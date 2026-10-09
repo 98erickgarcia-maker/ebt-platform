@@ -1,0 +1,23 @@
+{
+  "referenceDate": "2026-10-09",
+  "n8nVersion": "2.42.6",
+  "imageDigest": "sha256:526daa38b68e923cc00c5280d18b4da5d489f115a73bdbf3b8e452b184197a9a",
+  "containerHealthObserved": "healthy",
+  "bridgeUnauthorizedHttp": 401,
+  "bridgeStatusHttp": 200,
+  "bridgeTickHttp": 202,
+  "workflowId": "EbtEngineering15min01",
+  "workflowPublishedExportVerified": true,
+  "manualN8nExecution": "success",
+  "manualExecutionUtc": "2026-10-09T22:41:55Z",
+  "returnedState": "quota",
+  "runnerQueued": false,
+  "observerQueued": true,
+  "listen": "loopback only; private SSH tunnel",
+  "openaiCredential": "empty placeholder only",
+  "paidApiCalled": false,
+  "schedule": "0 */15 * * * * America/Sao_Paulo",
+  "scheduledExecutionObserved": false,
+  "localTestsPassed": 57,
+  "limits": ["Owner setup and API key entry are user actions", "No real model invocation validated during quota", "API credential not linked to coding runner"]
+}
