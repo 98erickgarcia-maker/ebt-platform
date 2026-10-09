@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-08",
+  "base": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
+  "environment": "Development; localhost; EbtPlatformQa_Review20261008; synthetic only",
+  "parts": [
+    {
+      "id": 1,
+      "scope": "Integrate reviewed R01/R02 and backend R04/R05",
+      "backend_build": "passed Debug, 0 warnings/errors",
+      "frontend_build": "passed",
+      "sql_http": {
+        "passed": 27,
+        "total": 27,
+        "source": "evidencias/testes_connect_sql_http.json"
+      },
+      "browser": {
+        "passed": 6,
+        "total": 6,
+        "duration_ms": 22855.405,
+        "scenarios": [
+          "recipient independent of paged contacts",
+          "contact switch",
+          "delayed contact load",
+          "failed contact load",
+          "26 newer contacts and filter",
+          "unidentified recipient blocked"
+        ]
+      }
+    }
+  ],
+  "budget": {
+    "delivery_hours": 180,
+    "reserve_hours": 20,
+    "actual_hours": null
+  },
+  "product_gates_promoted": false,
+  "deploy_performed": false,
+  "real_messages_sent": false
+}

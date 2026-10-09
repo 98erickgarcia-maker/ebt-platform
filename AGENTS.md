@@ -11,3 +11,7 @@ EBT Enterprise é a família completa; Platform é a fundação e Connect o prim
 Após cada incremento autorizado e revisado, atualizar planejamento/estado_continuidade.json, conferir diff/caminhos/segredos e executar `python scripts/checkpoint_github.py --approve --push`. Só declarar salvo no GitHub após SHA remoto correspondente. O agendador nunca usa --approve; conteúdo alterado exige revisão. Em falha, preservar commit local/ZIP revisado e registrar remoto pendente, sem force/reset/clean nem deploy automático.
 
 Retomada no ChatGPT normal usa prompts/RETOMAR_EBT_ENTERPRISE.md e acesso efetivo ao GitHub ou pacote anexado. Não prometer transferência automática de sessão/créditos. Se já estiver no Codex, continuar com ferramentas disponíveis.
+
+## Execução autorizada em 08/10/2026
+
+O pedido posterior autoriza verificar atualizações do GitHub e implementar as próximas correções em partes seguras. Executar incrementos do Connect revisados e testados em checkout isolado, preservando fontes preexistentes. Não ampliar módulos, promover gates, migrar produção ou fazer deploy por inferência. Manter 180h + 20h e salvar pelo checkpoint com SHA remoto confirmado.

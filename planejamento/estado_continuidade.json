@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "reference_date_local": "2026-10-07",
+  "reference_date_local": "2026-10-08",
   "timezone": "America/Sao_Paulo",
   "family": "EBT Enterprise",
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
-  "current_scope": "auditoria de coerência, planejamento integral e ferramentas de continuidade; sem executar novos módulos",
+  "current_scope": "Execução explicitamente autorizada em 08/10: revisar atualizações GitHub e corrigir Connect em incrementos verificados; sem novos módulos ou deploy.",
   "budget": {
     "delivery_hours": 180,
     "reserve_hours": 20,
@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "planejamento/contrato/hashes verificados; checkpoint GitHub e tarefa Windows comprovados; CI registrada por SHA",
+  "review_status": "Parte 1 verificada: backend/frontend, 27/27 SQL/HTTP e 6/6 browser sintéticos. Parte 2 ainda pendente.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
@@ -27,7 +27,7 @@
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Confirmar SHA remoto e checks do checkpoint; revisar o relatório de coerência e planejar o fechamento das provas pendentes do Connect sem alterar produto/produção neste pedido",
+  "next_authorized_step": "Completar R03 e interface R04/R05, provar cenários negativos e salvar cada incremento revisado na branch de continuidade de 08/10.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -38,5 +38,6 @@
   "checkpoint_configuration": "planejamento/continuidade_github.json",
   "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
   "automatic_chat_transfer": false,
-  "automatic_new_content_approval": false
+  "automatic_new_content_approval": false,
+  "incremental_review_source": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md"
 }

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "remote": "origin",
   "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
-  "branch": "codex/ebt-enterprise-continuity-20261007",
-  "initial_base_ref": "refs/remotes/origin/main",
+  "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
+  "initial_base_ref": "refs/heads/codex/connect-verificacao-20261008",
   "hash_mode": "SHA-256; LF for UTF-8 text, unchanged bytes for pinned binaries",
   "automated_approval": false,
   "files": [
@@ -37,7 +37,7 @@
     },
     {
       "path": "AGENTS.md",
-      "reviewed_sha256": "598485057884cd2fd64cc5c72327cc0f2779f7d702c386b98fa2855e0e6cb62c"
+      "reviewed_sha256": "693d8cca2bb0ae42ffc6bcf63b1deecd2fe9b7dbdc35ad5a94acd91b27615021"
     },
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
@@ -1006,7 +1006,7 @@
     },
     {
       "path": "evidencias/testes_connect_sql_http.json",
-      "reviewed_sha256": "ef88b5d358e3c32de9699b4d010dbf74596f7db43b019d59c852e92c2dae98d6"
+      "reviewed_sha256": "4be5b051a3ac6cec9ca747fe0db2f5fc3f565ec8f8fb60a4ad7b35318508f33f"
     },
     {
       "path": "evidencias/testes_connect_sql_keyring.json",
@@ -1063,7 +1063,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "17ef2a6943e6820df1db0d2609b89d7f5517e60a34aede8c53e6d3d840f2c686"
+      "reviewed_sha256": "ff47566e345984b72b0d95d07f239ae5deecde0d16c67fbb5eb547288987a25a"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1247,7 +1247,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
-      "reviewed_sha256": "7328dc18c4202b9206a31d1d2790b7bd6a2bf48922b051807ef7350ca51aa21b"
+      "reviewed_sha256": "96e68338e7cd1f19fb747cd64663b7da7642cf4b55d0c3e392d82cf0c93c6ffb"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
@@ -1275,7 +1275,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
-      "reviewed_sha256": "8091313b54f704ee15f3937c8d89f8e01fc339ae3b8e4f460decff4cf75c7653"
+      "reviewed_sha256": "7e301383361b0a28b754d3e1e0e338d92fb2e1e7126088007f719951c2425349"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.Designer.cs",
@@ -1375,7 +1375,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Security.cs",
-      "reviewed_sha256": "6d189426fef831e1441afef90a4648e149897aa4d5a776cf0d1491f0af468706"
+      "reviewed_sha256": "52f653e781f26b54de375b97a93e9fefba9bd8f82556e03441e3624cbe4043b3"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
@@ -1440,7 +1440,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "34cb8f882b46ae4ca7fc7623ee73a33f80b25a963440c2866e43eb3ccb0018ed"
+      "reviewed_sha256": "384b19a8664abe6a8b72af3e15202c025c5149599dfd0d26504c730311d0e53d"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1448,7 +1448,7 @@
     },
     {
       "path": "src/frontend/src/api.ts",
-      "reviewed_sha256": "7f4d795fbf9c2b701c9cb5f4089bbd555fadb2188e607564b78bb57025819b9d"
+      "reviewed_sha256": "c099842ad6e2f7619b6ca2db47d6837b256a6f57871dfb82530b74b48d1c9404"
     },
     {
       "path": "src/frontend/src/csv.ts",
@@ -1540,7 +1540,7 @@
     },
     {
       "path": "tests/integration/connect_qa.py",
-      "reviewed_sha256": "ae7c6b0f5d1413892671324895fb5fe84d8cc4895970e6e7bac526e92ea3d0bf"
+      "reviewed_sha256": "6afb23e8e87a6bd2f7d54e2d540e6c565431bcbe012f256780c639302a2e67e7"
     },
     {
       "path": "tests/integration/wazvox_qa.py",
@@ -1549,7 +1549,19 @@
     {
       "path": "tests/test_checkpoint_github.py",
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
+    },
+    {
+      "path": "src/frontend/e2e/recipient-context.spec.ts",
+      "reviewed_sha256": "b242e70dd1e6d9e447bfc64c20029b85cfde0d7cc1d0f85370b3d4db23ecab6c"
+    },
+    {
+      "path": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
+      "reviewed_sha256": "1cd63a7cb7bd432a9c0cf194387c2059d4220ce72ba3c37810010f86f230df8b"
+    },
+    {
+      "path": "evidencias/revisao_github_incremental_20261008.json",
+      "reviewed_sha256": "611a2660d7b6521860aea5628be9c46f5dae27c21ec32353d0bd4cfbdd3701bd"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:23:00.711138+00:00"
+  "reviewed_at_utc": "2026-10-09T01:33:49.153413+00:00"
 }

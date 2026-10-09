@@ -1,133 +1,143 @@
 {
-  "generated_utc": "2026-10-07T11:49:33.799746+00:00",
+  "generated_utc": "2026-10-09T01:27:13.571184+00:00",
   "environment": "localhost SQL Server QA synthetic",
-  "run": "356aef4e5d",
+  "run": "9ce368dee7",
   "passed": true,
   "cases": [
     {
       "case": "CRM creation + stable ID + idempotent replay",
       "result": "passed",
-      "seconds": 0.369
+      "seconds": 0.896
     },
     {
       "case": "Tenant B rejects direct contact ID",
       "result": "passed",
-      "seconds": 0.039
+      "seconds": 0.078
     },
     {
       "case": "Portfolio rejects direct contact ID",
       "result": "passed",
-      "seconds": 0.024
+      "seconds": 0.056
     },
     {
       "case": "Reader mutation denied",
       "result": "passed",
-      "seconds": 0.055
+      "seconds": 0.04
     },
     {
       "case": "CSRF mutation denied",
       "result": "passed",
-      "seconds": 0.024
+      "seconds": 0.02
     },
     {
       "case": "Unknown tenant fields rejected",
       "result": "passed",
-      "seconds": 0.021
+      "seconds": 0.043
     },
     {
       "case": "Changed payload same key rejected",
       "result": "passed",
-      "seconds": 0.021
+      "seconds": 0.077
     },
     {
       "case": "Contact update persisted + stale conflict",
       "result": "passed",
-      "seconds": 0.197
+      "seconds": 0.337
     },
     {
       "case": "Historical note preserves author/time; duplicate not repeated",
       "result": "passed",
-      "seconds": 0.212
+      "seconds": 0.322
     },
     {
       "case": "Single next-action source + close/replay + B denied",
       "result": "passed",
-      "seconds": 0.341
+      "seconds": 1.319
     },
     {
       "case": "Import preview/confirm/replay/tenant boundary",
       "result": "passed",
-      "seconds": 0.583
+      "seconds": 2.31
     },
     {
       "case": "Import conflict rolls back entire batch",
       "result": "passed",
-      "seconds": 0.162
+      "seconds": 0.23
     },
     {
       "case": "Onboarding activation works once and yields correct membership",
       "result": "passed",
-      "seconds": 0.322
+      "seconds": 0.751
+    },
+    {
+      "case": "Existing account accepts only its own tenant invitation once",
+      "result": "passed",
+      "seconds": 1.066
+    },
+    {
+      "case": "API key inventory exposes metadata only and revocation is tenant-safe/idempotent",
+      "result": "passed",
+      "seconds": 0.708
     },
     {
       "case": "Invalid webhook signature rejected",
       "result": "passed",
-      "seconds": 0.034
+      "seconds": 0.141
     },
     {
       "case": "Signed webhook durable receipt + inbox dedupe + A/B",
       "result": "passed",
-      "seconds": 0.557
+      "seconds": 1.543
     },
     {
       "case": "Reply API queues atomically; replay/conflict/preconditions/worker",
       "result": "passed",
-      "seconds": 0.441
+      "seconds": 1.246
     },
     {
       "case": "Callback batch/order/duplicate preserve read and facts",
       "result": "passed",
-      "seconds": 0.722
+      "seconds": 1.365
     },
     {
       "case": "Ambiguous send becomes unknown without automatic resend",
       "result": "passed",
-      "seconds": 1.886
+      "seconds": 2.325
     },
     {
       "case": "Private document version/hash/review/reader/B boundaries",
       "result": "passed",
-      "seconds": 1.253
+      "seconds": 1.264
     },
     {
       "case": "Technical API key restricted + revocation immediate",
       "result": "passed",
-      "seconds": 0.425
+      "seconds": 0.578
     },
     {
       "case": "Audit tenant scope contains persisted actions",
       "result": "passed",
-      "seconds": 0.093
+      "seconds": 0.117
     },
     {
       "case": "Concurrent commands create one durable contact ID",
       "result": "passed",
-      "seconds": 0.371
+      "seconds": 0.754
     },
     {
       "case": "Mixed envelope routes A/B; unknown metadata quarantined; provider IDs scoped and case sensitive",
       "result": "passed",
-      "seconds": 4.804
+      "seconds": 3.025
     },
     {
       "case": "Late signed callback reconciles unknown without resending",
       "result": "passed",
-      "seconds": 1.399
+      "seconds": 1.4
     },
     {
       "case": "Logout/context revoke copied sessions; old-context mutation denied",
       "result": "passed",
-      "seconds": 0.323
+      "seconds": 0.474
     }
   ],
   "limits": [
