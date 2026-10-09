@@ -16,7 +16,7 @@ on:
       - scripts/ops/github_teams_notify.py
       - tests/ops/test_github_teams_notify.py
   schedule:
-    - cron: '13,28,43,58 * * * *'
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
