@@ -1,0 +1,80 @@
+name: Finalize native zoom screenshot evidence
+on:
+  push:
+    branches: ['test/flow-aura-deep-audit-20261009-1835']
+    paths: ['.github/workflows/finalize-native-capture-audit.yml']
+permissions:
+  contents: write
+jobs:
+  finalize:
+    if: github.ref == 'refs/heads/test/flow-aura-deep-audit-20261009-1835'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Correct screenshot coordinate handling without weakening layout assertions
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib, json
+          p = Path('src/frontend/e2e/flow-aura-native-zoom.spec.ts')
+          assert hashlib.sha256(p.read_bytes()).hexdigest() == '22820d8b0a3e36da4a00985f982c8ca04d5083748a8cf2e71b12532c9ff2a417'
+          s = p.read_text(encoding='utf-8')
+          old = '    const errors: string[] = [];'
+          new = '''    const errors: string[] = [];
+              const protocol = await context.newCDPSession(page);
+              // Native browser zoom changes CSS pixels. Capture the physical viewport
+              // without a CSS-sized clip; never resize or emulate the page for a picture.
+              const captureViewport = async (name: string) => {
+                const geometry = () => page.evaluate(() => ({ width: innerWidth, height: innerHeight,
+                  dpr: devicePixelRatio, x: scrollX, y: scrollY }));
+                const before = await geometry();
+                const screenshot = await protocol.send("Page.captureScreenshot", {
+                  format: "png", captureBeyondViewport: false, fromSurface: true,
+                });
+                const png = Buffer.from(screenshot.data, "base64");
+                const width = png.readUInt32BE(16), height = png.readUInt32BE(20);
+                expect(Math.abs(width - before.width * before.dpr), "Native capture spans the complete viewport width").toBeLessThanOrEqual(2);
+                expect(Math.abs(height - before.height * before.dpr), "Native capture spans the complete viewport height").toBeLessThanOrEqual(4);
+                expect(await geometry(), "Taking evidence must not alter page geometry").toEqual(before);
+                fs.writeFileSync(path.join(evidence, name), png);
+                console.log(JSON.stringify({ scenario: "native-viewport-capture", name, pixels: { width, height }, css: before }));
+              };'''
+          assert s.count(old) == 1
+          s = s.replace(old, new)
+          old = '      await page.screenshot({ path: path.join(evidence, `audit-native-daily-${factor * 100}.png`), fullPage: true, animations: "disabled" });'
+          assert s.count(old) == 1
+          s = s.replace(old, '      await captureViewport(`audit-native-daily-${factor * 100}.png`);')
+          old = '      await page.screenshot({ path: path.join(evidence, `audit-native-contact-${factor * 100}.png`), fullPage: true, animations: "disabled" });'
+          assert s.count(old) == 1
+          s = s.replace(old, '      await captureViewport(`audit-native-contact-${factor * 100}.png`);')
+          old = '    const focusedBox = await nav.locator(\'[aria-current="page"]\').evaluate(node => {'
+          assert s.count(old) == 1
+          s = s.replace(old, '    await expect(nav.locator(\'[aria-current="page"]\')).toBeInViewport({ ratio: 1 });\n' + old)
+          old = '    await page.screenshot({ path: path.join(evidence, "audit-native-menu-focus-400.png"), animations: "disabled" });'
+          assert s.count(old) == 1
+          s = s.replace(old, '    await captureViewport("audit-native-menu-focus-400.png");')
+          p.write_text(s, encoding='utf-8', newline='\n')
+          m = Path('planejamento/continuidade_github.json')
+          data = json.loads(m.read_text(encoding='utf-8'))
+          next(e for e in data['files'] if e['path'] == p.as_posix())['reviewed_sha256'] = hashlib.sha256(p.read_bytes()).hexdigest()
+          m.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
+          Path('.github/workflows/finalize-native-capture-audit.yml').unlink()
+      - run: npm ci
+        working-directory: src/frontend
+      - run: npm run build && npm run test:unit
+        working-directory: src/frontend
+      - run: python scripts/verificar_continuidade.py
+      - name: Save the reviewed screenshot harness correction on the isolated branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git add -- src/frontend/e2e/flow-aura-native-zoom.spec.ts planejamento/continuidade_github.json .github/workflows/finalize-native-capture-audit.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'test(ui): capture full native zoom viewport and verify screenshot dimensions'
+          git push origin HEAD:refs/heads/test/flow-aura-deep-audit-20261009-1835
