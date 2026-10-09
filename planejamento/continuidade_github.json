@@ -1391,7 +1391,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/GraphMail.cs",
-      "reviewed_sha256": "a84b7b3fc27f5c0d68ec876eeacd18d4d08e3ee80c3eb7f837c756973656343c"
+      "reviewed_sha256": "dc939cd882a73b918ced439b043d697381d8a14bc2a7253866e04d4f7c26c42f"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/KeyProtection.cs",
@@ -1716,7 +1716,7 @@
     },
     {
       "path": "tests/WazVox.ProtocolTests/MailChecks.cs",
-      "reviewed_sha256": "1a5235e6b030dd822a7e3268dde62b6fe4eb3babd71aadadb7f300dde0bda9a6"
+      "reviewed_sha256": "c3ff9af0123152fc2182ff089f1350a6b2398c1be5958cce4941c230a16f6bfb"
     },
     {
       "path": "tests/WazVox.ProtocolTests/MailSqlChecks.cs",
@@ -1787,5 +1787,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:52:30.782916+00:00"
+  "reviewed_at_utc": "2026-10-09T17:23:04.221Z"
 }
