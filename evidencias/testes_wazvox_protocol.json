@@ -1,5 +1,6 @@
 {
-  "generatedUtc": "2026-10-07T15:12:15.4083056+00:00",
+  "generatedUtc": "2026-10-09T01:40:49.9319727+00:00",
+  "version": "0.1.5",
   "environment": "synthetic protocol; no provider send",
   "passed": true,
   "cases": 17,
@@ -72,6 +73,5 @@
       "name": "Provisioning rejects foreign WABA and number",
       "passed": true
     }
-  ],
-  "version": "0.1.5"
+  ]
 }

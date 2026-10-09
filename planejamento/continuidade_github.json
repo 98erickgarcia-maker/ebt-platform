@@ -2,8 +2,8 @@
   "schema_version": 1,
   "remote": "origin",
   "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
-  "branch": "codex/ebt-enterprise-continuity-20261007",
-  "initial_base_ref": "refs/remotes/origin/main",
+  "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
+  "initial_base_ref": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
   "hash_mode": "SHA-256; LF for UTF-8 text, unchanged bytes for pinned binaries",
   "automated_approval": false,
   "files": [
@@ -29,7 +29,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "reviewed_sha256": "1aebc5d6d9327504407b562abfa202ef6f44b0c2902d16fe0e06f42cf44fc9d1"
+      "reviewed_sha256": "6386efa4a2f189559434ab7862c3b0c1aa7b9e55e1265da099232656e8526238"
     },
     {
       "path": ".gitignore",
@@ -990,7 +990,7 @@
     },
     {
       "path": "evidencias/testes_connect_proxy.json",
-      "reviewed_sha256": "9984303eee08f508270b8f6523d52bac087cfcf47f2d9cedfff582cbd348b95e"
+      "reviewed_sha256": "d156035e345367ceec600a0f9a0fa69ea064bfb4ad9ddc4c96502dafb7ea0470"
     },
     {
       "path": "evidencias/testes_connect_restore.json",
@@ -1014,7 +1014,7 @@
     },
     {
       "path": "evidencias/testes_wazvox_protocol.json",
-      "reviewed_sha256": "3290f846320ead9726d2cf1015169f672cddffe650369811f9285c14f3dfc1d7"
+      "reviewed_sha256": "e3751621017803c43a0508eb31918cd8df78c945c39e329c663784375bfc4021"
     },
     {
       "path": "evidencias/testes_wazvox_protocol_0.1.4.json",
@@ -1063,7 +1063,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "17ef2a6943e6820df1db0d2609b89d7f5517e60a34aede8c53e6d3d840f2c686"
+      "reviewed_sha256": "48ef34ee85e3dca91dfc98e2df5a9408c5e8bb2fa587ffaea114c43ddda634aa"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1151,7 +1151,7 @@
     },
     {
       "path": "scripts/checkpoint_github.py",
-      "reviewed_sha256": "7450811bb6bc0cdd8af4b1dcc2fd815aa7b1b01a8e3d1fbabf4d389b456dc1fc"
+      "reviewed_sha256": "2fefbbeda32c420d210c065328db0a400572aa7ad4e404e78a92297a9d0a87cd"
     },
     {
       "path": "scripts/complete_ledger_barrier.py",
@@ -1243,15 +1243,15 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
-      "reviewed_sha256": "1b486579637789323cdb676d3f8f68f58c2a29b7a093dd1aa9b39de5a9e42164"
+      "reviewed_sha256": "714d4c67267acaf0fd7e530e8d66760d14662ba411eaae27ef5e19cde30ba376"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
-      "reviewed_sha256": "7328dc18c4202b9206a31d1d2790b7bd6a2bf48922b051807ef7350ca51aa21b"
+      "reviewed_sha256": "96e68338e7cd1f19fb747cd64663b7da7642cf4b55d0c3e392d82cf0c93c6ffb"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
-      "reviewed_sha256": "b58fffc39f5b36bf5113b304c76c6528020d69270fa3d6d347d90c53fcf34de8"
+      "reviewed_sha256": "3707fb9c6c15f3f06f67fe09c11ffbd497c83dc7acadfce3a2f69b32c639dc97"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Data.cs",
@@ -1275,7 +1275,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
-      "reviewed_sha256": "8091313b54f704ee15f3937c8d89f8e01fc339ae3b8e4f460decff4cf75c7653"
+      "reviewed_sha256": "7e301383361b0a28b754d3e1e0e338d92fb2e1e7126088007f719951c2425349"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.Designer.cs",
@@ -1375,7 +1375,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Security.cs",
-      "reviewed_sha256": "6d189426fef831e1441afef90a4648e149897aa4d5a776cf0d1491f0af468706"
+      "reviewed_sha256": "52f653e781f26b54de375b97a93e9fefba9bd8f82556e03441e3624cbe4043b3"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
@@ -1411,7 +1411,7 @@
     },
     {
       "path": "src/frontend/e2e/connect.spec.ts",
-      "reviewed_sha256": "bda5b27eaee998b2231159aca36fd57dcd484328172e052957c4fc40d23fbb42"
+      "reviewed_sha256": "8661c783eae80cb131ef51a066060e6ecff16e29ec9d8a05d3be3dc860467274"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",
@@ -1427,11 +1427,11 @@
     },
     {
       "path": "src/frontend/package.json",
-      "reviewed_sha256": "50308697050cb85315537407879270c0217063ad9b2037575fa05715d563dee8"
+      "reviewed_sha256": "338e695b0e4598de3d4a9895e939c42991bb369450091636b6e3a23543cf60aa"
     },
     {
       "path": "src/frontend/playwright.config.ts",
-      "reviewed_sha256": "d352db7c35a42162a2eae872d0ba4d09b9b59b03ba6f492f4f7693b79c6b51ee"
+      "reviewed_sha256": "6ecacdc08181a057814e14be8d9cc9824888d12336181b7ae4a7ace1015874f3"
     },
     {
       "path": "src/frontend/public/assets/ebt-logo-240.webp",
@@ -1440,7 +1440,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "34cb8f882b46ae4ca7fc7623ee73a33f80b25a963440c2866e43eb3ccb0018ed"
+      "reviewed_sha256": "94877d6d735187151ceb0270b79eced573b11317c9da9564440d64b23c216e5f"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1448,7 +1448,7 @@
     },
     {
       "path": "src/frontend/src/api.ts",
-      "reviewed_sha256": "7f4d795fbf9c2b701c9cb5f4089bbd555fadb2188e607564b78bb57025819b9d"
+      "reviewed_sha256": "32b505276edfe670961395d68763ed69a90694a0ee07fd7c2f6a8d2f27da98ed"
     },
     {
       "path": "src/frontend/src/csv.ts",
@@ -1540,7 +1540,7 @@
     },
     {
       "path": "tests/integration/connect_qa.py",
-      "reviewed_sha256": "ae7c6b0f5d1413892671324895fb5fe84d8cc4895970e6e7bac526e92ea3d0bf"
+      "reviewed_sha256": "acae3f59c8680c07ed41e6aedad4796635a3869ae98db75cafc19282a33210a8"
     },
     {
       "path": "tests/integration/wazvox_qa.py",
@@ -1548,8 +1548,32 @@
     },
     {
       "path": "tests/test_checkpoint_github.py",
-      "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
+      "reviewed_sha256": "70cacad41772dc1527d3c5b7a4624f35ceb1a29f6aa47ca54530fe3f2f4c8a58"
+    },
+    {
+      "path": "src/frontend/e2e/admin-corrections.spec.ts",
+      "reviewed_sha256": "2e2673039574bdb17cc54fd2bdb5f730b9c45d43c2e8c17952ef0a0ecf06a1b6"
+    },
+    {
+      "path": "src/frontend/e2e/recipient-context.spec.ts",
+      "reviewed_sha256": "80f9c2b7d9603124ab16fcad5e4b64737098905e3cf65e36d5c865c793b56798"
+    },
+    {
+      "path": "src/frontend/tests/api.test.mjs",
+      "reviewed_sha256": "22d99bc085ec56e07b22e2bec0781b795badf3b4960c3ee2d69b86923750d15b"
+    },
+    {
+      "path": "tests/integration/prepare_ci_fixture.py",
+      "reviewed_sha256": "3c6592558b7e59f0fbe64d9162be1719807e0a14c46889b9b6061d04eae85005"
+    },
+    {
+      "path": "evidencias/verificacao_sequencia_pac_20261008.json",
+      "reviewed_sha256": "83088cd39d31eb29d48130ee6f2842f669a9915f684a420fbea8b5ec6f299570"
+    },
+    {
+      "path": "docs/execucao/VERIFICACAO_SEQUENCIA_PAC_20261008.md",
+      "reviewed_sha256": "3f138927af1814b8000585d7eb2a85268ad631aa305c291c82f2e1fdabef3128"
     }
   ],
-  "reviewed_at_utc": "2026-10-08T01:23:00.711138+00:00"
+  "reviewed_at_utc": "2026-10-09T01:44:31.492282+00:00"
 }

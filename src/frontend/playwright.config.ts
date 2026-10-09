@@ -5,7 +5,10 @@ export default defineConfig({
   fullyParallel: false,
   timeout: 45000,
   webServer: {
-    command: 'powershell -NoProfile -File "../../scripts/Start-Local.ps1"',
+    command:
+      process.platform === "win32"
+        ? 'powershell -NoProfile -File "../../scripts/Start-Local.ps1"'
+        : "dotnet run --no-build -c Release --project ../../src/backend/Ebt.Platform.Api --urls http://127.0.0.1:5186",
     url: "http://127.0.0.1:5186/health/ready",
     reuseExistingServer: true,
     timeout: 120000,

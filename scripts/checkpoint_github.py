@@ -19,7 +19,7 @@ import tempfile
 DEFAULT_CONFIG = "planejamento/continuidade_github.json"
 BLOCKED_PARTS = {".git", "tmp", "node_modules", "bin", "obj", "private-integrations", "__pycache__", "playwright-report", "test-results"}
 BLOCKED_EXTENSIONS = {".db", ".sqlite", ".sqlite3", ".pfx", ".p12", ".pem", ".key", ".bak", ".zip", ".mp4", ".log"}
-TEXT_EXTENSIONS = {".md", ".json", ".py", ".ps1", ".cs", ".csproj", ".ts", ".tsx", ".css", ".html", ".yml", ".yaml", ".sql", ".txt"}
+TEXT_EXTENSIONS = {".md", ".json", ".py", ".ps1", ".cs", ".csproj", ".ts", ".tsx", ".mjs", ".css", ".html", ".yml", ".yaml", ".sql", ".txt"}
 SECRET_PATTERNS = {
     "private_key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "github_token": re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})\b"),

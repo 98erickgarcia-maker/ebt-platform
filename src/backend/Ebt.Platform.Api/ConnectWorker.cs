@@ -91,6 +91,11 @@ public sealed class ConnectWorker(IServiceScopeFactory factory, IConfiguration c
         var resource = $"ebt:{tenant}:conversation:{id}";
         await db.Database.ExecuteSqlInterpolatedAsync($"DECLARE @r int; EXEC @r = sp_getapplock @Resource={resource}, @LockMode='Exclusive', @LockOwner='Transaction', @LockTimeout=15000; IF @r < 0 THROW 51001, 'Operation busy', 1;", ct);
     }
+    static async Task LockContact(PlatformDb db, Guid tenant, Guid id, CancellationToken ct)
+    {
+        var resource = $"ebt:{tenant}:contact:{id}";
+        await db.Database.ExecuteSqlInterpolatedAsync($"DECLARE @r int; EXEC @r = sp_getapplock @Resource={resource}, @LockMode='Exclusive', @LockOwner='Transaction', @LockTimeout=15000; IF @r < 0 THROW 51001, 'Operation busy', 1;", ct);
+    }
     static async Task Incoming(PlatformDb db, ChannelConnection connection, JsonElement incoming, CancellationToken ct)
     {
         if (S(incoming, "type") != "text" || !incoming.TryGetProperty("text", out var text)) throw new ApiFault(400, "unsupported_message", "Tipo de mensagem não suportado.");
@@ -106,6 +111,12 @@ public sealed class ConnectWorker(IServiceScopeFactory factory, IConfiguration c
             var candidates = await db.Contacts.Where(x => x.Phone == recipient && x.Portfolio == connection.Portfolio).OrderBy(x => x.Id).Take(2).ToListAsync(ct);
             if (candidates.Count > 1) throw new ApiFault(400, "ambiguous_contact", "Contato precisa de reconciliação.");
             var contact = candidates.FirstOrDefault();
+            if (contact != null)
+            {
+                await LockContact(db, connection.TenantId, contact.Id, ct);
+                await db.Entry(contact).ReloadAsync(ct);
+                if (contact.Portfolio != connection.Portfolio || contact.Phone != recipient) contact = null;
+            }
             if (contact == null)
             {
                 contact = new Contact { TenantId = connection.TenantId, Name = "Novo contato " + recipient[^4..], Phone = recipient, ExternalKey = $"wa:{connection.Id:N}:{recipient}", Portfolio = connection.Portfolio, OwnerId = connection.OperatorId, CreationHash = "webhook" };
@@ -114,6 +125,7 @@ public sealed class ConnectWorker(IServiceScopeFactory factory, IConfiguration c
             conversation = new Conversation { TenantId = connection.TenantId, ContactId = contact.Id, ConnectionId = connection.Id, Recipient = recipient };
             db.Conversations.Add(conversation); await db.SaveChangesAsync(ct);
         }
+        await LockContact(db, connection.TenantId, conversation.ContactId, ct);
         await LockConversation(db, connection.TenantId, conversation.Id, ct);
         await db.Entry(conversation).ReloadAsync(ct);
         if (!await db.Contacts.AnyAsync(x => x.Id == conversation.ContactId && x.Portfolio == connection.Portfolio, ct)) throw new ApiFault(400, "channel_portfolio_changed", "A carteira do contato mudou.");

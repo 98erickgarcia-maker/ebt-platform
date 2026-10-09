@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "reference_date_local": "2026-10-07",
+  "reference_date_local": "2026-10-08",
   "timezone": "America/Sao_Paulo",
   "family": "EBT Enterprise",
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
-  "current_scope": "auditoria de coerência, planejamento integral e ferramentas de continuidade; sem executar novos módulos",
+  "current_scope": "Implementação autorizada: revisar todos os PACs vigentes e aplicar correções R01–R05 no Connect em branch isolada",
   "budget": {
     "delivery_hours": 180,
     "reserve_hours": 20,
@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "planejamento/contrato/hashes verificados; checkpoint GitHub e tarefa Windows comprovados; CI registrada por SHA",
+  "review_status": "builds, testes HTTP do cliente, protocolo e proxy aprovados localmente; regressão SQL/browser integrada pendente",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
@@ -27,7 +27,7 @@
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Confirmar SHA remoto e checks do checkpoint; revisar o relatório de coerência e planejar o fechamento das provas pendentes do Connect sem alterar produto/produção neste pedido",
+  "next_authorized_step": "Executar CI SQL/HTTP/browser da versão integrada, corrigir falhas e registrar SHA; scanner privado, restore Azure e aceite continuam pendentes",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -38,5 +38,6 @@
   "checkpoint_configuration": "planejamento/continuidade_github.json",
   "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
   "automatic_chat_transfer": false,
-  "automatic_new_content_approval": false
+  "automatic_new_content_approval": false,
+  "sequence_review_source": "evidencias/verificacao_sequencia_pac_20261008.json"
 }
