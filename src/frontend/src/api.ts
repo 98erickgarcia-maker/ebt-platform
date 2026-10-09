@@ -47,6 +47,8 @@ export type Note = {
 export type Conversation = {
   id: string;
   contactId: string;
+  contactName: string;
+  recipient: string;
   state: string;
   lastInboundAt: string | null;
   version: number;

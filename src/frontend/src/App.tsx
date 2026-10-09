@@ -346,6 +346,37 @@ export function App() {
     [credential, setCredential] = useState("");
   const writable = me?.role !== "reader",
     admin = me?.role === "admin";
+  function conversationRecipient(item: Conversation | null) {
+    if (!item) return "";
+    if (!item.recipient?.trim()) return "";
+    return item.recipient.startsWith("+")
+      ? item.recipient
+      : "+" + item.recipient;
+  }
+  function clearContactResources() {
+    setTasks([]);
+    setNotes([]);
+    setDocs([]);
+    setConversations([]);
+    setConversation(null);
+    setMessages([]);
+    setMessageVersion("");
+    setMessageCursor(null);
+    setDraft("");
+    setActiveTask(null);
+    setActiveDoc(null);
+    setDocumentVersions([]);
+  }
+  function openConversation(item: Conversation) {
+    setConversation(item);
+    setMessages([]);
+    setMessageVersion("");
+    setMessageCursor(null);
+    setDraft("");
+    setView("messages");
+    setError("");
+    replyKey.current = crypto.randomUUID();
+  }
   useEffect(() => {
     api<Me>("/api/auth/me")
       .then(setMe)
@@ -363,7 +394,11 @@ export function App() {
       setDocs([]);
       setNotes([]);
       setMessages([]);
+      setMessageVersion("");
+      setMessageCursor(null);
       setDraft("");
+      setActiveTask(null);
+      setActiveDoc(null);
       setCredential("");
       setMembers([]);
       setOrgs([]);
@@ -500,6 +535,8 @@ export function App() {
   }, [load, refresh]);
   useEffect(() => {
     pagingStarted.current = false;
+    setMessageVersion("");
+    setMessageCursor(null);
   }, [conversation?.id]);
   useEffect(() => {
     if (!conversation) return;
@@ -552,26 +589,20 @@ export function App() {
     }
   }
   function navigate(next: View) {
-    setDocumentVersions([]);
     loadSequence.current++;
+    clearContactResources();
     setView(next);
     // The same view must replace a load invalidated by navigation too.
     setRefresh((current) => current + 1);
     setMenu(false);
     setSelected(null);
-    setConversation(null);
-    setMessages([]);
-    setDraft("");
-    setNotes([]);
     setError("");
     setCredential("");
   }
   function openContact(c: Contact) {
-    setDocumentVersions([]);
     loadSequence.current++;
+    clearContactResources();
     setSelected(c);
-    setConversation(null);
-    setMessages([]);
     setView("contacts");
     setError("");
   }
@@ -598,7 +629,11 @@ export function App() {
       setDocs([]);
       setNotes([]);
       setMessages([]);
+      setMessageVersion("");
+      setMessageCursor(null);
       setDraft("");
+      setActiveTask(null);
+      setActiveDoc(null);
       setCredential("");
       setSummary({ contacts: 0, openTasks: 0, overdue: 0, stages: [] });
       setMembers([]);
@@ -776,6 +811,11 @@ export function App() {
   async function sendReply(event: FormEvent) {
     event.preventDefault();
     if (!conversation) return;
+    const recipient = conversationRecipient(conversation);
+    if (!conversation.contactName.trim() || !recipient) {
+      setError("Identifique o destinatário antes de confirmar a resposta.");
+      return;
+    }
     await run(
       async () => {
         const result = await api<{ status: string; version: string }>(
@@ -1341,8 +1381,9 @@ export function App() {
               <button
                 className="back text-button"
                 onClick={() => {
+                  loadSequence.current++;
+                  clearContactResources();
                   setSelected(null);
-                  setNotes([]);
                 }}
               >
                 ← Voltar aos relacionamentos
@@ -1469,12 +1510,7 @@ export function App() {
                         <button
                           className="conversation-preview"
                           key={c.id}
-                          onClick={() => {
-                            setConversation(c);
-                            setMessages([]);
-                            setView("messages");
-                            replyKey.current = crypto.randomUUID();
-                          }}
+                          onClick={() => openConversation(c)}
                         >
                           <Icon name="message" />
                           <div>
@@ -1600,23 +1636,21 @@ export function App() {
                     <button
                       key={c.id}
                       className={conversation?.id === c.id ? "selected" : ""}
-                      onClick={() => {
-                        setConversation(c);
-                        setMessages([]);
-                        setDraft("");
-                        replyKey.current = crypto.randomUUID();
-                      }}
+                      onClick={() => openConversation(c)}
                     >
                       <span className="avatar light">
                         <Icon name="message" />
                       </span>
                       <div>
                         <strong>
-                          {contacts.find((x) => x.id === c.contactId)?.name ??
-                            selected?.name ??
-                            "Contato vinculado"}
+                          {c.contactName || "Destinatário não identificado"}
                         </strong>
-                        <span>{c.channelName}</span>
+                        <span>
+                          {c.channelName}
+                          {conversationRecipient(c)
+                            ? " · " + conversationRecipient(c)
+                            : " · sem referência de destinatário"}
+                        </span>
                       </div>
                     </button>
                   ))
@@ -1632,13 +1666,14 @@ export function App() {
                     <header>
                       <div>
                         <h2>
-                          {contacts.find((x) => x.id === conversation.contactId)
-                            ?.name ??
-                            selected?.name ??
-                            "Conversa"}
+                          {conversation.contactName ||
+                            "Destinatário não identificado"}
                         </h2>
                         <span className="small muted">
                           {conversation.channelName}
+                          {conversationRecipient(conversation)
+                            ? " · " + conversationRecipient(conversation)
+                            : " · sem referência de destinatário"}
                           {conversation.provider === "qa"
                             ? " · Teste local, sem envio real"
                             : ""}
@@ -1706,7 +1741,16 @@ export function App() {
                     </div>
                     {writable ? (
                       <form className="reply" onSubmit={sendReply}>
-                        <label htmlFor="reply">Resposta para o contato</label>
+                        <label htmlFor="reply">
+                          Resposta para{" "}
+                          {conversation.contactName ||
+                            "destinatário não identificado"}
+                        </label>
+                        <span className="small muted">
+                          Destinatário:{" "}
+                          {conversationRecipient(conversation) ||
+                            "não identificado — confirme o cadastro antes de responder"}
+                        </span>
                         <textarea
                           id="reply"
                           placeholder="Escreva sua resposta…"
@@ -1723,7 +1767,13 @@ export function App() {
                           <span>Confira o texto antes de confirmar.</span>
                           <button
                             className="primary"
-                            disabled={busy || !messageVersion || !draft.trim()}
+                            disabled={
+                              busy ||
+                              !messageVersion ||
+                              !draft.trim() ||
+                              !conversation.contactName.trim() ||
+                              !conversationRecipient(conversation)
+                            }
                           >
                             Confirmar resposta <Icon name="arrow" />
                           </button>
