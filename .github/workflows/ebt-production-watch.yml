@@ -1,0 +1,49 @@
+name: EBT Production Watch
+on:
+  push:
+    branches: [main, ops/ebt-production-watch-20261009]
+    paths:
+      - .github/workflows/ebt-production-watch.yml
+      - scripts/ops/production_watch.py
+      - tests/ops/test_production_watch.py
+  pull_request:
+    paths:
+      - .github/workflows/ebt-production-watch.yml
+      - scripts/ops/production_watch.py
+      - tests/ops/test_production_watch.py
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ebt-watch-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  agents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Download code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate operational agents
+        run: python -m unittest discover -s tests/ops -v
+      - name: Run EBT operational agents (read-only)
+        if: github.event_name != 'pull_request'
+        env:
+          EBT_NOTIFY: ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }}
+          GH_TOKEN: ${{ github.ref == 'refs/heads/main' && github.token || '' }}
+        run: python scripts/ops/production_watch.py --output production-watch.json
+      - name: Archive sanitized evidence
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ebt-ops-${{ github.run_id }}-${{ github.run_attempt }}
+          path: production-watch.json
+          if-no-files-found: warn
+          retention-days: 1
