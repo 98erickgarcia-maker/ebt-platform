@@ -1315,7 +1315,7 @@
     },
     {
       "path": "sql/connect-commercial-20261009.sql",
-      "reviewed_sha256": "861c1d7834d9ce646a80205b624895ba12b17ea0a59b83575729f4bf7982bdae"
+      "reviewed_sha256": "fc8755f411681562faa931cc76e8693d3a3805ec78e5d0da51abed89af42aeab"
     },
     {
       "path": "sql/connect-migrations.sql",
@@ -1767,5 +1767,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:13:21.305353+00:00"
+  "reviewed_at_utc": "2026-10-09T07:14:58.218113+00:00"
 }
