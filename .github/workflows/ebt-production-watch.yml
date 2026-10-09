@@ -35,6 +35,14 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+      - name: Record invocation origin and revision
+        env:
+          EBT_EVENT_NAME: ${{ github.event_name }}
+          EBT_REF: ${{ github.ref }}
+          EBT_SHA: ${{ github.sha }}
+        run: |
+          printf 'trigger=%s ref=%s sha=%s\n' "$EBT_EVENT_NAME" "$EBT_REF" "$EBT_SHA"
+          printf '### EBT Watch invocation\n- Event: `%s`\n- Ref: `%s`\n- SHA: `%s`\n' "$EBT_EVENT_NAME" "$EBT_REF" "$EBT_SHA" >> "$GITHUB_STEP_SUMMARY"
       - name: Validate operational agents
         run: python -m unittest discover -s tests/ops -v
       - name: Run EBT operational agents (read-only)
