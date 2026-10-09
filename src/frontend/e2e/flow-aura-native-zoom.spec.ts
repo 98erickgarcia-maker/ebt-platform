@@ -73,7 +73,8 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
         await chrome.tabs.setZoom(tabs[0].id, ${factor});
         return await chrome.tabs.getZoom(tabs[0].id);
       })()`);
-      expect(actual).toBe(factor);
+      // Chromium represents 400 percent as 3.9999999999999996.
+      expect(actual).toBeCloseTo(factor, 10);
       await expect.poll(() => page.evaluate(() => devicePixelRatio)).toBeCloseTo(original.dpr * factor, 1);
       const measured = await page.evaluate(() => ({ width: innerWidth, height: innerHeight, dpr: devicePixelRatio }));
       expect(Math.abs(measured.width - original.width / factor)).toBeLessThanOrEqual(2);
