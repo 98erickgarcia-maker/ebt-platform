@@ -156,7 +156,7 @@ class CheckpointTests(unittest.TestCase):
         self.assertEqual(cp.scan('fixture.py',b'password="qa!synthetic-only"'),[])
 
     def test_javascript_modules_receive_text_secret_scanning(self):
-        data = b'const client_secret = "real-looking-value-123456";\r\n'
+        data = b'const client_secret = "' + b'real-looking-value-123456";\r\n'
         self.assertEqual(cp.canonical_bytes('source.mjs', data), data.replace(b'\r\n', b'\n'))
         self.assertTrue(cp.scan('source.mjs', data))
         self.assertEqual(cp.scan('App.tsx',b'autoComplete={activation ? "new-password" : "current-password"}'),[])
