@@ -86,7 +86,12 @@ public static class CrmEndpoints
         {
             access.RequireWrite(); await using var tx = await db.Lock("contact:" + id);
             var row = await db.Contact(id, access); Contract.Match(http.Request, row.Version);
-            var candidate = BuildContact(command, access); await ValidateLinks(candidate, access, db);
+            var candidate = BuildContact(command, access);
+            if (candidate.Portfolio != row.Portfolio && await db.Conversations.Where(x => x.ContactId == id)
+                .Join(db.Connections, conversation => conversation.ConnectionId, channel => channel.Id,
+                    (conversation, channel) => channel.Portfolio).AnyAsync(portfolio => portfolio != candidate.Portfolio))
+                throw new ApiFault(409, "channel_portfolio_conflict", "Este contato possui conversa em outra carteira. Mantenha a carteira atual até existir uma transferência de canal autorizada.");
+            await ValidateLinks(candidate, access, db);
             if (!access.IsAdmin && candidate.Portfolio != row.Portfolio) throw new ApiFault(403, "forbidden", "Não é permitido mover este contato de carteira.");
             row.Name = candidate.Name; row.Email = candidate.Email; row.Phone = candidate.Phone; row.OrganizationId = candidate.OrganizationId;
             row.OwnerId = candidate.OwnerId; row.Stage = candidate.Stage; row.Portfolio = candidate.Portfolio;

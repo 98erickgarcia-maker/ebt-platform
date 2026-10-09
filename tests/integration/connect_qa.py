@@ -142,6 +142,9 @@ def existing_account_invite():
     me=operator.context(ACCESS['tenantB'])
     assert me['role']=='reader'
     operator.context(ACCESS['tenantA'])
+    # Preserve the original seed accounts for the following browser suite.
+    member=next(x for x in b.req('/api/admin/members') if x['userId']==ACCESS['users']['operador@ebt.example'])
+    b.req('/api/admin/members/'+member['id'],'PUT',{'role':member['role'],'portfolio':member['portfolio'],'active':False},{'If-Match':f'"{member["version"]}"'})
 check('Existing account accepts only its own tenant invitation once',existing_account_invite)
 
 def api_key_inventory():
@@ -171,6 +174,29 @@ def xbool(x):return bool(x)
 def xhas(x,provider):return any(m['providerId']==provider for m in x['items'])
 conv_id=''
 check('Signed webhook durable receipt + inbox dedupe + A/B',inbound)
+def portfolio_transfer():
+    row=admin.req(P+'/contacts/'+ID)
+    payload={**command,'portfolio':'outra','organizationId':None,'ownerId':ACCESS['users']['outra@ebt.example']}
+    admin.req(P+'/contacts/'+ID,'PUT',payload,{'If-Match':f'"{row["version"]}"'},expected=409)
+    assert admin.req(P+'/contacts/'+ID)['portfolio']==row['portfolio']
+    event_id='wamid.transfer-blocked.'+RUN
+    webhook(envelope('qa-phone-a',messages=[{'id':event_id,'from':command['phone'],'type':'text','text':{'body':'Still reachable'},'timestamp':at}]))
+    poll(lambda:operator.req(P+f'/conversations/{conv_id}/messages'),lambda rows:xhas(rows,event_id))
+    b.req(P+'/contacts/'+ID,'PUT',payload,{'If-Match':f'"{row["version"]}"'},expected=404)
+    other.req(P+f'/conversations/{conv_id}/messages',expected=404)
+check('R03 incompatible portfolio move is blocked and subsequent inbound preserved',portfolio_transfer)
+def recipient_projection():
+    rows=operator.req(P+'/conversations'); conv=next(x for x in rows if x['id']==conv_id)
+    assert conv['contactName']==command['name'] and conv['recipient']==command['phone']
+    row=operator.req(P+'/contacts/'+ID)
+    changed={**command,'phone':'5511998880000'}
+    operator.req(P+'/contacts/'+ID,'PUT',changed,{'If-Match':f'"{row["version"]}"'})
+    conv=next(x for x in operator.req(P+'/conversations') if x['id']==conv_id)
+    assert conv['recipient']==command['phone'], 'Recipient must match channel destination, not mutable contact phone'
+    assert operator.req(P+'/contacts?search=unmatched-filter-'+RUN)['items']==[]
+    other_rows=other.req(P+'/conversations')
+    assert all(x['id']!=conv_id for x in other_rows)
+check('R02 authorized identity survives filters and mutable contact phone',recipient_projection)
 outgoing={}
 def reply():
     v=operator.req(P+f'/conversations/{conv_id}/messages')['version']

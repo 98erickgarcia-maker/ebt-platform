@@ -2,8 +2,8 @@
   "schema_version": 1,
   "remote": "origin",
   "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
-  "branch": "codex/ebt-enterprise-continuity-20261007",
-  "initial_base_ref": "refs/remotes/origin/main",
+  "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
+  "initial_base_ref": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
   "hash_mode": "SHA-256; LF for UTF-8 text, unchanged bytes for pinned binaries",
   "automated_approval": false,
   "files": [
@@ -1549,6 +1549,30 @@
     {
       "path": "tests/test_checkpoint_github.py",
       "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
+    },
+    {
+      "path": "src/frontend/e2e/admin-corrections.spec.ts",
+      "reviewed_sha256": "pending_review"
+    },
+    {
+      "path": "src/frontend/e2e/recipient-context.spec.ts",
+      "reviewed_sha256": "pending_review"
+    },
+    {
+      "path": "src/frontend/tests/api.test.mjs",
+      "reviewed_sha256": "pending_review"
+    },
+    {
+      "path": "tests/integration/prepare_ci_fixture.py",
+      "reviewed_sha256": "pending_review"
+    },
+    {
+      "path": "evidencias/verificacao_sequencia_pac_20261008.json",
+      "reviewed_sha256": "pending_review"
+    },
+    {
+      "path": "docs/execucao/VERIFICACAO_SEQUENCIA_PAC_20261008.md",
+      "reviewed_sha256": "pending_review"
     }
   ],
   "reviewed_at_utc": "2026-10-08T01:23:00.711138+00:00"

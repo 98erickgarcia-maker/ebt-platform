@@ -160,17 +160,29 @@ function Modal({
     </div>
   );
 }
+async function acceptInvitation(token: string) {
+  const accepted = await api<{ tenantId: string }>(
+    "/api/auth/invitations/accept-existing",
+    "POST",
+    { token },
+  );
+  await api("/api/auth/context/" + accepted.tenantId, "POST");
+  resetContext();
+  history.replaceState(null, "", location.pathname);
+  return api<Me>("/api/auth/me");
+}
 function Login({ onLogin }: { onLogin: (me: Me) => void }) {
   const [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
   const activation = new URLSearchParams(location.search).get("activation");
+  const [existingAccount, setExistingAccount] = useState(false);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setBusy(true);
     setError("");
     const data = new FormData(event.currentTarget);
     try {
-      if (activation)
+      if (activation && !existingAccount)
         await api("/api/auth/activate", "POST", {
           token: activation,
           name: data.get("name"),
@@ -182,6 +194,10 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
           password: data.get("password"),
         });
       resetContext();
+      if (activation && existingAccount) {
+        onLogin(await acceptInvitation(activation));
+        return;
+      }
       history.replaceState(null, "", location.pathname);
       onLogin(await api<Me>("/api/auth/me"));
     } catch (e) {
@@ -217,12 +233,12 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
         <span className="eyebrow">SEU ESPAÇO DE TRABALHO</span>
         <h2>{activation ? "Ative seu acesso" : "Bem-vindo ao Connect"}</h2>
         <p>
-          {activation
+          {activation && !existingAccount
             ? "Crie sua senha para entrar na empresa que convidou você."
             : "Entre com o acesso autorizado pela sua empresa."}
         </p>
         <form onSubmit={submit}>
-          {activation ? (
+          {activation && !existingAccount ? (
             <label>
               Seu nome
               <input name="name" autoComplete="name" required maxLength={120} />
@@ -243,8 +259,12 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
             <input
               name="password"
               type="password"
-              autoComplete={activation ? "new-password" : "current-password"}
-              minLength={activation ? 12 : undefined}
+              autoComplete={
+                activation && !existingAccount
+                  ? "new-password"
+                  : "current-password"
+              }
+              minLength={activation && !existingAccount ? 12 : undefined}
               required
             />
           </label>
@@ -256,12 +276,28 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
           <button className="primary wide" disabled={busy}>
             {busy
               ? "Validando acesso…"
-              : activation
-                ? "Ativar e entrar"
-                : "Entrar"}
+              : activation && existingAccount
+                ? "Entrar e aceitar convite"
+                : activation
+                  ? "Ativar e entrar"
+                  : "Entrar"}
             <Icon name="arrow" />
           </button>
         </form>
+        {activation && (
+          <button
+            className="secondary wide"
+            disabled={busy}
+            onClick={() => {
+              setExistingAccount(!existingAccount);
+              setError("");
+            }}
+          >
+            {existingAccount
+              ? "Criar uma nova conta"
+              : "Já tenho conta: usar meu acesso"}
+          </button>
+        )}
         <p className="small">
           Seu acesso determina a empresa e a carteira disponíveis.
         </p>
@@ -344,6 +380,19 @@ export function App() {
       { id: string; action: string; at: string; traceId: string }[]
     >([]),
     [credential, setCredential] = useState("");
+  const [apiKeys, setApiKeys] = useState<
+    {
+      id: string;
+      name: string;
+      ownerName: string;
+      expiresAt: string;
+      state: string;
+      active: boolean;
+    }[]
+  >([]);
+  const [pendingInvitation, setPendingInvitation] = useState(
+    new URLSearchParams(location.search).get("activation"),
+  );
   const writable = me?.role !== "reader",
     admin = me?.role === "admin";
   function conversationRecipient(item: Conversation | null) {
@@ -400,6 +449,7 @@ export function App() {
       setActiveTask(null);
       setActiveDoc(null);
       setCredential("");
+      setApiKeys([]);
       setMembers([]);
       setOrgs([]);
       setAudit([]);
@@ -436,6 +486,26 @@ export function App() {
   useEffect(() => {
     if (me) setAccess(me);
   }, [me]);
+  useEffect(() => {
+    let active = true;
+    setApiKeys([]);
+    if (admin && view === "settings") {
+      void api<typeof apiKeys>("/api/admin/api-keys")
+        .then((keys) => {
+          if (active) setApiKeys(keys);
+        })
+        .catch((e) => {
+          if (
+            active &&
+            !(e instanceof ApiError && e.code === "context_changed")
+          )
+            setError((e as Error).message);
+        });
+    }
+    return () => {
+      active = false;
+    };
+  }, [admin, view, me?.tenantId, refresh]);
   const selectedId = selected?.id;
   const load = useCallback(async () => {
     if (!me) return;
@@ -635,6 +705,7 @@ export function App() {
       setActiveTask(null);
       setActiveDoc(null);
       setCredential("");
+      setApiKeys([]);
       setSummary({ contacts: 0, openTasks: 0, overdue: 0, stages: [] });
       setMembers([]);
       setOrgs([]);
@@ -970,7 +1041,12 @@ export function App() {
   if (!me)
     return (
       <>
-        <Login onLogin={setMe} />
+        <Login
+          onLogin={(updated) => {
+            setPendingInvitation(null);
+            setMe(updated);
+          }}
+        />
         {error && (
           <div className="login-error" role="alert">
             {error}
@@ -1067,6 +1143,39 @@ export function App() {
           <span className="portfolio">Carteira: {me.portfolio}</span>
         </header>
         <main>
+          {pendingInvitation && (
+            <section
+              className="card settings-note"
+              aria-label="Convite recebido"
+            >
+              <p>
+                Você recebeu um convite. Aceite com a conta do e-mail convidado
+                para acessar a empresa.
+              </p>
+              <button
+                className="primary"
+                disabled={busy}
+                onClick={() =>
+                  void run(
+                    async () => {
+                      const updated = await acceptInvitation(pendingInvitation);
+                      clearContactResources();
+                      setSelected(null);
+                      setContacts([]);
+                      setApiKeys([]);
+                      setCredential("");
+                      setPendingInvitation(null);
+                      setMe(updated);
+                    },
+                    "Convite aceito. Empresa selecionada.",
+                    false,
+                  )
+                }
+              >
+                Aceitar convite com esta conta
+              </button>
+            </section>
+          )}
           <div className="page-heading">
             <div>
               <span className="eyebrow">
@@ -1914,6 +2023,38 @@ export function App() {
                   >
                     Criar chave de API
                   </button>
+                  {apiKeys.map((key) => (
+                    <article className="document-row" key={key.id}>
+                      <div>
+                        <strong>
+                          {key.name} · {key.ownerName}
+                        </strong>
+                        <span>
+                          {key.state === "active"
+                            ? "Ativa"
+                            : key.state === "expired"
+                              ? "Expirada"
+                              : "Revogada"}{" "}
+                          · Validade: {date(key.expiresAt)}
+                        </span>
+                      </div>
+                      <button
+                        className="secondary compact"
+                        disabled={busy || !key.active}
+                        aria-label={"Revogar chave " + key.id}
+                        onClick={() =>
+                          void run(
+                            () =>
+                              api("/api/admin/api-keys/" + key.id, "DELETE"),
+                            "Chave revogada.",
+                            false,
+                          )
+                        }
+                      >
+                        Revogar
+                      </button>
+                    </article>
+                  ))}
                   {credential && (
                     <label className="credential">
                       Chave ou link preparado
