@@ -1,0 +1,63 @@
+name: Validate PR portfolio queue
+on:
+  pull_request:
+    paths:
+      - planejamento/fila_prs_20261009.json
+      - docs/execucao/REVISAO_GERAL_PRS_20261009.md
+      - .github/workflows/ebt-pr-queue.yml
+permissions:
+  contents: read
+jobs:
+  validate-queue:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate schema, scope and dependency graph
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('planejamento/fila_prs_20261009.json').read_text())
+          assert data['schema_version'] == 1
+          assert data['owner'] == '98erickgarcia-maker'
+          tasks = data['tasks']
+          assert isinstance(tasks, list) and tasks
+          by_id = {task['id']: task for task in tasks}
+          assert len(by_id) == len(tasks), 'Duplicate task IDs'
+          repos = {'ebt-platform', 'app-mail', 'grupo-vikings-sst', 'site-nutricao', 'crm-casst-web', 'per-repository'}
+          forbidden = {'merge', 'deploy', 'production_restart', 'database_migration', 'real_send', 'change_credentials', 'enable_paid_service'}
+          assert not forbidden.intersection(data['allowed_actions']), 'Unsafe default authorization'
+          assert forbidden.issubset(set(data['forbidden_without_separate_authorization']))
+          assert data['max_active_implementation_per_executor'] == 1
+          assert 1 <= data['max_concurrent_new_implementations'] <= 2
+          assert 1 <= data['max_identical_failed_attempts'] <= 2
+          assert len(data['definition_of_done']) >= 6
+          for task in tasks:
+              assert task['repository'] in repos
+              assert task['priority'] in {'P0', 'P1', 'P2'}
+              for key in ('id', 'status', 'action', 'scope', 'acceptance'):
+                  assert isinstance(task[key], str) and task[key].strip(), (task['id'], key)
+              assert isinstance(task['depends_on'], list)
+              assert len(task['depends_on']) == len(set(task['depends_on']))
+              assert set(task['depends_on']).issubset(by_id), 'Unknown dependency'
+              assert task['id'] not in task['depends_on'], 'Self dependency'
+              assert isinstance(task['prs'], list)
+              assert all(type(number) is int and number > 0 for number in task['prs'])
+          visited, active = set(), set()
+          def visit(task_id):
+              assert task_id not in active, 'Dependency cycle'
+              if task_id in visited:
+                  return
+              active.add(task_id)
+              for dependency in by_id[task_id]['depends_on']:
+                  visit(dependency)
+              active.remove(task_id)
+              visited.add(task_id)
+          for task_id in by_id:
+              visit(task_id)
+          print(f'PASS: {len(tasks)} tasks; acyclic dependencies; scoped authorization')
+          print('Queue validation is not implementation or release acceptance.')
+          PY
