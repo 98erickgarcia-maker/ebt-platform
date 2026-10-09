@@ -72,7 +72,7 @@ for (const failure of [false, true]) {
     await page
       .getByRole("button", { name: "Abrir Contato Exemplo A", exact: true })
       .click();
-    await expect(page.getByText("Apresentar o EBT Connect")).toBeVisible();
+    await expect(page.getByText("Apresentar o EBT Connect").first()).toBeVisible();
     await page.getByRole("button", { name: "Voltar", exact: true }).click();
     await page.getByLabel("Buscar contatos").fill(name);
     let release!: () => void;
@@ -133,7 +133,7 @@ test("R01: switching contacts does not display previous contact notes or tasks",
   await expect(
     page.getByRole("heading", { name: "Contato Exemplo A", level: 1 }),
   ).toBeVisible();
-  await expect(page.getByText("Apresentar o EBT Connect")).toBeVisible();
+  await expect(page.getByText("Apresentar o EBT Connect").first()).toBeVisible();
   await page.getByRole("button", { name: "Voltar", exact: true }).click();
   await page.getByLabel("Buscar contatos").fill("R01 QA");
   await page.getByRole("button", { name: "Novo contato", exact: true }).click();
