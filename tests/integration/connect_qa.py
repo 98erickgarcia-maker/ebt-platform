@@ -243,6 +243,16 @@ def documents():
     assert changed['currentVersion']==2 and changed['reviewState']=='pending'
     reader.req(P+f'/documents/{doc["id"]}/download/2',expected=403)
 check('Private document version/hash/review/reader/B boundaries',documents)
+def infected_document():
+    assert CONFIG['Documents']['ScannerEnabled'], 'Real scanner fixture required'
+    before=operator.req(P+f'/documents?contactId={ID}')
+    signature=b'X5O!P%@AP[4\\PZX54(P^)7CC)7}'+b'$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*'
+    body,headers=multipart(signature,'qa.txt','Blocked synthetic antivirus test')
+    headers['Idempotency-Key']='blocked-doc-'+RUN
+    fault=operator.req(P+f'/contacts/{ID}/documents','POST',body,headers,expected=400)
+    assert fault['code']=='document_malware_blocked'
+    assert before==operator.req(P+f'/documents?contactId={ID}')
+check('Real scanner blocks EICAR upload without persisting document',infected_document)
 def api_key():
     key=admin.req('/api/admin/api-keys','POST'); client=Client(); headers={'Authorization':'Bearer '+key['token']}
     client.req(P+'/summary',headers=headers)

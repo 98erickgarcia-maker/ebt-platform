@@ -17,19 +17,24 @@
   },
   "corrections": {
     "R01": {
-      "status": "implemented_pending_integrated_qa"
+      "status": "passed_integrated_qa",
+      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
     },
     "R02": {
-      "status": "implemented_pending_integrated_qa"
+      "status": "passed_integrated_qa",
+      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
     },
     "R03": {
-      "status": "implemented_pending_integrated_qa"
+      "status": "passed_integrated_qa",
+      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
     },
     "R04": {
-      "status": "implemented_pending_integrated_qa"
+      "status": "passed_integrated_qa",
+      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
     },
     "R05": {
-      "status": "implemented_pending_integrated_qa"
+      "status": "passed_integrated_qa",
+      "validated_sha": "bbd884255b7421272aed04d4f047e56a86197390"
     }
   },
   "local_validation": {
@@ -65,9 +70,23 @@
     }
   },
   "ci": {
-    "status": "pending",
-    "sha": null,
-    "runs": [],
+    "status": "passed_before_next_document_increment",
+    "sha": "bbd884255b7421272aed04d4f047e56a86197390",
+    "runs": [
+      {
+        "id": 37872017575,
+        "name": "Build EBT Connect",
+        "conclusion": "success",
+        "http_passed": 29,
+        "sql_passed": 7,
+        "browser_passed": 11
+      },
+      {
+        "id": 37872017667,
+        "name": "Validate EBT Enterprise continuity",
+        "conclusion": "success"
+      }
+    ],
     "attempts": [
       {
         "sha": "b027e122ca3ae688e7f480fc5ab942524d056265",
@@ -318,5 +337,10 @@
       "review": "aguarda regressão integrada, scanner privado, restore Azure e aceite operacional",
       "gate_promoted": false
     }
-  ]
+  ],
+  "next_document_increment": {
+    "real_engine_and_eicar": "implemented_pending_ci",
+    "isolated_restore": "implemented_pending_ci",
+    "production_azure_operations": false
+  }
 }

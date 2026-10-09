@@ -5,7 +5,7 @@
   "family": "EBT Enterprise",
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
-  "current_scope": "Implementação autorizada: revisar todos os PACs vigentes e aplicar correções R01–R05 no Connect em branch isolada",
+  "current_scope": "Implementação autorizada: 17 PAC conferidos, R01–R05 aprovados na CI; avanço PAC-11/PAC-12 com scanner real e recuperação isolada em CI",
   "budget": {
     "delivery_hours": 180,
     "reserve_hours": 20,
@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "29 testes HTTP e sete verificações SQL aprovados na CI; seletores/sincronização dos testes de navegador corrigidos, reexecução pendente; dez testes locais de scanner/liberação aprovados",
+  "review_status": "29 HTTP, sete SQL e 11 browser aprovados no SHA bbd8842; próximo incremento scanner real/restore CI implementado, validação pendente",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
@@ -27,7 +27,7 @@
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Executar CI SQL/HTTP/browser da versão integrada, corrigir falhas e registrar SHA; scanner privado, restore Azure e aceite continuam pendentes",
+  "next_authorized_step": "Validar incremento de scanner real e restauração isolada em CI, corrigir falhas e registrar SHA; homologação privada Azure e aceite dependem das próprias provas",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",

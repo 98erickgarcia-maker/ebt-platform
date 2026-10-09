@@ -40,7 +40,7 @@ jobs:
       - run: git diff --check
   qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     services:
       sqlserver:
         image: mcr.microsoft.com/mssql/server@sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090
@@ -57,6 +57,7 @@ jobs:
       EBT_RUNTIME_CONFIG: '${{ github.workspace }}/tmp/runtime/local-config.json'
       MSBuildEnableWorkloadResolver: 'false'
       PYTHONUTF8: '1'
+      EBT_QA_SQL_CONTAINER: '${{ job.services.sqlserver.id }}'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -68,10 +69,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Real ClamAV on private loopback with official signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y clamav clamav-daemon
+          sudo systemctl stop clamav-daemon clamav-freshclam || true
+          sudo freshclam --stdout
+          sudo install -d -o clamav -g clamav /var/run/clamav /var/log/clamav
+          sudo tee /etc/clamav/ebt-ci.conf > /dev/null <<'CLAM'
+          User clamav
+          DatabaseDirectory /var/lib/clamav
+          TCPSocket 3310
+          TCPAddr 127.0.0.1
+          LogFile /var/log/clamav/ebt-ci.log
+          PidFile /var/run/clamav/ebt-ci.pid
+          StreamMaxLength 3M
+          CLAM
+          sudo clamd --config-file=/etc/clamav/ebt-ci.conf
+          python -c "import socket, time; exec('for attempt in range(60):\n try:\n  s=socket.create_connection((\"127.0.0.1\",3310),2); s.sendall(b\"zPING\\x00\"); assert s.recv(32)==b\"PONG\\x00\"; s.close(); break\n except (OSError, AssertionError): time.sleep(0.5)\nelse: raise RuntimeError(\"Private scanner unavailable\")')"
       - name: Prepare isolated synthetic QA configuration
         run: python tests/integration/prepare_ci_fixture.py
       - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
       - run: dotnet build tests/WazVox.ProtocolTests --no-restore -c Release
+      - name: Verify clean and EICAR streams with real engine
+        run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --scanner-engine
       - run: npm ci
         working-directory: src/frontend
       - run: npm run build
@@ -103,6 +126,10 @@ jobs:
           python -c "import time, urllib.request; exec('for attempt in range(40):\n try:\n  urllib.request.urlopen(\"http://127.0.0.1:5186/health/ready\"); break\n except OSError: time.sleep(0.5)\nelse: raise RuntimeError(\"QA restart unavailable\")')"
           cd src/frontend
           npm run test:e2e
+          cd ../..
+          kill "$qa_api_pid"
+          wait "$qa_api_pid" || true
+          python tests/integration/recovery_ci.py
       - name: Save sanitized QA results
         if: always()
         uses: actions/upload-artifact@v4
@@ -112,4 +139,7 @@ jobs:
             evidencias/testes_connect_sql_http.json
             evidencias/testes_connect_browser.json
             evidencias/generic_sql_qa.json
+            evidencias/testes_scanner_real_ci.json
+            evidencias/testes_restore_ci.json
+            evidencias/testes_restore_ci_integridade.json
           if-no-files-found: ignore

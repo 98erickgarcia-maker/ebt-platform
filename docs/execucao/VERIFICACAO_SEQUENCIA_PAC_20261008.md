@@ -13,7 +13,7 @@ O pedido atual autoriza execução somente na EBT Platform. A branch `main` aind
 
 A [conferência estruturada](../../evidencias/verificacao_sequencia_pac_20261008.json) enumera os 17 pacotes, tickets e gates. A baseline conserva 180h de entregas e 20h de reserva; horas reais não foram estimadas a partir da duração desta sessão. Seus 238 cenários não foram promovidos em lote.
 
-## Correções aplicadas, aguardando regressão integrada
+## Correções aplicadas e aprovadas na regressão integrada
 
 - **R01:** integrado o PR #12; troca/navegação limpa tarefas, notas, documentos e conversas, e invalida consultas antigas. Regressões de navegador incluem atraso e erro da consulta do contato B.
 - **R02:** o contrato retorna nome autorizado e o destinatário imutável da conversa, independente do cache de 25 contatos. Confirmação exige identificação. Testes cobrem filtro, mais de 25 contatos e telefone de cadastro alterado. Aproveitado somente o incremento do cliente HTTP do #9, com sete casos de contexto/CSRF/401/download.
@@ -26,9 +26,17 @@ A [conferência estruturada](../../evidencias/verificacao_sequencia_pac_20261008
 
 Build .NET Release sem avisos/erros; frontend TypeScript/Vite; sete testes do cliente HTTP; 17 testes de protocolo; dez de proxy; auditorias npm e .NET sem vulnerabilidades reportadas. Planejamento e organização aprovados. Esses resultados não provam SQL ou navegador.
 
-A imagem SQL local não pôde ser baixada devido à política de rede. O workflow de produto agora prepara SQL Server efêmero e configuração sintética por execução no GitHub, aplica migrations, verifica HTTP/SQL, reinicia o servidor e executa Playwright. Scanner permanece desabilitado nessa fixture: ela não certifica scanner de produção. Relatórios sanitizados são anexados à CI.
+A imagem SQL local não pôde ser baixada devido à política de rede. O workflow de produto prepara SQL Server efêmero e configuração sintética por execução no GitHub, aplica migrations, verifica HTTP/SQL, reinicia o servidor e executa Playwright. Relatórios sanitizados são anexados à CI.
 
 A primeira execução integrada passou em 29 testes HTTP e sete verificações SQL. A regressão de navegador revelou seletores ambíguos, rótulo de retorno incorreto e navegação antes de concluir logout; os testes foram corrigidos mantendo as mesmas exigências funcionais. Execuções e resultado final ficam na conferência estruturada.
+
+A [CI integrada 37872017575](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37872017575), SHA `bbd884255b7421272aed04d4f047e56a86197390`, passou em 29 testes HTTP, sete verificações SQL e 11 testes de navegador. Build, cliente HTTP, protocolo, proxy e dez testes de scanner/liberação também passaram. Esse SHA tinha scanner desabilitado na fixture SQL e não comprova o motor real.
+
+## Próximo incremento PAC-11/PAC-12
+
+Por autorização para avançar na sequência, a CI passa a instalar ClamAV com as assinaturas oficiais, escutar apenas em `127.0.0.1` e verificar streams limpo/EICAR. A fixture habilita o motor; HTTP exige que o upload EICAR seja recusado sem persistir documento. O incremento está implementado e aguarda sua CI, com relatório próprio de versão do motor.
+
+O ensaio `tests/integration/recovery_ci.py` aceita exclusivamente o serviço SQL sintético do GitHub e cria destino novo, sem `WITH REPLACE`. Verifica backup COPY_ONLY/CHECKSUM, fingerprints, migrations repetidas, cópia das chaves, todos os hashes/envelopes, runtime/worker, login, download, negativa B e diagnóstico com traceId. O banco original deve permanecer intacto. Relatórios e limites são separados dos restores históricos. Isso não executa PITR nem configura o scanner privado em Azure; ambas as provas e o aceite operacional continuam pendentes.
 
 Revisão do diff pelo mesmo agente; não foi declarada revisão independente. Estado de CI, SHA validado e pendências ficam na conferência estruturada. Nenhum merge em main, deploy ou envio real foi realizado. Os PRs de origem permanecem preservados.
 
