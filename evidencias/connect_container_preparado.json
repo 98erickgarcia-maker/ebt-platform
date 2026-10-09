@@ -1,6 +1,6 @@
 {
-  "generatedUtc": "2026-10-07T15:14:07.758891+00:00",
-  "context": "tmp\\container-context\\1c5a25582d00410db0b84b73596f2cf0",
+  "generatedUtc": "2026-10-09T21:13:33.506686+00:00",
+  "context": "tmp\\container-context\\eab2f6f8041949a89f55135969d40c59",
   "sourceFiles": [
     {
       "path": "Dockerfile",
@@ -12,23 +12,27 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CommercialScanner.cs",
-      "sha256": "02ef8f49022d364e00e46e5054ebc19b86f6d160e7327ee66314e47f48893c10"
+      "sha256": "ab769b9fec96794f53b85cf41b7b8f0f3a915d8350afe03a48bab8ad113e5029"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/ConnectImprovements.cs",
+      "sha256": "72290eb6fbcfcf4d82fe478b75704fc6371ce16056a805bcb272be65418f4007"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
-      "sha256": "5ab98c7511f49bf1ac3a59dbf2c587a2926dc75f2ad0db15b72469b5d5326e44"
+      "sha256": "343e63a07d3d2651241b53e32fb84a01d7d78e1307366a84f6e961c477150a2b"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
-      "sha256": "7328dc18c4202b9206a31d1d2790b7bd6a2bf48922b051807ef7350ca51aa21b"
+      "sha256": "503cf4665bbb9e7385683b1386b59a9b622373f6e75c5ae92356f9bcde591fa2"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
-      "sha256": "f232ed075b6df8d57a3e4511cb908a33b396e09d86a32e58a92df674e3d4dd2e"
+      "sha256": "7d5f93eba70935d91905f2295180a7a79fcda190d4057ad3b98d8d3b684ead50"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Data.cs",
-      "sha256": "99e0bfb5786f8afb2105bf5d1e9918548937d113c2b409be6c69d50660648452"
+      "sha256": "07d725257d861b938be83f65b0087325929b6bf784b95c090493bb883471caac"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/DesignFactory.cs",
@@ -36,31 +40,63 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/DocumentEndpoints.cs",
-      "sha256": "757ca38005023cd8877388c7719dc058c97b51e97c9eb1b4ef07a4c11ed4834b"
+      "sha256": "b76fc86dd4b3471f83962d915046d15c5d021de1125f89d19f89994ce16bf919"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/DocumentSafety.cs",
+      "sha256": "228bcbebba03009cc3242de2fa4f39c1888668d9b3337681b47296de60c9526e"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Ebt.Platform.Api.csproj",
       "sha256": "26c9ba8e170ee03e52d5a2437254ba8f9b4a4e9a56253566f69edd0f22256dd6"
     },
     {
+      "path": "src/backend/Ebt.Platform.Api/FlowDatabaseAdmin.cs",
+      "sha256": "d0972f176f5b4e5b10f24d95d2a23533b9dc62d16d5bddf8e5c281142ff65794"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/FlowProtocol.cs",
+      "sha256": "c05c0b65296d4014cf33709c83d0bd7fad8247312ef3ac4a3f808c8ab7f9c723"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/GraphMail.cs",
+      "sha256": "a84b7b3fc27f5c0d68ec876eeacd18d4d08e3ee80c3eb7f837c756973656343c"
+    },
+    {
       "path": "src/backend/Ebt.Platform.Api/KeyProtection.cs",
       "sha256": "9d895feef06982ae17b4f303b3f14c020c36ce07aed6067113cfde2304975a1c"
     },
     {
+      "path": "src/backend/Ebt.Platform.Api/MailEndpoints.cs",
+      "sha256": "82b279af9626d3578a2e978e27f368ca4435dfe5d14299a2d3f6c02c9b5a6000"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/MailModels.cs",
+      "sha256": "1c66ab1d44f003060bb0cde2d3cdc280ae6c672c3c88ff17afe4a72b3b1f8ffa"
+    },
+    {
       "path": "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
-      "sha256": "8428d6f296dfd1e1915761d449a34e9724fd54ca33345f4696959f83e29c02ae"
+      "sha256": "7e301383361b0a28b754d3e1e0e338d92fb2e1e7126088007f719951c2425349"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Models.cs",
-      "sha256": "8c475029e14de9760c98ee3bfcbb6d22b9233fe7633b7be50cf10b64d26f5401"
+      "sha256": "a9f057cab5c993409303996ea9fd8b70b6cb800df30a89a04d9dddf94123193b"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/packages.lock.json",
-      "sha256": "6a57cca3891dbc371b984a5fce17f748ed2c28064307ab4587c1e1fb613f2246"
+      "sha256": "e55d8c32e020e636e4639690e8d22b85db6f553e67658644b878cedc5ab6b782"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/PlatformCatalog.cs",
+      "sha256": "432e04bf0e9728fcc0644c6aad429edf21908109e276385fb52e2fa8fde9e020"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/PlatformDatabaseAdmin.cs",
+      "sha256": "8434f04fedfd30e4d869f72514c03bc2f6e087e2d12cffc71a108c6db7bdd934"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Program.cs",
-      "sha256": "b02cebb504e044a57abcb3a3bbe5bc5c4ff8878de2d35aacae15f32f7b54a496"
+      "sha256": "ccf9ddf047a8dc0c302a910d51c476735cb6e284d600f6f8d5aae73d15268dce"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
@@ -84,11 +120,11 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Security.cs",
-      "sha256": "6d189426fef831e1441afef90a4648e149897aa4d5a776cf0d1491f0af468706"
+      "sha256": "97c52279ec3dd4903b80a53d7296d9daba477358bb17d9cf40a50e7742ecf390"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
-      "sha256": "72af49c874d856aca8ff775e64bd3370ff233f1c56da2e8318fc23094766a270"
+      "sha256": "b4215b468ef09c811d9ff1877eb93d7283ad90c53e20e151c2379868c424f2bc"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlInspection.cs",
@@ -112,95 +148,139 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.cs",
-      "sha256": "dd96a299f563580e158d798e2a82cce6ed0574dfd06dd869bf5f92c327a76143"
+      "sha256": "14c10aff8ef83781f4d5ef1874ba87a35debb60a812cddd5339311bf6d9a06b8"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061736_InitialConnect.Designer.cs",
-      "sha256": "cac29eb34368c50a29106100866490c8e73cbced4f3eb8fac4256d580c540e36"
+      "sha256": "b83ba59d7cbbe466962c58dc7319e16b8433b3eb9675201a59219c3cdc19b225"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061901_DocumentReviewHistory.cs",
-      "sha256": "028310a94a187ab651ac74c20f008a366b4b9616eabc63fb686e930ca79a2ad5"
+      "sha256": "0c1bea5884a93cf737a647086aecb94654a7337bc62228a9e143aa753ecea0cf"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007061901_DocumentReviewHistory.Designer.cs",
-      "sha256": "f78caeb488765c5eced10b8dbc0e18828c159b18681066d4075cde8b969eadce"
+      "sha256": "f2558f39b711c76ed1893b6ff573a9f8936111e3636aa84cc78da28ba78cd875"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062209_TenantStorageBarrier.cs",
-      "sha256": "467afd799c483876b50130e20ce1015918a26fdb90a880bafaf4904ad0c5ca60"
+      "sha256": "00905399d35871ae32411edd1dceab299d79ed2e0e43cf324bba698e0c3aad60"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062209_TenantStorageBarrier.Designer.cs",
-      "sha256": "b90a24bd584f7b34bd5e93b988eac08d880c9798ec0fd529c034ae06ada3562f"
+      "sha256": "d3c60344febafb52b38d07e8011c32299c272fe41579bfd6015215500ebe0828"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062505_ContactCreationLedger.cs",
-      "sha256": "a5dcd14dbd84fd8a965f352116e7c5c748b2ab4b4480c2a008e0e7bb4c4c88ef"
+      "sha256": "3689d475bd875e509993cc128f24716349e5c85493dfad6c9dc46254cd5c499c"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007062505_ContactCreationLedger.Designer.cs",
-      "sha256": "66848aa96b7fdd843c8bffd63298075a9dff17fb4e6e5bdea952959c4f4e7166"
+      "sha256": "968209f594560e5107c662a28e85f69dd0be0eb9e38d05e1afed36ead18e64e6"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007064302_RevocableSessions.cs",
-      "sha256": "43904507a4b557d916a584afdc064889fb8b4d31ec18e6312dac7f355ee87aae"
+      "sha256": "5a04e0402440fbbc3a31c8e24b9ce556f334b01392c86330b1ee6eb19f267dee"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007064302_RevocableSessions.Designer.cs",
-      "sha256": "96c8f9b5b968046c5da0395afac1239cd2fb1db45f6bc915bdd39e591d46a97d"
+      "sha256": "8513f4772d97dae5100aa22d4bfb035b7611916340151a4c2e797a1ddb66db3c"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007071227_ProviderConnectionIdentity.cs",
-      "sha256": "bfbe664d871c4458ec44f1ea5d13ae01f6b2662de6713ff4eaf6457f64767892"
+      "sha256": "33135aee613d905d73fd80e0c3774f1a4006a2e3b119aaf10a05a2379c575b2b"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007071227_ProviderConnectionIdentity.Designer.cs",
-      "sha256": "8b4854760426d73e5125927550b8fc8877786d8e14ed00ec6af632625fa17bdc"
+      "sha256": "917986f1509c419ac36073eef22e46ddcf2adb531454436d5612a164a551f5d9"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007090647_WazVoxEventIdentity.cs",
-      "sha256": "f40a44d06b869fa725cb3d27c1d32c4e6bf647a77991cd97cf5b1d74d50bf36b"
+      "sha256": "44e28c4ac21d035b17ee918c503184914fc7705f035d968854513915de84b4f9"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007090647_WazVoxEventIdentity.Designer.cs",
-      "sha256": "fd7a04a9e65489b2be885f3d1c89d4ebbd9128923e7273cdd29c3b36306c18bf"
+      "sha256": "abc2d8fb600508be105cc7da55631480922b45c5bd124cd7d9c9c2ec135e91ed"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.cs",
-      "sha256": "cb6fa028321c53a7f79276d4406919cf4a9c53181ea014fa325b9e5de3d6149a"
+      "sha256": "accf7bfed568928ae762a8240dd25131b30bf0fa1c00fefe9c3d8c82e49c9477"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.Designer.cs",
-      "sha256": "52a21403e6c550386cf60a8ca8cec93d1acb967229fe485baeb841a9a49194fb"
+      "sha256": "44e74cafa7e79a70fe36d2fecbc9f8a537d2056d3609a6a2c08564bb8c3189e3"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009050643_ConnectMail.cs",
+      "sha256": "adc50b9596ca721aa1d636904392840f5f22b64b53b0a7db70b0b2a7b0acb4f7"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009050643_ConnectMail.Designer.cs",
+      "sha256": "ebad85ac8acce39b14da9079696289c5d33682d20dee0e8f8611b2958dd22dbf"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009062431_CommercialProspection.cs",
+      "sha256": "904861aa4b411b05dc7a760700e9ec5954a5f94aafb4cba7d80d9eb8cd4c4315"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009062431_CommercialProspection.Designer.cs",
+      "sha256": "f1bf716b26b892a21cbf5ceec771688f6f6c2260a1366dc3744bf1f8307dadda"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/PlatformDbModelSnapshot.cs",
-      "sha256": "3a963720bc51dcc5b23f32b72fe8ee131f4ad2cb452ca9d68bf118dea4334465"
+      "sha256": "908d02ca36a9ad33aced7916358ff461ae19f3be8b8b15d93c495313fd4de1bd"
+    },
+    {
+      "path": "src/frontend/src/AccessTools.tsx",
+      "sha256": "c90b0458cdb04b9a5684cd5d53d7ad50664b3b03524393930401cf70744ffcb9"
     },
     {
       "path": "src/frontend/src/api.ts",
-      "sha256": "7f4d795fbf9c2b701c9cb5f4089bbd555fadb2188e607564b78bb57025819b9d"
+      "sha256": "8615ecf7cbade1b6cca5340e59ec92411227e1eb7d9bb324bbd58b748a2397e6"
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "sha256": "8a040a17bc1658f8ec1de6f82b035c4683e5421be4fbf8d93a8cf8e0dbaded29"
+      "sha256": "2f35035ecaa0540137df6c93da50ad60813ee83777a512760c04a5455c303446"
+    },
+    {
+      "path": "src/frontend/src/Brand.tsx",
+      "sha256": "e6db6e5fac1bc2a00e777d0ad0dd2743b1929e2e300e27ca7a0884e399611805"
+    },
+    {
+      "path": "src/frontend/src/CommercialTemplates.tsx",
+      "sha256": "fd782701313a8de71b933b56c24d44b599bab94a7db32186f070fb1ad5822738"
     },
     {
       "path": "src/frontend/src/csv.ts",
       "sha256": "095266235e8e5c6a9ab3035e821dc16cc59e1e8d5c8c657bbc986c127c750ec3"
     },
     {
+      "path": "src/frontend/src/FlowPanel.tsx",
+      "sha256": "43a2b7916c88ff78efba7d6b09fa129aca4db3ae103ab4c69aeeb855fc09fac5"
+    },
+    {
+      "path": "src/frontend/src/MailPanel.tsx",
+      "sha256": "403b6bd7f1f9abbb7a8a24fca9495474556d68125b31021be75d97936cff4773"
+    },
+    {
       "path": "src/frontend/src/main.tsx",
       "sha256": "46443a53ae77169a882cab8fb73a0d5950a50c17b8b52a54ab9d7449133b871d"
     },
     {
+      "path": "src/frontend/src/PlatformApplications.tsx",
+      "sha256": "f759f8adfd12bcfc941e076e5594a04deb632996489ec7dddbc0cdc1a33ea02c"
+    },
+    {
+      "path": "src/frontend/src/QuickSearch.tsx",
+      "sha256": "066b31c1e6ee542c366e2817f5928ca4bf7b37def6b11f0749c26e76d1df68a8"
+    },
+    {
       "path": "src/frontend/src/style.css",
-      "sha256": "a3944a87190218351f10623d58f65a203d4b3241b21b2bb86a8de45543b573dc"
+      "sha256": "2cd823405833ff63fb208aaa64a2d030bbe30105c0715b7cc6507e226dcf3f4d"
     },
     {
       "path": "src/frontend/package.json",
-      "sha256": "50308697050cb85315537407879270c0217063ad9b2037575fa05715d563dee8"
+      "sha256": "5cdf84c95c9eec8fdee1defa84cf64aa7ef447a05f1cd8b3d745089a56271feb"
     },
     {
       "path": "src/frontend/package-lock.json",
@@ -208,7 +288,7 @@
     },
     {
       "path": "src/frontend/index.html",
-      "sha256": "fb902648e09b33d986b2c3fe452ab572193102668ea92291f267969bdc4603eb"
+      "sha256": "6d29644dff09a8be27143afcca6cc5ea0e52e26b79d197579644b6ec4119083d"
     },
     {
       "path": "src/frontend/tsconfig.json",
@@ -217,17 +297,17 @@
     {
       "path": "src/frontend/vite.config.ts",
       "sha256": "ecb9de341a4adba25e2e496ccd63db661c5be6d7d582c549ee37e804a1efb673"
+    },
+    {
+      "path": "src/frontend/public/assets/ebt-logo-240.webp",
+      "sha256": "146d1cd385f02f086a1b536860f39fde38c37403dc98973ecf774a3c475c14ab"
     }
   ],
   "privateFilesIncluded": false,
   "remoteBuildExecuted": false,
-  "imageVerified": true,
+  "imageVerified": false,
   "limits": [
     "Allowlist source preparation only; Docker/ACR build pending",
     "No credential, data, QA config, certificate, or keyring included"
-  ],
-  "buildRunId": "cqq",
-  "buildStatus": "Succeeded",
-  "imageDigest": "sha256:1f8deb8c1fb948441c3f56942be16137d724535ed521ad62ec97f171f32af815",
-  "version": "0.1.5"
+  ]
 }
