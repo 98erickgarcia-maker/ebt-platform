@@ -44,6 +44,28 @@ SCHEMA = {'type': 'object', 'additionalProperties': False,
           'required': ['status', 'summary', 'evidence_paths']}
 
 
+def model_route(manifest, task):
+    """Explicit account-backed role routing; never switch providers after quota failure."""
+    policy = manifest.get('model_routing')
+    if policy is None:
+        return None
+    if (not isinstance(policy, dict) or policy.get('provider') != 'openai'
+            or policy.get('quota_fallback') != 'wait'
+            or policy.get('allow_paid_api') is not False):
+        raise ValueError('invalid_model_policy')
+    routes, approved = policy.get('roles'), policy.get('approved_models')
+    if not isinstance(routes, dict) or not isinstance(approved, list) or not approved:
+        raise ValueError('invalid_model_policy')
+    route = routes.get(task.get('role'))
+    if not isinstance(route, dict) or set(route) != {'model', 'reasoning_effort'}:
+        raise ValueError('invalid_model_policy')
+    name, effort = route['model'], route['reasoning_effort']
+    if (not isinstance(name, str) or not re.fullmatch(r'[a-z0-9][a-z0-9._-]{0,79}', name)
+            or name not in approved or effort not in ('low', 'medium', 'high')):
+        raise ValueError('invalid_model_policy')
+    return dict(provider='openai', model=name, reasoning_effort=effort)
+
+
 def classify(raw):
     for category, pattern in [('quota', r'429|quota|rate.?limit|usage.?limit|out of credits|credits.*exhaust'),
                               ('auth', r'401|unauthorized|not logged|invalid.*token'),
@@ -245,6 +267,7 @@ class Runner:
                 return delta, current
 
             self.isolation_guard()
+            selected_model = model_route(self.manifest, task)
             branch = self.run(['git', 'branch', '--show-current'], cwd=self.workspace)
             if branch.returncode or not branch.stdout.strip().startswith('codex/'):
                 raise ValueError('proposal_branch_required')
@@ -269,6 +292,7 @@ class Runner:
             before_files = snapshot()
             data.update(status='running', current_task=task['id'], calls_today=data['calls_today'] + 1,
                         started_at=self.now(), heartbeat_at=self.now())
+            data['selected_model'] = selected_model
             self.save(data)
             io = self.state / 'model-io'
             io.mkdir(exist_ok=True)
@@ -296,6 +320,9 @@ class Runner:
                     '-c', 'approval_policy="never"', '--json', '--cd', str(self.workspace),
                     '--output-schema', str(io / 'result-schema.json'),
                     '--output-last-message', str(result_file), prompt]
+            if selected_model:
+                argv[2:2] = ['--model', selected_model['model'], '-c',
+                    'model_reasoning_effort="' + selected_model['reasoning_effort'] + '"']
             if self.run is command:
                 result = self.model(argv, data)
             else:
@@ -351,6 +378,9 @@ class Runner:
                        patch_sha256=hashlib.sha256(diff.stdout.encode()).hexdigest(), checks=task['checks'],
                        changed_paths=sorted(paths), before_hashes={p: before_files[p] for p in sorted(paths)},
                        after_hashes={p: after_files[p] for p in sorted(paths)}, dependencies=dependencies))
+                record_path = self.state / (task['id'] + '.json')
+                record = json.loads(record_path.read_text(encoding='utf-8'))
+                atomic(record_path, dict(record, selected_model=selected_model))
                 if not paths and not evidence:
                     raise ValueError('no_progress_evidence')
                 if self.manifest['allow_push']:
@@ -384,7 +414,7 @@ class Runner:
                 'invalid_result', 'missing_evidence', 'no_progress_evidence', 'proposal_branch_required',
                 'unsafe_patch', 'untrusted_check', 'private_workspace', 'protected_git_change', 'source_commit_unavailable',
                 'commit_failed', 'unclean_after_commit', 'invalid_commit', 'unsafe_push_target', 'invalid_task_policy',
-                'dependency_missing', 'task_scope_violation', 'task_file_limit'} else 'runner_error'
+                'dependency_missing', 'task_scope_violation', 'task_file_limit', 'invalid_model_policy'} else 'runner_error'
             data.update(status=safe, cooldown_until=self.now() + 1800)
         self.save(data)
         return {'status': data['status']}

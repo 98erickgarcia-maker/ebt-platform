@@ -623,5 +623,59 @@
     "remote_sync_failure": "Local verified evidence may exist while remote upload fails. Report local and remote SHA separately; reconcile branch without force or reset.",
     "pause": "Operator PAUSE file stops future cycle; watcher only observes. No restart, notification or repair is performed by watcher.",
     "terminal_behavior": "No identical review loop after proposal_ready. New module requires bounded manifest update and new evidence, not replaying completed IDs."
+  },
+  "model_routing": {
+    "provider": "openai",
+    "allow_paid_api": false,
+    "quota_fallback": "wait",
+    "approved_models": [
+      "gpt-5.6-sol",
+      "gpt-5.6-terra",
+      "gpt-5.6-luna"
+    ],
+    "roles": {
+      "scope": {
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "contracts": {
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "medium"
+      },
+      "backend": {
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "frontend": {
+        "model": "gpt-5.6-terra",
+        "reasoning_effort": "medium"
+      },
+      "negative_tests": {
+        "model": "gpt-5.6-terra",
+        "reasoning_effort": "medium"
+      },
+      "accessibility": {
+        "model": "gpt-5.6-luna",
+        "reasoning_effort": "medium"
+      },
+      "security": {
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "high"
+      },
+      "regression": {
+        "model": "gpt-5.6-terra",
+        "reasoning_effort": "medium"
+      },
+      "independent_review": {
+        "model": "gpt-5.6-terra",
+        "reasoning_effort": "high"
+      },
+      "handoff": {
+        "model": "gpt-5.6-luna",
+        "reasoning_effort": "medium"
+      }
+    },
+    "availability_evidence": "Account CLI catalog observed on VPS 2026-10-09; catalog visibility does not prove a successful model execution.",
+    "live_validation": "pending_account_quota"
   }
 }
