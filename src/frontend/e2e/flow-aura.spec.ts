@@ -31,9 +31,18 @@ test("FLOW + AURA mantém navegação, Contato 360 e reflow 320/390/768/1366", a
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator(".flow-aura-daily .metrics > button").first().click();
   await expect(page.getByRole("heading", { name: "Relacionamentos", exact: true })).toBeVisible();
-  await page.getByLabel("Buscar contatos").fill("Contato Exemplo A");
-  await page.getByRole("button", { name: /Contato Exemplo A contato@cliente.example/ }).click();
-  await expect(page.getByRole("heading", { name: "Contato Exemplo A", level: 1 })).toBeVisible();
+  // Isolate this journey from sample records that other tests can filter or mutate.
+  const marker = Date.now().toString();
+  const name = "Flow Aura QA " + marker;
+  await page.getByRole("button", { name: "Novo contato", exact: true }).click();
+  const dialog = page.getByRole("dialog");
+  await dialog.getByLabel("Nome", { exact: true }).fill(name);
+  await dialog.getByLabel("E-mail", { exact: true }).fill("flow-aura-" + marker + "@ebt.example");
+  await dialog.getByRole("button", { name: "Salvar", exact: true }).click();
+  await expect(dialog).not.toBeVisible();
+  await page.getByLabel("Buscar contatos").fill(name);
+  await page.getByRole("button", { name: "Abrir " + name, exact: true }).click();
+  await expect(page.getByRole("heading", { name, level: 1 })).toBeVisible();
   await expect(page.getByRole("region", { name: "Panorama do contato" })).toBeVisible();
   await expect(page.locator(".detail-grid.flow-contact-360")).toBeVisible();
 
@@ -46,5 +55,5 @@ test("FLOW + AURA mantém navegação, Contato 360 e reflow 320/390/768/1366", a
   }
 
   await page.getByRole("button", { name: /Voltar aos relacionamentos/ }).click();
-  await expect(page.getByLabel("Buscar contatos")).toHaveValue("Contato Exemplo A");
+  await expect(page.getByLabel("Buscar contatos")).toHaveValue(name);
 });

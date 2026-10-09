@@ -1788,12 +1788,12 @@
     },
     {
       "path": "src/frontend/e2e/flow-aura.spec.ts",
-      "reviewed_sha256": "e393d7eed537982a11bb8fb78f5b42063cf4e526510d4b5ef218cce32d8b5430"
+      "reviewed_sha256": "3ae89f679ba6973e6e93c42e2cb898bb5d83650fd04ccb0f6aba4c923e4f7fae"
     },
     {
       "path": "docs/frontend/EBT_FLOW_AURA_MEU_DIA_CONTATO_360_20261009.md",
       "reviewed_sha256": "d0b193d93ddbed55c4a83f9b61405d0b0aa8791a2c8fc2911afc2adc59568124"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T17:29:22.900Z"
+  "reviewed_at_utc": "2026-10-09T17:38:47.303Z"
 }
