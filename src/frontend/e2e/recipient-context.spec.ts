@@ -242,37 +242,76 @@ test("R02: an unidentified recipient cannot be confirmed even with a draft", asy
   ).toBeDisabled();
 });
 
-test("R02: late reply acknowledgement cannot replace another conversation's draft or version", async ({ page }) => {
+test("R02: late reply acknowledgement cannot replace another conversation's draft or version", async ({
+  page,
+}) => {
   await login(page);
-  const rows = await (await page.request.get("/api/connect/v1/conversations")).json();
-  const a = rows.find((item: { contactName: string }) => item.contactName === "Contato Exemplo A");
+  const rows = await (
+    await page.request.get("/api/connect/v1/conversations")
+  ).json();
+  const a = rows.find(
+    (item: { contactName: string }) => item.contactName === "Contato Exemplo A",
+  );
   const b = rows.find((item: { id: string }) => item.id !== a.id);
   expect(b).toBeTruthy();
   let release!: () => void;
   let started!: () => void;
-  const held = new Promise<void>((resolve) => { release = resolve; });
-  const intercepted = new Promise<void>((resolve) => { started = resolve; });
-  await page.route(`**/api/connect/v1/conversations/${a.id}/messages`, async (route) => {
-    if (route.request().method() !== "POST") return route.continue();
-    started();
-    await held;
-    // Intercept before the backend: this test must not enqueue or send a message.
-    await route.fulfill({ status: 202, json: { status: "queued", version: '"777"' } });
+  const held = new Promise<void>((resolve) => {
+    release = resolve;
   });
+  const intercepted = new Promise<void>((resolve) => {
+    started = resolve;
+  });
+  await page.route(
+    `**/api/connect/v1/conversations/${a.id}/messages`,
+    async (route) => {
+      if (route.request().method() !== "POST") return route.continue();
+      started();
+      await held;
+      // Intercept before the backend: this test must not enqueue or send a message.
+      await route.fulfill({
+        status: 202,
+        json: { status: "queued", version: '"777"' },
+      });
+    },
+  );
   try {
     await page.getByRole("button", { name: "Conversas", exact: true }).click();
-    await page.locator(".inbox button").filter({ hasText: a.contactName }).first().click();
-    await page.getByLabel("Resposta para " + a.contactName).fill("Synthetic A draft");
+    await page
+      .locator(".inbox button")
+      .filter({ hasText: a.contactName })
+      .first()
+      .click();
+    await page
+      .getByLabel("Resposta para " + a.contactName)
+      .fill("Synthetic A draft");
     await page.getByRole("button", { name: /Confirmar resposta/ }).click();
     await intercepted;
-    await page.locator(".inbox button").filter({ hasText: b.contactName }).first().click();
+    await page
+      .locator(".inbox button")
+      .filter({ hasText: b.contactName })
+      .first()
+      .click();
     const draft = page.getByLabel("Resposta para " + b.contactName);
     await draft.fill("Synthetic B retained draft");
-    const acknowledged = page.waitForResponse((response) => response.url().endsWith(`/conversations/${a.id}/messages`) && response.request().method() === "POST");
+    const acknowledged = page.waitForResponse(
+      (response) =>
+        response.url().endsWith(`/conversations/${a.id}/messages`) &&
+        response.request().method() === "POST",
+    );
     release();
     await acknowledged;
     await expect(draft).toHaveValue("Synthetic B retained draft");
-    await expect(page.getByRole("button", { name: /Confirmar resposta/ })).toBeEnabled();
-    await expect(page.getByText("Resposta registrada na fila. A entrega depende da confirmação do canal.", { exact: true })).toHaveCount(0);
-  } finally { release(); }
+    await expect(
+      page.getByRole("button", { name: /Confirmar resposta/ }),
+    ).toBeEnabled();
+    await expect(
+      page.getByText(
+        "Resposta registrada na fila. A entrega depende da confirmação do canal.",
+        { exact: true },
+      ),
+    ).toHaveCount(0);
+  } finally {
+    release();
+  }
 });

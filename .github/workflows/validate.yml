@@ -28,6 +28,8 @@ jobs:
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --proxy
       - run: npm ci
         working-directory: src/frontend
+      - run: npm run test:unit
+        working-directory: src/frontend
       - run: npm run build
         working-directory: src/frontend
       - run: npm audit --omit=dev

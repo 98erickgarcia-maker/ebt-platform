@@ -162,4 +162,18 @@ class CheckpointTests(unittest.TestCase):
                 with cp.lock(self.root):pass
 
 
+class JavaScriptTextTests(unittest.TestCase):
+    def test_javascript_is_utf8_text_with_lf_and_secret_scanning(self):
+        for suffix in ('.js', '.mjs', '.cjs'):
+            path = 'tests/regression' + suffix
+            with self.subTest(path=path):
+                source = b'export const synthetic = true;\r\n'
+                self.assertEqual(cp.canonical_bytes(path, source), source.replace(b'\r\n', b'\n'))
+                self.assertEqual(cp.scan(path, source), [])
+                suspect = ("const password = '" + 'private-' + 'material-1234567890' + "';").encode()
+                self.assertEqual(cp.scan(path, suspect)[0]['rule'], 'literal_secret')
+                with self.assertRaises(cp.CheckpointError): cp.scan(path, b'\x00binary')
+                with self.assertRaises(cp.CheckpointError): cp.scan(path, b'\xffinvalid utf8')
+
+
 if __name__=='__main__':unittest.main()

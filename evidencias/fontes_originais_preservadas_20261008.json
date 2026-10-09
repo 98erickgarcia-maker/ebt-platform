@@ -1,0 +1,10 @@
+{
+  "source_root_preserved": true,
+  "baseline_head": "43a42bfe0b1daf07a96a3cacb19a9ff2b265bc5d",
+  "current_head": "43a42bfe0b1daf07a96a3cacb19a9ff2b265bc5d",
+  "technical_files_checked": 70,
+  "changed_technical_files": [],
+  "index_raw_bytes_match_historical_baseline": false,
+  "staging_tree_preserved": true,
+  "index_note": "Git status can refresh index stat cache; staging content remains empty and equals the original HEAD tree."
+}

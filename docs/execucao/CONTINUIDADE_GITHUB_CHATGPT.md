@@ -4,6 +4,8 @@
 
 Salvar cada incremento revisado no repositório autorizado e permitir retomada pela próxima sessão com acesso efetivo. Repositório: `98erickgarcia-maker/ebt-platform`. A branch de checkpoints está em `planejamento/continuidade_github.json`. Checkout e `main` permanecem preservados; o checkpoint usa índice temporário e referência própria.
 
+Revisão posterior de 08/10: correções de R01–R05 e do cliente de sessão foram integradas em checkout isolado. A branch vigente dessa integração é `codex/ebt-enterprise-continuity-reviewed-20261008`; ler a [revisão incremental](../qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md). O histórico original permanece em sua branch. Usar arquivos/configuração da branch atual para continuar, sem sobrescrever a integração com a árvore histórica.
+
 Entradas: caminhos/hashes revisados, arquivos atuais, estado de continuidade, credencial Git existente e origem aprovada. Saídas: commit local, manifesto dentro do commit, confirmação de SHA remoto e recibo em `tmp/continuidade/ultimo_checkpoint.json`.
 
 Condição implementada: **informar `saved_github` somente se arquivos permitidos estiverem revisados, passarem pelos controles, o push terminar e o SHA remoto corresponder ao commit**. Em falha, registrar impedimento, preservar o commit local disponível e repetir sem force push.
@@ -42,7 +44,7 @@ Afirmar agendamento ativo somente após observar instalação/execução. Não c
 2. Usar o acesso/plugin GitHub disponível ou anexar `tmp/continuidade/EBT_ENTERPRISE_CONTINUIDADE.zip`, produzido pelo exportador. Link privado não comprova leitura.
 3. Conferir branch/SHA, `continuidade/CHECKPOINT.json` e `planejamento/estado_continuidade.json`; ler instruções obrigatórias e diff desde a última prova.
 4. Conferir ferramentas efetivas. Com escrita GitHub, confirmar commit remoto. Com leitura apenas, entregar patch sem alegar envio. Sem acesso, usar o pacote e declarar sua idade.
-5. Continuar planejamento/revisão; implementar módulos somente com autorização específica vigente. Esta revisão cria continuidade, sem executar módulos futuros.
+5. Continuar o incremento autorizado no estado vigente. O pedido de 08/10 autorizou correções seguras do Connect. Módulos futuros, deploy e migração de produção conservam seus requisitos próprios de autorização/prova.
 6. Se faltar a próxima prova, registrar `AGUARDANDO_CODEX_EXECUCAO`, `AGUARDANDO_CODEX_NAVEGADOR` ou impedimento correspondente. Continuar trabalho independente. Se já estiver no Codex, seguir com ferramentas disponíveis.
 
 ## Fim de capacidade e recuperação

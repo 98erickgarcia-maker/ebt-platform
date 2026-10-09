@@ -55,6 +55,27 @@
       },
       "build": "backend Debug/Release protocol and frontend passed",
       "test_harness_note": "Initial integrated execution overloaded the shared QA auth quota; pace auth operations in the fixture; final run passed all 16 without changing the product rate limiter."
+    },
+    {
+      "id": 3,
+      "scope": "Client context generation, identity, CSRF, JSON/error/blob and download destination guards selected from b57ab86",
+      "unit_regression": {
+        "baseline_passed": 1,
+        "baseline_failed": 6,
+        "baseline_total": 7,
+        "final_passed": 9,
+        "final_total": 9,
+        "source": "src/frontend/tests/api.test.js"
+      },
+      "browser": {
+        "passed": 16,
+        "total": 16,
+        "skipped": 0,
+        "duration_ms": 89024.021
+      },
+      "frontend_build": "passed",
+      "npm_audit_production_vulnerabilities": 0,
+      "ci_added": "npm run test:unit in Build EBT Connect; SQL/browser remain local evidence"
     }
   ],
   "budget": {
@@ -78,6 +99,13 @@
       "failed": 6,
       "total": 7
     },
-    "status": "not integrated yet; private fixtures only"
-  }
+    "status": "selected client protection integrated and verified in part 3"
+  },
+  "part_2_remote": {
+    "sha": "e21fd82140a7af17868d1441985e7a86b78252e1",
+    "build_run": 37872064452,
+    "continuity_run": 37872064449,
+    "conclusion": "success"
+  },
+  "original_sources_proof": "evidencias/fontes_originais_preservadas_20261008.json"
 }

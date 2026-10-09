@@ -18,16 +18,16 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Partes 1/2 demonstradas em QA local: R01-R05; 27 SQL/HTTP + 7 focados + 16 browser; protocolo 17, proxy 10. CI da parte 1 aprovada em e34ad441.",
+  "review_status": "Três incrementos verificados: R01-R05 e proteção de sessão do cliente; 27+7 SQL/HTTP, 16 browser finais, 9 unitários, 17 protocolo, 10 proxy. CI das partes 1 e 2 aprovada por SHA; conferir final.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
-    "Scanner real, restore Azure e aceite permanecem pendentes nos registros. CI hospedada de build/protocolo/proxy/documentos aprovada no SHA 92e4006; consultar prova e versão vigente.",
+    "Build/continuidade das partes 1 e 2 aprovados em e34ad441 e e21fd821; SQL/browser são provas locais sintéticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
     "Meta direto, campanhas, templates, mídia e omnichannel não são homologados pelo texto WazVox",
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Corrigir proteção do cliente API contra corpo JSON/blob/CSRF tardio após troca de sessão, comprovada por seis falhas unitárias; executar provas afetadas e checkpoint. Depois scanner/restore/aceite nos seus gates.",
+  "next_authorized_step": "Conferir SHA/checks do último checkpoint e preparar o recorte de scanner privado e restore Azure isolado, sem promover gates ou implantar automaticamente; obter aceite operacional com a versão validada.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -39,5 +39,7 @@
   "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
   "automatic_chat_transfer": false,
   "automatic_new_content_approval": false,
-  "incremental_review_source": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md"
+  "incremental_review_source": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
+  "active_checkout_local": ".worktrees/revisao-github-20261008",
+  "source_preservation": "evidencias/fontes_originais_preservadas_20261008.json"
 }

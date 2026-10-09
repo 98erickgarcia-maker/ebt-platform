@@ -3,7 +3,7 @@
   "remote": "origin",
   "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "initial_base_ref": "refs/heads/codex/connect-verificacao-20261008",
+  "initial_base_ref": "efba4e1f1df422d0d0b394f3c00b360624ce245b",
   "hash_mode": "SHA-256; LF for UTF-8 text, unchanged bytes for pinned binaries",
   "automated_approval": false,
   "files": [
@@ -29,11 +29,11 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "reviewed_sha256": "1aebc5d6d9327504407b562abfa202ef6f44b0c2902d16fe0e06f42cf44fc9d1"
+      "reviewed_sha256": "eb00517866de470b67e7befb57c1c818664382bbda932e2dbdbf157bace1f152"
     },
     {
       "path": ".gitignore",
-      "reviewed_sha256": "27be8283512d2a11bfe799e17c7125e5439adc91185557cfe641d99635577a9d"
+      "reviewed_sha256": "12eb3ae2d92bb6aef1c59e169c021177b39629d12e4d95741c90f7c9bc37fd39"
     },
     {
       "path": "AGENTS.md",
@@ -157,7 +157,7 @@
     },
     {
       "path": "docs/execucao/CONTINUIDADE_GITHUB_CHATGPT.md",
-      "reviewed_sha256": "ff19bc15ccb01ae078662e00377dda7a45a5d055b4c62eabf02f0298d5045e3b"
+      "reviewed_sha256": "53210e7fae13b8e66f38d5f10d8993562faf4ceb3fc5f0f11ac42cd5a0d8114e"
     },
     {
       "path": "docs/execucao/DEPENDENCIAS.md",
@@ -1063,7 +1063,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "01bf9affc21c346782633bb42fe35d4b8bd3b9a57957510975e5262efc8d1b49"
+      "reviewed_sha256": "f1737f0d3c9e7d32efc1f4f8fbc1c3879eb9dcd0085ab7cf0ce75847757a64c6"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1087,11 +1087,11 @@
     },
     {
       "path": "prompts/AGENTE_EBT_ENTERPRISE.md",
-      "reviewed_sha256": "d600413dd0bc6e60b4ac3bc40dd536d04363e7d6c5245edaa4d4df2bb7fa8b6a"
+      "reviewed_sha256": "9e12f119cf9485bd647826005d5977ac2bde2d6a6bffca26357fe6f2678d41e8"
     },
     {
       "path": "prompts/RETOMAR_EBT_ENTERPRISE.md",
-      "reviewed_sha256": "b9f841a076e40cbed80fe200ba620c7d410f5b798328f0625538f1361b0ab366"
+      "reviewed_sha256": "d45ae7664a27eb0232d44e31eefb9d3f6d19ef5ce43e8eaf34482babdb2d193b"
     },
     {
       "path": "scripts/Apply-ConnectAzureSchema.ps1",
@@ -1151,7 +1151,7 @@
     },
     {
       "path": "scripts/checkpoint_github.py",
-      "reviewed_sha256": "7450811bb6bc0cdd8af4b1dcc2fd815aa7b1b01a8e3d1fbabf4d389b456dc1fc"
+      "reviewed_sha256": "cac339616b2f519051ff2b0b2973c717db7a9cba9cc52756b132e325d8b6601b"
     },
     {
       "path": "scripts/complete_ledger_barrier.py",
@@ -1427,7 +1427,7 @@
     },
     {
       "path": "src/frontend/package.json",
-      "reviewed_sha256": "50308697050cb85315537407879270c0217063ad9b2037575fa05715d563dee8"
+      "reviewed_sha256": "5cdf84c95c9eec8fdee1defa84cf64aa7ef447a05f1cd8b3d745089a56271feb"
     },
     {
       "path": "src/frontend/playwright.config.ts",
@@ -1448,7 +1448,7 @@
     },
     {
       "path": "src/frontend/src/api.ts",
-      "reviewed_sha256": "c099842ad6e2f7619b6ca2db47d6837b256a6f57871dfb82530b74b48d1c9404"
+      "reviewed_sha256": "32b505276edfe670961395d68763ed69a90694a0ee07fd7c2f6a8d2f27da98ed"
     },
     {
       "path": "src/frontend/src/csv.ts",
@@ -1548,19 +1548,19 @@
     },
     {
       "path": "tests/test_checkpoint_github.py",
-      "reviewed_sha256": "2b3b4ea070a2e56c4c9f4d739d177817ae91ab050dd4f8acfcd2932f45910e7e"
+      "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
-      "reviewed_sha256": "f98b6db210279aecda4bb0c66ae4a0c1752157f163e6a9f06ba84fc1788e927c"
+      "reviewed_sha256": "4bb5bababca6ab58e4d8f64329b21bebfbd9c12c8c4d1e83bd293b9ca15aa256"
     },
     {
       "path": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
-      "reviewed_sha256": "2a730ce6a1fc5c79dd36d4698dd62b5cac5c62db8bc8de8ca7d8db12aa513bc6"
+      "reviewed_sha256": "63d9169833a36d41962de617501347d23e1ea511b886ed8747cca137cf4f2e95"
     },
     {
       "path": "evidencias/revisao_github_incremental_20261008.json",
-      "reviewed_sha256": "cff34b763d3b7e316fdf9d15755bddea5500f2fe267af2914ddee50a13ceba34"
+      "reviewed_sha256": "5d322bac7772eb7263d526548cf4f112744a51ce25a4e044031f26b6d3484dde"
     },
     {
       "path": "src/frontend/src/AccessTools.tsx",
@@ -1581,7 +1581,15 @@
     {
       "path": "evidencias/testes_connect_incremental_20261008.json",
       "reviewed_sha256": "22c709b47ccb7c72bac88c8e932cbc97bab0af0b31df6494da19d71e14ea5c70"
+    },
+    {
+      "path": "src/frontend/tests/api.test.js",
+      "reviewed_sha256": "c9ae89d6fc1f890b7e0b4d27e145aa70c63d712bb0b747480d022a1e61561883"
+    },
+    {
+      "path": "evidencias/fontes_originais_preservadas_20261008.json",
+      "reviewed_sha256": "de29e29f0932220239e02d462ed6def86548d6a03e15cc4cc4ed76352bef7093"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T01:55:02.674863+00:00"
+  "reviewed_at_utc": "2026-10-09T02:08:25.961670+00:00"
 }

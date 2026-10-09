@@ -37,3 +37,19 @@ A parte 1 foi salva em `e34ad441bb7ad81b1ec641dae39d14dcd1935ede`: [build 378704
 ## Próximo incremento de segurança do cliente
 
 A seleção de testes do PR 9 reproduziu seis falhas em sete casos no cliente atual: JSON tardio, troca de usuário com mesmo tenant/perfil, download após logout, destino externo de download, CSRF antigo e erro 401 de sessão anterior. O candidato será selecionado somente para este cliente e seus testes; nenhum runtime/scanner alternativo foi importado. Essas falhas ficam abertas até o próximo incremento testado.
+
+## Parte 3 — proteção de sessão e downloads
+
+Selecionado somente o cliente de `b57ab86f44da655f35a549a90c05bb60d175989c` e suas regressões; preservada a projeção de conversa R02 e todo o runtime Connect atual. A geração é conferida após ler JSON/blob/erro/CSRF; trocar o usuário no mesmo tenant/perfil também invalida chamadas antigas. Downloads exigem destino API na mesma origem e não clicam após logout. CSRF concorrente é compartilhado na geração correta; headers do chamador não são alterados.
+
+Antes: seis falhas em sete regressões. Depois: 9/9 testes unitários (sete originais mais dois positivos), frontend build aprovado e 16/16 browser novamente aprovados sem ignorados. Auditoria npm de produção reportou zero vulnerabilidades conhecidas; isso não certifica toda a segurança do sistema. O workflow do produto passa a executar os unitários. SQL/browser continuam identificados como prova local.
+
+A parte 2 foi salva em `e21fd82140a7af17868d1441985e7a86b78252e1`: [build 37872064452](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37872064452) e [continuidade 37872064449](https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37872064449) aprovados. O último SHA deve ser confirmado no recibo e no GitHub após salvar esta parte.
+
+[Preservação da origem](../../evidencias/fontes_originais_preservadas_20261008.json): 70 arquivos técnicos originais, HEAD e conteúdo de staging preservados; Git pode atualizar o cache de stat do índice ao consultar status. A integração usa `.worktrees/revisao-github-20261008` e a branch `codex/ebt-enterprise-continuity-reviewed-20261008`; não substitui a árvore original ou produção.
+
+## Resultado e sequência segura
+
+R01–R05 receberam correções e provas nos cenários descritos. Nenhum erro foi detectado na rodada final desses cenários. Isso não demonstra perfeição da Enterprise completa, scanner privado real, restore Azure isolado, aceite de usuário, Meta direto ou canais adicionais. Manter 180h + 20h, sem horas reais fictícias.
+
+Próximo recorte: conferir a versão final, fechar scanner privado com prova por versão, ensaiar restore em destino Azure isolado com hashes e obter aceite operacional. Preparar cada recorte com seus critérios/rollback e autorização vigente; não extrair todo o Core ou iniciar novos módulos por inferência. A família Enterprise e seus produtos permanecem íntegros.

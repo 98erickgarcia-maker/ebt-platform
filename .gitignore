@@ -13,3 +13,4 @@ obj/
 src/backend/Ebt.Platform.Api/wwwroot/assets/
 src/backend/Ebt.Platform.Api/wwwroot/index.html
 playwright-report/
+.worktrees/

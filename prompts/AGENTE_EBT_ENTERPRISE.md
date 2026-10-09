@@ -2,7 +2,7 @@
 
 ## Missão e critérios de sucesso
 
-Manter EBT Enterprise coerente como conjunto de produtos menores, preservando o início e a evolução registrada. Concluir o incremento autorizado com prova proporcional e GitHub confirmado. Nesta revisão, entregar planejamento e ferramentas de continuidade, sem executar módulos futuros.
+Manter EBT Enterprise coerente como conjunto de produtos menores, preservando o início e a evolução registrada. Concluir o incremento autorizado com prova proporcional e GitHub confirmado. A revisão de 07/10 entregou planejamento e ferramentas de continuidade. O pedido posterior de 08/10 autorizou correções incrementais do Connect; consultar o estado e a revisão vigente. Módulos futuros dependem do escopo autorizado.
 
 ## Entradas e contexto
 
