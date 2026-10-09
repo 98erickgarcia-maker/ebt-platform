@@ -30,6 +30,7 @@ import {
 import { parseContactsCsv, downloadContactsTemplate } from "./csv";
 import { Brand } from "./Brand";
 import { PlatformApplications } from "./PlatformApplications";
+import { FlowPanel } from "./FlowPanel";
 import { ApiKeyPanel, InvitationAcceptance } from "./AccessTools";
 import { CommercialTemplates } from "./CommercialTemplates";
 import { MailPanel } from "./MailPanel";
@@ -38,6 +39,7 @@ import { QuickSearch, DuplicateHints } from "./QuickSearch";
 type View =
   | "applications"
   | "daily"
+  | "flow"
   | "contacts"
   | "tasks"
   | "messages"
@@ -56,6 +58,7 @@ function mergeMessages(current: Message[], incoming: Message[]) {
 const views: { id: View; name: string; icon: string }[] = [
   { id: "applications", name: "Aplicativos", icon: "grid" },
   { id: "daily", name: "Meu dia", icon: "grid" },
+  { id: "flow", name: "EBT Flow", icon: "check" },
   { id: "contacts", name: "Relacionamentos", icon: "people" },
   { id: "tasks", name: "Tarefas", icon: "check" },
   { id: "messages", name: "Conversas", icon: "message" },
@@ -1243,7 +1246,7 @@ export function App() {
           <div className="breadcrumb">
             EBT Platform <span>/</span>{" "}
             <strong>
-              {view === "applications" ? "Aplicativos" : "Connect"}
+              {view === "applications" ? "Aplicativos" : view === "flow" ? "Flow" : "Connect"}
             </strong>
           </div>
           <QuickSearch
@@ -1289,6 +1292,7 @@ export function App() {
                       applications:
                         "Seus aplicativos e o trabalho da sua empresa em um só lugar.",
                       daily: "Uma visão clara do que importa agora.",
+                      flow: "Protocolos com etapas, responsáveis e rastreabilidade.",
                       contacts:
                         "Cada relacionamento com contexto e continuidade.",
                       tasks: "Compromissos com responsável, prazo e resultado.",
@@ -1364,6 +1368,7 @@ export function App() {
               onOpenConnect={() => navigate("daily")}
             />
           )}
+          {view === "flow" && <FlowPanel key={[me.userId,me.tenantId,me.role,me.portfolio].join("|")} identity={[me.userId,me.tenantId,me.role,me.portfolio].join("|")} writable={writable} />}
           {view === "mail" && (
             <MailPanel
               key={[
