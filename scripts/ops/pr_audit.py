@@ -6,6 +6,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -119,7 +120,6 @@ def summarize_reviews(reviews: list[dict], sha: str, author: str) -> str:
         rank = (str(review.get("submitted_at") or ""), int(review.get("id", 0)))
         if login not in latest or rank > latest[login][0]:
             latest[login] = (rank, review)
-    # An unresolved changes request remains a blocker even when authored on an older SHA.
     if any(r.get("state") == "CHANGES_REQUESTED" for _, r in latest.values()):
         return "CHANGES_REQUESTED"
     if any(r.get("state") == "APPROVED" and r.get("commit_id") == sha for _, r in latest.values()):
@@ -128,6 +128,8 @@ def summarize_reviews(reviews: list[dict], sha: str, author: str) -> str:
 
 
 def audit_pr(client, repo: str, number: int) -> dict:
+    if type(number) is not int or number < 1:
+        raise AuditError("invalid_pr_number")
     resource = f"pulls/{number}"
     before = client.get(repo, resource)
     head, base = before["head"]["sha"], before["base"]["sha"]
@@ -135,7 +137,9 @@ def audit_pr(client, repo: str, number: int) -> dict:
     reviews = client.pages(repo, resource + "/reviews")
     files = client.pages(repo, resource + "/files")
     after = client.get(repo, resource)
-    fingerprints = lambda p: (p["head"]["sha"], p["base"]["sha"], p["base"]["ref"], p["state"], p.get("draft"))
+    def fingerprint(p):
+        return (p["head"]["sha"], p["base"]["sha"], p["base"]["ref"], p["state"], p.get("draft"))
+    stable = fingerprint(before) == fingerprint(after)
     status, evidence = summarize_runs(runs, head, REQUIRED.get(number, ()) if repo == "ebt-platform" else ())
     filenames = sorted({f["filename"] for f in files})
     if len(files) != before.get("changed_files") or len(filenames) != len(files):
@@ -144,14 +148,16 @@ def audit_pr(client, repo: str, number: int) -> dict:
             "url": f"https://github.com/{OWNER}/{repo}/pull/{number}",
             "head_sha": head, "base_sha": base, "head_ref": before["head"]["ref"], "base_ref": before["base"]["ref"],
             "draft": before.get("draft"), "mergeable": after.get("mergeable"),
-            "snapshot_stable": fingerprints(before) == fingerprints(after),
-            "ci": status if fingerprints(before) == fingerprints(after) else "HEAD_OR_BASE_MOVED",
+            "snapshot_stable": stable, "ci": status if stable else "HEAD_OR_BASE_MOVED",
             "review": summarize_reviews(reviews, head, before["user"]["login"]),
             "workflows": evidence, "files": filenames, "merge_authorized": False,
-            "limits": ["No diff review", "Review threads and rulesets not checked", "No production or visual acceptance"]}
+            "limits": ["No diff review", "Review threads, check-runs, commit statuses and rulesets not checked",
+                       "No production or visual acceptance", "PR CI only; push and dispatch evidence excluded",
+                       "Run merge-base context and concurrent new reviews/reruns require revalidation"]}
 
 
 def inventory(client, repos: list[str]) -> dict:
+    repos = list(dict.fromkeys(repos))
     report = {"schema_version": 1, "observed_at": datetime.now(timezone.utc).isoformat(),
               "complete": True, "pull_requests": [], "errors": [], "overlaps": [], "schedule_runs": []}
     for repo in repos:
@@ -162,14 +168,18 @@ def inventory(client, repos: list[str]) -> dict:
                 raise AuditError("duplicate_pr_in_listing")
             for number in numbers:
                 try:
-                    report["pull_requests"].append(audit_pr(client, repo, number))
-                except (AuditError, KeyError, TypeError, ValueError) as exc:
+                    row = audit_pr(client, repo, number)
+                    report["pull_requests"].append(row)
+                    if not row["snapshot_stable"]:
+                        report["complete"] = False
+                        report["errors"].append({"repo": repo, "pr": number, "code": "snapshot_moved"})
+                except (AuditError, KeyError, TypeError, ValueError, AttributeError) as exc:
                     report["complete"] = False
                     report["errors"].append({"repo": repo, "pr": number, "code": str(exc) if isinstance(exc, AuditError) else "invalid_pr_schema"})
             if set(numbers) != {p["number"] for p in client.pages(repo, "pulls", state="open")}:
                 report["complete"] = False
                 report["errors"].append({"repo": repo, "code": "pr_list_moved"})
-        except (AuditError, KeyError, TypeError, ValueError) as exc:
+        except (AuditError, KeyError, TypeError, ValueError, AttributeError) as exc:
             report["complete"] = False
             report["errors"].append({"repo": repo, "code": str(exc) if isinstance(exc, AuditError) else "invalid_repo_schema"})
     rows = report["pull_requests"]
@@ -185,11 +195,27 @@ def inventory(client, repos: list[str]) -> dict:
             report["schedule_total_count"] = data["total_count"]
             report["schedule_runs"] = [{k: r.get(k) for k in ("id", "run_attempt", "event", "path", "head_branch", "head_sha", "created_at", "status", "conclusion")}
                                        for r in data["workflow_runs"]]
-        except (AuditError, KeyError, TypeError) as exc:
+            report["schedule_limit"] = "Latest 100 repository schedule runs; not full history"
+        except (AuditError, KeyError, TypeError, AttributeError) as exc:
             report["complete"] = False
             report["errors"].append({"repo": "ebt-platform", "code": str(exc) if isinstance(exc, AuditError) else "invalid_schedule_schema"})
     report["finished_at"] = datetime.now(timezone.utc).isoformat()
     return report
+
+
+def write_report(path: Path, report: dict) -> None:
+    temp = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, delete=False) as stream:
+            temp = Path(stream.name)
+            json.dump(report, stream, ensure_ascii=True, indent=2)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temp, path)
+    finally:
+        if temp is not None and temp.exists():
+            temp.unlink()
 
 
 def main() -> int:
@@ -198,7 +224,11 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=Path("pr-audit.json"))
     args = parser.parse_args()
     report = inventory(GitHubReadOnly(os.environ.get("GH_TOKEN", "")), args.repo or list(REPOS))
-    args.output.write_text(json.dumps(report, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
+    try:
+        write_report(args.output, report)
+    except OSError:
+        print("audit_output_write_failed", file=sys.stderr)
+        return 3
     print(json.dumps({"complete": report["complete"], "prs_observed": len(report["pull_requests"]),
                       "errors": len(report["errors"]), "merge_authorized": False}))
     return 0 if report["complete"] else 2
