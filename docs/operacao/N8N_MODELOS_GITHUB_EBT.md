@@ -6,7 +6,7 @@ Workflow EbtEngineering15min01 publicado: ManualTrigger e ScheduleTrigger15min s
 
 57 testes locais passaram. Executar workflow pela CLI do n8n passou ao vivo: quota, runnerQueuedfalse, observerQueuedtrue. Export publicado confirmado. Esta prova nao demonstra a primeira execucao automatica agendada nem chamada real de IA durante a cota. Python task runner do n8n nao esta instalado; este fluxo nao usa node Python.
 
-## Cadastrar API OpenAI
+## Credenciais de modelos (09/10/2026)
 
 Painel privado: http://localhost:5678, com tunel SSH ativo neste computador. Para reabrir o tunel:
 
@@ -14,8 +14,16 @@ Painel privado: http://localhost:5678, com tunel SSH ativo neste computador. Par
 ssh -N -L 127.0.0.1:5678:127.0.0.1:5678 -o ExitOnForwardFailure=yes root@177.153.38.72
 ```
 
-Na primeira visita crie sua conta owner e defina sua senha. Depois abra Credentials -> OpenAI EBT - inserir chave -> API Key -> Save. A credencial foi criada vazia com Base URL oficial https://api.openai.com/v1. Nao colocar chave em chat, commit, screenshot ou arquivo publico.
+No painel, abra Credentials. A lista atualmente contem:
 
-Esta credencial ainda nao esta vinculada aos modelos do runner. O runner usa a conta Codex e continua com allow_paid_apifalse. Para utilizar API na programacao, definir modelo/limite de gasto e revisar a integracao. Nenhuma chamada paga foi iniciada. Faturamento API e separado do ChatGPT.
+| Entrada | Estado comprovado | Proximo requisito |
+|---|---|---|
+| OpenAI EBT - chave recebida 09-10 | Chave fornecida pelo usuario importada no cofre cifrado do n8n; exportacao sem decriptar confirmou o registro. Nenhuma chamada de API foi feita. | Rotacionar a chave exposta em conversa, substituir no cofre e testar autenticacao sob limite de gasto definido. |
+| OpenAI anterior - chave pendente | Cadastro vazio. Nenhuma chave anterior foi encontrada nas fontes locais examinadas ou no n8n. | Inserir a chave anterior, se ainda for desejada e valida. |
+| Emergent Universal - chave e endpoint pendentes | Cadastro Header Auth vazio. | Obter a Universal API Key e a proxy base URL em Account Settings -> Universal API Key do Emergent; validar plano e IP de origem antes de testar. |
+
+O painel e privado via tunel SSH. Nao colocar chave em commit, screenshot ou arquivo publico. A chave ja exposta em conversa deve ser revogada apos substituicao. O Emergent documenta que acesso ao proxy externo e restrito por plano/IP: https://help.emergent.sh/the-universal-llm-key .
+
+Estas credenciais ainda nao estao vinculadas aos modelos do runner. O runner usa a conta Codex e continua com allow_paid_apifalse. Para utilizar API na programacao, definir modelo/limite de gasto e revisar a integracao. Nenhuma chamada paga foi iniciada. Faturamento API e separado do ChatGPT.
 
 EasyPanel/Traefik nao foram instalados neste recorte. Publicar painel futuramente exige dominio/HTTPS/acesso. Rollback: parar o container n8n; timers originais continuam. Preservar volume e chave de cifragem. Orçamento180h entregas+20h reserva permanece; nao implica aceite do usuario nem Enterprise completa.
