@@ -45,7 +45,7 @@
     },
     {
       "path": "PASSO_A_PASSO_CONNECT_PROSPECCAO_MAIL.md",
-      "reviewed_sha256": "60f176cc2ad780925ea82896bce92b79c8dd0a9051dc79f72c2703d892f26f3e"
+      "reviewed_sha256": "8fa1f2373e8ae913d78ac30f1d10216f46491a3ac9cae6e3ccc60de1372e2904"
     },
     {
       "path": "PASSO_A_PASSO_EBT_CONNECT.md",
@@ -1787,5 +1787,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:51:52.381754+00:00"
+  "reviewed_at_utc": "2026-10-09T07:52:30.782916+00:00"
 }

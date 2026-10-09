@@ -2,9 +2,9 @@
 
 ## Resultado e pré-requisitos
 
-Candidato 0.3.0: relacionamento comercial até venda/cliente ativo, qualificação, templates, mensagens revisadas e fila persistente SQL. Consulte `planejamento/estado_continuidade.json` para a versão online e a evidência atual; o código local não comprova publicação.
+Versão 0.3.0 publicada e verificada: relacionamento comercial até venda/cliente ativo, qualificação, templates, mensagens revisadas e fila persistente SQL. Consulte `planejamento/estado_continuidade.json` e as provas de publicação indicadas ao final.
 
-Precisa de acesso à empresa/carteira correta. Consulta não permite gravações. Aprovar mensagens e controlar a fila exige administrador. O envio real exige caixa Microsoft vinculada explicitamente ao tenant EBT, permissão Mail.Send application e consentimento/configuração segura. Não copie credenciais de CASST ou arquivos de origem.
+Precisa de acesso à empresa/carteira correta. Consulta não permite gravações. Aprovar mensagens e controlar a fila exige administrador. O envio real exige caixa Microsoft vinculada explicitamente ao tenant EBT, autorização de aplicação restrita à caixa correta e configuração segura, conforme docs/execucao/OUTLOOK_CONNECT_CONFIGURACAO.md. Não copie credenciais de CASST ou arquivos de origem.
 
 ## Uso comercial
 
