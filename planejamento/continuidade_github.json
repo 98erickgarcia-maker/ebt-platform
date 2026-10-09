@@ -1620,7 +1620,7 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "041362ca63b487ba47004793cccc8e21f0a00fae09f6d1d5d8929ae1e198950b"
+      "reviewed_sha256": "42fe6bfa90dcf17d7b889d9c8a8d47c2ba2d4bf1bc07961b948b82489907c6ea"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1656,7 +1656,7 @@
     },
     {
       "path": "src/frontend/src/style.css",
-      "reviewed_sha256": "3a3348eacc9bacb898e8ebdd80ed1f4ec2413549181f2e779f732047e24f14cb"
+      "reviewed_sha256": "08d833841b7e76c51de60de8826eb528354aad50d310329e8a50c84453926fe9"
     },
     {
       "path": "src/frontend/tests/api.test.js",
@@ -1785,7 +1785,15 @@
     {
       "path": "tests/test_checkpoint_github.py",
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
+    },
+    {
+      "path": "src/frontend/e2e/flow-aura.spec.ts",
+      "reviewed_sha256": "e393d7eed537982a11bb8fb78f5b42063cf4e526510d4b5ef218cce32d8b5430"
+    },
+    {
+      "path": "docs/frontend/EBT_FLOW_AURA_MEU_DIA_CONTATO_360_20261009.md",
+      "reviewed_sha256": "d0b193d93ddbed55c4a83f9b61405d0b0aa8791a2c8fc2911afc2adc59568124"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T17:22:58.921Z"
+  "reviewed_at_utc": "2026-10-09T17:29:22.900Z"
 }
