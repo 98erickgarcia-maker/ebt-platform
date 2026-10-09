@@ -1,0 +1,54 @@
+name: Apply reviewed FLOW AURA audit patch
+on:
+  push:
+    branches: ['test/flow-aura-deep-audit-20261009-1835']
+    paths: ['.github/workflows/apply-flow-aura-audit.yml']
+permissions:
+  contents: write
+jobs:
+  apply-reviewed-patch:
+    if: github.ref == 'refs/heads/test/flow-aura-deep-audit-20261009-1835'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Apply finite source-hash-guarded patch
+        run: python scripts/apply_flow_aura_audit.py
+      - run: npm ci
+        working-directory: src/frontend
+      - run: npm run build && npm run test:unit
+        working-directory: src/frontend
+      - run: python scripts/verificar_continuidade.py
+      - name: Commit only reviewed files on isolated branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git add -- src/frontend/src/App.tsx src/frontend/src/main.tsx src/frontend/src/useMobileNavigation.ts src/frontend/src/flow-aura-audit.css planejamento/continuidade_github.json .github/workflows/flow-aura-audit-snapshot.yml .github/workflows/apply-flow-aura-audit.yml scripts/apply_flow_aura_audit.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(ui): preserve FLOW AURA text, focus, card spacing and print values'
+          git push origin HEAD:refs/heads/test/flow-aura-deep-audit-20261009-1835
+          git rev-parse HEAD > "$RUNNER_TEMP/flow-aura-candidate-sha.txt"
+      - name: Package tracked source and offline frontend tooling for audit only
+        shell: bash
+        run: |
+          git archive --format=tar HEAD > "$RUNNER_TEMP/flow-aura-candidate.tar"
+          tar -cf "$RUNNER_TEMP/flow-aura-frontend-tooling.tar" -C src/frontend node_modules
+          tar -cf "$RUNNER_TEMP/flow-aura-web-dist.tar" -C src/backend/Ebt.Platform.Api/wwwroot .
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: flow-aura-candidate-offline-audit
+          path: |
+            ${{ runner.temp }}/flow-aura-candidate-sha.txt
+            ${{ runner.temp }}/flow-aura-candidate.tar
+            ${{ runner.temp }}/flow-aura-frontend-tooling.tar
+            ${{ runner.temp }}/flow-aura-web-dist.tar
+          retention-days: 1
+          if-no-files-found: error
