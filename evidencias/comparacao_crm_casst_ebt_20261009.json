@@ -1,0 +1,269 @@
+{
+  "referenceDate": "2026-10-09",
+  "scope": "Comparacao de telas, contratos e fluxos; nenhuma implementacao de modulo ou deploy neste incremento",
+  "family": "EBT Enterprise",
+  "foundation": "EBT Platform",
+  "firstProduct": "EBT Connect",
+  "budget": {
+    "deliveryHours": 180,
+    "reserveHours": 20,
+    "actualHours": null,
+    "scopeExpanded": false
+  },
+  "versions": {
+    "casstGithub": "ce14f567ff2b529953e14e09b0a74b72a7cbeb6b",
+    "casstLocalBase": "046e7c62359220aaf6ab30832f0fbff5b6f675f0",
+    "casstLocalHasPreexistingChanges": true,
+    "casstOnlineRevision": "crm-casst-prod--ebteditorial261006c",
+    "casstOnlineImageTag": "acrcrmcasstprod2608.azurecr.io/crm-casst:ebt-editorial-20261006-r2",
+    "casstOnlineAssets": [
+      "/assets/index-BJekUooT.js",
+      "/assets/index-DTKoqq1m.css"
+    ],
+    "ebtVersion": "0.2.0",
+    "ebtPublishedSource": "18a454c725478819ab79a3f032e4321ca0e74d76",
+    "exactCasstProductionCommitConfirmed": false
+  },
+  "validation": {
+    "casstSelectedFrontendTests": {
+      "files": 7,
+      "passed": 50,
+      "failed": 0,
+      "checkout": "crm-casst-foundation with preexisting changes",
+      "sixPageSourcesAndTheirTestsMatchGithub": true,
+      "AppShellSourceAndTestDifferFromGithub": true,
+      "logSha256": "8b9fa215b5dca85ada902c36208fc87c8bb87d88b571fa9781867c061b85b344"
+    },
+    "casstScreens": {
+      "count": 10,
+      "pages": [
+        "visao-diaria",
+        "prospeccoes",
+        "clientes",
+        "agenda",
+        "central-contatos"
+      ],
+      "viewports": [
+        1440,
+        390
+      ],
+      "pageErrors": 0,
+      "horizontalOverflow": 0,
+      "method": "Actual published frontend, synthetic API responses intercepted before reaching production; no authenticated CASST production proof"
+    },
+    "ebtScreens": {
+      "count": 8,
+      "pages": [
+        "daily",
+        "contacts",
+        "tasks",
+        "messages"
+      ],
+      "viewports": [
+        1440,
+        390
+      ],
+      "pageErrors": 0,
+      "horizontalOverflow": 0,
+      "method": "Authenticated read-only published Platform; existing session; no business mutation"
+    },
+    "casstPublicHealth": "200 /api/health and /api/health/ready on custom and Azure hosts",
+    "backendSqlProductionTestsRun": false,
+    "businessMutations": false,
+    "screenshots": "Kept in private tmp, excluded from Git/package"
+  },
+  "findings": [
+    {
+      "id": "COMP-01",
+      "severity": "Medio",
+      "kind": "defect",
+      "system": "CASST",
+      "file": "src/frontend/src/pages/AdminDashboardPage.tsx",
+      "line": 984,
+      "relatedLines": [
+        68,
+        124,
+        132,
+        252
+      ],
+      "scenario": "201 distinct completed phone activities in the selected period; API first page contains 200 and total=201",
+      "observed": {
+        "apiTotal": 201,
+        "itemsReturned": 200,
+        "completedMetricShown": 200
+      },
+      "reproduced": true,
+      "evidenceMethod": "Synthetic browser API fixture on the published frontend",
+      "impact": "Daily counters and printed history derived from a partial page undercount larger periods/portfolios",
+      "remedy": "Server aggregates with the same grouping rule; paginate lists and clearly delimit printed scope. Verify periods, owner, mixed states and tenant A/B."
+    },
+    {
+      "id": "COMP-02",
+      "severity": "Medio",
+      "kind": "usability",
+      "system": "CASST",
+      "file": "src/frontend/src/layout/AppShell.tsx",
+      "line": 156,
+      "scenario": "Click or press Ctrl+K on the apparent global search",
+      "observed": "DIV, zero inputs and zero dialogs after shortcut; notification button disabled",
+      "reproduced": true,
+      "impact": "Visual affordance promises an interaction which is still planned",
+      "remedy": "Label planned capability visibly and remove inactive shortcut, or implement scoped keyboard search and results with server authorization."
+    },
+    {
+      "id": "COMP-03",
+      "severity": "Medio",
+      "kind": "functional_limit",
+      "system": "Connect",
+      "file": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "line": 137,
+      "relatedFrontendFile": "src/frontend/src/App.tsx",
+      "relatedFrontendLine": 1670,
+      "scenario": "More than 100 matching tasks, including many due on the same date",
+      "observed": "Take(100); total count header exists, UI warns of limit and offers filters, but no next page/cursor",
+      "reproduced": false,
+      "evidenceMethod": "Backend and frontend contract inspection; small current live dataset cannot reproduce large task volumes",
+      "impact": "Remaining matching tasks cannot be reached by pagination; history also caps at 100",
+      "remedy": "Paginated/cursor contracts, total count and navigation; test item 101, stable order, state filters and tenant/carteira negatives."
+    },
+    {
+      "id": "COMP-04",
+      "severity": "Medio",
+      "kind": "conditional_defect",
+      "system": "Connect",
+      "file": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
+      "line": 98,
+      "relatedFrontendFile": "src/frontend/src/App.tsx",
+      "relatedFrontendLine": 1455,
+      "scenario": "Contact references an authorized organization sorted outside the first 100 organizations",
+      "observed": "Organization catalog Take(100); contact detail searches only this list and falls back to Nao vinculada",
+      "reproduced": false,
+      "evidenceMethod": "Producer/consumer code trace; no production data inserted",
+      "impact": "Existing organization association can be presented as absent",
+      "remedy": "Return authorized organization name with contact details, or query related ID and paginate selector; do not infer missing association from a partial list."
+    },
+    {
+      "id": "COMP-05",
+      "severity": "Baixo",
+      "kind": "usability",
+      "system": "CASST",
+      "file": "src/frontend/src/pages/AgendaPage.tsx",
+      "line": 268,
+      "scenario": "User chooses Enviar ao Outlook geral",
+      "observed": "Anchor downloads calendar.ics; automatic synchronization is a different action",
+      "reproduced": false,
+      "evidenceMethod": "Code and rendered interface; export not triggered",
+      "impact": "Verb can be interpreted as confirmed synchronization/send",
+      "remedy": "Rename to Exportar agenda (.ics) and distinguish exported, connected and synchronized states."
+    },
+    {
+      "id": "COMP-06",
+      "severity": "Baixo",
+      "kind": "usability",
+      "system": "CASST",
+      "file": "src/frontend/src/components/RegistrationCheck.tsx",
+      "line": 39,
+      "scenario": "Open Clients or mobile Agenda to perform the main task",
+      "observed": "Large permanent registration/check panels and integration/filter notices push primary data down; no horizontal overflow",
+      "reproduced": true,
+      "impact": "More scrolling and competing controls; users must scan secondary steps before work items",
+      "remedy": "Progressive disclosure, compact contextual notices, essential filters first and check tools near creation; preserve duplication safeguards."
+    }
+  ],
+  "capabilityComparison": [
+    {
+      "area": "Daily routine",
+      "casst": "Period/owner, follow-ups, prospects without next action, opportunities, quick channel actions",
+      "connect": "Contacts/open tasks/overdue/stage totals and next task",
+      "recommendation": "Reuse actionable follow-up concepts and missing-next-action metric with simpler hierarchy, after fixing source aggregates"
+    },
+    {
+      "area": "Relationships",
+      "casst": "Prospects, customers, people links, shared history and client dossier",
+      "connect": "Contact, organization, owner, portfolio, history/task/conversation/document sections",
+      "recommendation": "Single stable identity and detailed context; quick preview and contextual actions; no duplicate customer store"
+    },
+    {
+      "area": "Agenda",
+      "casst": "Late/today/upcoming board, completed history, weekly report, gaps and Outlook options",
+      "connect": "Task list with owner/date/state filters and closure result",
+      "recommendation": "Add day/week priorities and pagination; separate optional integration settings"
+    },
+    {
+      "area": "Sales workflow",
+      "casst": "Opportunity, proposal versions/approval/acceptance and derived order/fulfillment links",
+      "connect": "Contact stages without proposal/order implementation",
+      "recommendation": "Define incremental domain contracts; proposals/orders require new scope beyond cosmetic changes"
+    },
+    {
+      "area": "Communication",
+      "casst": "Templates, manual action confirmations and minimal-exposure contact activity view",
+      "connect": "Provider-backed conversations and message delivery states, durable outbox",
+      "recommendation": "Contextual channel shortcuts/templates plus explicit evidence states; preserve provider signatures/idempotency and access rules"
+    },
+    {
+      "area": "SST and client access",
+      "casst": "OS, corporate classes, evidence/documents, instructors and client portal in code",
+      "connect": "Private commercial documents and tasks; EBT SST/Portal are planned catalog entries",
+      "recommendation": "Keep vertical-specific capabilities in EBT SST/Portal with own gates; code presence is not production homologation"
+    },
+    {
+      "area": "Product shell",
+      "casst": "Up to 25 administrator navigation links; several style layers; some large page files",
+      "connect": "7 menu entries, Platform catalog and consistent black/orange shell",
+      "recommendation": "Apply platform/app/context navigation and concise sections; keep CSS tokens and preserve route/entity meanings"
+    }
+  ],
+  "proposedIncrements": [
+    {
+      "order": 1,
+      "scope": "Counter completeness and visibility of query limits",
+      "risk": "R2/N",
+      "acceptance": "201 activities produce correct totals; task 101 reachable with stable order; no cross-tenant/carteira reads",
+      "implementationStatus": "proposed"
+    },
+    {
+      "order": 2,
+      "scope": "Focused dashboard and compact mobile filters",
+      "risk": "R1 for presentation, N if new metric contract",
+      "acceptance": "Desktop/mobile/keyboard and loading/empty/error states; no schedule-complete claim for contacts without next action",
+      "implementationStatus": "proposed"
+    },
+    {
+      "order": 3,
+      "scope": "Relationship quick preview, existing registration check and contextual actions",
+      "risk": "R2/N",
+      "acceptance": "Stable IDs and links; save/reload/history; duplicate check exposes only authorized metadata",
+      "implementationStatus": "proposed"
+    },
+    {
+      "order": 4,
+      "scope": "Prioritized agenda and safe exports",
+      "risk": "R2/N",
+      "acceptance": "Late/today/upcoming without duplicate logical activities; periods/owners; export not presented as synchronized",
+      "implementationStatus": "proposed"
+    },
+    {
+      "order": 5,
+      "scope": "Sales modules and SST/Portal extraction with explicit scope",
+      "risk": "N",
+      "acceptance": "Approval/accepted snapshots, idempotency/concurrency, two consumers and isolated schema/storage recovery gates",
+      "implementationStatus": "future_scope"
+    }
+  ],
+  "sourceHashes": {
+    "src/frontend/src/pages/AdminDashboardPage.tsx": "c2fd40a90301241a30d9a945f062f1bc3fb0df1f50049438f8dff1f919b1a7c1",
+    "src/frontend/src/pages/AgendaPage.tsx": "96fb463cf1b132d8389356b9d39018c9cd3f9c98a9fe57795a6af6ac7917f590",
+    "src/frontend/src/pages/CustomersPage.tsx": "9616ad0b4143de29330d15eb458c4341d0e5103085d8e82ad6c1c6f486dc45ea",
+    "src/frontend/src/pages/ContactCenterPage.tsx": "a2ab2c68b1be80ad2680c0dd9f437a64bf9977f8fd7307fd6349b2dc87507cc8",
+    "src/frontend/src/pages/ProposalsPage.tsx": "aae1eb98c6b5b911d829eac0f7c325d8d3b8a29a2840f65e2745004264b448c0",
+    "src/frontend/src/pages/ClientDossierPage.tsx": "4e6faa98f110e8008e07dae50956c4c52ffcea2060da6bf85aa1b3bb5337895e"
+  },
+  "limitations": [
+    "CASST business screens used synthetic API responses, not a production account",
+    "CASST GitHub/local/deployed versions are recorded separately; no exact production source SHA inferred",
+    "No source refactor, database migration, new module or deployment performed in this audit",
+    "No broad claim of perfection, complete Enterprise or homologation; existing scanner/restore/operational acceptance limits remain",
+    "Existing 120 CASST roadmap items and 180h+20h Enterprise plan are retained; recommendations do not add or consume hours automatically"
+  ]
+}

@@ -838,6 +838,10 @@
       "reviewed_sha256": "fe82153ceec6f024e3b7b1a47d8b8e7c1ad2782358bd155368eaed6bcfe1c36a"
     },
     {
+      "path": "evidencias/comparacao_crm_casst_ebt_20261009.json",
+      "reviewed_sha256": "ea5ceaa8203a114c84c867c1237f8b0d9340e57d3d459c659eb12cd6fb809280"
+    },
+    {
       "path": "evidencias/connect_container_preparado.json",
       "reviewed_sha256": "b193da72513e5d9751a23842a7b41c3c8e1820ac5920e3b3b94bbf2c88dae274"
     },
@@ -1107,7 +1111,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "da1c3e13fa0488cdc3a6a8425d3e567c1f99b681b137eda6adfd5b68cf2ed866"
+      "reviewed_sha256": "2ad1a18b8c81b6ee64adda4908d929bb72c18c62df1a0c9e827faa054ed46b4b"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1655,5 +1659,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T03:58:38.284350+00:00"
+  "reviewed_at_utc": "2026-10-09T04:39:22.665331+00:00"
 }

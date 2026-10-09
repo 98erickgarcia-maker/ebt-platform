@@ -21,17 +21,17 @@
   "review_status": "Platform 0.2.0 publicada e verificada: catalogo no Azure compartilhado, 26 checks HTTP online, navegador desktop/mobile, mesma sessao e mesmos IDs consultados; CI de fonte 18a454c aprovado. Provas locais 19 browser, 8 catalogo SQL/HTTP e 27 regressao Connect. Sem promocao global de gates.",
   "no_product_gate_promotion": true,
   "product_limits": [
-    "Provas anteriores do Connect nÃ£o sÃ£o reexecuÃ§Ã£o ao vivo desta auditoria",
-    "Build/continuidade das quatro partes aprovados por SHA. SQL/browser e protocolo do scanner usam fixtures sintÃ©ticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
-    "Meta direto, campanhas, templates, mÃ­dia e omnichannel nÃ£o sÃ£o homologados pelo texto WazVox",
-    "Dois tenants do Connect nÃ£o comprovam isoladamente Core universal",
-    "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates prÃ³prios"
+    "Provas anteriores do Connect nÃƒÆ’Ã‚Â£o sÃƒÆ’Ã‚Â£o reexecuÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o ao vivo desta auditoria",
+    "Build/continuidade das quatro partes aprovados por SHA. SQL/browser e protocolo do scanner usam fixtures sintÃƒÆ’Ã‚Â©ticas. Scanner privado real, restore Azure isolado e aceite operacional permanecem pendentes.",
+    "Meta direto, campanhas, templates, mÃƒÆ’Ã‚Â­dia e omnichannel nÃƒÆ’Ã‚Â£o sÃƒÆ’Ã‚Â£o homologados pelo texto WazVox",
+    "Dois tenants do Connect nÃƒÆ’Ã‚Â£o comprovam isoladamente Core universal",
+    "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates prÃƒÆ’Ã‚Â³prios"
   ],
   "next_authorized_step": "Recorte solicitado publicado. Proxima evolucao: definir scanner privado real e ensaio de restore isolado conforme escopo e custos; demais aplicativos mantidos no planejamento. Revisar qualquer conteudo novo antes de checkpoint.",
   "next_product_steps_require_scope": [
-    "scanner privado com prova por versÃ£o",
-    "restauraÃ§Ã£o Azure isolada e comparaÃ§Ã£o de hashes",
-    "conferir CI da prÃ³xima mudanÃ§a de produto",
+    "scanner privado com prova por versÃƒÆ’Ã‚Â£o",
+    "restauraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o Azure isolada e comparaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de hashes",
+    "conferir CI da prÃƒÆ’Ã‚Â³xima mudanÃƒÆ’Ã‚Â§a de produto",
     "aceite operacional do recorte Connect"
   ],
   "fallback_prompt": "prompts/RETOMAR_EBT_ENTERPRISE.md",
@@ -65,5 +65,13 @@
       "educacao",
       "saude"
     ]
+  },
+  "comparison_review": {
+    "date": "2026-10-09",
+    "evidence": "evidencias/comparacao_crm_casst_ebt_20261009.json",
+    "status": "review_completed",
+    "priority": "Counter completeness, pagination and clear action/identity presentation before new modules",
+    "product_status_unchanged": true,
+    "new_modules_authorized_by_review": false
   }
 }
