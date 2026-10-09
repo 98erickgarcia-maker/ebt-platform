@@ -1,0 +1,26 @@
+{
+  "scope": "Sessões locais acessíveis do projeto CRM_CASST_WEB; pedidos, não versões publicadas",
+  "sessionsScanned": 64,
+  "userMessagesScanned": 973,
+  "sessionsWithVisualRequests": 25,
+  "matchingRequests": 68,
+  "relevantSessions": [
+    "01a0ad7f-c1ae-76a3-8770-ac8d59e93d86",
+    "01a0aebf-76db-7e62-b0cd-28ae413cfa2d",
+    "01a0b4e7-f0ff-7070-ab09-3acbef7f3d06",
+    "01a0bfe5-381b-7fb0-95a2-ae1cdfa57e7a",
+    "01a0cb6f-77d3-7262-be0c-8ac62b035b37"
+  ],
+  "decisions": [
+    "Preserve canonical contact ID, portfolio and history",
+    "Right contextual preview, next action, phone and compact channel actions",
+    "Notebook dialogs within viewport; consistent EBT tokens and mobile layout",
+    "Selected templates personalize future drafts; immutable prepared/reviewed snapshots",
+    "Automatic integrated Outlook response updates CRM; accepted != delivered/read"
+  ],
+  "limits": [
+    "Only accessible local sessions scanned; not complete ChatGPT or external archive",
+    "Keyword counts include functional visualization requests; not number of design releases",
+    "Four available prospecting reference boards inspected; eight historical attachments were not all recovered"
+  ]
+}

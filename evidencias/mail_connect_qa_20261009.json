@@ -1,0 +1,57 @@
+{
+  "generated_utc": "2026-10-09T06:26:49.328833+00:00",
+  "environment": "EbtPlatformQa_Review20261008",
+  "synthetic_only": true,
+  "real_email_sent": false,
+  "passed": true,
+  "cases": [
+    {
+      "case": "Draft persisted, replay stable, changed payload rejected",
+      "result": "passed"
+    },
+    {
+      "case": "A/B, portfolio, reader and tenant injection negative tests",
+      "result": "passed"
+    },
+    {
+      "case": "Approval requires admin; replay; edit invalidates; simulation removed; real connection gate",
+      "result": "passed"
+    },
+    {
+      "case": "Concurrent edits preserve first commit",
+      "result": "passed"
+    },
+    {
+      "case": "Local personalization, version snapshot, batch replay and atomic duplicate rejection",
+      "result": "passed"
+    },
+    {
+      "case": "Opt-out checked on approval; admin-only controls; persisted limits; unconfigured real queue blocked",
+      "result": "passed"
+    },
+    {
+      "case": "Crash recovery uncertain, no automatic resend, evidence required and immutable history",
+      "result": "passed"
+    },
+    {
+      "case": "SQL RLS 30 predicates, contextless read and cross-tenant write rejection",
+      "result": "passed"
+    },
+    {
+      "case": "Scoped search, duplicate hints, EML draft export and pagination totals",
+      "result": "passed"
+    },
+    {
+      "case": "106 tasks/history/orgs fully reachable; linked name outside first page; scoped ICS; count reconciled",
+      "result": "passed"
+    },
+    {
+      "case": "Qualification persistence, URL rejection, same-ID sale conversion and legacy PUT preservation",
+      "result": "passed"
+    },
+    {
+      "case": "Shared channel templates, personalized preview, snapshot preserved and stale model/tenant rejected",
+      "result": "passed"
+    }
+  ]
+}

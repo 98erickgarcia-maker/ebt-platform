@@ -1,0 +1,7 @@
+{
+  "runtime": "EBT Connect .NET / EF Core / SQL Server / React",
+  "filesChecked": 69,
+  "mongodbDependencies": [],
+  "passed": true,
+  "archiveSources": "Historical Mail/Emergent packages preserved outside supported runtime; no real-data import"
+}

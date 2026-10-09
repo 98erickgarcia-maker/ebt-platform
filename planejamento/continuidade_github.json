@@ -44,6 +44,10 @@
       "reviewed_sha256": "43b52d8a44078600b2cb232367157aca3dab73fd4586334684844b3773ff2ffb"
     },
     {
+      "path": "PASSO_A_PASSO_CONNECT_PROSPECCAO_MAIL.md",
+      "reviewed_sha256": "827731c35a6750e64cd4a635e9b27435f09db64c414e69cd59f2467aaf27378c"
+    },
+    {
       "path": "PASSO_A_PASSO_EBT_CONNECT.md",
       "reviewed_sha256": "6588d76d894bf94834d9d931697e1d3c90f422025c10bb5b08d4798743dafec9"
     },
@@ -773,6 +777,10 @@
       "reviewed_sha256": "6561c351c8b8fc90750668192ecc4e3665bf5bac4b3bb2235f71b76ad4ce8155"
     },
     {
+      "path": "docs/qualidade/REVISAO_COMERCIAL_MAIL_20261009.md",
+      "reviewed_sha256": "515860e1df3c9fe637f597a09189fa73ed941f79397cfff45a0f58973b993a02"
+    },
+    {
       "path": "docs/qualidade/REVISAO_ENTERPRISE_E_CONTINUIDADE_20261007.md",
       "reviewed_sha256": "3016801187a96a4eccc9e5b5f3483a0d0333e19b147baea28591b99604488cdd"
     },
@@ -914,6 +922,10 @@
       "reviewed_sha256": "e788cb33c3364d4c0d61fc53997ffc2ac19832425882ed3ed3bcdac595d43007"
     },
     {
+      "path": "evidencias/historico_visual_casst_20261009.json",
+      "reviewed_sha256": "c058dccebb16589c8094019a68e79c23828a3ac4ef05e0346056f59ce449b0da"
+    },
+    {
       "path": "evidencias/integracao_wazvox_execucao.json",
       "reviewed_sha256": "27c62763103bc4807bbad20dd0a958b89b71656e4da2fe998f0a66df38072b8e"
     },
@@ -932,6 +944,14 @@
     {
       "path": "evidencias/inventario_fontes.json",
       "reviewed_sha256": "8326c724cb2d4212f7d89e9ca9ffa498d8137da80637c1b3f6941e23db690dec"
+    },
+    {
+      "path": "evidencias/mail_connect_qa_20261009.json",
+      "reviewed_sha256": "c1763853f684c0d59bed6bb63fafafdc8c02b7b7f0b33fb2d32c0f45042d4dd1"
+    },
+    {
+      "path": "evidencias/mail_worker_sql_20261009.json",
+      "reviewed_sha256": "b434cc8eafdc8d36f598b9446c838a0afdca6227f6f2a1942c3ea716b0146a10"
     },
     {
       "path": "evidencias/manifesto_connect_local.json",
@@ -1015,6 +1035,10 @@
     {
       "path": "evidencias/revisao_promptspellsmith_20261007/testes_wazvox_protocol.json",
       "reviewed_sha256": "afa3f8d0197ee229c102efadd255b8a935b2ba590dc8ad4d30fd10d95676b08d"
+    },
+    {
+      "path": "evidencias/runtime_sql_20261009.json",
+      "reviewed_sha256": "a7ae470a53bc0f3814e5f92a71446b1cdfdea916a2099fc75d87ddc7dad08ae9"
     },
     {
       "path": "evidencias/testes_connect_browser.json",
@@ -1140,6 +1164,10 @@
     {
       "path": "prompts/RETOMAR_EBT_ENTERPRISE.md",
       "reviewed_sha256": "3c3618abbba630fef0c4fcd825a2a4f820f1c756531cf58aaff544cfaf6cfb4a"
+    },
+    {
+      "path": "scripts/Apply-CommercialAzureSchema.ps1",
+      "reviewed_sha256": "7c0ffbbf44971a6ffd07dafbe63437e7a24a630b2b2ff49c500fc86b359ad279"
     },
     {
       "path": "scripts/Apply-ConnectAzureSchema.ps1",
@@ -1282,6 +1310,14 @@
       "reviewed_sha256": "c474ad550c9492031afd08d11d7f1cb04d1bd127809fb49c987d0a43051757e1"
     },
     {
+      "path": "scripts/verify_sql_runtime.py",
+      "reviewed_sha256": "69e4ccfe54152aec166bf394ada1147ada9f0640210bd739d2141de6138a6e00"
+    },
+    {
+      "path": "sql/connect-commercial-20261009.sql",
+      "reviewed_sha256": "861c1d7834d9ce646a80205b624895ba12b17ea0a59b83575729f4bf7982bdae"
+    },
+    {
       "path": "sql/connect-migrations.sql",
       "reviewed_sha256": "5be6f462e9bb09c540b6e9d5db6739e489b4ddf93f4bd23eb433bde17dad9e57"
     },
@@ -1296,6 +1332,10 @@
     {
       "path": "src/backend/Ebt.Platform.Api/CommercialScanner.cs",
       "reviewed_sha256": "ab769b9fec96794f53b85cf41b7b8f0f3a915d8350afe03a48bab8ad113e5029"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/ConnectImprovements.cs",
+      "reviewed_sha256": "72290eb6fbcfcf4d82fe478b75704fc6371ce16056a805bcb272be65418f4007"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
@@ -1330,8 +1370,20 @@
       "reviewed_sha256": "26c9ba8e170ee03e52d5a2437254ba8f9b4a4e9a56253566f69edd0f22256dd6"
     },
     {
+      "path": "src/backend/Ebt.Platform.Api/GraphMail.cs",
+      "reviewed_sha256": "a84b7b3fc27f5c0d68ec876eeacd18d4d08e3ee80c3eb7f837c756973656343c"
+    },
+    {
       "path": "src/backend/Ebt.Platform.Api/KeyProtection.cs",
       "reviewed_sha256": "9d895feef06982ae17b4f303b3f14c020c36ce07aed6067113cfde2304975a1c"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/MailEndpoints.cs",
+      "reviewed_sha256": "82b279af9626d3578a2e978e27f368ca4435dfe5d14299a2d3f6c02c9b5a6000"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/MailModels.cs",
+      "reviewed_sha256": "1c66ab1d44f003060bb0cde2d3cdc280ae6c672c3c88ff17afe4a72b3b1f8ffa"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/MessagingEndpoints.cs",
@@ -1400,6 +1452,22 @@
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261007114135_PersistentProtectedKeyRing.cs",
       "reviewed_sha256": "accf7bfed568928ae762a8240dd25131b30bf0fa1c00fefe9c3d8c82e49c9477"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009050643_ConnectMail.Designer.cs",
+      "reviewed_sha256": "ebad85ac8acce39b14da9079696289c5d33682d20dee0e8f8611b2958dd22dbf"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009050643_ConnectMail.cs",
+      "reviewed_sha256": "5c1c5afd1fd0c65e0cb10c3dbbe389b693f700e9448e10c68134f7f2019d4530"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009062431_CommercialProspection.Designer.cs",
+      "reviewed_sha256": "f1bf716b26b892a21cbf5ceec771688f6f6c2260a1366dc3744bf1f8307dadda"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/Migrations/20261009062431_CommercialProspection.cs",
+      "reviewed_sha256": "904861aa4b411b05dc7a760700e9ec5954a5f94aafb4cba7d80d9eb8cd4c4315"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/PlatformDbModelSnapshot.cs",
@@ -1486,6 +1554,10 @@
       "reviewed_sha256": "d958d59bc0dd9ccf3f740992d9f6c221b73225ccbe41f1f85b4ae122e6e02440"
     },
     {
+      "path": "src/frontend/e2e/mail.spec.ts",
+      "reviewed_sha256": "fe01435f34561e8ba9b63620d14e986fad88f7c71c878a981fea4cf794260307"
+    },
+    {
       "path": "src/frontend/e2e/navigation.spec.ts",
       "reviewed_sha256": "6866f12d762009bd8e4004055fe1aacf7cbf44fe705b6abdb9382540b923b553"
     },
@@ -1535,8 +1607,20 @@
       "reviewed_sha256": "e6db6e5fac1bc2a00e777d0ad0dd2743b1929e2e300e27ca7a0884e399611805"
     },
     {
+      "path": "src/frontend/src/CommercialTemplates.tsx",
+      "reviewed_sha256": "62bb346d5fe8e956c2968425b20c509288f27ad09a1d0d67415ad8095079268a"
+    },
+    {
+      "path": "src/frontend/src/MailPanel.tsx",
+      "reviewed_sha256": "403b6bd7f1f9abbb7a8a24fca9495474556d68125b31021be75d97936cff4773"
+    },
+    {
       "path": "src/frontend/src/PlatformApplications.tsx",
       "reviewed_sha256": "cd0f05829f8619331193fb8b4be75798a39cb587ee3df9d8ea529df758ab762e"
+    },
+    {
+      "path": "src/frontend/src/QuickSearch.tsx",
+      "reviewed_sha256": "066b31c1e6ee542c366e2817f5928ca4bf7b37def6b11f0749c26e76d1df68a8"
     },
     {
       "path": "src/frontend/src/api.ts",
@@ -1611,12 +1695,24 @@
       "reviewed_sha256": "fa0ab4897a251ca65d768559041e29766edf956d317943da063e5cc1fafd126c"
     },
     {
+      "path": "tests/WazVox.ProtocolTests/MailChecks.cs",
+      "reviewed_sha256": "1a5235e6b030dd822a7e3268dde62b6fe4eb3babd71aadadb7f300dde0bda9a6"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/MailSqlChecks.cs",
+      "reviewed_sha256": "8de81b55454665f3b55dd9af37fe4dfd7314817b61d89c12c8fedf788c68ddc2"
+    },
+    {
       "path": "tests/WazVox.ProtocolTests/Program.cs",
       "reviewed_sha256": "af2420009fd3f3d08c9fa01dc9a03c25ab07857608a3f7c540de1c863fc134c1"
     },
     {
       "path": "tests/WazVox.ProtocolTests/ProxyChecks.cs",
       "reviewed_sha256": "033e13919c56ed6f5970c443aa1bcd4a61c3e143e5269a2faa607a87559cec92"
+    },
+    {
+      "path": "tests/WazVox.ProtocolTests/RealScannerChecks.cs",
+      "reviewed_sha256": "deb702b8e7d24240e70f0592bbdf0b3a0a8e153661fd34545a64f5df42814bbf"
     },
     {
       "path": "tests/WazVox.ProtocolTests/ScannerChecks.cs",
@@ -1647,8 +1743,20 @@
       "reviewed_sha256": "49bfe3dc7a3b461559ad8d7f52d0a238f7e770f69f82d6a4b05c4a9390d20af2"
     },
     {
+      "path": "tests/integration/mail_connect_qa.py",
+      "reviewed_sha256": "6e2394d778604819c7e099ceef8c790573f4083aa4de628c23832eeeddae9cf7"
+    },
+    {
       "path": "tests/integration/platform_catalog_qa.py",
       "reviewed_sha256": "e5826cbc67d18ed67e3217825555fa7daf1bd0b96de943213fd338127207fbb1"
+    },
+    {
+      "path": "tests/integration/prepare_ci_fixture.py",
+      "reviewed_sha256": "2d3e8feda775f087ab38b4811edc45802ae51d797c472b1140e3ea72280ebbe1"
+    },
+    {
+      "path": "tests/integration/recovery_ci.py",
+      "reviewed_sha256": "52d5fd5f16ce09e992fbda48131a3c2f95baeada4dbe3b9135c0cc11dc0d2490"
     },
     {
       "path": "tests/integration/wazvox_qa.py",
@@ -1659,5 +1767,5 @@
       "reviewed_sha256": "cef3d95ec40648bba8c00cabc2efc78d6b2c148ac558e065d48ef155fb230e1c"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:12:53.451983+00:00"
+  "reviewed_at_utc": "2026-10-09T07:13:21.305353+00:00"
 }

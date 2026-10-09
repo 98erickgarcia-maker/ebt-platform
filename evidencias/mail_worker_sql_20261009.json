@@ -1,0 +1,40 @@
+{
+  "environment": "EbtPlatformQa_Review20261008",
+  "syntheticOnly": true,
+  "realEmailSent": false,
+  "passed": true,
+  "cases": [
+    {
+      "name": "Concurrent workers claim one job and reserve one quota slot",
+      "result": "passed"
+    },
+    {
+      "name": "Graph acceptance automatically records one CRM interaction without manual confirmation",
+      "result": "passed"
+    },
+    {
+      "name": "Daily cap persists and pauses without an extra send",
+      "result": "passed"
+    },
+    {
+      "name": "Per-send interval blocks an immediate second call",
+      "result": "passed"
+    },
+    {
+      "name": "Observed call timestamps respect interval across SQL reservations",
+      "result": "passed"
+    },
+    {
+      "name": "429 pauses persisted queue without automatic retry",
+      "result": "passed"
+    },
+    {
+      "name": "Uncertain provider result retains reservation and never resends",
+      "result": "passed"
+    },
+    {
+      "name": "Domain suppression is rechecked at dispatch, before HTTP",
+      "result": "passed"
+    }
+  ]
+}
