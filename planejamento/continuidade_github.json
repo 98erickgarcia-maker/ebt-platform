@@ -778,7 +778,7 @@
     },
     {
       "path": "docs/qualidade/REVISAO_COMERCIAL_MAIL_20261009.md",
-      "reviewed_sha256": "515860e1df3c9fe637f597a09189fa73ed941f79397cfff45a0f58973b993a02"
+      "reviewed_sha256": "03c078b10165311f3b36b7b4b888fb80a71b2536ba0d9262094125558b0b66a8"
     },
     {
       "path": "docs/qualidade/REVISAO_ENTERPRISE_E_CONTINUIDADE_20261007.md",
@@ -1315,7 +1315,7 @@
     },
     {
       "path": "sql/connect-commercial-20261009.sql",
-      "reviewed_sha256": "fc8755f411681562faa931cc76e8693d3a3805ec78e5d0da51abed89af42aeab"
+      "reviewed_sha256": "d196f1d37a7d1f9a29ed700a0f63753dd9523c9acd91626634d4c247a48a319d"
     },
     {
       "path": "sql/connect-migrations.sql",
@@ -1459,7 +1459,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261009050643_ConnectMail.cs",
-      "reviewed_sha256": "5c1c5afd1fd0c65e0cb10c3dbbe389b693f700e9448e10c68134f7f2019d4530"
+      "reviewed_sha256": "adc50b9596ca721aa1d636904392840f5f22b64b53b0a7db70b0b2a7b0acb4f7"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261009062431_CommercialProspection.Designer.cs",
@@ -1487,7 +1487,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Program.cs",
-      "reviewed_sha256": "4a61ed082818baef9d9a9a934d9dcf89c3d3c13569aeb53356f28d72e27b191d"
+      "reviewed_sha256": "0d838dac479e9556ef710576c0b1b2c535bbf40b7d5133ed7f1ea8331b57cb11"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
@@ -1752,7 +1752,7 @@
     },
     {
       "path": "tests/integration/prepare_ci_fixture.py",
-      "reviewed_sha256": "2d3e8feda775f087ab38b4811edc45802ae51d797c472b1140e3ea72280ebbe1"
+      "reviewed_sha256": "47fcf7cae66ae5f9bfe32c13e3b335f8ed112f923b330ee18638d9eacc7ee024"
     },
     {
       "path": "tests/integration/recovery_ci.py",
@@ -1771,5 +1771,5 @@
       "reviewed_sha256": "29a4daa21af5d49e4b1781d63498ca5d48570f5696d6c39bbeb8cb896ae26967"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T07:25:23.753246+00:00"
+  "reviewed_at_utc": "2026-10-09T07:35:59.842782+00:00"
 }

@@ -199,7 +199,7 @@ IF NOT EXISTS (
     WHERE [MigrationId] = N'20261009050643_ConnectMail'
 )
 BEGIN
-    ALTER SECURITY POLICY [ebt_connect].[tenant_barrier]
+    EXEC(N'ALTER SECURITY POLICY [ebt_connect].[tenant_barrier]
     ADD FILTER PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailDrafts],
     ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailDrafts] AFTER INSERT,
     ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailDrafts] AFTER UPDATE,
@@ -229,7 +229,7 @@ BEGIN
     ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] AFTER INSERT,
     ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] AFTER UPDATE,
     ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] BEFORE UPDATE,
-    ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] BEFORE DELETE;
+    ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] BEFORE DELETE;');
 END;
 
 IF NOT EXISTS (

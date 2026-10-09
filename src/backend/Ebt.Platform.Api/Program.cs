@@ -2,6 +2,8 @@ using Ebt.Platform.Api;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System.Threading.RateLimiting;
 using System.Text.Json;
 
@@ -85,6 +87,18 @@ if (args.Contains("--init-qa"))
     if (!sql.InitialCatalog.StartsWith("EbtPlatformQa_", StringComparison.Ordinal) || sql.DataSource is not ("localhost" or "." or "127.0.0.1")) throw new InvalidOperationException("Inicialização QA exige banco local exclusivo EbtPlatformQa_.");
     using var scoped = app.Services.CreateScope(); var db = scoped.ServiceProvider.GetRequiredService<PlatformDb>();
     scoped.ServiceProvider.GetRequiredService<AccessScope>().System = true;
+    if (builder.Configuration["Qa:ReviewedCommercialScript"] is { Length: > 0 } reviewedCommercialScript)
+    {
+        var applied = await db.Database.GetAppliedMigrationsAsync();
+        if (!applied.Contains("20261009050643_ConnectMail"))
+            await db.GetService<IMigrator>().MigrateAsync("20261007114135_PersistentProtectedKeyRing");
+        var reviewedSql = await File.ReadAllTextAsync(reviewedCommercialScript);
+        if (!reviewedSql.StartsWith("-- EBT-only schema.", StringComparison.Ordinal)) throw new InvalidOperationException("Unexpected commercial QA script.");
+        for (var repeat = 0; repeat < 2; repeat++)
+            foreach (var batch in System.Text.RegularExpressions.Regex.Split(reviewedSql, @"^\s*GO\s*$", System.Text.RegularExpressions.RegexOptions.Multiline | System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                if (!string.IsNullOrWhiteSpace(batch)) await db.Database.ExecuteSqlRawAsync(batch);
+        Console.WriteLine("PASS Reviewed commercial SQL applied twice to exclusive synthetic QA database.");
+    }
     await db.Database.MigrateAsync();
     if (builder.Configuration["Qa:CatalogScript"] is { Length: > 0 } catalogScript)
     {

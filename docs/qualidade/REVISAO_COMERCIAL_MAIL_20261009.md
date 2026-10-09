@@ -38,3 +38,5 @@ API/SQL: 12 cenários aprovados na massa local EbtPlatformQa_Review20261008. Pro
 Foi encontrada e corrigida a disputa entre reserva e quota: outra réplica deve aguardar uma operação processing antes de reservar ou pausar por limite. Recuperação de processing expirada pausa a fila e mantém unknown sem reenvio. Testes do Mail original: 18 casos focais aprovados; dois testes dependentes de MongoDB parado não são prova do produto SQL adaptado.
 
 Orçamento 180h de entregas + 20h de reserva preservado; horas reais não estimadas como realizadas.
+
+A publicação exercitou o script SQL idempotente e identificou resolução antecipada dos objetos na regra RLS. O ALTER SECURITY POLICY foi encapsulado em SQL dinâmico. Novo ensaio local migrou uma base sintética exclusiva até a versão anterior e executou o script revisado duas vezes, sem duplicar tabelas/migrations. O mesmo caminho foi acrescentado ao CI antes de publicar; a migração EF comum isoladamente não cobria esse defeito.

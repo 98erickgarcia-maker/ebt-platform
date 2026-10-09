@@ -256,7 +256,7 @@ namespace Ebt.Platform.Api.Migrations
                 columns: new[] { "TenantId", "CreationKey" },
                 unique: true);
             migrationBuilder.Sql("""
-ALTER SECURITY POLICY [ebt_connect].[tenant_barrier]
+EXEC(N'ALTER SECURITY POLICY [ebt_connect].[tenant_barrier]
 ADD FILTER PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailDrafts],
 ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailDrafts] AFTER INSERT,
 ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailDrafts] AFTER UPDATE,
@@ -286,7 +286,7 @@ ADD FILTER PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[
 ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] AFTER INSERT,
 ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] AFTER UPDATE,
 ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] BEFORE UPDATE,
-ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] BEFORE DELETE;
+ADD BLOCK PREDICATE [ebt_connect].[tenant_guard]([TenantId]) ON [ebt_connect].[MailTemplates] BEFORE DELETE;');
 """);
         }
 

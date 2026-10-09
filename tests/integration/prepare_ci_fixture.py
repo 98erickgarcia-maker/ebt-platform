@@ -16,7 +16,7 @@ secret = secrets.token_hex(32)
 database = 'EbtPlatformQa_Ci_'+run
 config = {'ConnectionStrings':{'Platform':f'Server=localhost;Database={database};User Id=sa;Password={password};Encrypt=True;TrustServerCertificate=True'},
           'Platform':{'KeyPath':str(runtime/'keys'),'RunWorkers':True},
-          'Qa':{'Password':'EbtQa9!'+secret[:24],'AccessFile':str(runtime/'qa-access.json'),'SqlReport':str(root/'evidencias/generic_sql_qa.json'),'AppSecret':secret,'VerifyToken':'verify-'+secret,'CatalogScript':str(root/'sql/platform-catalog.sql')},
+          'Qa':{'Password':'EbtQa9!'+secret[:24],'AccessFile':str(runtime/'qa-access.json'),'SqlReport':str(root/'evidencias/generic_sql_qa.json'),'AppSecret':secret,'VerifyToken':'verify-'+secret,'CatalogScript':str(root/'sql/platform-catalog.sql'),'ReviewedCommercialScript':str(root/'sql/connect-commercial-20261009.sql')},
           'Documents':{'ScannerEnabled':True,'ScannerHost':'127.0.0.1','ScannerPort':3310}}
 (runtime/'local-config.json').write_text(json.dumps(config),encoding='utf-8')
 print('PASS Dedicated synthetic CI configuration prepared; no cloud credential.')

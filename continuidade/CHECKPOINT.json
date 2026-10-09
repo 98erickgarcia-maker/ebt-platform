@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T07:25:26.175028+00:00",
+  "created_at_utc": "2026-10-09T07:36:02.312175+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "eb711537a43a0101fce92ee678dd659b04d227bb",
-  "base": "eb711537a43a0101fce92ee678dd659b04d227bb",
+  "parent_checkpoint": "9aefbffe599134e8a7b34315617270e90e6dc365",
+  "base": "9aefbffe599134e8a7b34315617270e90e6dc365",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -782,7 +782,7 @@
     },
     {
       "path": "docs/qualidade/REVISAO_COMERCIAL_MAIL_20261009.md",
-      "sha256": "515860e1df3c9fe637f597a09189fa73ed941f79397cfff45a0f58973b993a02"
+      "sha256": "03c078b10165311f3b36b7b4b888fb80a71b2536ba0d9262094125558b0b66a8"
     },
     {
       "path": "docs/qualidade/REVISAO_ENTERPRISE_E_CONTINUIDADE_20261007.md",
@@ -1126,7 +1126,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "857254bfb95261b9e77103e58f6762abdc4970d0f70c64903f025f72f333ff9f"
+      "sha256": "d4d22abb83a713d862033e7c5a5a77400087567ee598c3a067bf9f67e4c0dff2"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1318,7 +1318,7 @@
     },
     {
       "path": "sql/connect-commercial-20261009.sql",
-      "sha256": "fc8755f411681562faa931cc76e8693d3a3805ec78e5d0da51abed89af42aeab"
+      "sha256": "d196f1d37a7d1f9a29ed700a0f63753dd9523c9acd91626634d4c247a48a319d"
     },
     {
       "path": "sql/connect-migrations.sql",
@@ -1462,7 +1462,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261009050643_ConnectMail.cs",
-      "sha256": "5c1c5afd1fd0c65e0cb10c3dbbe389b693f700e9448e10c68134f7f2019d4530"
+      "sha256": "adc50b9596ca721aa1d636904392840f5f22b64b53b0a7db70b0b2a7b0acb4f7"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Migrations/20261009062431_CommercialProspection.Designer.cs",
@@ -1490,7 +1490,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Program.cs",
-      "sha256": "4a61ed082818baef9d9a9a934d9dcf89c3d3c13569aeb53356f28d72e27b191d"
+      "sha256": "0d838dac479e9556ef710576c0b1b2c535bbf40b7d5133ed7f1ea8331b57cb11"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
@@ -1754,7 +1754,7 @@
     },
     {
       "path": "tests/integration/prepare_ci_fixture.py",
-      "sha256": "2d3e8feda775f087ab38b4811edc45802ae51d797c472b1140e3ea72280ebbe1"
+      "sha256": "47fcf7cae66ae5f9bfe32c13e3b335f8ed112f923b330ee18638d9eacc7ee024"
     },
     {
       "path": "tests/integration/recovery_ci.py",
