@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T02:02:20.573924+00:00",
+  "created_at_utc": "2026-10-09T02:04:15.018918+00:00",
   "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
-  "parent_checkpoint": "99f40faf1431ed35e4ad46a47dd216da7e78ee62",
-  "base": "99f40faf1431ed35e4ad46a47dd216da7e78ee62",
-  "source_head": "9f1694b2952ebad38f93e90d70df1aa18c8229dd",
+  "parent_checkpoint": "cf2066472bae474ddf610488816e99b95cea9830",
+  "base": "cf2066472bae474ddf610488816e99b95cea9830",
+  "source_head": "8cc51bf32d0b06ed28d78a1cce0000aa36b4ff47",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
@@ -30,7 +30,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "ddb39513dfcd19083cf07169177cc60e9dbe6dbaa60d584a8ac4546fdd85b26b"
+      "sha256": "f1cc98010cd1d8173685ecf5fb8848b3cb91959406f7b66fc4cb4eb038be94a5"
     },
     {
       "path": ".gitignore",
@@ -1058,7 +1058,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "aaa2e9242184a7b38e612b0122e672bffd7ff7c93637d3553731b6fce34d73f7"
+      "sha256": "fd9f2651cd400dd5afb1ed9da51679f0cb9ffe362db2f65c45aea78f695e346a"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
