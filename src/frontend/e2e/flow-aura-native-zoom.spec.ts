@@ -66,13 +66,13 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
     await expect(page.locator(".loading-bar")).not.toBeVisible();
     const original = await page.evaluate(() => ({ width: innerWidth, dpr: devicePixelRatio }));
     const zoom = async (factor: number) => {
-      const actual = await worker.evaluate(`async () => {
+      const actual = await worker.evaluate(`(async () => {
         const tabs = await chrome.tabs.query({ url: 'http://127.0.0.1:5186/*' });
         if (tabs.length !== 1) throw new Error('Expected exactly one isolated QA tab');
         await chrome.tabs.setZoomSettings(tabs[0].id, {mode: 'automatic', scope: 'per-tab'});
         await chrome.tabs.setZoom(tabs[0].id, ${factor});
         return await chrome.tabs.getZoom(tabs[0].id);
-      }`);
+      })()`);
       expect(actual).toBe(factor);
       await expect.poll(() => page.evaluate(() => devicePixelRatio)).toBeCloseTo(original.dpr * factor, 1);
       const measured = await page.evaluate(() => ({ width: innerWidth, height: innerHeight, dpr: devicePixelRatio }));
