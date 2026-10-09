@@ -34,7 +34,7 @@
     "aceite operacional do recorte Connect"
   ],
   "fallback_prompt": "prompts/RETOMAR_EBT_ENTERPRISE.md",
-  "checkpoint_configuration": "planejamento/continuidade_github.json",
+  "checkpoint_configuration": "planejamento/continuidade_mcp_github.json",
   "local_receipt": "tmp/continuidade/ultimo_checkpoint.json",
   "automatic_chat_transfer": false,
   "automatic_new_content_approval": false,
@@ -115,5 +115,19 @@
     "completed": 0,
     "purchase_authorized": false,
     "automatic_retry_after_cooldown": true
+  },
+  "engineering_integrations": {
+    "evidence": "docs/operacao/CLAUDE_MCP_EMERGENT_20261009.md",
+    "n8n_public_mcp_gateway": "https_domain_tls_verified",
+    "mcp_url": "https://mcp.ebtenterprise.com.br/mcp-server/http",
+    "certificate_renewal": "dry_run_verified_timer_active_first_real_renewal_pending",
+    "claude_oauth": "pending_action_time_authorization",
+    "emergent_credentials_encrypted": 2,
+    "emergent_paid_api_tested": false,
+    "mcp_ebt_dns": "public_resolution_verified",
+    "vps_watch_minutes": 15,
+    "chat_ai_heartbeat": "paused_to_save_credits",
+    "automatic_chat_alerts": false,
+    "product_gate_promotion": false
   }
 }

@@ -1,0 +1,8 @@
+[Unit]
+Description=Renew EBT MCP HTTPS certificate
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/ebt-engineering/certbot-venv/bin/certbot renew --cert-name mcp.ebtenterprise.com.br --non-interactive --no-random-sleep-on-renew --config-dir /etc/letsencrypt-ebt-mcp --work-dir /var/lib/letsencrypt-ebt-mcp --logs-dir /var/log/letsencrypt-ebt-mcp --deploy-hook /opt/ebt-engineering/mcp-gateway/reload-after-renew.sh

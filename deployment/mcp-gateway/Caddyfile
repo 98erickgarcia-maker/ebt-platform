@@ -1,0 +1,9 @@
+{
+	auto_https disable_redirects
+	admin off
+}
+
+https://mcp.ebtenterprise.com.br {
+	tls /etc/letsencrypt-ebt-mcp/live/mcp.ebtenterprise.com.br/fullchain.pem /etc/letsencrypt-ebt-mcp/live/mcp.ebtenterprise.com.br/privkey.pem
+	reverse_proxy 127.0.0.1:5678
+}

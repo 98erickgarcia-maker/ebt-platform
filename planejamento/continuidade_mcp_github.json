@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "remote": "origin",
+  "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
+  "branch": "codex/mcp-linux-reviewed-20261009",
+  "initial_base_ref": "e5acff9c4e3b689941ea651c75443c95016af5ae",
+  "hash_mode": "SHA-256; LF for UTF-8 text, unchanged bytes for pinned deployment files",
+  "automated_approval": false,
+  "files": [
+    {
+      "path": "deployment/n8n/compose.yaml",
+      "reviewed_sha256": "9d87c70a7fbb3d6adf56f4ecfb975fadf2d8c8632496977dc66470cc5ce3febc"
+    },
+    {
+      "path": "deployment/mcp-gateway/Caddyfile",
+      "reviewed_sha256": "3e582ae9874776cb0e9295dfb70268aacda4e5603d36f1ea0b9f2bcae319786c",
+      "binary_sha256": "3e582ae9874776cb0e9295dfb70268aacda4e5603d36f1ea0b9f2bcae319786c"
+    },
+    {
+      "path": "deployment/mcp-gateway/compose.yaml",
+      "reviewed_sha256": "3863835ae356a0e5ac7768cfa6e83ee9f96877b52c22e299dbfaf325a0aa1bbc"
+    },
+    {
+      "path": "deployment/mcp-gateway/ebt-mcp-cert-renew.service",
+      "reviewed_sha256": "81d0bc4765193551bef4d8cf003e4c06ac150e45213853a019dc70f081e07892",
+      "binary_sha256": "81d0bc4765193551bef4d8cf003e4c06ac150e45213853a019dc70f081e07892"
+    },
+    {
+      "path": "deployment/mcp-gateway/ebt-mcp-cert-renew.timer",
+      "reviewed_sha256": "34aef38de3c6a26d08f8a5570e8254e61b2fdb3a9c2e3ceaa627febbb3f16a81",
+      "binary_sha256": "34aef38de3c6a26d08f8a5570e8254e61b2fdb3a9c2e3ceaa627febbb3f16a81"
+    },
+    {
+      "path": "deployment/mcp-gateway/reload-after-renew.sh",
+      "reviewed_sha256": "6fe9bafaa5412d2e335e62021b583589bdb8e485ac3864ed4ac01e0e6de711bd",
+      "binary_sha256": "6fe9bafaa5412d2e335e62021b583589bdb8e485ac3864ed4ac01e0e6de711bd"
+    },
+    {
+      "path": "docs/operacao/CLAUDE_MCP_EMERGENT_20261009.md",
+      "reviewed_sha256": "eec27cce3d885396eb4dba0f873c38b44a5602985060083ff42ff94c3188acaf"
+    },
+    {
+      "path": "docs/operacao/N8N_MODELOS_GITHUB_EBT.md",
+      "reviewed_sha256": "c9fc2dfa13c777bd2eb5671c0f8e519569b3dff19ca9cc30b47dcc01c0d3d212"
+    },
+    {
+      "path": "planejamento/estado_continuidade.json",
+      "reviewed_sha256": "56f07f171b114b23329d0792464d7416a1878d42ab6412199f10f9000d0ce85e"
+    }
+  ],
+  "reviewed_at_utc": "2026-10-09T23:56:28.416461+00:00"
+}
