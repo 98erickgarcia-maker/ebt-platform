@@ -9,7 +9,7 @@ EBT Enterprise e a familia; EBT Platform e a fundacao comum. Connect esta dispon
 - Versao 0.2.0, fonte [18a454c](https://github.com/98erickgarcia-maker/ebt-platform/commit/18a454c725478819ab79a3f032e4321ca0e74d76).
 - Revisao Azure `ebt-connect-hml--platform020-18a454c`, saudavel e recebendo o trafego no modo Single.
 - Imagem `acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:3cbba51b9440fff7f042f650d8396dd6a9eca218cf2c37d115450f39ed9d6ad1`, compilada do pacote revisado, sem runtime privado.
-- [Prova online](evidencias/platform_online_20261009.json): 26 checks HTTP, navegador desktop/mobile, sessao anterior aceita e IDs dos contatos consultados preservados. Telas privadas inspecionadas; nenhum novo envio ou cadastro de cliente.
+- [Prova online](evidencias/platform_online_20261009.json): 26 checks HTTP, navegador desktop/mobile, login novo aprovado, sessao anterior aceita e IDs dos contatos consultados preservados. Telas privadas inspecionadas; nenhum novo envio ou cadastro de cliente.
 - [Prova SQL Azure](evidencias/platform_azure_apply_20261009.json): catalogo aditivo `ebt_platform` no banco existente `sqldb-crm-casst-dev-v2`. Estruturas e contagens das outras 110 tabelas permaneceram iguais. Isso nao e comparacao completa do conteudo de todas as linhas.
 - Identidade da aplicacao le somente o catalogo da Platform; nao recebeu escrita/DDL ou acesso aos schemas de outros produtos. Connect continua em `ebt_connect`, sem mover dados ou trocar IDs.
 - QA local: 19/19 navegador, 8/8 catalogo SQL/HTTP, 27/27 regressao Connect; SQL aplicado duas vezes sem duplicatas. Build e continuidade GitHub aprovados para a fonte publicada.
@@ -35,7 +35,7 @@ Configuracao anterior esta em `tmp/platform-release/app-before.private.json`, fo
 az containerapp update --resource-group rg-crm-casst-prod --name ebt-connect-hml --image acrcrmcasstprod2608.azurecr.io/ebt-connect@sha256:1f8deb8c1fb948441c3f56942be16137d724535ed521ad62ec97f171f32af815 --revision-suffix rollback-015-20261009
 ```
 
-Confirme latestReady, HTTPS, login e leitura depois do retorno. A area SQL aditiva pode permanecer; nao apagar catalogo nem restaurar/excluir o banco para voltar a imagem. Nao reativar r015 sem a configuracao corrigida de proxies, pois o loop HTTPS foi observado nessa configuracao antiga.
+O retorno retira as correcoes incrementais posteriores a 0.1.5 e exige nova avaliacao de seguranca do recorte. Confirme latestReady, HTTPS, login e leitura depois do retorno. A area SQL aditiva pode permanecer; nao apagar catalogo nem restaurar/excluir o banco para voltar a imagem. Nao reativar r015 sem a configuracao corrigida de proxies, pois o loop HTTPS foi observado nessa configuracao antiga.
 
 Os peers do ingresso Azure podem mudar: se houver novo loop, observar os peers com a rota temporaria protegida, revisar enderecos exatos e remover a observacao depois. Nao habilitar confianca universal em headers.
 

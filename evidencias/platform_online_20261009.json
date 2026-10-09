@@ -191,5 +191,14 @@
     "auditRemoved": true,
     "previousAddressesPreserved": true,
     "limit": "Azure proxy peer addresses may change; reobserve with temporary protected audit before altering the exact allowlist"
+  },
+  "freshLogin": {
+    "utc": "2026-10-09T03:58:01.967Z",
+    "passed": true,
+    "version": "0.2.0",
+    "freshBrowserLogin": true,
+    "platformCatalog": true,
+    "authenticationSessionCreated": true,
+    "businessDataWrites": false
   }
 }
