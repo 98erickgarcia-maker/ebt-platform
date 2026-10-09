@@ -1,0 +1,88 @@
+/* FLOW + AURA audit: preserve identity, expose all operational information. */
+/* Shared shell: long contact names must not push page actions outside the viewport. */
+.page-heading { flex-wrap: wrap; }
+.page-heading > div:first-child { flex: 1 1 20rem; min-width: 0; }
+.page-heading h1 { overflow-wrap: anywhere; }
+.heading-actions { flex-wrap: wrap; min-width: 0; }
+
+/* A fixed sidebar must remain usable with short windows and enlarged content. */
+.sidebar { overflow-y: auto; overscroll-behavior: contain; }
+.sidebar nav, .sidebar .brand, .sidebar-bottom { flex-shrink: 0; }
+.sidebar-bottom > div { min-width: 0; overflow-wrap: anywhere; }
+.sidebar :focus-visible { outline: 3px solid #ff9a5e; outline-offset: 3px; }
+
+.flow-contact-360 { --contact-panel-inset: clamp(16px, 2vw, 24px); }
+.flow-contact-360 :is(h2, h3, p, strong, dd, dt, .contact-shortcuts a),
+.flow-aura-daily :is(.task-row strong, .metrics strong) {
+  overflow-wrap: anywhere;
+}
+.flow-contact-360 .card > header { flex-wrap: wrap; }
+.flow-contact-360 .card > header > *,
+.flow-contact-360 .timeline article > div,
+.flow-contact-360 .task-row > div,
+.flow-aura-daily .task-row > div { min-width: 0; }
+.flow-contact-360 .task-row,
+.flow-aura-daily .task-row { flex-wrap: wrap; }
+.flow-contact-360 .task-row > div,
+.flow-aura-daily .task-row > div { flex: 1 1 12rem; }
+.flow-contact-360 :is(button, a),
+.flow-aura-daily .task-row button { max-width: 100%; overflow-wrap: anywhere; }
+.flow-contact-360 .next-action strong { display: block; }
+
+/* Keep controls and reading text away from the clipped, rounded card boundary. */
+.flow-contact-360 .commercial-templates {
+  padding: 0 var(--contact-panel-inset) 22px;
+}
+.flow-contact-360 .commercial-templates > header {
+  margin-inline: calc(-1 * var(--contact-panel-inset));
+  margin-bottom: 16px;
+}
+.flow-contact-360 .commercial-templates :is(input, textarea, select) {
+  min-width: 0;
+  max-width: 100%;
+  border-color: #77716b;
+}
+.flow-contact-360 .qualification-detail {
+  padding: 18px var(--contact-panel-inset);
+}
+.flow-contact-360 .qualification-detail summary {
+  min-height: 24px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.flow-contact-360 .qualification-detail[open] summary { margin-bottom: 16px; }
+.flow-contact-360 .qualification-detail dl {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+}
+.flow-contact-360 summary:focus-visible {
+  outline: 3px solid #9a3a09;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.flow-aura-daily .flow-hero-cta:focus-visible {
+  outline: 3px solid #fffdfa;
+  outline-offset: 4px;
+}
+@media (max-width: 480px) {
+  .flow-contact-360 .qualification-detail dl { grid-template-columns: minmax(0, 1fr); }
+  .flow-contact-360 .qualification-detail dd { margin-bottom: 10px; }
+}
+@media print {
+  /* Global print CSS hides buttons; these buttons ALSO contain essential data. */
+  .flow-aura-daily .metrics > button,
+  .flow-aura-daily .stage-list > button {
+    display: block !important;
+    background: #fff !important;
+    color: #111214 !important;
+    border: 1px solid #77716b;
+    box-shadow: none;
+    transform: none;
+    break-inside: avoid;
+  }
+  .flow-aura-daily .stage-list > button { display: flex !important; }
+  .flow-aura-daily .metrics svg,
+  .flow-aura-daily .welcome-graphic,
+  .flow-aura-daily .flow-section-heading > span { display: none !important; }
+  .flow-aura-daily .welcome-card .eyebrow,
+  .flow-aura-daily .flow-hero-status { color: #333437 !important; }
+}
