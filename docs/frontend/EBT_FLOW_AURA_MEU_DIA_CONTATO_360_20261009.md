@@ -20,3 +20,14 @@ Não integrar esta branch diretamente em `main`. A publicação existente pode n
 5. Revisão cruzada independente e aceite visual ainda são gates separados. CI verde não é homologação de produção.
 
 **Sem merge, deploy, serviço externo ou envio de mensagem nesta entrega.**
+
+## Evidência visual reproduzível
+
+A suíte Playwright salva quatro capturas do **ambiente QA sintético** em `tmp/e2e/visual-review/`:
+
+- `flow-meu-dia-1366.png` e `flow-meu-dia-390.png`
+- `aura-contato-360-1366.png` e `aura-contato-360-390.png`
+
+O workflow `Build EBT Connect` publica essas imagens no artefato `flow-aura-visual-review` (retenção de 7 dias). Somente dados sintéticos são usados; não anexar capturas de produção. O relatório completo de navegador permanece em `connect-qa-results`.
+
+**Gate de inspeção:** conferir legibilidade, ordenação, ausência de cortes/sobreposições, contraste e acessos reais; registrar um parecer ligado ao SHA e ao ID da execução. A geração de capturas **não equivale** a revisão visual independente.

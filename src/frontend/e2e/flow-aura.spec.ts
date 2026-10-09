@@ -20,12 +20,22 @@ test("FLOW + AURA mantém navegação, Contato 360 e reflow 320/390/768/1366", a
   await expect(page.locator(".flow-aura-daily")).toBeVisible();
   await expect(page.locator(".flow-aura-daily .metrics > button")).toHaveCount(4);
   await expect(page.getByRole("button", { name: /Ver minha agenda/ })).toBeVisible();
+  // All screenshots are generated against the isolated synthetic QA database.
+  const reviewDir = path.join(root, "tmp/e2e/visual-review");
+  fs.mkdirSync(reviewDir, { recursive: true });
   for (const width of [320, 390, 768, 1366]) {
     await page.setViewportSize({ width, height: 900 });
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       "Meu dia sem rolagem horizontal global em " + width + "px",
     ).toBe(true);
+    if (width === 390 || width === 1366) {
+      await page.screenshot({
+        path: path.join(reviewDir, "flow-meu-dia-" + width + ".png"),
+        fullPage: true,
+        animations: "disabled",
+      });
+    }
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
@@ -45,6 +55,8 @@ test("FLOW + AURA mantém navegação, Contato 360 e reflow 320/390/768/1366", a
   await expect(page.getByRole("heading", { name, level: 1 })).toBeVisible();
   await expect(page.getByRole("region", { name: "Panorama do contato" })).toBeVisible();
   await expect(page.locator(".detail-grid.flow-contact-360")).toBeVisible();
+  await expect(page.locator(".contact-360-facts > div")).toHaveCount(3);
+  await expect(page.getByRole("region", { name: "Panorama do contato" })).toContainText("A definir");
 
   for (const width of [320, 390, 768, 1366]) {
     await page.setViewportSize({ width, height: 900 });
@@ -52,6 +64,13 @@ test("FLOW + AURA mantém navegação, Contato 360 e reflow 320/390/768/1366", a
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       "Contato 360 sem rolagem horizontal global em " + width + "px",
     ).toBe(true);
+    if (width === 390 || width === 1366) {
+      await page.screenshot({
+        path: path.join(reviewDir, "aura-contato-360-" + width + ".png"),
+        fullPage: true,
+        animations: "disabled",
+      });
+    }
   }
 
   await page.getByRole("button", { name: /Voltar aos relacionamentos/ }).click();

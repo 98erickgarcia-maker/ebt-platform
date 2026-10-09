@@ -29,7 +29,7 @@
     },
     {
       "path": ".github/workflows/validate.yml",
-      "reviewed_sha256": "7a7c4e9b094383e825ae4e371d5d37a75f80ac1976ff336f300b77ca54c6650f"
+      "reviewed_sha256": "575004d00ad68c37111e5d52b3128806671b9d0ea23a2ef78a54a39841a73f30"
     },
     {
       "path": ".gitignore",
@@ -1788,12 +1788,12 @@
     },
     {
       "path": "src/frontend/e2e/flow-aura.spec.ts",
-      "reviewed_sha256": "3ae89f679ba6973e6e93c42e2cb898bb5d83650fd04ccb0f6aba4c923e4f7fae"
+      "reviewed_sha256": "73b7ff135d2c055c64f4a3e0cbf3631b997ec1e8a010c24d56f53763c4ec803d"
     },
     {
       "path": "docs/frontend/EBT_FLOW_AURA_MEU_DIA_CONTATO_360_20261009.md",
-      "reviewed_sha256": "d0b193d93ddbed55c4a83f9b61405d0b0aa8791a2c8fc2911afc2adc59568124"
+      "reviewed_sha256": "92ebbf2313927fbb9bc87e08019bf0ee8ed3af8c7cd01a2fcb6f84c0a6124418"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T17:38:47.303Z"
+  "reviewed_at_utc": "2026-10-09T17:56:43.575Z"
 }
