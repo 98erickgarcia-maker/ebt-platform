@@ -2116,3 +2116,28 @@ select {
   .contact-360-facts dt { color: #444; }
   .contact-360-facts > div { border-color: #ddd; }
 }
+
+/* EBT Flow: isolated visual theme, no change to Connect global tokens. */
+.flow-workspace {min-width:0;display:grid;gap:24px}
+.flow-intro {display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:radial-gradient(circle at 89% 20%,#533220,#111214 55%,#1b1d20);color:#f6f6f4;border-radius:32px 16px 42px 16px;padding:clamp(22px,4vw,42px);box-shadow:0 20px 45px #1112141a}
+.flow-intro h2 {font-size:clamp(25px,3.2vw,37px);letter-spacing:-.025em;max-width:530px;line-height:1.17;color:#fffdfa;margin:12px 0}
+.flow-intro p {max-width:560px;color:#ede5de;line-height:1.55}
+.flow-intro .eyebrow {color:#ffc197}
+.flow-status {border-radius:999px;border:1px solid #ff853e80;padding:10px 16px;color:#ffad74;font-size:12px}
+.flow-create,.flow-list {background:#fffdfa;border:1px solid #e6e0d9;border-radius:24px;padding:clamp(16px,3vw,26px);min-width:0}
+.flow-create label {display:block;font-weight:650;margin-bottom:12px}
+.flow-create>div {display:flex;flex-wrap:wrap;gap:12px}
+.flow-create input {flex:1 1 260px;min-width:0;min-height:44px;border:1px solid #cfcac5;border-radius:12px;padding:11px 14px}
+.flow-create button {min-height:44px;border-radius:999px}
+.flow-list {display:grid;gap:14px}
+.flow-list>h3 {margin:0 0 4px}
+.flow-record {min-width:0;border:1px solid #e6e0d9;border-radius:20px;padding:18px;background:#fff}
+.flow-record-header {display:flex;justify-content:space-between;gap:10px;align-items:center}
+.flow-record h4 {font-size:17px;margin:14px 0 7px;overflow-wrap:anywhere}
+.flow-record>p {color:#6e6c69;font-size:12px}
+.flow-actions {display:flex;flex-direction:column;gap:12px;margin-top:16px;align-items:flex-start}
+.flow-actions label {width:100%;font-weight:600}
+.flow-actions textarea {display:block;width:100%;min-height:80px;border-radius:12px;border:1px solid #cfcac5;margin-top:8px;padding:12px}
+.flow-actions button {border-radius:999px;min-height:44px}
+@media(max-width:680px){.flow-intro{border-radius:24px 12px 30px 12px}.flow-status{font-size:11px}.flow-create button{width:100%}}
+@media(prefers-reduced-motion:reduce){.flow-workspace *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
