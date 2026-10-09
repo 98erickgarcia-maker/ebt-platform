@@ -1,0 +1,53 @@
+name: EBT PR Audit
+on:
+  pull_request:
+    paths:
+      - scripts/ops/pr_audit.py
+      - tests/ops/test_pr_audit.py
+      - .github/workflows/ebt-pr-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ebt-pr-audit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  offline-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - name: Compile audit code
+        run: python -m py_compile scripts/ops/pr_audit.py tests/ops/test_pr_audit.py
+      - name: Run offline regressions including 1000 generated scenarios
+        run: python -m unittest discover -s tests/ops -p test_pr_audit.py -v
+  read-only-inventory:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: offline-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Inventory EBT PR metadata only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ops/pr_audit.py --repo ebt-platform --output pr-audit.json
+      - name: Preserve partial or complete collection
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ebt-pr-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: pr-audit.json
+          if-no-files-found: warn
+          retention-days: 7
