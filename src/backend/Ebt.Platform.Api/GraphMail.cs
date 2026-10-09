@@ -33,7 +33,13 @@ public static class GraphMail
             };
             using var response = await client.SendAsync(request, ct);
             if (!response.IsSuccessStatusCode) return new("failed", "graph_authentication_failed");
-            using var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync(ct)); token = payload.RootElement.GetProperty("access_token").GetString()!;
+            using var payload = JsonDocument.Parse(await response.Content.ReadAsStringAsync(ct));
+            if (payload.RootElement.ValueKind != JsonValueKind.Object ||
+                !payload.RootElement.TryGetProperty("access_token", out var accessToken) ||
+                accessToken.ValueKind != JsonValueKind.String ||
+                string.IsNullOrWhiteSpace(accessToken.GetString()))
+                return new("failed", "graph_authentication_failed");
+            token = accessToken.GetString()!;
         }
         catch (Exception ex) when (ex is HttpRequestException or OperationCanceledException or JsonException or KeyNotFoundException) { return new("failed", "graph_authentication_failed"); }
         var attachments = attachment == null ? Array.Empty<object>() : [new Dictionary<string, object> { ["@odata.type"] = "#microsoft.graph.fileAttachment", ["name"] = attachment.FileName, ["contentType"] = attachment.MediaType, ["contentBytes"] = Convert.ToBase64String(attachment.Content) }];
