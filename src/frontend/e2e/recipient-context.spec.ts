@@ -14,6 +14,7 @@ async function login(page: Page) {
   await page.getByLabel("Senha", { exact: true }).fill(qa.password);
   await reserveQaAuthOperation();
   await page.getByRole("button", { name: "Entrar", exact: true }).click();
+  await page.getByRole("button", { name: "Acessar Connect", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Meu dia", exact: true }),
   ).toBeVisible({ timeout: 20000 });

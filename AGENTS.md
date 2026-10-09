@@ -15,3 +15,7 @@ Retomada no ChatGPT normal usa prompts/RETOMAR_EBT_ENTERPRISE.md e acesso efetiv
 ## Execução autorizada em 08/10/2026
 
 O pedido posterior autoriza verificar atualizações do GitHub e implementar as próximas correções em partes seguras. Executar incrementos do Connect revisados e testados em checkout isolado, preservando fontes preexistentes. Não ampliar módulos, promover gates, migrar produção ou fazer deploy por inferência. Manter 180h + 20h e salvar pelo checkpoint com SHA remoto confirmado.
+
+## Autorizacao explicita de 09/10/2026
+
+O usuario pediu area exclusiva da EBT Platform no banco compartilhado e publicacao online. Esse pedido autoriza catalogo aditivo e publicacao do candidato revisado no host existente, com backup/configuracao anterior, isolamento e prova online. Nao autoriza inferir implementacao dos aplicativos planejados nem alterar SKU/banco/dados dos outros sistemas.

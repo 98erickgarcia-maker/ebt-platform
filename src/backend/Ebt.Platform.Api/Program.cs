@@ -63,6 +63,10 @@ if (args.Contains("--inspect-azure"))
 {
     await SqlInspection.Run(connection, builder.Configuration["Platform:InspectionOutput"] ?? throw new InvalidOperationException("Informe destino dos metadados sanitizados.")); return;
 }
+if (args.Contains("--platform-database"))
+{
+    await PlatformDatabaseAdmin.Run(connection, builder.Configuration); return;
+}
 if (args.Contains("--apply-reviewed-schema"))
 {
     await SqlDeployment.Run(connection, builder.Configuration); return;
@@ -110,13 +114,13 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseDefaultFiles(); app.UseStaticFiles(); app.UseRouting(); app.UseRateLimiter(); app.UseAuthentication();
 app.Use(Security.ValidateContext);
-app.MapGet("/health/live", () => Results.Ok(new { status = "alive", service = "EBT Connect" }));
+app.MapGet("/health/live", () => Results.Ok(new { status = "alive", service = "EBT Platform", application = "Connect", version = "0.2.0" }));
 app.MapGet("/health/ready", async (PlatformDb db) =>
 {
-    try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); return Results.Ok(new { status = "ready", schema = "ebt_connect" }); }
+    try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); var catalog = await PlatformCatalog.Read(db); if (!catalog.Any(x => x.Code == "connect")) return Results.StatusCode(503); return Results.Ok(new { status = "ready", schema = "ebt_connect", platformSchema = "ebt_platform", version = "0.2.0" }); }
     catch { return Results.StatusCode(503); }
 });
-Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
+PlatformCatalog.Map(app); Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
 WazVoxEndpoints.Map(app);
 await app.RunAsync();
 

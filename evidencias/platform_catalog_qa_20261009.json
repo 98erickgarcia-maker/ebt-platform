@@ -1,0 +1,43 @@
+{
+  "generatedUtc": "2026-10-09T03:39:28.710794+00:00",
+  "environment": "synthetic localhost SQL QA",
+  "passed": true,
+  "cases": [
+    {
+      "name": "Anonymous platform catalog denied",
+      "passed": true
+    },
+    {
+      "name": "Catalog scoped to authorized tenant A",
+      "passed": true
+    },
+    {
+      "name": "Catalog scoped to authorized tenant B",
+      "passed": true
+    },
+    {
+      "name": "Catalog preserves Portuguese Unicode",
+      "passed": true
+    },
+    {
+      "name": "Unimplemented platform mutation unavailable",
+      "passed": true
+    },
+    {
+      "name": "Connect API key cannot access platform catalog",
+      "passed": true
+    },
+    {
+      "name": "Reader can use catalog without admin privileges",
+      "passed": true
+    },
+    {
+      "name": "Catalog runtime read permission does not imply writes or schema DDL",
+      "passed": true
+    }
+  ],
+  "realMessagesSent": 0,
+  "limits": [
+    "Azure permissions and published runtime require separate proof"
+  ]
+}

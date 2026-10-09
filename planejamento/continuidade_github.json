@@ -37,7 +37,7 @@
     },
     {
       "path": "AGENTS.md",
-      "reviewed_sha256": "693d8cca2bb0ae42ffc6bcf63b1deecd2fe9b7dbdc35ad5a94acd91b27615021"
+      "reviewed_sha256": "cdbde4ef3efee04eca21d9dec45e671a3fc3d3d6c8ad3c5e549fffa2bda3e35a"
     },
     {
       "path": "CONTINUAR_EM_OUTRO_CHAT.md",
@@ -811,7 +811,7 @@
     },
     {
       "path": "evidencias/azure_sql_compartilhado_metadados.json",
-      "reviewed_sha256": "50e91650d8272d58d11ef5ce203e36e089627decfc23ad66fa3b33e7ae2308f9"
+      "reviewed_sha256": "7b4e06d93e9f3c8bb91d32f7155d6d290e3e8d98b3736b99e1d60d7a1fba243d"
     },
     {
       "path": "evidencias/azure_sql_destino_observado.json",
@@ -974,7 +974,7 @@
     },
     {
       "path": "evidencias/testes_connect_browser.json",
-      "reviewed_sha256": "f4ff2fbfa7f352203420d6193b5a027b91e4be31e15144c74790afdae052311f"
+      "reviewed_sha256": "2651970314f90c6884fe23eefb0ac85fdaad81bf372347f10f39437794d7c4f4"
     },
     {
       "path": "evidencias/testes_connect_health_producao.json",
@@ -1006,7 +1006,7 @@
     },
     {
       "path": "evidencias/testes_connect_sql_http.json",
-      "reviewed_sha256": "505a3ebef6a71e1e1836f89fddf3c870402d9f39f7e5dfade02ceadb2c9b137f"
+      "reviewed_sha256": "81a89127bc2164d92f9c8b1c8a3692853a9cd1a028212a5e45a1913c56c07773"
     },
     {
       "path": "evidencias/testes_connect_sql_keyring.json",
@@ -1063,7 +1063,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "1528a138ff1f1deddf6c19d17196699e9295c5510bc62367ab2958139c5fb5bb"
+      "reviewed_sha256": "653c89d684a4036ca267e678fdfed45a3fcc0bca8d1ca4361c5953ad3082a84b"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1351,7 +1351,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Program.cs",
-      "reviewed_sha256": "79153e52d6f519f4ee14a4d38007223a6eaf0016e7dabc30299a40a9165b0b28"
+      "reviewed_sha256": "cbddae8ec01f81a30ad44ff5ce9f5dd696b73bc5f580f36a0d35d18da3563495"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Provisioning.cs",
@@ -1411,15 +1411,15 @@
     },
     {
       "path": "src/frontend/e2e/connect.spec.ts",
-      "reviewed_sha256": "620612a3e5c29fd4b4b876c02a74be9b6909971b9e5deb724840b5769a3c3225"
+      "reviewed_sha256": "d958d59bc0dd9ccf3f740992d9f6c221b73225ccbe41f1f85b4ae122e6e02440"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",
-      "reviewed_sha256": "435d9ccf88cfe53b5ce652fb84f30099c1d8a93cedff3132ab4ed2fe20d562bb"
+      "reviewed_sha256": "6866f12d762009bd8e4004055fe1aacf7cbf44fe705b6abdb9382540b923b553"
     },
     {
       "path": "src/frontend/index.html",
-      "reviewed_sha256": "5ed09ee321d0afec26220827e3e3785d74e4b574b7df9b2d368875901224031e"
+      "reviewed_sha256": "6d29644dff09a8be27143afcca6cc5ea0e52e26b79d197579644b6ec4119083d"
     },
     {
       "path": "src/frontend/package-lock.json",
@@ -1440,11 +1440,11 @@
     },
     {
       "path": "src/frontend/src/App.tsx",
-      "reviewed_sha256": "2ff66a0fdd130f3b7c4f2c6eae7dc9d048ba670258596a9b0ac58f5e3b623c0a"
+      "reviewed_sha256": "0c7de39684b146083286c59eed1e57da8523247547a9d2ba46714472ea3afd97"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
-      "reviewed_sha256": "a284845650133a772b29cb75b4d0d1d29957031c00f2368357e176f3d135143c"
+      "reviewed_sha256": "e6db6e5fac1bc2a00e777d0ad0dd2743b1929e2e300e27ca7a0884e399611805"
     },
     {
       "path": "src/frontend/src/api.ts",
@@ -1460,7 +1460,7 @@
     },
     {
       "path": "src/frontend/src/style.css",
-      "reviewed_sha256": "de79df318e77a4c0b401bd33ad68b8a293fc8d1fad5130375929475885a53091"
+      "reviewed_sha256": "341550a29126d56d660314b342389055d74bb219e13dc7dd9b69515e8239ec33"
     },
     {
       "path": "src/frontend/tsconfig.json",
@@ -1552,7 +1552,7 @@
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
-      "reviewed_sha256": "4bb5bababca6ab58e4d8f64329b21bebfbd9c12c8c4d1e83bd293b9ca15aa256"
+      "reviewed_sha256": "4e300a67ebd16a471bb678bdf5ccda0c51213fb7e010a086b72c1325d6af0483"
     },
     {
       "path": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
@@ -1568,7 +1568,7 @@
     },
     {
       "path": "src/frontend/e2e/access-tools.spec.ts",
-      "reviewed_sha256": "bf1f6c5ba2c4c56e0d69b80b6b62bfe2146580a11746e6ca455c750204e99809"
+      "reviewed_sha256": "87d1f4cdd7e773b5fe4164a1fd61deecf17a641b4006bad8f64044f0d7926799"
     },
     {
       "path": "src/frontend/e2e/qa-auth-budget.ts",
@@ -1601,7 +1601,47 @@
     {
       "path": "RETOMADA_EBT_ENTERPRISE_ATUAL.md",
       "reviewed_sha256": "4561ba669b091905896b7f5e760dbb7a8a64cfb892d54e6aa6c9efbbd2f6d8d0"
+    },
+    {
+      "path": "sql/platform-catalog.sql",
+      "reviewed_sha256": "05c0fbfe11b1af56a34b362c7bfccbde9679920fbcc757469a87e4231921c244"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/PlatformCatalog.cs",
+      "reviewed_sha256": "5b57d024ed142ae050990a002e37307c1a5641b12b959c94c2523e921584f7ec"
+    },
+    {
+      "path": "src/backend/Ebt.Platform.Api/PlatformDatabaseAdmin.cs",
+      "reviewed_sha256": "8434f04fedfd30e4d869f72514c03bc2f6e087e2d12cffc71a108c6db7bdd934"
+    },
+    {
+      "path": "src/frontend/src/PlatformApplications.tsx",
+      "reviewed_sha256": "cd0f05829f8619331193fb8b4be75798a39cb587ee3df9d8ea529df758ab762e"
+    },
+    {
+      "path": "src/frontend/e2e/platform.spec.ts",
+      "reviewed_sha256": "2279b64229684ce8764d84838edd8838c25ccf2db020b64e8730a7ad224158fe"
+    },
+    {
+      "path": "scripts/Platform-AzureDatabase.ps1",
+      "reviewed_sha256": "8cb794dbbe55b2c6e8c7943a940fabaf07a602def76ee2483ed7c7972863ea7f"
+    },
+    {
+      "path": "tests/integration/platform_catalog_qa.py",
+      "reviewed_sha256": "e5826cbc67d18ed67e3217825555fa7daf1bd0b96de943213fd338127207fbb1"
+    },
+    {
+      "path": "evidencias/platform_catalog_qa_20261009.json",
+      "reviewed_sha256": "d223e4be2feb56cd943ba02dee2f006c262540bf876918c60ce23cd4f9b34e54"
+    },
+    {
+      "path": "evidencias/platform_azure_inspect_20261009.json",
+      "reviewed_sha256": "e3c94b4a3656531aa5a8aa8b69880deb0d258c3d2ff114057c427185b61b462a"
+    },
+    {
+      "path": "docs/arquitetura/PLATFORM_BANCO_COMPARTILHADO_20261009.md",
+      "reviewed_sha256": "809087b9ac750f308cd3bec0406359b8c6e56cfab20f2bf1f2683e6a45bae2e6"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T02:31:14.310623+00:00"
+  "reviewed_at_utc": "2026-10-09T03:40:29.976433+00:00"
 }

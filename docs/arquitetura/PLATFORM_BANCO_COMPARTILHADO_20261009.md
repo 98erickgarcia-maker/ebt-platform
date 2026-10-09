@@ -1,0 +1,17 @@
+# EBT Platform no banco compartilhado — 09/10/2026
+
+Pedido explicito: area exclusiva da Platform no banco que atende os aplicativos e publicacao online. A EBT Enterprise continua a familia; Platform a fundacao; Connect o primeiro aplicativo.
+
+Banco existente: `sqldb-crm-casst-dev-v2`, servidor `sql-crm-casst-dev-crmenterprise98`, SKU Basic, sem novo banco ou mudanca de plano. Novo schema `ebt_platform` para Applications (catalogo publico de capacidades) e SchemaVersions (versao da estrutura). Connect e seus dados permanecem em `ebt_connect`, vinculado por `DataSchema` no catalogo; IDs, sessao, tenant/carteira, chave e rotas existentes sao preservados. Schemas SQL nao sao pastas aninhadas: a relacao de plataforma/aplicativo e explicita no catalogo.
+
+A identidade existente `id-ebt-connect-hml` recebe somente SELECT no objeto Applications. Escrita do catalogo e DDL continuam no administrador. Nao ha grant global ou ampliacao para CASST, site EBT, CRP ou Thaiane. O endpoint GET `/api/platform/v1/applications` exige sessao/membership ativa; chave tecnica Connect nao da acesso a Platform. O catalogo nao contem dados de clientes e nao implementa novos modulos nem substitui as permissoes de cada aplicativo.
+
+A interface de entrada e EBT Platform / Aplicativos. Connect tem acesso funcional; Flow, Portal, Sites, Contracts, SST, Legislativo, Educacao e Saude estao explicitamente planejados, sem links que simulem implementacao. Configuracao do keyring/cookies e application name permanecem compativeis com a versao publicada.
+
+Validacao local: script SQL aplicado duas vezes, segunda vez sem novas linhas; 27 SQL/HTTP Connect, oito negativas/positivas de catalogo e permissoes, 19 browser sem falhas ou ignorados. Desktop/celular inspecionados. Um erro de roteiro inicial aguardava botao na navegacao movel fechada; entrada alterada para o cartao Connect. Outro revelou retorno ao Meu dia no evento inicial de logout; login/limpeza agora voltam a Platform. A insercao local via sqlcmd exige `-f 65001`; codificacao corrigida e nomes portugueses conferidos. Azure le o SQL como UTF-8, por ADO.NET, antes da execucao.
+
+Antes da mudanca Azure: schema Platform ausente; catalogo e contagem de 110 tabelas dos demais aplicativos registrados por hashes, sem exportar linhas. Ponto de restauracao Azure disponivel a partir de 02/10/2026; isso nao comprova ensaio de restore. Configuracao/imagem anterior guardadas em tmp privado. Aplicacao e imagem imutavel podem voltar para r015 sem restaurar/excluir o banco; catalogo aditivo pode permanecer. Firewall temporario limitado ao IP do operador deve ser removido e sua ausencia confirmada.
+
+Publicacao pendente neste registro: atualizar prova online, SHA, imagem, revision e checks depois da verificacao. Provas historicas de WazVox nao sao novo envio real. Scanner real e restore Azure isolado continuam com prova propria; documentos sem scan clean nao sao liberados em producao.
+
+Referencias: [CREATE SCHEMA](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-schema-transact-sql), [permissoes](https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-schema-permissions-transact-sql), [revisoes Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/revisions-manage).

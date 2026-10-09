@@ -1805,3 +1805,14 @@ select {
     grid-template-columns: 1fr;
   }
 }
+
+.platform-intro { padding: 24px; margin-bottom: 24px; border-radius: 16px; background: #101112; color: white; }
+.platform-intro h2 { margin: 12px 0; font-size: 28px; }
+.platform-intro p { color: #d4d4d4; max-width: 680px; line-height: 1.6; }
+.application-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.application-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+.application-card h3 { margin: 18px 0 8px; font-size: 22px; }
+.application-card p { line-height: 1.6; flex: 1; }
+.application-card .small { flex: none; color: #555; margin-bottom: 0; }
+@media (max-width:1100px) { .application-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width:640px) { .application-grid { grid-template-columns: minmax(0,1fr); } .platform-intro h2 { font-size:24px; } }

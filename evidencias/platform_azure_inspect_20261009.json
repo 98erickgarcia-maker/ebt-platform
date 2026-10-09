@@ -1,0 +1,22 @@
+{
+  "generatedUtc": "2026-10-09T03:38:26.9855213+00:00",
+  "database": "sqldb-crm-casst-dev-v2",
+  "schema": "ebt_platform",
+  "mode": "inspect",
+  "scriptSha256": null,
+  "otherSchemasBefore": "6620a656ac96b04573b6f6ba0b554cc23f2d507355ea55dd4e89c357668fdf8b",
+  "otherSchemasAfter": "6620a656ac96b04573b6f6ba0b554cc23f2d507355ea55dd4e89c357668fdf8b",
+  "otherSchemasUnchanged": true,
+  "otherTableCount": 110,
+  "otherTableCountsBeforeSha256": "5b208bd46a8fb61653161d65bbf8b4737879ca6088b17a75e5892d2740299e70",
+  "otherTableCountsAfterSha256": "5b208bd46a8fb61653161d65bbf8b4737879ca6088b17a75e5892d2740299e70",
+  "otherTableCountsUnchanged": true,
+  "applications": [],
+  "permissions": [],
+  "newDatabaseCreated": false,
+  "movedApplicationData": false,
+  "limits": [
+    "Catalog hashes and table counts do not certify unchanged contents of every row",
+    "Future application catalog entries are planned, not implemented modules"
+  ]
+}

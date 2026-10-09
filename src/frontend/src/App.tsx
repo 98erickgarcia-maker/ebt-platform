@@ -29,10 +29,11 @@ import {
 } from "./api";
 import { parseContactsCsv, downloadContactsTemplate } from "./csv";
 import { Brand } from "./Brand";
+import { PlatformApplications } from "./PlatformApplications";
 import { ApiKeyPanel, InvitationAcceptance } from "./AccessTools";
 
 type View =
-  "daily" | "contacts" | "tasks" | "messages" | "documents" | "settings";
+  "applications" | "daily" | "contacts" | "tasks" | "messages" | "documents" | "settings";
 function mergeMessages(current: Message[], incoming: Message[]) {
   const index = new Map(current.map((m) => [m.messageId, m]));
   for (const message of incoming) index.set(message.messageId, message);
@@ -43,6 +44,7 @@ function mergeMessages(current: Message[], incoming: Message[]) {
   );
 }
 const views: { id: View; name: string; icon: string }[] = [
+  { id: "applications", name: "Aplicativos", icon: "grid" },
   { id: "daily", name: "Meu dia", icon: "grid" },
   { id: "contacts", name: "Relacionamentos", icon: "people" },
   { id: "tasks", name: "Tarefas", icon: "check" },
@@ -217,8 +219,8 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
         </span>
       </div>
       <main className="login-form">
-        <span className="eyebrow">SEU ESPAÇO DE TRABALHO</span>
-        <h2>{activation ? "Ative seu acesso" : "Bem-vindo ao Connect"}</h2>
+        <span className="eyebrow">SEU PLATAFORMA E APLICATIVOS</span>
+        <h2>{activation ? "Ative seu acesso" : "Bem-vindo à EBT Platform"}</h2>
         <p>
           {activation
             ? "Crie sua senha para entrar na empresa que convidou você."
@@ -302,7 +304,7 @@ type Dialog =
 export function App() {
   const [me, setMe] = useState<Me | null>(null),
     [starting, setStarting] = useState(true);
-  const [view, setView] = useState<View>("daily"),
+  const [view, setView] = useState<View>("applications"),
     [invitationToken, setInvitationToken] = useState(
       new URLSearchParams(location.search).get("activation") ?? "",
     ),
@@ -437,7 +439,7 @@ export function App() {
       setTaskFrom("");
       setTaskTo("");
       setSummary({ contacts: 0, openTasks: 0, overdue: 0, stages: [] });
-      setView("daily");
+      setView("applications");
       setSearch("");
       setStage("");
       setPage(1);
@@ -465,6 +467,7 @@ export function App() {
   const selectedId = selected?.id;
   const load = useCallback(async () => {
     if (!me) return;
+    if (view === "applications") { setLoading(false); return; }
     const sequence = ++loadSequence.current;
     setLoading(true);
     try {
@@ -1004,6 +1007,7 @@ export function App() {
             setInvitationToken(
               new URLSearchParams(location.search).get("activation") ?? "",
             );
+            setView("applications");
             setMe(user);
           }}
         />
@@ -1023,12 +1027,12 @@ export function App() {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            navigate("daily");
+            navigate("applications");
           }}
         >
           <Brand />
         </a>
-        <span className="nav-label">ESPAÇO DE TRABALHO</span>
+        <span className="nav-label">PLATAFORMA E APLICATIVOS</span>
         <nav aria-label="Navegação principal">
           {views.map((v) => (
             <button
@@ -1081,7 +1085,7 @@ export function App() {
             <Icon name="grid" />
           </button>
           <div className="breadcrumb">
-            Plataforma <span>/</span> <strong>Connect</strong>
+            EBT Platform <span>/</span> <strong>{view === "applications" ? "Aplicativos" : "Connect"}</strong>
           </div>
           <label className="context-picker">
             <span>Empresa</span>
@@ -1104,13 +1108,14 @@ export function App() {
           <div className="page-heading">
             <div>
               <span className="eyebrow">
-                {selected ? "RELACIONAMENTO" : "EBT CONNECT"}
+                {selected ? "RELACIONAMENTO" : view === "applications" ? "EBT PLATFORM" : "EBT CONNECT"}
               </span>
               <h1>{selected ? selected.name : currentView.name}</h1>
               <p>
                 {selected
                   ? "Um contato, um histórico e próximos passos claros."
                   : {
+                      applications: "Seus aplicativos e o trabalho da sua empresa em um só lugar.",
                       daily: "Uma visão clara do que importa agora.",
                       contacts:
                         "Cada relacionamento com contexto e continuidade.",
@@ -1174,6 +1179,7 @@ export function App() {
               }}
             />
           )}
+          {view === "applications" && <PlatformApplications key={[me.userId, me.tenantId, me.role, me.portfolio, refresh].join("|")} onOpenConnect={() => navigate("daily")} />}
           {view === "daily" && (
             <>
               <div className="welcome-card">
@@ -2005,7 +2011,7 @@ export function App() {
         <footer className="page-footer">
           EBT Enterprise{" "}
           <span>
-            Connect · {labels[me.role]} ·{" "}
+            {view === "applications" ? "Platform" : "Connect"} · {labels[me.role]} ·{" "}
             {me.tenants.find((t) => t.id === me.tenantId)?.name}
           </span>
         </footer>

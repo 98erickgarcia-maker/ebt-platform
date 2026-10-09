@@ -36,6 +36,7 @@ test("Current page navigation during loading completes the replacement request",
     await page.getByLabel("Senha", { exact: true }).fill(qa.password);
     await reserveQaAuthOperation();
     await page.getByRole("button", { name: "Entrar", exact: true }).click();
+  await page.getByRole("button", { name: "Acessar Connect", exact: true }).click();
     await started;
     await expect(page.locator(".loading-bar")).toBeVisible();
     await page

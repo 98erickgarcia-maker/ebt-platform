@@ -9,7 +9,7 @@ export function Brand() {
         height="60"
       />
       <span className="brand-sub">
-        ENTERPRISE <span aria-hidden="true">/</span> CONNECT
+        ENTERPRISE <span aria-hidden="true">/</span> PLATFORM
       </span>
     </span>
   );

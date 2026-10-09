@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "reference_date_local": "2026-10-08",
+  "reference_date_local": "2026-10-09",
   "timezone": "America/Sao_Paulo",
   "family": "EBT Enterprise",
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
-  "current_scope": "Execução explicitamente autorizada em 08/10: revisar atualizações GitHub e corrigir Connect em incrementos verificados; sem novos módulos ou deploy.",
+  "current_scope": "Autorizado explicitamente: criar area exclusiva ebt_platform no mesmo banco compartilhado, reunir aplicativos sob a Platform e publicar a versao revisada; Connect operacional, demais aplicativos planejados.",
   "budget": {
     "delivery_hours": 180,
     "reserve_hours": 20,
@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Quatro incrementos concluídos e verificados: R01-R05, segurança de sessão/downloads e scanner fail-closed/liberação. Parte 4 em b471eaf8 com build e continuidade aprovados; 27+7 SQL/HTTP, 16 browser, 9 unitários, 10 scanner simulados, 16 checkpoint, 17 protocolo e 10 proxy, conforme versão/cenário da evidência. Fechamento documental sem mudança de código.",
+  "review_status": "Catalogo Platform implementado: 19/19 browser, 8/8 catalogo/permissoes SQL/HTTP, 27/27 regressao Connect, backend Debug/Release e frontend build aprovados. Publicacao ainda pendente; nao declarar online antes da verificacao.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
@@ -27,7 +27,7 @@
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Confirmar acesso efetivo ao último checkpoint e preparar a prova do scanner privado real e de restauração Azure em destino isolado, com hashes e critérios próprios, sem promover gates ou implantar automaticamente; obter aceite operacional.",
+  "next_authorized_step": "Aplicar catalogo aditivo revisado no banco existente, verificar limites de identidade/catalogo dos outros schemas, publicar imagem imutavel no host existente e validar HTTPS/login/navegacao/sessao apos a troca.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",

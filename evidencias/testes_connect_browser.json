@@ -2,11 +2,11 @@
   "config": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
-      "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT PLATAFORM\\src\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT PLATAFORM\\.worktrees\\revisao-github-20261008\\src\\frontend\\node_modules\\@playwright\\test\\cli.js",
       "test"
     ],
-    "configFile": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT PLATAFORM\\src\\frontend\\playwright.config.ts",
-    "rootDir": "C:/Users/Ivair Silva/Documents/ChatGPT/EBT PLATAFORM/src/frontend/e2e",
+    "configFile": "C:\\Users\\Ivair Silva\\Documents\\ChatGPT\\EBT PLATAFORM\\.worktrees\\revisao-github-20261008\\src\\frontend\\playwright.config.ts",
+    "rootDir": "C:/Users/Ivair Silva/Documents/ChatGPT/EBT PLATAFORM/.worktrees/revisao-github-20261008/src/frontend/e2e",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -22,7 +22,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "C:/Users/Ivair Silva/Documents/ChatGPT/EBT PLATAFORM/tmp/e2e/artifacts",
+        "outputDir": "C:/Users/Ivair Silva/Documents/ChatGPT/EBT PLATAFORM/.worktrees/revisao-github-20261008/tmp/e2e/artifacts",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -30,7 +30,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "C:/Users/Ivair Silva/Documents/ChatGPT/EBT PLATAFORM/src/frontend/e2e",
+        "testDir": "C:/Users/Ivair Silva/Documents/ChatGPT/EBT PLATAFORM/.worktrees/revisao-github-20261008/src/frontend/e2e",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -70,6 +70,150 @@
   },
   "suites": [
     {
+      "title": "access-tools.spec.ts",
+      "file": "access-tools.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "R04: reload preserves key metadata, hides secret and permits effective revocation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3541,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:36:10.130Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "06d9063a5338e5a2adf3-8e758bee7e2a88207050",
+          "file": "access-tools.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "R05: existing-account link uses the original password and makes the invited tenant available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1856,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:36:13.958Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "06d9063a5338e5a2adf3-137111c09c4f54f8cc6e",
+          "file": "access-tools.spec.ts",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "R05: signed-in wrong account cannot accept another person's invitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1515,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:36:15.836Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "06d9063a5338e5a2adf3-9e7fb9baf7255bee8859",
+          "file": "access-tools.spec.ts",
+          "line": 197,
+          "column": 1
+        },
+        {
+          "title": "R04/R05: administration remains usable on mobile without horizontal overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:36:17.367Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "06d9063a5338e5a2adf3-963d1f7bb2727428d275",
+          "file": "access-tools.spec.ts",
+          "line": 236,
+          "column": 1
+        }
+      ]
+    },
+    {
       "title": "connect.spec.ts",
       "file": "connect.spec.ts",
       "column": 0,
@@ -81,7 +225,7 @@
           "tags": [],
           "tests": [
             {
-              "timeout": 45000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -91,12 +235,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 13196,
+                  "duration": 7099,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-07T07:41:34.164Z",
+                  "startTime": "2026-10-09T03:36:18.851Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -106,7 +250,7 @@
           ],
           "id": "0fb99b082cac6f6b642b-12eba007c8a903fe818d",
           "file": "connect.spec.ts",
-          "line": 19,
+          "line": 30,
           "column": 1
         },
         {
@@ -115,7 +259,7 @@
           "tags": [],
           "tests": [
             {
-              "timeout": 45000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -125,12 +269,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2264,
+                  "duration": 5496,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-07T07:41:48.277Z",
+                  "startTime": "2026-10-09T03:36:25.971Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -140,7 +284,7 @@
           ],
           "id": "0fb99b082cac6f6b642b-3709c6f2ae4556945f61",
           "file": "connect.spec.ts",
-          "line": 117,
+          "line": 128,
           "column": 1
         },
         {
@@ -149,7 +293,7 @@
           "tags": [],
           "tests": [
             {
-              "timeout": 45000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -159,12 +303,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1452,
+                  "duration": 3732,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-07T07:41:50.567Z",
+                  "startTime": "2026-10-09T03:36:31.499Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -174,7 +318,7 @@
           ],
           "id": "0fb99b082cac6f6b642b-a278884380bc289f4e80",
           "file": "connect.spec.ts",
-          "line": 186,
+          "line": 205,
           "column": 1
         },
         {
@@ -183,7 +327,7 @@
           "tags": [],
           "tests": [
             {
-              "timeout": 45000,
+              "timeout": 90000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
@@ -193,12 +337,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1333,
+                  "duration": 1918,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-07T07:41:52.045Z",
+                  "startTime": "2026-10-09T03:36:35.264Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -208,7 +352,405 @@
           ],
           "id": "0fb99b082cac6f6b642b-d627a69f52ae0cda08f5",
           "file": "connect.spec.ts",
-          "line": 222,
+          "line": 240,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Current page navigation during loading completes the replacement request",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:36:37.225Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d2868f7d23420c27cca-5332822f1af832ba2099",
+          "file": "navigation.spec.ts",
+          "line": 11,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "platform.spec.ts",
+      "file": "platform.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Platform groups Connect and planned apps; reload and tenant switch preserve authorized catalog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3522,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:12.578Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "310f5d38cd89ad55ea3f-3c124ece11a357595337",
+          "file": "platform.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "Platform is usable on mobile without horizontal overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1627,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:16.123Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "310f5d38cd89ad55ea3f-fbe9b6d388e241847670",
+          "file": "platform.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "Catalog error exposes retry; successful retry restores real applications",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 948,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:17.780Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "310f5d38cd89ad55ea3f-bc6f810006b702217991",
+          "file": "platform.spec.ts",
+          "line": 47,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "recipient-context.spec.ts",
+      "file": "recipient-context.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "R02: inbox identifies actual channel recipient independently of paged contacts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2923,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:18.773Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-6bcee014b11b809d9326",
+          "file": "recipient-context.spec.ts",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "R01: switching contacts does not display previous contact notes or tasks",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5586,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:21.726Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-d652e61e8f086302ea8b",
+          "file": "recipient-context.spec.ts",
+          "line": 53,
+          "column": 1
+        },
+        {
+          "title": "R01: previous resources stay absent during delayed contact load",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3315,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:27.349Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-68b8e314439befb334cb",
+          "file": "recipient-context.spec.ts",
+          "line": 103,
+          "column": 3
+        },
+        {
+          "title": "R01: previous resources stay absent during failed contact load",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4208,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:30.690Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-57c3eac1cfd446328fd8",
+          "file": "recipient-context.spec.ts",
+          "line": 103,
+          "column": 3
+        },
+        {
+          "title": "R02: filtered page and 26 newer contacts do not hide the immutable reply destination",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3353,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:34.921Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-3e2a2be6876b0c96dda2",
+          "file": "recipient-context.spec.ts",
+          "line": 191,
+          "column": 1
+        },
+        {
+          "title": "R02: an unidentified recipient cannot be confirmed even with a draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1745,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:38.296Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-6ae0e8ebe3ccff088722",
+          "file": "recipient-context.spec.ts",
+          "line": 220,
+          "column": 1
+        },
+        {
+          "title": "R02: late reply acknowledgement cannot replace another conversation's draft or version",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T03:37:40.063Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9268cf9dcec6f6b22f6b-75dfc72a5398082831d1",
+          "file": "recipient-context.spec.ts",
+          "line": 246,
           "column": 1
         }
       ]
@@ -216,9 +758,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-07T07:41:33.191Z",
-    "duration": 20852.767,
-    "expected": 4,
+    "startTime": "2026-10-09T03:36:08.833Z",
+    "duration": 93915.376,
+    "expected": 19,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

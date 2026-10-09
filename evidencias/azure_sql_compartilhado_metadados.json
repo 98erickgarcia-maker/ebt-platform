@@ -1,5 +1,5 @@
 {
-  "generatedUtc": "2026-10-07T11:55:39.7786561+00:00",
+  "generatedUtc": "2026-10-09T03:05:51.5782268+00:00",
   "environment": "Azure SQL shared database",
   "server": "tcp:sql-crm-casst-dev-crmenterprise98.database.windows.net,1433",
   "database": "sqldb-crm-casst-dev-v2",
@@ -29,7 +29,7 @@
     ],
     "storage": [
       {
-        "usedBytes": 71041024,
+        "usedBytes": 74907648,
         "allocatedBytes": 83886080
       }
     ],
