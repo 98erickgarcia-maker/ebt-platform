@@ -1,3 +1,4 @@
+import { reserveQaAuthOperation } from "./qa-auth-budget";
 import { test, expect, type Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
@@ -10,11 +11,20 @@ async function login(page: Page, email = "operador@ebt.example") {
   await page.goto("/");
   await page.getByLabel("E-mail", { exact: true }).fill(email);
   await page.getByLabel("Senha", { exact: true }).fill(qa.password);
+  await reserveQaAuthOperation();
   await page.getByRole("button", { name: "Entrar", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Meu dia", exact: true }),
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 20000 });
   await expect(page.getByText("Atualizando dados…")).not.toBeVisible();
+  const me = await (await page.request.get("/api/auth/me")).json();
+  if (me.tenantId !== qa.tenantA) {
+    await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
+    await expect(
+      page.getByText("Empresa selecionada.", { exact: true }),
+    ).toBeVisible();
+    await expect(page.locator(".loading-bar")).not.toBeVisible();
+  }
 }
 test("Desktop CRM journey: create, reload, note, next action, close, document", async ({
   page,
@@ -23,7 +33,7 @@ test("Desktop CRM journey: create, reload, note, next action, close, document", 
   page.on("pageerror", (e) => errors.push(e.message));
   await login(page);
   await page.screenshot({
-    path: path.join(root, "evidencias/capturas/connect-desktop.png"),
+    path: path.join(root, "tmp/e2e/connect-desktop.png"),
     fullPage: true,
   });
   await page
@@ -94,7 +104,7 @@ test("Desktop CRM journey: create, reload, note, next action, close, document", 
     page.getByText("Documento browser", { exact: true }),
   ).toBeVisible();
   await page.screenshot({
-    path: path.join(root, "evidencias/capturas/connect-contato.png"),
+    path: path.join(root, "tmp/e2e/connect-contato.png"),
     fullPage: true,
   });
   await page.reload();
@@ -127,7 +137,11 @@ test("Permission change clears a loaded contact and removes write controls", asy
     .getByRole("button", { name: /Contato Exemplo A contato@cliente.example/ })
     .click();
   await expect(
-    page.getByRole("heading", { name: "Contato Exemplo A", exact: true, level: 1 }),
+    page.getByRole("heading", {
+      name: "Contato Exemplo A",
+      exact: true,
+      level: 1,
+    }),
   ).toBeVisible();
   const context = await browser.newContext();
   const adminPage = await context.newPage();
@@ -161,7 +175,11 @@ test("Permission change clears a loaded contact and removes write controls", asy
       ),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "Contato Exemplo A", exact: true, level: 1 }),
+      page.getByRole("heading", {
+        name: "Contato Exemplo A",
+        exact: true,
+        level: 1,
+      }),
     ).not.toBeVisible();
     await page
       .getByRole("button", { name: "Relacionamentos", exact: true })
@@ -187,10 +205,9 @@ test("Tenant switch clears old contact data; consumer B works", async ({
   page,
 }) => {
   await login(page, "admin@ebt.example");
-  await page.getByLabel("Empresa", { exact: true }).selectOption(qa.tenantA);
-  await expect(
-    page.getByRole("status").filter({ hasText: "Empresa selecionada." }),
-  ).toBeVisible();
+  await expect(page.getByLabel("Empresa", { exact: true })).toHaveValue(
+    qa.tenantA,
+  );
   await page
     .getByRole("button", { name: "Relacionamentos", exact: true })
     .click();
@@ -249,7 +266,7 @@ test("Mobile layout and reader profile prevent edit controls", async ({
     ),
   ).toBe(true);
   await page.screenshot({
-    path: path.join(root, "evidencias/capturas/connect-mobile.png"),
+    path: path.join(root, "tmp/e2e/connect-mobile.png"),
     fullPage: true,
   });
 });

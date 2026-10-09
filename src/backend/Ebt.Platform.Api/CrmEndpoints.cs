@@ -88,6 +88,8 @@ public static class CrmEndpoints
             var row = await db.Contact(id, access); Contract.Match(http.Request, row.Version);
             var candidate = BuildContact(command, access); await ValidateLinks(candidate, access, db);
             if (!access.IsAdmin && candidate.Portfolio != row.Portfolio) throw new ApiFault(403, "forbidden", "Não é permitido mover este contato de carteira.");
+            if (candidate.Portfolio != row.Portfolio && await db.Conversations.AnyAsync(x => x.ContactId == row.Id))
+                throw new ApiFault(409, "contact_channel_transfer_required", "Este contato possui conversa vinculada a um canal. Mantenha a carteira até existir uma transferência segura do canal e do histórico.");
             row.Name = candidate.Name; row.Email = candidate.Email; row.Phone = candidate.Phone; row.OrganizationId = candidate.OrganizationId;
             row.OwnerId = candidate.OwnerId; row.Stage = candidate.Stage; row.Portfolio = candidate.Portfolio;
             db.Interactions.Add(new Interaction { TenantId = access.TenantId, ContactId = id, ActorId = access.UserId, Kind = "change", Content = "Cadastro, etapa ou responsável atualizado.", OccurredAt = DateTimeOffset.UtcNow, OperationKey = Guid.NewGuid().ToString("N") });

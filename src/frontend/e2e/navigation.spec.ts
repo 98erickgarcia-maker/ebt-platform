@@ -1,3 +1,4 @@
+import { reserveQaAuthOperation } from "./qa-auth-budget";
 import { test, expect } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
@@ -33,6 +34,7 @@ test("Current page navigation during loading completes the replacement request",
       .getByLabel("E-mail", { exact: true })
       .fill("operador@ebt.example");
     await page.getByLabel("Senha", { exact: true }).fill(qa.password);
+    await reserveQaAuthOperation();
     await page.getByRole("button", { name: "Entrar", exact: true }).click();
     await started;
     await expect(page.locator(".loading-bar")).toBeVisible();

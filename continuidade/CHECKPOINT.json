@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T01:34:27.637665+00:00",
+  "created_at_utc": "2026-10-09T01:54:11.111243+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "14041fef1b25964882eb55e043b51a801070028f",
-  "base": "14041fef1b25964882eb55e043b51a801070028f",
+  "parent_checkpoint": "e34ad441bb7ad81b1ec641dae39d14dcd1935ede",
+  "base": "e34ad441bb7ad81b1ec641dae39d14dcd1935ede",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -98,7 +98,7 @@
     },
     {
       "path": "docs/api/CONNECT_V1.md",
-      "sha256": "8ef3be64b2765779a5cc2f4e1a38d7e4c1ccf2a5f64596ac4e79a105d4aef600"
+      "sha256": "d963ec0b810a45022c08a17e12e220b594ea8c8f16d49f655d361ae3764f8c47"
     },
     {
       "path": "docs/arquitetura/ARQUITETURA_E_FRONTEIRAS.md",
@@ -766,7 +766,7 @@
     },
     {
       "path": "docs/qualidade/REVISAO_GITHUB_INCREMENTAL_20261008.md",
-      "sha256": "1cd63a7cb7bd432a9c0cf194387c2059d4220ce72ba3c37810010f86f230df8b"
+      "sha256": "2a730ce6a1fc5c79dd36d4698dd62b5cac5c62db8bc8de8ca7d8db12aa513bc6"
     },
     {
       "path": "docs/qualidade/REVISAO_PROJETO_CONNECT.md",
@@ -942,7 +942,7 @@
     },
     {
       "path": "evidencias/revisao_github_incremental_20261008.json",
-      "sha256": "611a2660d7b6521860aea5628be9c46f5dae27c21ec32353d0bd4cfbdd3701bd"
+      "sha256": "cff34b763d3b7e316fdf9d15755bddea5500f2fe267af2914ddee50a13ceba34"
     },
     {
       "path": "evidencias/revisao_promptspellsmith_20261007/contato-b-tarefa-a.png",
@@ -985,6 +985,10 @@
       "sha256": "229444397bc75d835fe04571792c4d2b4f5f08eeca5c6e183df656f482dc8e94"
     },
     {
+      "path": "evidencias/testes_connect_incremental_20261008.json",
+      "sha256": "22c709b47ccb7c72bac88c8e932cbc97bab0af0b31df6494da19d71e14ea5c70"
+    },
+    {
       "path": "evidencias/testes_connect_migration.json",
       "sha256": "f9169222e0aa1a968cf3de5f923bfce39f62ea90490f3e609283d6f0bf9604dd"
     },
@@ -994,7 +998,7 @@
     },
     {
       "path": "evidencias/testes_connect_proxy.json",
-      "sha256": "9984303eee08f508270b8f6523d52bac087cfcf47f2d9cedfff582cbd348b95e"
+      "sha256": "289ac016ed1760ee876ef421b3f7029d6c29e628e8846cec9215d2f6b72c5353"
     },
     {
       "path": "evidencias/testes_connect_restore.json",
@@ -1010,7 +1014,7 @@
     },
     {
       "path": "evidencias/testes_connect_sql_http.json",
-      "sha256": "4be5b051a3ac6cec9ca747fe0db2f5fc3f565ec8f8fb60a4ad7b35318508f33f"
+      "sha256": "0a04555e36497b67b69d72276e2ad00a5d9216aca999610865680ca8f42b17a7"
     },
     {
       "path": "evidencias/testes_connect_sql_keyring.json",
@@ -1018,7 +1022,7 @@
     },
     {
       "path": "evidencias/testes_wazvox_protocol.json",
-      "sha256": "3290f846320ead9726d2cf1015169f672cddffe650369811f9285c14f3dfc1d7"
+      "sha256": "b661611b1ae152ffdd4b0a45c873db5c736d699c858c50ce9acb2c721d84d661"
     },
     {
       "path": "evidencias/testes_wazvox_protocol_0.1.4.json",
@@ -1058,7 +1062,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "197f83e9e7894468e09a83ea6e104dea7adef4897bd82683502df4669f4f82df"
+      "sha256": "d689cf3a38f4a280aa136f5217895fe9bf900bfb2a192ef0e103c0a381d90813"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1070,7 +1074,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "ff47566e345984b72b0d95d07f239ae5deecde0d16c67fbb5eb547288987a25a"
+      "sha256": "01bf9affc21c346782633bb42fe35d4b8bd3b9a57957510975e5262efc8d1b49"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1250,7 +1254,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/ConnectWorker.cs",
-      "sha256": "1b486579637789323cdb676d3f8f68f58c2a29b7a093dd1aa9b39de5a9e42164"
+      "sha256": "343e63a07d3d2651241b53e32fb84a01d7d78e1307366a84f6e961c477150a2b"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Contracts.cs",
@@ -1258,11 +1262,11 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/CrmEndpoints.cs",
-      "sha256": "b58fffc39f5b36bf5113b304c76c6528020d69270fa3d6d347d90c53fcf34de8"
+      "sha256": "996aaf76523a8e1c26009c709b92c01727c80d63d4f1940ed3f65d95d02f1f0b"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Data.cs",
-      "sha256": "c00293020d4cd6b8ecd8a17f7d61bb273ee8af00224ca178369723ab8a1248b1"
+      "sha256": "2374fa370001385e1ffd79c66d9ea91daee9fd49a013641c74705510f6a57fef"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/DesignFactory.cs",
@@ -1382,7 +1386,7 @@
     },
     {
       "path": "src/backend/Ebt.Platform.Api/Security.cs",
-      "sha256": "52f653e781f26b54de375b97a93e9fefba9bd8f82556e03441e3624cbe4043b3"
+      "sha256": "97c52279ec3dd4903b80a53d7296d9daba477358bb17d9cf40a50e7742ecf390"
     },
     {
       "path": "src/backend/Ebt.Platform.Api/SqlDeployment.cs",
@@ -1417,16 +1421,24 @@
       "sha256": "e55d8c32e020e636e4639690e8d22b85db6f553e67658644b878cedc5ab6b782"
     },
     {
+      "path": "src/frontend/e2e/access-tools.spec.ts",
+      "sha256": "bf1f6c5ba2c4c56e0d69b80b6b62bfe2146580a11746e6ca455c750204e99809"
+    },
+    {
       "path": "src/frontend/e2e/connect.spec.ts",
-      "sha256": "bda5b27eaee998b2231159aca36fd57dcd484328172e052957c4fc40d23fbb42"
+      "sha256": "620612a3e5c29fd4b4b876c02a74be9b6909971b9e5deb724840b5769a3c3225"
     },
     {
       "path": "src/frontend/e2e/navigation.spec.ts",
-      "sha256": "2dc4f2a86ecab1ec92016a8289c19342e6e20e515d26bf2c32f3cf05cf594317"
+      "sha256": "435d9ccf88cfe53b5ce652fb84f30099c1d8a93cedff3132ab4ed2fe20d562bb"
+    },
+    {
+      "path": "src/frontend/e2e/qa-auth-budget.ts",
+      "sha256": "f32f3715d29baddeb042dfddb3ddce73caf48484833bbd359adc0b373bed5053"
     },
     {
       "path": "src/frontend/e2e/recipient-context.spec.ts",
-      "sha256": "b242e70dd1e6d9e447bfc64c20029b85cfde0d7cc1d0f85370b3d4db23ecab6c"
+      "sha256": "f98b6db210279aecda4bb0c66ae4a0c1752157f163e6a9f06ba84fc1788e927c"
     },
     {
       "path": "src/frontend/index.html",
@@ -1449,8 +1461,12 @@
       "sha256": "146d1cd385f02f086a1b536860f39fde38c37403dc98973ecf774a3c475c14ab"
     },
     {
+      "path": "src/frontend/src/AccessTools.tsx",
+      "sha256": "c90b0458cdb04b9a5684cd5d53d7ad50664b3b03524393930401cf70744ffcb9"
+    },
+    {
       "path": "src/frontend/src/App.tsx",
-      "sha256": "384b19a8664abe6a8b72af3e15202c025c5149599dfd0d26504c730311d0e53d"
+      "sha256": "2ff66a0fdd130f3b7c4f2c6eae7dc9d048ba670258596a9b0ac58f5e3b623c0a"
     },
     {
       "path": "src/frontend/src/Brand.tsx",
@@ -1549,8 +1565,12 @@
       "sha256": "f177155fc6c8a4313b144495420510e3045b6398f43e8886d1f2212c3c8134d6"
     },
     {
+      "path": "tests/integration/connect_incremental_qa.py",
+      "sha256": "6b5668081bff98ac08101c72ef8217a6d1e5ab7e48a5c44d60d9e25aa9a13971"
+    },
+    {
       "path": "tests/integration/connect_qa.py",
-      "sha256": "6afb23e8e87a6bd2f7d54e2d540e6c565431bcbe012f256780c639302a2e67e7"
+      "sha256": "49bfe3dc7a3b461559ad8d7f52d0a238f7e770f69f82d6a4b05c4a9390d20af2"
     },
     {
       "path": "tests/integration/wazvox_qa.py",

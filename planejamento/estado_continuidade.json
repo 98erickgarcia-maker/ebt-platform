@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Parte 1 verificada: backend/frontend, 27/27 SQL/HTTP e 6/6 browser sintéticos. Parte 2 ainda pendente.",
+  "review_status": "Partes 1/2 demonstradas em QA local: R01-R05; 27 SQL/HTTP + 7 focados + 16 browser; protocolo 17, proxy 10. CI da parte 1 aprovada em e34ad441.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Provas anteriores do Connect não são reexecução ao vivo desta auditoria",
@@ -27,7 +27,7 @@
     "Dois tenants do Connect não comprovam isoladamente Core universal",
     "Sites, Flow, Portal, Contracts, SST e verticais permanecem com recortes/gates próprios"
   ],
-  "next_authorized_step": "Completar R03 e interface R04/R05, provar cenários negativos e salvar cada incremento revisado na branch de continuidade de 08/10.",
+  "next_authorized_step": "Corrigir proteção do cliente API contra corpo JSON/blob/CSRF tardio após troca de sessão, comprovada por seis falhas unitárias; executar provas afetadas e checkpoint. Depois scanner/restore/aceite nos seus gates.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",

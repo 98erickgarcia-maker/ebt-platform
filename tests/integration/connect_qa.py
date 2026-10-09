@@ -65,8 +65,11 @@ for _ in range(40):
     except Exception: time.sleep(.5)
 admin = Client(); admin.login('admin@ebt.example'); admin.context(ACCESS['tenantA'])
 operator = Client(); operator.login('operador@ebt.example')
+operator.context(ACCESS['tenantA'])
 reader = Client(); reader.login('consulta@ebt.example')
+reader.context(ACCESS['tenantA'])
 other = Client(); other.login('outra@ebt.example')
+other.context(ACCESS['tenantA'])
 b = Client(); b.login('admin@ebt.example'); b.context(ACCESS['tenantB'])
 P = '/api/connect/v1'
 created = {}
@@ -133,15 +136,19 @@ check('Onboarding activation works once and yields correct membership',onboardin
 
 def existing_account_invite():
     # A tenant-B admin invites an account that already exists in tenant A.
-    invite=b.req('/api/admin/invitations','POST',{'email':'operador@ebt.example','role':'reader','portfolio':'principal'})
+    email='existing-'+RUN+'@ebt.example'
+    original=admin.req('/api/admin/invitations','POST',{'email':email,'role':'reader','portfolio':'principal'})
+    owner=Client()
+    owner.req('/api/auth/activate','POST',{'token':original['activationToken'],'name':'Existing QA','password':ACCESS['password']})
+    invite=b.req('/api/admin/invitations','POST',{'email':email,'role':'reader','portfolio':'principal'})
     wrong=Client(); wrong.login('outra@ebt.example')
     wrong.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']},expected=403)
-    linked=operator.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']})
+    linked=owner.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']})
     assert linked['tenantId']==ACCESS['tenantB'] and linked['role']=='reader'
-    operator.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']},expected=400)
-    me=operator.context(ACCESS['tenantB'])
+    owner.req('/api/auth/invitations/accept-existing','POST',{'token':invite['activationToken']},expected=400)
+    me=owner.context(ACCESS['tenantB'])
     assert me['role']=='reader'
-    operator.context(ACCESS['tenantA'])
+    owner.context(ACCESS['tenantA'])
 check('Existing account accepts only its own tenant invitation once',existing_account_invite)
 
 def api_key_inventory():

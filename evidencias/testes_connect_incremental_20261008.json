@@ -1,0 +1,39 @@
+{
+  "generated_utc": "2026-10-09T01:39:59.262322+00:00",
+  "environment": "EbtPlatformQa_Review20261008",
+  "synthetic_only": true,
+  "passed": true,
+  "cases": [
+    {
+      "case": "R03 blocks linked transfer without changing version; inbound stays available; R02 immutable recipient and A/B/portfolio",
+      "result": "passed"
+    },
+    {
+      "case": "R03 permits unlinked transfer and enforces the destination portfolio",
+      "result": "passed"
+    },
+    {
+      "case": "R03 concurrent linked transfers are denied consistently",
+      "result": "passed"
+    },
+    {
+      "case": "R04 metadata only, tenant/profile denial, expiry and idempotent revocation",
+      "result": "passed"
+    },
+    {
+      "case": "R04 issued key stops working when its owner loses membership",
+      "result": "passed"
+    },
+    {
+      "case": "R05 expiry and authentication required; no membership created",
+      "result": "passed"
+    },
+    {
+      "case": "R05 wrong account, concurrent distinct tokens, one membership, replay and original password",
+      "result": "passed"
+    }
+  ],
+  "limits": [
+    "No Azure, no real provider send, no user acceptance"
+  ]
+}

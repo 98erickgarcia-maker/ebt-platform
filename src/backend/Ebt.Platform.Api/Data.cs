@@ -140,11 +140,16 @@ public sealed class PlatformDb(DbContextOptions<PlatformDb> options, AccessScope
         var tx = await Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, ct);
         try
         {
-            var resource = key.StartsWith("global:", StringComparison.Ordinal) ? "ebt:" + key : $"ebt:{scope.TenantId}:{key}";
-            await Database.ExecuteSqlInterpolatedAsync($"DECLARE @r int; EXEC @r = sp_getapplock @Resource={resource}, @LockMode='Exclusive', @LockOwner='Transaction', @LockTimeout=15000; IF @r < 0 THROW 51001, 'Operation busy', 1;", ct);
+            await LockResource(key, ct);
             return tx;
         }
         catch { await tx.DisposeAsync(); throw; }
+    }
+    public async Task LockResource(string key, CancellationToken ct = default)
+    {
+        if (Database.CurrentTransaction == null) throw new InvalidOperationException("Lock requires an active transaction.");
+        var resource = key.StartsWith("global:", StringComparison.Ordinal) ? "ebt:" + key : $"ebt:{scope.TenantId}:{key}";
+        await Database.ExecuteSqlInterpolatedAsync($"DECLARE @r int; EXEC @r = sp_getapplock @Resource={resource}, @LockMode='Exclusive', @LockOwner='Transaction', @LockTimeout=15000; IF @r < 0 THROW 51001, 'Operation busy', 1;", ct);
     }
     public void Record(AccessScope access, string action, Guid? resource, string trace) => Audit.Add(new AuditEntry
         { TenantId = access.TenantId, ActorId = access.UserId == Guid.Empty ? null : access.UserId, Action = action, ResourceId = resource, TraceId = trace });

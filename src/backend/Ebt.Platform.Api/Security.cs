@@ -176,7 +176,8 @@ public static class Security
         {
             var hash = Contract.Hash(Contract.Required(command.Token, 64, "Convite"));
             var user = await db.Users.AsNoTracking().SingleAsync(x => x.Id == access.UserId && x.Active);
-            await using var tx = await db.Lock("global:invite-existing:" + hash);
+            // Different tokens for the same account cannot create duplicate memberships concurrently.
+            await using var tx = await db.Lock("global:invite-existing-user:" + access.UserId);
             var invite = await db.Invitations.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.TokenHash == hash && x.UsedAt == null && x.ExpiresAt > DateTimeOffset.UtcNow)
                 ?? throw new ApiFault(400, "invalid_invitation", "Convite inválido, expirado ou já utilizado.");
             if (!await db.Tenants.AsNoTracking().AnyAsync(x => x.Id == invite.TenantId && x.Active))

@@ -29,6 +29,7 @@ import {
 } from "./api";
 import { parseContactsCsv, downloadContactsTemplate } from "./csv";
 import { Brand } from "./Brand";
+import { ApiKeyPanel, InvitationAcceptance } from "./AccessTools";
 
 type View =
   "daily" | "contacts" | "tasks" | "messages" | "documents" | "settings";
@@ -163,7 +164,9 @@ function Modal({
 function Login({ onLogin }: { onLogin: (me: Me) => void }) {
   const [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
-  const activation = new URLSearchParams(location.search).get("activation");
+  const invitation = new URLSearchParams(location.search).get("activation");
+  const [existingAccount, setExistingAccount] = useState(false);
+  const activation = existingAccount ? null : invitation;
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setBusy(true);
@@ -182,7 +185,7 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
           password: data.get("password"),
         });
       resetContext();
-      history.replaceState(null, "", location.pathname);
+      if (!existingAccount) history.replaceState(null, "", location.pathname);
       onLogin(await api<Me>("/api/auth/me"));
     } catch (e) {
       setError((e as Error).message);
@@ -262,6 +265,20 @@ function Login({ onLogin }: { onLogin: (me: Me) => void }) {
             <Icon name="arrow" />
           </button>
         </form>
+        {invitation && (
+          <button
+            className="text-button"
+            disabled={busy}
+            onClick={() => {
+              setExistingAccount(!existingAccount);
+              setError("");
+            }}
+          >
+            {existingAccount
+              ? "Criar uma conta para este convite"
+              : "Já tenho conta: entrar para aceitar o convite"}
+          </button>
+        )}
         <p className="small">
           Seu acesso determina a empresa e a carteira disponíveis.
         </p>
@@ -286,6 +303,9 @@ export function App() {
   const [me, setMe] = useState<Me | null>(null),
     [starting, setStarting] = useState(true);
   const [view, setView] = useState<View>("daily"),
+    [invitationToken, setInvitationToken] = useState(
+      new URLSearchParams(location.search).get("activation") ?? "",
+    ),
     [menu, setMenu] = useState(false),
     [error, setError] = useState(""),
     [notice, setNotice] = useState(""),
@@ -338,6 +358,7 @@ export function App() {
   const operationKey = useRef(crypto.randomUUID()),
     replyKey = useRef(crypto.randomUUID()),
     loadSequence = useRef(0),
+    conversationSequence = useRef(0),
     pagingStarted = useRef(false),
     [refresh, setRefresh] = useState(0),
     [audit, setAudit] = useState<
@@ -354,6 +375,9 @@ export function App() {
       : "+" + item.recipient;
   }
   function clearContactResources() {
+    conversationSequence.current++;
+    setDialog(null);
+    setPreview(null);
     setTasks([]);
     setNotes([]);
     setDocs([]);
@@ -368,6 +392,7 @@ export function App() {
     setDocumentVersions([]);
   }
   function openConversation(item: Conversation) {
+    conversationSequence.current++;
     setConversation(item);
     setMessages([]);
     setMessageVersion("");
@@ -387,6 +412,7 @@ export function App() {
       .finally(() => setStarting(false));
     const clearPrivate = () => {
       loadSequence.current++;
+      conversationSequence.current++;
       setSelected(null);
       setConversation(null);
       setContacts([]);
@@ -811,6 +837,7 @@ export function App() {
   async function sendReply(event: FormEvent) {
     event.preventDefault();
     if (!conversation) return;
+    const sequence = conversationSequence.current;
     const recipient = conversationRecipient(conversation);
     if (!conversation.contactName.trim() || !recipient) {
       setError("Identifique o destinatário antes de confirmar a resposta.");
@@ -824,6 +851,8 @@ export function App() {
           { content: draft, contentType: "text" },
           { "Idempotency-Key": replyKey.current, "If-Match": messageVersion },
         );
+        if (sequence !== conversationSequence.current)
+          throw new ApiError(0, "context_changed", "Conversa alterada.");
         setMessageVersion(result.version);
         setDraft("");
         replyKey.current = crypto.randomUUID();
@@ -970,7 +999,14 @@ export function App() {
   if (!me)
     return (
       <>
-        <Login onLogin={setMe} />
+        <Login
+          onLogin={(user) => {
+            setInvitationToken(
+              new URLSearchParams(location.search).get("activation") ?? "",
+            );
+            setMe(user);
+          }}
+        />
         {error && (
           <div className="login-error" role="alert">
             {error}
@@ -994,22 +1030,20 @@ export function App() {
         </a>
         <span className="nav-label">ESPAÇO DE TRABALHO</span>
         <nav aria-label="Navegação principal">
-          {views
-            .filter((v) => v.id !== "settings" || admin)
-            .map((v) => (
-              <button
-                key={v.id}
-                className={view === v.id ? "active" : ""}
-                aria-current={view === v.id ? "page" : undefined}
-                onClick={() => navigate(v.id)}
-              >
-                <Icon name={v.icon} />
-                {v.name}
-                {v.id === "tasks" && summary.openTasks > 0 && (
-                  <span className="nav-count">{summary.openTasks}</span>
-                )}
-              </button>
-            ))}
+          {views.map((v) => (
+            <button
+              key={v.id}
+              className={view === v.id ? "active" : ""}
+              aria-current={view === v.id ? "page" : undefined}
+              onClick={() => navigate(v.id)}
+            >
+              <Icon name={v.icon} />
+              {v.name}
+              {v.id === "tasks" && summary.openTasks > 0 && (
+                <span className="nav-count">{summary.openTasks}</span>
+              )}
+            </button>
+          ))}
         </nav>
         <div className="sidebar-bottom">
           <span className="avatar">{me.name[0]}</span>
@@ -1128,6 +1162,17 @@ export function App() {
             <div className="loading-bar" role="status">
               Atualizando dados…
             </div>
+          )}
+          {invitationToken && view !== "settings" && (
+            <InvitationAcceptance
+              key={me.userId}
+              email={me.email}
+              initialToken={invitationToken}
+              onAccepted={async () => {
+                setInvitationToken("");
+                setMe(await api<Me>("/api/auth/me"));
+              }}
+            />
           )}
           {view === "daily" && (
             <>
@@ -1714,6 +1759,7 @@ export function App() {
                           onClick={() =>
                             void run(
                               async () => {
+                                const sequence = conversationSequence.current;
                                 const next = await api<{
                                   items: Message[];
                                   nextCursor: string | null;
@@ -1724,6 +1770,12 @@ export function App() {
                                     "/messages?cursor=" +
                                     messageCursor,
                                 );
+                                if (sequence !== conversationSequence.current)
+                                  throw new ApiError(
+                                    0,
+                                    "context_changed",
+                                    "Conversa alterada.",
+                                  );
                                 pagingStarted.current = true;
                                 setMessages((current) =>
                                   mergeMessages(current, next.items),
@@ -1810,153 +1862,143 @@ export function App() {
               )}
             </section>
           )}
-          {view === "settings" && admin && (
+          {view === "settings" && (
             <div className="settings-grid">
-              <section className="card">
-                <header>
-                  <h2>Equipe e acesso</h2>
-                  <button
-                    className="primary compact"
-                    onClick={() => show("invite")}
-                  >
-                    Preparar convite
-                  </button>
-                </header>
-                {members.map((m) => (
-                  <article className="member-row" key={m.id}>
-                    <span className="avatar light">{m.name[0]}</span>
-                    <div>
-                      <strong>{m.name}</strong>
-                      <span>{m.portfolio}</span>
-                    </div>
-                    <select
-                      aria-label={"Perfil de " + m.name}
-                      value={m.role}
-                      disabled={busy}
-                      onChange={(e) =>
-                        void run(
-                          () =>
-                            api(
-                              "/api/admin/members/" + m.id,
-                              "PUT",
-                              {
-                                role: e.target.value,
-                                portfolio: m.portfolio,
-                                active: m.active,
-                              },
-                              { "If-Match": `"${m.version}"` },
-                            ),
-                          "Perfil atualizado.",
-                          false,
-                        )
-                      }
-                    >
-                      <option value="admin">Administrador</option>
-                      <option value="operator">Operador</option>
-                      <option value="reader">Consulta</option>
-                      <option value="support">Suporte técnico</option>
-                    </select>
-                    <button
-                      className="secondary compact"
-                      disabled={busy}
-                      onClick={() =>
-                        void run(
-                          () =>
-                            api(
-                              "/api/admin/members/" + m.id,
-                              "PUT",
-                              {
-                                role: m.role,
-                                portfolio: m.portfolio,
-                                active: !m.active,
-                              },
-                              { "If-Match": `"${m.version}"` },
-                            ),
-                          m.active ? "Acesso desativado." : "Acesso reativado.",
-                          false,
-                        )
-                      }
-                    >
-                      {m.active ? "Desativar" : "Reativar"}
-                    </button>
-                  </article>
-                ))}
-                <p className="small muted settings-note">
-                  O convite é individual e expira em 48 horas. A preparação não
-                  envia e-mail.
-                </p>
-              </section>
-              <section className="card">
-                <header>
-                  <h2>Integração por API</h2>
-                </header>
-                <div className="settings-note">
-                  <p>
-                    Crie uma chave temporária vinculada ao seu acesso. Ela vale
-                    apenas para a API Connect da empresa selecionada.
-                  </p>
-                  <button
-                    className="secondary"
-                    disabled={busy}
-                    onClick={() =>
-                      void run(
-                        async () => {
-                          const key = await api<{ token: string }>(
-                            "/api/admin/api-keys",
-                            "POST",
-                          );
-                          setCredential(key.token);
-                        },
-                        "Chave criada. Guarde em local seguro; ela será exibida apenas nesta sessão.",
-                        false,
-                      )
-                    }
-                  >
-                    Criar chave de API
-                  </button>
-                  {credential && (
-                    <label className="credential">
-                      Chave ou link preparado
-                      <textarea
-                        readOnly
-                        value={credential}
-                        onFocus={(e) => e.target.select()}
-                      />
-                    </label>
-                  )}
-                </div>
-              </section>
-              <section className="card full">
-                <header>
-                  <h2>Registro de ações</h2>
-                  <button
-                    className="secondary compact"
-                    onClick={() =>
-                      void run(
-                        async () =>
-                          setAudit(await api<typeof audit>("/api/admin/audit")),
-                        "",
-                        false,
-                      )
-                    }
-                  >
-                    Consultar registros
-                  </button>
-                </header>
-                {audit.length ? (
-                  audit.map((a) => (
-                    <article key={a.id} className="audit-row">
-                      <strong>{a.action}</strong>
-                      <span>{date(a.at)}</span>
-                      <code>{a.traceId}</code>
-                    </article>
-                  ))
-                ) : (
-                  <Empty title="Consulte o registro da empresa">
-                    Ações têm autoria, data e código de atendimento.
-                  </Empty>
-                )}
-              </section>
+              <InvitationAcceptance
+                key={me.userId}
+                email={me.email}
+                initialToken={invitationToken}
+                onAccepted={async () => {
+                  setInvitationToken("");
+                  setMe(await api<Me>("/api/auth/me"));
+                }}
+              />
+              {admin && (
+                <>
+                  <section className="card">
+                    <header>
+                      <h2>Equipe e acesso</h2>
+                      <button
+                        className="primary compact"
+                        onClick={() => show("invite")}
+                      >
+                        Preparar convite
+                      </button>
+                    </header>
+                    {members.map((m) => (
+                      <article className="member-row" key={m.id}>
+                        <span className="avatar light">{m.name[0]}</span>
+                        <div>
+                          <strong>{m.name}</strong>
+                          <span>{m.portfolio}</span>
+                        </div>
+                        <select
+                          aria-label={"Perfil de " + m.name}
+                          value={m.role}
+                          disabled={busy}
+                          onChange={(e) =>
+                            void run(
+                              () =>
+                                api(
+                                  "/api/admin/members/" + m.id,
+                                  "PUT",
+                                  {
+                                    role: e.target.value,
+                                    portfolio: m.portfolio,
+                                    active: m.active,
+                                  },
+                                  { "If-Match": `"${m.version}"` },
+                                ),
+                              "Perfil atualizado.",
+                              false,
+                            )
+                          }
+                        >
+                          <option value="admin">Administrador</option>
+                          <option value="operator">Operador</option>
+                          <option value="reader">Consulta</option>
+                          <option value="support">Suporte técnico</option>
+                        </select>
+                        <button
+                          className="secondary compact"
+                          disabled={busy}
+                          onClick={() =>
+                            void run(
+                              () =>
+                                api(
+                                  "/api/admin/members/" + m.id,
+                                  "PUT",
+                                  {
+                                    role: m.role,
+                                    portfolio: m.portfolio,
+                                    active: !m.active,
+                                  },
+                                  { "If-Match": `"${m.version}"` },
+                                ),
+                              m.active
+                                ? "Acesso desativado."
+                                : "Acesso reativado.",
+                              false,
+                            )
+                          }
+                        >
+                          {m.active ? "Desativar" : "Reativar"}
+                        </button>
+                      </article>
+                    ))}
+                    <p className="small muted settings-note">
+                      O convite é individual e expira em 48 horas. A preparação
+                      não envia e-mail.
+                    </p>
+                    {credential && (
+                      <label className="credential">
+                        Link do convite preparado
+                        <textarea
+                          readOnly
+                          value={credential}
+                          onFocus={(event) => event.target.select()}
+                        />
+                      </label>
+                    )}
+                  </section>
+                  <ApiKeyPanel
+                    key={me.tenantId + "|" + me.role + "|" + me.portfolio}
+                  />
+                  <section className="card full">
+                    <header>
+                      <h2>Registro de ações</h2>
+                      <button
+                        className="secondary compact"
+                        onClick={() =>
+                          void run(
+                            async () =>
+                              setAudit(
+                                await api<typeof audit>("/api/admin/audit"),
+                              ),
+                            "",
+                            false,
+                          )
+                        }
+                      >
+                        Consultar registros
+                      </button>
+                    </header>
+                    {audit.length ? (
+                      audit.map((a) => (
+                        <article key={a.id} className="audit-row">
+                          <strong>{a.action}</strong>
+                          <span>{date(a.at)}</span>
+                          <code>{a.traceId}</code>
+                        </article>
+                      ))
+                    ) : (
+                      <Empty title="Consulte o registro da empresa">
+                        Ações têm autoria, data e código de atendimento.
+                      </Empty>
+                    )}
+                  </section>
+                </>
+              )}
             </div>
           )}
         </main>

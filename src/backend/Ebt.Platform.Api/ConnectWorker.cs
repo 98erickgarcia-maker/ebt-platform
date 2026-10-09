@@ -106,6 +106,14 @@ public sealed class ConnectWorker(IServiceScopeFactory factory, IConfiguration c
             var candidates = await db.Contacts.Where(x => x.Phone == recipient && x.Portfolio == connection.Portfolio).OrderBy(x => x.Id).Take(2).ToListAsync(ct);
             if (candidates.Count > 1) throw new ApiFault(400, "ambiguous_contact", "Contato precisa de reconciliação.");
             var contact = candidates.FirstOrDefault();
+            if (contact != null)
+            {
+                // Serialize the first channel link with an administrator's portfolio change.
+                await db.LockResource("contact:" + contact.Id, ct);
+                await db.Entry(contact).ReloadAsync(ct);
+                if (contact.Portfolio != connection.Portfolio)
+                    throw new ApiFault(400, "channel_portfolio_changed", "A carteira do contato mudou.");
+            }
             if (contact == null)
             {
                 contact = new Contact { TenantId = connection.TenantId, Name = "Novo contato " + recipient[^4..], Phone = recipient, ExternalKey = $"wa:{connection.Id:N}:{recipient}", Portfolio = connection.Portfolio, OwnerId = connection.OperatorId, CreationHash = "webhook" };
