@@ -142,7 +142,7 @@ app.MapGet("/health/ready", async (PlatformDb db) =>
     try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); var catalog = await PlatformCatalog.Read(db); if (!catalog.Any(x => x.Code == "connect")) return Results.StatusCode(503); return Results.Ok(new { status = "ready", schema = "ebt_connect", platformSchema = "ebt_platform", version = "0.3.0" }); }
     catch { return Results.StatusCode(503); }
 });
-PlatformCatalog.Map(app); Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
+PlatformCatalog.Map(app); FlowProtocol.Map(app); Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
 MailEndpoints.Map(app);
 ConnectImprovements.Map(app);
 WazVoxEndpoints.Map(app);
