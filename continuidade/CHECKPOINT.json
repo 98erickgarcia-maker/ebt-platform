@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T02:17:42.216820+00:00",
+  "created_at_utc": "2026-10-09T02:17:53.597269+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "9aeed36f558c435509d4256d20d1ac19612f32f7",
-  "base": "9aeed36f558c435509d4256d20d1ac19612f32f7",
+  "parent_checkpoint": "ebddc2ad0783621bea06b81a21608ed81df031bc",
+  "base": "ebddc2ad0783621bea06b81a21608ed81df031bc",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -1070,7 +1070,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "58d931ef1cd3c727b3b1403446bed505e856fe9548fb07f0a5edf0465df41ea1"
+      "sha256": "af58ce55e6a54df02b4a7e072023d5afefc7fe282fe8e9fa96790eda08b8a97c"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
