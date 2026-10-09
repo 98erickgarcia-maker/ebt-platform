@@ -1,5 +1,7 @@
 # Retomar EBT Enterprise no ChatGPT normal ou Codex
 
+**Estado vigente de 09/10/2026:** Connect 0.3.0 publicado, fonte `bde34225781702f08158f9d832956c4ec326b469`, revisão `ebt-connect-hml--connect030-bde3422`. Qualificação, cliente ativo, templates e e-mail/fila em SQL. CI aprovado e 34 checks HTTP online + navegador desktop/mobile. Microsoft real ainda pendente. Leia `PASSO_A_PASSO_CONNECT_PROSPECCAO_MAIL.md` e `evidencias/connect_commercial_online_20261009.json` no checkout revisado. Referências anteriores a 0.2.0 abaixo são históricas.
+
 ## Objetivo
 
 Continue do Ãºltimo checkpoint revisado, preservando produtos menores e 180h de entregas + 20h de reserva. NÃ£o comeÃ§ar do zero nem executar mÃ³dulos futuros sem autorizaÃ§Ã£o vigente.

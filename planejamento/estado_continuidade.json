@@ -18,16 +18,16 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Platform 0.2.0 publicada e verificada: catalogo no Azure compartilhado, 26 checks HTTP online, navegador desktop/mobile, mesma sessao e mesmos IDs consultados; CI de fonte 18a454c aprovado. Provas locais 19 browser, 8 catalogo SQL/HTTP e 27 regressao Connect. Sem promocao global de gates.",
+  "review_status": "Connect 0.3.0 publicado e verificado: qualificação, cliente ativo no mesmo ID, modelos por canal, e-mail e fila SQL, sem MongoDB no runtime suportado. CI da fonte aprovado, 22 browser, SQL idempotente aplicado duas vezes em QA, ClamAV real e restore isolado CI. Online: 34 checks HTTP e desktop/mobile; sessão, contatos e configuração preservados. Outlook real ainda pendente.",
   "no_product_gate_promotion": true,
   "product_limits": [
-    "Microsoft Graph app-only ainda sem configuração/homologação de envio real neste Connect",
-    "Scanner real e restore isolado em CI precisam de prova da fonte atual; scanner e restore Azure ainda pendentes",
+    "Microsoft Graph app-only ainda sem configuração/homologação de envio real neste Connect; aplicativo de e-mail consultado declara Scope delegado",
+    "Scanner real e restore isolado comprovados no CI sintético da fonte atual; scanner e restore Azure ainda pendentes",
     "Pedidos, execução, financeiro e verticais são backlog de outros aplicativos",
-    "Pacotes Mail/Emergent históricos com MongoDB são arquivos de origem preservados fora do build e runtime suportado",
+    "Pacotes Mail/Emergent históricos e app-mail separado são fontes preservadas; o runtime EBT suportado usa SQL sem MongoDB",
     "Dois tenants do Connect não demonstram Core universal"
   ],
-  "next_authorized_step": "Concluir QA, salvar checkpoint revisado, verificar CI e publicar candidato no host existente com migração aditiva somente ebt_connect.",
+  "next_authorized_step": "Definir vínculo Microsoft da caixa pretendida e homologar envio de teste autorizado; scanner/restore Azure e aceite operacional precisam de provas próprias. Demais aplicativos mantidos no planejamento. Revisar cada incremento antes de salvar.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -44,12 +44,12 @@
   "scheduler_source": "evidencias/revisao_github_incremental_20261008.json",
   "online": {
     "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
-    "version": "0.2.0",
-    "source_commit": "18a454c725478819ab79a3f032e4321ca0e74d76",
-    "revision": "ebt-connect-hml--platform020-18a454c",
-    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:3cbba51b9440fff7f042f650d8396dd6a9eca218cf2c37d115450f39ed9d6ad1",
-    "evidence": "evidencias/platform_online_20261009.json",
-    "database_evidence": "evidencias/platform_azure_apply_20261009.json",
+    "version": "0.3.0",
+    "source_commit": "bde34225781702f08158f9d832956c4ec326b469",
+    "revision": "ebt-connect-hml--connect030-bde3422",
+    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:f419f17ce2dfbd9de98f4267ca1073ceecd9a6af80534833f7f9772b80746825",
+    "evidence": "evidencias/connect_commercial_online_20261009.json",
+    "database_evidence": "evidencias/connect_commercial_azure_apply_20261009.json",
     "status": "published_verified",
     "available_applications": [
       "connect"
@@ -73,7 +73,7 @@
     "product_status_unchanged": true,
     "new_modules_authorized_by_review": false
   },
-  "summary": "Candidato Connect 0.3.0: qualificação, cliente ativo, templates e fila SQL sem MongoDB no runtime. QA: 12 API/SQL, 12 protocolo Mail, 8 worker SQL, 9 unitários e 22 browser aprovados. CI e publicação da fonte atual ainda pendentes.",
+  "summary": "Connect 0.3.0 publicado e verificado: qualificação, cliente ativo no mesmo ID, modelos por canal, e-mail e fila SQL, sem MongoDB no runtime suportado. CI da fonte aprovado, 22 browser, SQL idempotente aplicado duas vezes em QA, ClamAV real e restore isolado CI. Online: 34 checks HTTP e desktop/mobile; sessão, contatos e configuração preservados. Outlook real ainda pendente.",
   "commercial_scope": [
     "prospeccao",
     "qualificacao",
@@ -81,6 +81,30 @@
     "cliente_ativo",
     "relacionamento_comercial"
   ],
-  "current_candidate_version": "0.3.0",
-  "real_hours": null
+  "current_candidate_version": null,
+  "real_hours": null,
+  "previous_online": {
+    "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+    "version": "0.3.0",
+    "source_commit": "bde34225781702f08158f9d832956c4ec326b469",
+    "revision": "ebt-connect-hml--connect030-bde3422",
+    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:f419f17ce2dfbd9de98f4267ca1073ceecd9a6af80534833f7f9772b80746825",
+    "evidence": "evidencias/connect_commercial_online_20261009.json",
+    "database_evidence": "evidencias/connect_commercial_azure_apply_20261009.json",
+    "status": "published_verified",
+    "available_applications": [
+      "connect"
+    ],
+    "planned_applications": [
+      "flow",
+      "portal",
+      "sites",
+      "contracts",
+      "sst",
+      "legislativo",
+      "educacao",
+      "saude"
+    ]
+  },
+  "current_product_version": "0.3.0"
 }

@@ -1,5 +1,7 @@
 # Estado de implementaÃ§Ã£o do Connect
 
+**Estado vigente de 09/10/2026:** Connect 0.3.0 publicado, fonte `bde34225781702f08158f9d832956c4ec326b469`, revisão `ebt-connect-hml--connect030-bde3422`. Qualificação, cliente ativo, templates e e-mail/fila em SQL. CI aprovado e 34 checks HTTP online + navegador desktop/mobile. Microsoft real ainda pendente. Leia `PASSO_A_PASSO_CONNECT_PROSPECCAO_MAIL.md` e `evidencias/connect_commercial_online_20261009.json` no checkout revisado. Referências anteriores a 0.2.0 abaixo são históricas.
+
 **Publicacao vigente de 09/10/2026:** EBT Platform 0.2.0 publicada no host existente, com Connect dentro do catalogo e schema `ebt_platform` no mesmo banco compartilhado. Fonte `18a454c`, CI aprovado, sessao preservada, 26 checks HTTP online e navegador desktop/mobile. [Acesso e provas](../../PASSO_A_PASSO_EBT_PLATFORM.md). As referencias abaixo a ausencia de deploy das correcoes e a publicacao 0.1.5 sao historicas. Demais aplicativos planejados; scanner real, restore isolado e aceite continuam pendentes.
 
 **RevisÃ£o incremental de 08/10/2026:** quatro partes verificadas no candidato GitHub `b471eaf8`, com build/continuidade aprovados. R01â€“R05 receberam correÃ§Ãµes e provas nos cenÃ¡rios descritos; cliente protege sessÃµes/downloads tardios e scanner exige resposta completa. [RelatÃ³rio da revisÃ£o](REVISAO_GITHUB_INCREMENTAL_20261008.md). Scanner real, restore Azure e aceite permanecem pendentes; a publicaÃ§Ã£o 0.1.5 abaixo Ã© histÃ³rica e nÃ£o recebeu deploy desta revisÃ£o.

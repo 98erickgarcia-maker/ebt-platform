@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T07:36:02.312175+00:00",
+  "created_at_utc": "2026-10-09T07:51:55.247417+00:00",
   "branch": "codex/ebt-enterprise-continuity-reviewed-20261008",
-  "parent_checkpoint": "9aefbffe599134e8a7b34315617270e90e6dc365",
-  "base": "9aefbffe599134e8a7b34315617270e90e6dc365",
+  "parent_checkpoint": "bde34225781702f08158f9d832956c4ec326b469",
+  "base": "bde34225781702f08158f9d832956c4ec326b469",
   "source_head": "dc35f5497351b1c3d488ebf084d43046d54f0939",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
@@ -46,7 +46,7 @@
     },
     {
       "path": "PASSO_A_PASSO_CONNECT_PROSPECCAO_MAIL.md",
-      "sha256": "827731c35a6750e64cd4a635e9b27435f09db64c414e69cd59f2467aaf27378c"
+      "sha256": "60f176cc2ad780925ea82896bce92b79c8dd0a9051dc79f72c2703d892f26f3e"
     },
     {
       "path": "PASSO_A_PASSO_EBT_CONNECT.md",
@@ -70,7 +70,7 @@
     },
     {
       "path": "RETOMADA_EBT_ENTERPRISE_ATUAL.md",
-      "sha256": "2185397e5f0409601ae0db69b9d3beefea8ff1cd5f78ad61712cedeb1f870c8c"
+      "sha256": "c9ab41035eed4bf17f59409995b1b114b43f75245a8a6cff0267921f93227637"
     },
     {
       "path": "deployment/connect/Dockerfile",
@@ -194,7 +194,7 @@
     },
     {
       "path": "docs/execucao/OUTLOOK_CONNECT_CONFIGURACAO.md",
-      "sha256": "29a4daa21af5d49e4b1781d63498ca5d48570f5696d6c39bbeb8cb896ae26967"
+      "sha256": "338659db76f8ba208deb15297c638a32b87760d0e8599c9cea12f853f1df48bc"
     },
     {
       "path": "docs/execucao/PACOTES_CODEX.md",
@@ -782,7 +782,7 @@
     },
     {
       "path": "docs/qualidade/REVISAO_COMERCIAL_MAIL_20261009.md",
-      "sha256": "03c078b10165311f3b36b7b4b888fb80a71b2536ba0d9262094125558b0b66a8"
+      "sha256": "f1688efa73c25278fddb788095fedb94887f0892cff2ad3cb2158ec92bc13f31"
     },
     {
       "path": "docs/qualidade/REVISAO_ENTERPRISE_E_CONTINUIDADE_20261007.md",
@@ -802,7 +802,7 @@
     },
     {
       "path": "docs/qualidade/STATUS_IMPLEMENTACAO_CONNECT.md",
-      "sha256": "ae79d95b9d0df1c942c80b41574525f45e67f19edc6b6ea3a35b7bc15eb5eabc"
+      "sha256": "85c4c762811f41a00a231c3dbb5fa1dabc9a3763b3b0927b1d9a3854fdc823fa"
     },
     {
       "path": "docs/referencias/EBT_Planejamento_Codigo_Plataforma.pdf",
@@ -853,6 +853,14 @@
       "sha256": "ea5ceaa8203a114c84c867c1237f8b0d9340e57d3d459c659eb12cd6fb809280"
     },
     {
+      "path": "evidencias/connect_commercial_azure_apply_20261009.json",
+      "sha256": "23ddd51683fdb3220e5f1f8a95fda63f800c24804680fccc4dd859463e57816e"
+    },
+    {
+      "path": "evidencias/connect_commercial_online_20261009.json",
+      "sha256": "e11c11ecbb08c868c1dc7a3114fc56d26635ec6410482907488dbec57c80780d"
+    },
+    {
       "path": "evidencias/connect_container_preparado.json",
       "sha256": "b193da72513e5d9751a23842a7b41c3c8e1820ac5920e3b3b94bbf2c88dae274"
     },
@@ -863,6 +871,14 @@
     {
       "path": "evidencias/connect_imagem_azure.json",
       "sha256": "a7adeda6a1025edce485c6f7153b1348ebcbdebb6bf732b28361b509f0349bff"
+    },
+    {
+      "path": "evidencias/connect_mail_ci_20261009.json",
+      "sha256": "7f27981ad5acd92e2ff1bcec5da0e638cc28fb45d04a66e355618085289d8621"
+    },
+    {
+      "path": "evidencias/connect_mail_sql_release_20261009.json",
+      "sha256": "460044114c186532b11e42bc5fdff98512be0328d859f54f6e93cb68711008bc"
     },
     {
       "path": "evidencias/connect_outros_apps_preservados.json",
@@ -1126,7 +1142,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "d4d22abb83a713d862033e7c5a5a77400087567ee598c3a067bf9f67e4c0dff2"
+      "sha256": "d83c8a79559900bb888bd2bdf8b3d90a6113b0fe109928b181db5e8a4af81b33"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1138,7 +1154,7 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "f2cde2e2a1458584024ff2afa6297f0fc957ad389e86be8ca740ee6cf3cbb3a2"
+      "sha256": "bee09b6dd8b82846a8de64d487d9e4ce21ff171a8079e4b49c2241f64a541b3a"
     },
     {
       "path": "planejamento/gates_e_dependencias.json",
@@ -1166,7 +1182,7 @@
     },
     {
       "path": "prompts/RETOMAR_EBT_ENTERPRISE.md",
-      "sha256": "3c3618abbba630fef0c4fcd825a2a4f820f1c756531cf58aaff544cfaf6cfb4a"
+      "sha256": "5db876362729e6d96da712bd22db0fc461a98ad045965f9eb57ebf5348901de1"
     },
     {
       "path": "scripts/Apply-CommercialAzureSchema.ps1",

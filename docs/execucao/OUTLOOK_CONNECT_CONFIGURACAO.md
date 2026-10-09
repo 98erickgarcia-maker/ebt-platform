@@ -18,3 +18,5 @@ O cliente usa client_credentials e o recurso Microsoft Graph, sem redirecionamen
 6. Anexo exige versão aprovada e inspeção autorizada. Com scanner Azure pendente, não contornar esse bloqueio.
 
 Timeout/reinício/resultado incerto pausam a fila e exigem conferência antes de reconciliar. A integração atual não lê automaticamente Itens Enviados nem sincroniza calendário. Exportação ICS é importação manual. Leitura de caixa/calendário requer contrato e permissões próprios; não acrescentar Mail.Read/Calendars.ReadWrite apenas para enviar.
+
+Consulta atual somente de metadados confirmou um aplicativo EBT Contact Engine Email, cuja permissão declarada é Scope (delegada). Isso não é prova de autorização app-only efetiva. Mail permanece ausente na configuração do servidor; nenhuma credencial foi copiada e nenhum envio real foi acionado.

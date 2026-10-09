@@ -1,0 +1,27 @@
+{
+  "generatedUtc": "2026-10-09T07:46:29.2707042+00:00",
+  "database": "sqldb-crm-casst-dev-v2",
+  "schema": "ebt_connect",
+  "scriptSha256": "d196f1d37a7d1f9a29ed700a0f63753dd9523c9acd91626634d4c247a48a319d",
+  "migrations": [
+    "20261007061736_InitialConnect",
+    "20261007061901_DocumentReviewHistory",
+    "20261007062209_TenantStorageBarrier",
+    "20261007062505_ContactCreationLedger",
+    "20261007064302_RevocableSessions",
+    "20261007071227_ProviderConnectionIdentity",
+    "20261007090647_WazVoxEventIdentity",
+    "20261007114135_PersistentProtectedKeyRing",
+    "20261009050643_ConnectMail",
+    "20261009062431_CommercialProspection"
+  ],
+  "otherSchemasBefore": "f21d1a0be884e7858c6a63a53e3ad564c179594f75ba7ec8eb10c4baff193592",
+  "otherSchemasAfter": "f21d1a0be884e7858c6a63a53e3ad564c179594f75ba7ec8eb10c4baff193592",
+  "otherSchemasUnchanged": true,
+  "otherTableCountsBefore": "2b8fbaf3ffe2942398779fe698a3a5225e293f9d669f28d30ef3975905200342",
+  "otherTableCountsAfter": "2b8fbaf3ffe2942398779fe698a3a5225e293f9d669f28d30ef3975905200342",
+  "otherTableCountsUnchanged": true,
+  "newDatabaseCreated": false,
+  "seedApplied": false,
+  "identityGrantsApplied": false
+}

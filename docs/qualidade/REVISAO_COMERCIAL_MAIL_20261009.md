@@ -1,6 +1,6 @@
 # Revisão comercial Connect: CASST, Vikings e Mail
 
-Referência: 09/10/2026. Candidato 0.3.0 em verificação. Não confundir com 0.2.0 publicada.
+Referência: 09/10/2026. Connect 0.3.0 publicado e verificado. A 0.2.0 permanece referência histórica.
 
 ## Histórico visual antes da implementação
 
@@ -40,3 +40,5 @@ Foi encontrada e corrigida a disputa entre reserva e quota: outra réplica deve 
 Orçamento 180h de entregas + 20h de reserva preservado; horas reais não estimadas como realizadas.
 
 A publicação exercitou o script SQL idempotente e identificou resolução antecipada dos objetos na regra RLS. O ALTER SECURITY POLICY foi encapsulado em SQL dinâmico. Novo ensaio local migrou uma base sintética exclusiva até a versão anterior e executou o script revisado duas vezes, sem duplicar tabelas/migrations. O mesmo caminho foi acrescentado ao CI antes de publicar; a migração EF comum isoladamente não cobria esse defeito.
+
+Publicação final: fonte `bde34225781702f08158f9d832956c4ec326b469`, CI aprovado, 34 checks HTTP e navegador online em dois viewports. Provas em evidencias/connect_commercial_online_20261009.json, connect_mail_ci_20261009.json e connect_mail_sql_release_20261009.json. Consulta somente de metadados Microsoft encontrou EBT Contact Engine Email com permissão declarada Scope; nenhum secret foi copiado e envio app-only não foi ativado.

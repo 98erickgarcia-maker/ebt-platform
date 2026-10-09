@@ -1,0 +1,25 @@
+{
+  "columns": [
+    "Id",
+    "TenantId",
+    "CreationHash",
+    "Name",
+    "ExternalKey",
+    "Email",
+    "Phone",
+    "Stage",
+    "Portfolio",
+    "OwnerId",
+    "OrganizationId",
+    "CreatedAt",
+    "Version"
+  ],
+  "contactCount": 7,
+  "originalContactColumnsSha256": "0d1333a418d78e9ea2b48a3d811c183d633036cc9f897133af716aa1c7ec5af3",
+  "rawDataSaved": false,
+  "contactOriginalValuesUnchanged": true,
+  "mailRlsPredicates": 30,
+  "runtimeOwnTableReadWrite": true,
+  "runtimeNoSchemaAlterOrDboRead": true,
+  "passed": true
+}

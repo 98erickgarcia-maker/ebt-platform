@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-09T07:46:42.294478+00:00",
+  "sourceCommit": "bde34225781702f08158f9d832956c4ec326b469",
+  "passed": true,
+  "runs": [
+    {
+      "id": 37899956677,
+      "name": "Validate EBT Enterprise continuity",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "bde34225781702f08158f9d832956c4ec326b469",
+      "html_url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37899956677"
+    },
+    {
+      "id": 37899956651,
+      "name": "Build EBT Connect",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "bde34225781702f08158f9d832956c4ec326b469",
+      "html_url": "https://github.com/98erickgarcia-maker/ebt-platform/actions/runs/37899956651"
+    }
+  ],
+  "browser": {
+    "startTime": "2026-10-09T07:42:59.275Z",
+    "duration": 129750.383,
+    "expected": 22,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "caseCounts": {
+    "mail_connect_qa_20261009.json": 12,
+    "mail_worker_sql_20261009.json": 8,
+    "testes_scanner_real_ci.json": 2,
+    "testes_restore_ci.json": 10
+  },
+  "reviewedSqlAppliedTwice": true,
+  "scope": "Isolated synthetic CI, including real private ClamAV; no production message or Azure restore",
+  "artifacts": {
+    "id": 11602630824,
+    "name": "connect-qa-results"
+  }
+}

@@ -51,7 +51,7 @@ dotnet run --project tests/WazVox.ProtocolTests -c Release -- --mail-sql
 
 No frontend: `npm.cmd run test:unit`, `npm.cmd run build` e `npm.cmd run test:e2e`. Termine o build frontend antes de compilar backend: o Vite troca os arquivos wwwroot, e builds simultâneos podem divergir nos assets. Testes de autenticação usam uma janela compartilhada de QA, mantendo o limite do produto.
 
-API/SQL: 12 cenários locais aprovados. Protocolo: 12 cenários com HTTP controlado. Worker: 8 cenários SQL, incluindo concorrência, intervalo medido e interação automática após aceite. Frontend: 9 testes de contexto. Browser: 22 cenários aprovados localmente, incluindo desktop/mobile, templates, contexto e permissões. CI e publicação da fonte atual ainda pendentes; consultar suas evidências separadas.
+API/SQL: 12 cenários locais aprovados. Protocolo: 12 cenários com HTTP controlado. Worker: 8 cenários SQL, incluindo concorrência, intervalo medido e interação automática após aceite. Frontend: 9 testes de contexto. Browser: 22 cenários aprovados localmente, incluindo desktop/mobile, templates, contexto e permissões. CI da fonte publicada aprovado: 22 browser, 12 Mail API/SQL, 8 worker SQL, 2 scanner real e 10 restore isolado sintético. Script de publicação executado duas vezes em QA. Online: 34 checks HTTP e navegador desktop/mobile. Ver evidencias/connect_mail_ci_20261009.json e evidencias/connect_commercial_online_20261009.json; isso não comprova scanner/restore Azure ou envio Microsoft real.
 
 Revise diff, arquivos e segredos; atualize estado; salve com `python scripts/checkpoint_github.py --approve --push`. Só anuncie GitHub salvo após SHA remoto igual. Exporte com `python scripts/exportar_continuidade.py`; pacote contém código revisado, sem configuração privada ou banco. ChatGPT normal usa o prompt de retomada e acesso efetivo ao GitHub/pacote; não há transferência automática de créditos/sessão.
 
@@ -64,3 +64,7 @@ Revise diff, arquivos e segredos; atualize estado; salve com `python scripts/che
 - Busca sem resposta: a tela apresenta erro e tentativa novamente; não confundir erro com cadastro vazio.
 - Importação Excel ampliada, OAuth individual e reconciliação automática de Itens Enviados ainda são pendências registradas. CSV controlado continua existente.
 - Orçamento documental permanece 180h de entregas + 20h de reserva; horas reais não foram inventadas.
+
+## Publicação verificada
+
+Versão 0.3.0 online em https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io. Fonte `bde34225781702f08158f9d832956c4ec326b469`; revisão `ebt-connect-hml--connect030-bde3422`. Migração aditiva no banco existente: seis tabelas Mail com 30 predicados RLS e campos de qualificação; valores originais dos sete contatos preservados por hash, catálogo/contagens dos outros schemas iguais. Sessão anterior e cinco IDs da carteira consultada preservados. Ambiente, secrets, identidade, ingress e recursos iguais. Nenhum e-mail real enviado nesta revisão. O checkpoint documental final pode ser posterior ao SHA compilado.
