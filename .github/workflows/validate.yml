@@ -85,7 +85,17 @@ jobs:
           p.write_text('\n'.join(lines + [key+' '+value for key, value in settings.items()])+'\n')
           PY
           sudo clamd --config-file=/etc/clamav/clamd.conf
-          python -c "import socket, time; exec('for attempt in range(60):\n try:\n  s=socket.create_connection((\"127.0.0.1\",3310),2); s.sendall(b\"zPING\\x00\"); assert s.recv(32)==b\"PONG\\x00\"; s.close(); break\n except (OSError, AssertionError): time.sleep(0.5)\nelse: raise RuntimeError(\"Private scanner unavailable\")')"
+          python - <<'PY'
+          import socket, time
+          for attempt in range(60):
+              try:
+                  with socket.create_connection(('127.0.0.1', 3310), 2) as peer:
+                      peer.sendall(b'zPING\0')
+                      assert peer.recv(32) == b'PONG\0'
+                  break
+              except (OSError, AssertionError): time.sleep(0.5)
+          else: raise RuntimeError('Private scanner unavailable')
+          PY
       - name: Prepare isolated synthetic QA configuration
         run: python tests/integration/prepare_ci_fixture.py
       - run: dotnet restore tests/WazVox.ProtocolTests --locked-mode
