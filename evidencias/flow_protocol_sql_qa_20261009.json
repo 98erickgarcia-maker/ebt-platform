@@ -1,0 +1,130 @@
+{
+  "generatedUtc": "2026-10-09T20:50:43.947593+00:00",
+  "environment": "exclusive localhost SQL QA",
+  "database": "EbtPlatformQa_Flow_eff4bcd88f",
+  "passed": true,
+  "scriptSha256": "b1186a061e0173feddb355a1b1a94d8978bd33aee9942d09d5eabcfcca20f60e",
+  "sourceHashes": {
+    "src/backend/Ebt.Platform.Api/FlowProtocol.cs": "c05c0b65296d4014cf33709c83d0bd7fad8247312ef3ac4a3f808c8ab7f9c723",
+    "tests/integration/flow_protocol_qa.py": "5c0626a185c846d1379d7c882844989aa940fef51c1cffd770f464d49e709919"
+  },
+  "cases": [
+    {
+      "name": "Fresh isolated QA database initialized",
+      "passed": true
+    },
+    {
+      "name": "Flow migration commit and repeat 1",
+      "passed": true
+    },
+    {
+      "name": "Flow migration commit and repeat 2",
+      "passed": true
+    },
+    {
+      "name": "Anonymous Flow rejected",
+      "passed": true
+    },
+    {
+      "name": "Idempotent replay preserves ID",
+      "passed": true
+    },
+    {
+      "name": "Mismatched replay rejected",
+      "passed": true
+    },
+    {
+      "name": "Other portfolio cannot replay private protocol",
+      "passed": true
+    },
+    {
+      "name": "Tenant B list hides A",
+      "passed": true
+    },
+    {
+      "name": "Other portfolio list hides A",
+      "passed": true
+    },
+    {
+      "name": "Reader mutation denied",
+      "passed": true
+    },
+    {
+      "name": "Invalid subject denied",
+      "passed": true
+    },
+    {
+      "name": "Missing idempotency key denied",
+      "passed": true
+    },
+    {
+      "name": "Cross tenant and portfolio direct transition denied",
+      "passed": true
+    },
+    {
+      "name": "History direct ID scoped",
+      "passed": true
+    },
+    {
+      "name": "Invalid transition and stale version rejected",
+      "passed": true
+    },
+    {
+      "name": "Three persisted movements and completion result",
+      "passed": true
+    },
+    {
+      "name": "Completed protocol cannot complete twice",
+      "passed": true
+    },
+    {
+      "name": "16 concurrent creations have unique contiguous sequence",
+      "passed": true
+    },
+    {
+      "name": "Concurrent same-version transition commits once",
+      "passed": true
+    },
+    {
+      "name": "8 simultaneous replays create exactly one protocol",
+      "passed": true
+    },
+    {
+      "name": "Sequence scoped independently to tenant",
+      "passed": true
+    },
+    {
+      "name": "RLS SQL read exposes only selected tenant",
+      "passed": true
+    },
+    {
+      "name": "RLS SQL without context exposes nothing",
+      "passed": true
+    },
+    {
+      "name": "Object-only runtime grants deny history modification and DDL",
+      "passed": true
+    },
+    {
+      "name": "Runtime SQL cross-tenant insertion blocked by RLS",
+      "passed": true
+    },
+    {
+      "name": "Movement failure rolls back protocol and sequence",
+      "passed": true
+    },
+    {
+      "name": "Restart preserves session and persisted history",
+      "passed": true
+    },
+    {
+      "name": "SQL backup restore preserves protocol and movement hashes",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "No Azure migration or deploy",
+    "No user homologation",
+    "No attachments or linked tasks in this first protocol slice"
+  ]
+}

@@ -3,7 +3,7 @@ import { api, ApiError } from "./api";
 
 type Catalog = { tenantId: string; applications: { code: string; name: string; description: string; state: string; available: boolean }[] };
 
-export function PlatformApplications({ onOpenConnect }: { onOpenConnect: () => void }) {
+export function PlatformApplications({ onOpenConnect, onOpenFlow }: { onOpenConnect: () => void; onOpenFlow: () => void }) {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
@@ -21,7 +21,7 @@ export function PlatformApplications({ onOpenConnect }: { onOpenConnect: () => v
     <div className="application-grid">{catalog.applications.map(item => <article className="application-card" key={item.code} data-application={item.code}>
       <span className={"badge " + (item.available ? "badge-approved" : "")}>{item.available ? "Disponível" : item.state === "disabled" ? "Indisponível" : "Planejado"}</span>
       <h3>{item.name}</h3><p>{item.description}</p>
-      {item.available ? <button className="primary" onClick={onOpenConnect}>Acessar Connect</button> : <p className="small">Em planejamento</p>}
+      {item.available ? <button className="primary" onClick={item.code === "flow" ? onOpenFlow : onOpenConnect}>Acessar {item.code === "flow" ? "Flow" : "Connect"}</button> : <p className="small">Em planejamento</p>}
     </article>)}</div>
   </section>;
 }

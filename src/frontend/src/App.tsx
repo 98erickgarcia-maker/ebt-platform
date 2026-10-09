@@ -1366,6 +1366,7 @@ export function App() {
                 refresh,
               ].join("|")}
               onOpenConnect={() => navigate("daily")}
+              onOpenFlow={() => navigate("flow")}
             />
           )}
           {view === "flow" && <FlowPanel key={[me.userId,me.tenantId,me.role,me.portfolio].join("|")} identity={[me.userId,me.tenantId,me.role,me.portfolio].join("|")} writable={writable} />}

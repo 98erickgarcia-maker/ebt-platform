@@ -1,4 +1,4 @@
--- EBT Flow MVP only. Explicit manual review and QA gate required before any application.
+-- EBT Flow only. Explicit manual review and QA gate required before any application.
 -- Never run automatically on the shared production database.
 SET XACT_ABORT ON;
 BEGIN TRANSACTION;
@@ -25,6 +25,7 @@ BEGIN
   CONSTRAINT CK_FlowNumber CHECK (Number>0)
  );
 END;
+
 IF OBJECT_ID(N'ebt_flow.Movements',N'U') IS NULL
 BEGIN
  CREATE TABLE ebt_flow.Movements (
@@ -41,4 +42,24 @@ BEGIN
   CONSTRAINT CK_FlowAction CHECK ([Action] IN ('created','start','complete'))
  );
 END;
--- Grants are intentionally left for a separate reviewed deployment step.\nCOMMIT;
+
+IF OBJECT_ID(N'ebt_flow.tenant_guard',N'IF') IS NULL
+ EXEC(N'CREATE FUNCTION ebt_flow.tenant_guard(@TenantId uniqueidentifier)
+ RETURNS TABLE WITH SCHEMABINDING AS RETURN SELECT 1 AS allowed
+ WHERE @TenantId=TRY_CONVERT(uniqueidentifier,SESSION_CONTEXT(N''ebt_tenant''))
+ OR TRY_CONVERT(int,SESSION_CONTEXT(N''ebt_system''))=1;');
+IF NOT EXISTS (SELECT 1 FROM sys.security_policies WHERE name=N'tenant_barrier' AND schema_id=SCHEMA_ID(N'ebt_flow'))
+ EXEC(N'CREATE SECURITY POLICY ebt_flow.tenant_barrier
+ ADD FILTER PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Protocols,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Protocols AFTER INSERT,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Protocols AFTER UPDATE,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Protocols BEFORE UPDATE,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Protocols BEFORE DELETE,
+ ADD FILTER PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Movements,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Movements AFTER INSERT,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Movements AFTER UPDATE,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Movements BEFORE UPDATE,
+ ADD BLOCK PREDICATE ebt_flow.tenant_guard(TenantId) ON ebt_flow.Movements BEFORE DELETE
+ WITH (STATE=ON);');
+-- Runtime grants are reviewed separately for the existing EBT identity.
+COMMIT;

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "enabled": true,
+  "concurrency": 1,
+  "allow_deploy": false,
+  "allow_migration": false,
+  "allow_external_messages": false,
+  "allow_push": false,
+  "roles": ["scope", "contracts", "backend", "frontend", "negative_tests", "accessibility", "security", "regression", "independent_review", "handoff"],
+  "allowed_paths": [
+    "src/backend/Ebt.Platform.Api/FlowProtocol.cs",
+    "src/frontend/src/FlowPanel.tsx",
+    "src/frontend/src/api.ts",
+    "src/frontend/e2e/flow-protocol.spec.ts",
+    "tests/WazVox.ProtocolTests/Program.cs",
+    "docs/operacao/FLOW_HISTORY_PAGINATION_PROPOSAL.md"
+  ],
+  "tasks": [
+    {"id":"FLOW-01", "role":"scope", "checks":["diff"], "instruction":"Inspect the current Flow history endpoint and UI. Document a small bounded history pagination proposal in docs/operacao/FLOW_HISTORY_PAGINATION_PROPOSAL.md, version and scenarios, preserving tenant and portfolio boundaries. Do not expand schema or migration. Record observable acceptance criteria and 180h deliveries plus20h reserve. This task is scope and evidence only."},
+    {"id":"FLOW-02", "role":"contracts", "checks":["diff"], "instruction":"Review Flow history pagination contract in the proposal. Specify deterministic stable ordering, bounded page size, invalid cursor/limit behavior, empty versus inaccessible protocol, no history leakage, and backwards compatibility. Change only proposal document."},
+    {"id":"FLOW-03", "role":"backend", "checks":["diff","backend"], "instruction":"Implement the reviewed bounded Flow history pagination proposal in FlowProtocol.cs, preserving tenant+portfolio enforcement and deterministic ordering. No schema changes, migrations, database access or deploy. Add synthetic regression coverage in ProtocolTests Program.cs. If contract insufficient return blocked."},
+    {"id":"FLOW-04", "role":"frontend", "checks":["diff","frontend"], "instruction":"Implement the history pagination consumer in FlowPanel.tsx and api.ts following the reviewed contract, preserving existing visual design. Handle loading, errors, empty history and advancing pages without duplicate items. Use current patterns; no unrelated changes."},
+    {"id":"FLOW-05", "role":"negative_tests", "checks":["diff","backend"], "instruction":"Add meaningful synthetic coverage for invalid page size/cursor, cross tenant/portfolio access, ordering ties and empty/inaccessible protocol in existing ProtocolTests. Document which scenarios are executable versus pending SQL runtime. Never claim SQL gates passed from source tests."},
+    {"id":"FLOW-06", "role":"accessibility", "checks":["diff","frontend"], "instruction":"Review and fix only history pagination accessibility, keyboard controls, busy state, disabled next controls, and error feedback within existing FlowPanel. Record evidence and limitations in proposal."},
+    {"id":"FLOW-07", "role":"security", "checks":["diff","backend"], "instruction":"Audit proposed Flow history pagination for SQL injection, cursor tampering, tenant/portfolio boundaries, unbounded queries and error leakage. Fix authorized files if needed and document negative cases; no live SQL or integrations."},
+    {"id":"FLOW-08", "role":"regression", "checks":["diff","backend","frontend"], "instruction":"Consolidate targeted synthetic frontend/backend regressions for history pagination; add E2E source scenarios using established flow-protocol.spec.ts patterns. Record E2E/SQL runs as pending if no synthetic environment exists. Do not deploy or connect to private services."},
+    {"id":"FLOW-09", "role":"independent_review", "checks":["diff","backend","frontend"], "instruction":"Independently review the complete proposal diff and evidence. Record actionable findings and correct only allowlisted scope. Return blocked for unresolved material security/contract/regression issue. No publication or product gate promotion."},
+    {"id":"FLOW-10", "role":"handoff", "checks":["diff","backend","frontend"], "instruction":"Prepare final reviewable proposal handoff with source version, changed behavior, scenarios passed, runtime SQL/E2E limitations, rollback and deployment prerequisites. Preserve180h+20h budget. Future modules awaiting explicit bounded scope. Never mark whole enterprise complete or publish."}
+  ],
+  "future_modules": "awaiting_scope",
+  "resume": "Checkpoint context retries the same task. No automatic Codex session resume is claimed.",
+  "publication": "Proposal artifacts only; independent human/root review required before any commit or push."
+}

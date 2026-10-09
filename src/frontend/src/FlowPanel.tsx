@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { api, ApiError } from "./api";
 
 type FlowRow = { id: string; number: number; year: number; subject: string; state: "open" | "in_review" | "complete"; version: number; portfolio: string; createdAt: string };
@@ -12,6 +12,8 @@ export function FlowPanel({ writable, identity }: { writable: boolean; identity:
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const draft = useRef<{subject: string; key: string} | null>(null);
+  const [history, setHistory] = useState<Record<string, {id:string; action:string; result:string; occurredAt:string}[]>>({});
   const [serial, setSerial] = useState(0);
   const load = useCallback(async () => {
     try { setError(""); setRows((await api<FlowList>("/api/flow/v1/protocols")).items); }
@@ -27,10 +29,12 @@ export function FlowPanel({ writable, identity }: { writable: boolean; identity:
   async function create() {
     if(!subject.trim() || busy) return;
     setBusy(true);setError("");setNotice("");
-    const key = crypto.randomUUID();
+    const content = subject.trim();
+    if (!draft.current || draft.current.subject !== content) draft.current = {subject:content,key:crypto.randomUUID()};
+    const key = draft.current.key;
     try {
       await api("/api/flow/v1/protocols", "POST", {subject}, {"Idempotency-Key": key});
-      setSubject(""); setNotice("Protocolo aberto."); await load();
+      draft.current = null; setSubject(""); setNotice("Protocolo aberto."); await load();
     } catch(e) { setError((e as Error).message); }
     finally { setBusy(false); }
   }
@@ -45,6 +49,11 @@ export function FlowPanel({ writable, identity }: { writable: boolean; identity:
       setNotice("Movimento registrado."); await load();
     } catch(e) { setError((e as Error).message); }
     finally { setBusy(false); }
+  }
+  async function viewHistory(id:string) {
+    setError("");
+    try { const data = await api<{items:{id:string; action:string; result:string; occurredAt:string}[]}>("/api/flow/v1/protocols/"+id+"/history"); setHistory(old=>({...old,[id]:data.items})); }
+    catch(e) { if (!(e instanceof ApiError && e.code === "context_changed")) setError((e as Error).message); }
   }
   return <section aria-label="EBT Flow" className="flow-workspace">
     <div className="flow-intro">
@@ -66,6 +75,8 @@ export function FlowPanel({ writable, identity }: { writable: boolean; identity:
       rows.map(row=><article key={row.id} className="flow-record">
         <div className="flow-record-header"><span className="eyebrow">#{row.year}/{String(row.number).padStart(4,"0")}</span><span className="badge">{steps[row.state]}</span></div>
         <h4>{row.subject}</h4><p>Aberto em {new Date(row.createdAt).toLocaleDateString("pt-BR")}</p>
+        <button className="text-button" onClick={()=>void viewHistory(row.id)}>Ver histórico do protocolo {row.number}</button>
+        {history[row.id] && <ol aria-label={"Histórico do protocolo " + row.number}>{history[row.id].map(item=><li key={item.id}>{({created:"Aberto",start:"Análise iniciada",complete:"Concluído"} as Record<string,string>)[item.action]} · {new Date(item.occurredAt).toLocaleString("pt-BR")}{item.result && <p>{item.result}</p>}</li>)}</ol>}
         {writable && row.state !== "complete" && <div className="flow-actions">
           {row.state === "in_review" && <label>Resultado da análise<textarea aria-label={"Resultado do protocolo " + row.number} maxLength={1000} value={result[row.id]??""} onChange={e=>setResult(old=>({...old,[row.id]:e.target.value}))} /></label>}
           <button disabled={busy || row.state === "in_review" && !result[row.id]?.trim()} className="secondary" onClick={()=>void advance(row)}>

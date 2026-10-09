@@ -1,0 +1,31 @@
+[Unit]
+Description=EBT one sequential Flow proposal task, no publication
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ebt-scout
+Group=ebt-scout
+Environment=CODEX_HOME=/var/lib/ebt-scout/.codex
+Environment=HOME=/var/lib/ebt-engineering
+Environment=PYTHONDONTWRITEBYTECODE=1
+WorkingDirectory=/var/lib/ebt-engineering/workspace
+ExecStart=/usr/bin/python3 -B /opt/ebt-engineering/engineering_runner.py --workspace /var/lib/ebt-engineering/workspace --state /var/lib/ebt-engineering/state --manifest /opt/ebt-engineering/engineering_blocks.json
+TimeoutStartSec=2800
+KillMode=control-group
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/ebt-engineering /var/lib/ebt-scout/.codex
+InaccessiblePaths=/opt/ebt-scout /var/lib/ebt-scout/contacts /etc/ebt-scout.env
+CapabilityBoundingSet=
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryMax=2G
+TasksMax=128
+StandardOutput=journal
+StandardError=null

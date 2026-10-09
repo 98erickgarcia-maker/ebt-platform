@@ -30,6 +30,7 @@ jobs:
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --mail
       - run: npm ci
         working-directory: src/frontend
+      - run: python -m unittest discover -s tests/ops -v
       - run: python scripts/verify_sql_runtime.py
       - run: npm run test:unit
         working-directory: src/frontend

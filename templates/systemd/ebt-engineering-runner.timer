@@ -1,0 +1,12 @@
+[Unit]
+Description=Continue one EBT proposal block every fifteen minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=15min
+AccuracySec=15s
+Unit=ebt-engineering-runner.service
+
+[Install]
+WantedBy=timers.target
+
