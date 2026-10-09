@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-09T02:05:52.326421+00:00",
+  "created_at_utc": "2026-10-09T02:09:17.158413+00:00",
   "branch": "codex/ebt-enterprise-continuity-pac-review-20261008",
-  "parent_checkpoint": "95a23b5af08b7c7faeb8216c2bdf976a987f2d13",
-  "base": "95a23b5af08b7c7faeb8216c2bdf976a987f2d13",
-  "source_head": "788cdea004552e9027aa2339cee043236b48d59f",
+  "parent_checkpoint": "f8b00fde8af5e09da64dd153103eb0c0812702db",
+  "base": "f8b00fde8af5e09da64dd153103eb0c0812702db",
+  "source_head": "9d28165aa2ddc3ea32926bd5bd822a9c45d8f005",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
@@ -1058,7 +1058,7 @@
     },
     {
       "path": "planejamento/continuidade_github.json",
-      "sha256": "e2a9d61cafa83ca90640b4f143f6f897cb7614500f6946393c48dcbc9a4c2d2d"
+      "sha256": "ae05f7a59a5dba5f9213cb4ab62d93d7f9e91ccf33254cb07c38ea020933e39f"
     },
     {
       "path": "planejamento/detalhamento_entregas.json",
@@ -1546,7 +1546,7 @@
     },
     {
       "path": "tests/WazVox.ProtocolTests/RealScannerChecks.cs",
-      "sha256": "545ac1d1ce2d8c6caf01b06290eafa51f3cf6479288bddee64b9b6c851d299f0"
+      "sha256": "deb702b8e7d24240e70f0592bbdf0b3a0a8e153661fd34545a64f5df42814bbf"
     },
     {
       "path": "tests/WazVox.ProtocolTests/ScannerChecks.cs",

@@ -1584,12 +1584,12 @@
     },
     {
       "path": "tests/WazVox.ProtocolTests/RealScannerChecks.cs",
-      "reviewed_sha256": "545ac1d1ce2d8c6caf01b06290eafa51f3cf6479288bddee64b9b6c851d299f0"
+      "reviewed_sha256": "deb702b8e7d24240e70f0592bbdf0b3a0a8e153661fd34545a64f5df42814bbf"
     },
     {
       "path": "tests/integration/recovery_ci.py",
       "reviewed_sha256": "52d5fd5f16ce09e992fbda48131a3c2f95baeada4dbe3b9135c0cc11dc0d2490"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T02:05:51.851130+00:00"
+  "reviewed_at_utc": "2026-10-09T02:09:16.685712+00:00"
 }
