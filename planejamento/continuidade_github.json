@@ -1808,7 +1808,7 @@
     },
     {
       "path": "src/frontend/e2e/flow-aura-native-zoom.spec.ts",
-      "reviewed_sha256": "22820d8b0a3e36da4a00985f982c8ca04d5083748a8cf2e71b12532c9ff2a417"
+      "reviewed_sha256": "797576fbadddfa2ee62550834cefc9822ca0efb97635dcb116392df751f780d8"
     }
   ],
   "reviewed_at_utc": "2026-10-09T17:56:43.575Z"

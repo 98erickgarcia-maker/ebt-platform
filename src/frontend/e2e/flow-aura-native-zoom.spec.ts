@@ -54,6 +54,24 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
     const worker = context.serviceWorkers()[0] ?? await context.waitForEvent("serviceworker");
     const page = context.pages()[0] ?? await context.newPage();
     const errors: string[] = [];
+    const protocol = await context.newCDPSession(page);
+    // Native browser zoom changes CSS pixels. Capture the physical viewport
+    // without a CSS-sized clip; never resize or emulate the page for a picture.
+    const captureViewport = async (name: string) => {
+      const geometry = () => page.evaluate(() => ({ width: innerWidth, height: innerHeight,
+        dpr: devicePixelRatio, x: scrollX, y: scrollY }));
+      const before = await geometry();
+      const screenshot = await protocol.send("Page.captureScreenshot", {
+        format: "png", captureBeyondViewport: false, fromSurface: true,
+      });
+      const png = Buffer.from(screenshot.data, "base64");
+      const width = png.readUInt32BE(16), height = png.readUInt32BE(20);
+      expect(Math.abs(width - before.width * before.dpr), "Native capture spans the complete viewport width").toBeLessThanOrEqual(2);
+      expect(Math.abs(height - before.height * before.dpr), "Native capture spans the complete viewport height").toBeLessThanOrEqual(4);
+      expect(await geometry(), "Taking evidence must not alter page geometry").toEqual(before);
+      fs.writeFileSync(path.join(evidence, name), png);
+      console.log(JSON.stringify({ scenario: "native-viewport-capture", name, pixels: { width, height }, css: before }));
+    };
     page.on("pageerror", error => errors.push(error.message));
     await page.goto("http://127.0.0.1:5186/");
     expect(new URL(page.url()).hostname).toBe("127.0.0.1");
@@ -83,7 +101,7 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
     for (const factor of [2, 4]) {
       await zoom(factor);
       expect.soft(await readable(page), "Daily native zoom " + factor).toEqual([]);
-      await page.screenshot({ path: path.join(evidence, `audit-native-daily-${factor * 100}.png`), fullPage: true, animations: "disabled" });
+      await captureViewport(`audit-native-daily-${factor * 100}.png`);
     }
     await zoom(1);
     await page.locator(".flow-aura-daily .metrics > button").first().click();
@@ -102,18 +120,19 @@ test("FLOW AURA native browser zoom 200/400 percent, not CSS or viewport emulati
     for (const factor of [2, 4]) {
       await zoom(factor);
       expect.soft(await readable(page), "Contact native zoom " + factor).toEqual([]);
-      await page.screenshot({ path: path.join(evidence, `audit-native-contact-${factor * 100}.png`), fullPage: true, animations: "disabled" });
+      await captureViewport(`audit-native-contact-${factor * 100}.png`);
     }
     const opener = page.getByRole("button", { name: "Abrir navegação", exact: true });
     await opener.focus(); await page.keyboard.press("Enter");
     const nav = page.getByRole("navigation", { name: "Navegação principal" });
     await expect(nav.locator('[aria-current="page"]')).toBeFocused();
+    await expect(nav.locator('[aria-current="page"]')).toBeInViewport({ ratio: 1 });
     const focusedBox = await nav.locator('[aria-current="page"]').evaluate(node => {
       const box = node.getBoundingClientRect();
       return { top: box.top, bottom: box.bottom, height: innerHeight };
     });
     console.log(JSON.stringify({ scenario: "native-400-focus-geometry", ...focusedBox }));
-    await page.screenshot({ path: path.join(evidence, "audit-native-menu-focus-400.png"), animations: "disabled" });
+    await captureViewport("audit-native-menu-focus-400.png");
     expect(focusedBox.top >= 0 && focusedBox.bottom <= focusedBox.height,
       "Focused navigation remains visible at native 400 percent zoom").toBe(true);
     await page.keyboard.press("Shift+Tab");
