@@ -24,6 +24,7 @@ EXPECTED_BUNDLE_SHA="${EXPECTED_BUNDLE_SHA:-}"
 HELPER_DIR="/opt/ebt-vps-automation"
 STATUS_COMMAND="/usr/local/sbin/ebt-vps-automation-status"
 DISABLE_COMMAND="/usr/local/sbin/ebt-vps-automation-disable"
+ENGINEERING_PATH="/opt/ebt-engineering/node/bin:/opt/ebt-engineering/dotnet:/usr/local/bin:/usr/bin:/bin"
 CHECK_ONLY=0
 INSTALL_STARTED=0
 TARGET_TIMERS=(
@@ -71,6 +72,10 @@ bundle_head="$(git -C "$BUNDLE_ROOT" rev-parse HEAD)"
 [[ -z "$(GIT_OPTIONAL_LOCKS=0 git -C "$BUNDLE_ROOT" status --porcelain --untracked-files=all)" ]] || fail "Bootstrap checkout must be clean."
 id ebt-scout >/dev/null 2>&1 || fail "Required user ebt-scout is missing."
 [[ -d /var/lib/ebt-scout/.codex ]] || fail "Codex profile /var/lib/ebt-scout/.codex is missing."
+runuser -u ebt-scout -- env PATH="$ENGINEERING_PATH" bash -lc 'command -v codex >/dev/null && command -v dotnet >/dev/null && command -v npm >/dev/null' \
+  || fail "ebt-scout cannot resolve codex, dotnet and npm in the engineering service PATH."
+runuser -u ebt-scout -- env PATH="$ENGINEERING_PATH" CODEX_HOME=/var/lib/ebt-scout/.codex codex login status >/dev/null 2>&1 \
+  || fail "Codex authentication is not ready for ebt-scout."
 root_private_file "$GIT_KEY_PATH"
 root_private_file "$KNOWN_HOSTS_PATH"
 
