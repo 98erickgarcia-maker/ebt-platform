@@ -1,10 +1,11 @@
 [Unit]
-Description=EBT one sequential Flow proposal task, no publication
+Description=EBT one sequential Flow proposal task with verified proposal-branch sync
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=oneshot
+EnvironmentFile=/etc/ebt-engineering-controller.env
 User=root
 Group=ebt-scout
 Environment=CODEX_HOME=/var/lib/ebt-engineering/codex-profile
