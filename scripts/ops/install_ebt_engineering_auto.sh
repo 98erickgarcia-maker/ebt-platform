@@ -19,6 +19,7 @@ RUNNER_TIMER_PATH="/etc/systemd/system/ebt-engineering-runner.timer"
 WATCH_SERVICE_PATH="/etc/systemd/system/ebt-engineering-watch.service"
 WATCH_TIMER_PATH="/etc/systemd/system/ebt-engineering-watch.timer"
 CONTROLLER_ENV="/etc/ebt-engineering-controller.env"
+DEFER_TIMER_START="${EBT_DEFER_TIMER_START:-0}"
 
 fail(){ printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 need(){ command -v "$1" >/dev/null 2>&1 || fail "Required command not found: $1"; }
@@ -32,6 +33,7 @@ root_private_file(){
 }
 
 [[ "$EUID" -eq 0 ]] || fail "Run with sudo/root."
+[[ "$DEFER_TIMER_START" == "0" || "$DEFER_TIMER_START" == "1" ]] || fail "EBT_DEFER_TIMER_START must be 0 or 1."
 for cmd in git python3 systemctl install stat find chown chmod; do need "$cmd"; done
 id "$SERVICE_USER" >/dev/null 2>&1 || fail "User $SERVICE_USER does not exist."
 [[ -d "$SOURCE_ROOT/.git" ]] || fail "SOURCE_ROOT must be a Git checkout."
@@ -122,9 +124,13 @@ if command -v systemd-analyze >/dev/null 2>&1; then
 fi
 
 systemctl daemon-reload
-systemctl enable --now ebt-engineering-runner.timer ebt-engineering-watch.timer
-
-printf '\nInstalled native EBT controller at approved proposal SHA %s. No merge/deploy/migration is enabled.\n' "$EXPECTED_PROPOSAL_SHA"
-systemctl list-timers ebt-engineering-runner.timer ebt-engineering-watch.timer --no-pager || true
+if [[ "$DEFER_TIMER_START" == "1" ]]; then
+  systemctl disable --now ebt-engineering-runner.timer ebt-engineering-watch.timer >/dev/null 2>&1 || true
+  printf '\nInstalled native EBT controller at approved proposal SHA %s with timer activation deferred.\n' "$EXPECTED_PROPOSAL_SHA"
+else
+  systemctl enable --now ebt-engineering-runner.timer ebt-engineering-watch.timer
+  printf '\nInstalled native EBT controller at approved proposal SHA %s. No merge/deploy/migration is enabled.\n' "$EXPECTED_PROPOSAL_SHA"
+  systemctl list-timers ebt-engineering-runner.timer ebt-engineering-watch.timer --no-pager || true
+fi
 printf '\nManual verified cycle: sudo systemctl start ebt-engineering-runner.service\n'
 printf 'Logs: sudo journalctl -u ebt-engineering-runner.service -n 100 --no-pager\n'
