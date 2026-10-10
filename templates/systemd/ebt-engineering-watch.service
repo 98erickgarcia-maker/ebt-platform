@@ -20,4 +20,3 @@ ReadOnlyPaths=/var/lib/ebt-engineering
 TimeoutStartSec=30
 StandardOutput=journal
 StandardError=journal
-
