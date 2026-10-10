@@ -43,7 +43,7 @@ sudo EXPECTED_SOURCE_SHA=<sha-aprovado> \
   scripts/ops/install_ebt_engineering_auto.sh
 ```
 
-O script valida SHA, checkout limpo, permissões dos arquivos de transporte, branch, manifesto, binários e unidades systemd antes de habilitar os timers.
+O script valida o SHA da fonte do instalador e, separadamente, o SHA exato da branch/workspace de proposta. Após o fetch autenticado ele lê novamente `origin/<proposal>` e aborta se o remoto tiver mudado antes do `systemctl enable`. Também valida checkout limpo, permissões dos arquivos de transporte, manifesto, binários e unidades systemd.
 
 ## Operação
 
