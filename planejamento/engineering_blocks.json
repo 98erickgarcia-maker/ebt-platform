@@ -5,7 +5,7 @@
   "allow_deploy": false,
   "allow_migration": false,
   "allow_external_messages": false,
-  "allow_push": false,
+  "allow_push": true,
   "repository": "98erickgarcia-maker/ebt-platform",
   "branch": "codex/flow-history-proposal-vps-20261009",
   "roles": [
@@ -505,8 +505,8 @@
   ],
   "future_modules": "awaiting_scope",
   "resume": "Checkpoint context retries the same task. No automatic Codex session resume is claimed.",
-  "publication": "Default proposal artifacts only. When controller push is explicitly enabled and access provisioned, verified allowlisted task commits sync to the pinned proposal branch only; no merge, deploy or migration.",
-  "planning_revision": "2026-10-10-detailed-block-contract-v4-controller-flow-gate",
+  "publication": "Verified task commits may be synchronized automatically only to the pinned proposal branch by the root controller using a root-only SSH key. No force push, merge, deploy, migration or external message.",
+  "planning_revision": "2026-10-10-detailed-block-contract-v5-native-controller-sync",
   "execution_model": {
     "roles_are_instances": false,
     "role_count": 10,
@@ -519,7 +519,10 @@
     "metadata_consumption": "Runner also consumes tasks[depends_on,write_paths,max_changed_files] as runtime controls. Deliverables, acceptance, estimates and recovery remain planning/reviewer contracts rather than automatic business certification.",
     "canonical_queue": "planejamento/engineering_blocks.json on the exact manifest branch",
     "completion_state": "proposal_review_ready",
-    "release_gate": "CI plus required SQL/browser evidence on the exact candidate SHA; proposal_review_ready alone is insufficient"
+    "release_gate": "CI plus required SQL/browser evidence on the exact candidate SHA; proposal_review_ready alone is insufficient",
+    "sync_controller": "Native engineering_runner verified sync: root controller commits/pushes; model/checks run as unprivileged ebt-scout; SSH key remains root-only.",
+    "sync_target": "git@github.com:98erickgarcia-maker/ebt-platform.git#codex/flow-history-proposal-vps-20261009",
+    "sync_failure": "awaiting_sync retries the same verified commit before any new model invocation; no force push or branch broadening."
   },
   "budget": {
     "deliveries_h": 180,
