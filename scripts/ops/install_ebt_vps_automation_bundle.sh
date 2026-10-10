@@ -19,6 +19,11 @@ PRODUCT_SHA="3820d0edd5126ae416ea569b3dc30b5b0ce1a215"
 
 GIT_KEY_PATH="${GIT_KEY_PATH:-/etc/ebt-engineering/controller_ed25519}"
 KNOWN_HOSTS_PATH="${KNOWN_HOSTS_PATH:-/etc/ebt-engineering/known_hosts}"
+BUNDLE_ROOT="${BUNDLE_ROOT:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)}"
+EXPECTED_BUNDLE_SHA="${EXPECTED_BUNDLE_SHA:-}"
+HELPER_DIR="/opt/ebt-vps-automation"
+STATUS_COMMAND="/usr/local/sbin/ebt-vps-automation-status"
+DISABLE_COMMAND="/usr/local/sbin/ebt-vps-automation-disable"
 CHECK_ONLY=0
 INSTALL_STARTED=0
 TARGET_TIMERS=(
@@ -49,7 +54,12 @@ root_private_file(){
 
 [[ "$EUID" -eq 0 ]] || fail "Run with sudo/root."
 [[ -d /run/systemd/system ]] || fail "systemd is not running on this host."
-for binary in git bash python3 systemctl stat mktemp grep id runuser; do need "$binary"; done
+for binary in git bash python3 systemctl stat mktemp grep id runuser install; do need "$binary"; done
+[[ -d "$BUNDLE_ROOT/.git" ]] || fail "BUNDLE_ROOT must be a Git checkout."
+[[ "$EXPECTED_BUNDLE_SHA" =~ ^[0-9a-f]{40}$ ]] || fail "Set EXPECTED_BUNDLE_SHA to the reviewed bootstrap SHA."
+bundle_head="$(git -C "$BUNDLE_ROOT" rev-parse HEAD)"
+[[ "$bundle_head" == "$EXPECTED_BUNDLE_SHA" ]] || fail "Bootstrap checkout SHA differs from EXPECTED_BUNDLE_SHA."
+[[ -z "$(git -C "$BUNDLE_ROOT" status --porcelain --untracked-files=all)" ]] || fail "Bootstrap checkout must be clean."
 id ebt-scout >/dev/null 2>&1 || fail "Required user ebt-scout is missing."
 [[ -d /var/lib/ebt-scout/.codex ]] || fail "Codex profile /var/lib/ebt-scout/.codex is missing."
 root_private_file "$GIT_KEY_PATH"
@@ -139,14 +149,24 @@ for unit in "${TARGET_TIMERS[@]}"; do
   systemctl is-active --quiet "$unit" || fail "$unit is not active"
 done
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+printf '\nInstalling stable local status/rollback helpers...\n'
+install -d -o root -g root -m 0755 "$HELPER_DIR"
+install -o root -g root -m 0644 "$BUNDLE_ROOT/scripts/ops/vps_automation_status.py" "$HELPER_DIR/vps_automation_status.py"
+cat > "$STATUS_COMMAND" <<'SH'
+#!/usr/bin/env bash
+set -Eeuo pipefail
+exec python3 /opt/ebt-vps-automation/vps_automation_status.py
+SH
+chmod 0755 "$STATUS_COMMAND"
+install -o root -g root -m 0755 "$BUNDLE_ROOT/scripts/ops/disable_ebt_vps_automation.sh" "$DISABLE_COMMAND"
+
 printf '\nFinal sanitized activation integrity check...\n'
-bash "$SCRIPT_DIR/collect_ebt_vps_automation_status.sh"
+"$STATUS_COMMAND"
 
 INSTALL_STARTED=0
 
 printf '\nAUTOMATION_BUNDLE_INSTALLED\n'
 printf 'All four timers are enabled and active.\n'
 printf 'No merge, product deploy, SQL migration or force-push was performed by this bootstrap.\n'
-printf 'Status: sudo scripts/ops/collect_ebt_vps_automation_status.sh\n'
-printf 'Rollback timers only: sudo scripts/ops/disable_ebt_vps_automation.sh\n'
+printf 'Status: sudo ebt-vps-automation-status\n'
+printf 'Rollback timers only: sudo ebt-vps-automation-disable\n'
