@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BOOTSTRAP = ROOT / "scripts/ops/install_ebt_vps_automation_bundle.sh"
 STATUS = ROOT / "scripts/ops/collect_ebt_vps_automation_status.sh"
 ROLLBACK = ROOT / "scripts/ops/disable_ebt_vps_automation.sh"
+STATUS_PY = ROOT / "scripts/ops/vps_automation_status.py"
 
 
 class BundleTests(unittest.TestCase):
@@ -68,10 +69,15 @@ class BundleTests(unittest.TestCase):
             self.assertNotIn(forbidden, text)
 
     def test_status_collector_is_sanitized(self):
-        text = STATUS.read_text(encoding="utf-8")
-        for allowed in ("engineering_checkpoint", "engineering_heartbeat", "product_watch", "schedule_watchdog"):
+        wrapper = STATUS.read_text(encoding="utf-8")
+        text = STATUS_PY.read_text(encoding="utf-8")
+        self.assertIn("vps_automation_status.py", wrapper)
+        for allowed in (
+            "installation_integrity", "observed_health", "engineering_checkpoint",
+            "engineering_heartbeat", "product_watch", "schedule_watchdog",
+        ):
             self.assertIn(allowed, text)
-        for forbidden in ("GIT_KEY_PATH", "GH_TOKEN", "TEAMS_WORKFLOWS_WEBHOOK_URL", "Authorization"):
+        for forbidden in ("GH_TOKEN", "TEAMS_WORKFLOWS_WEBHOOK_URL", "Authorization: Bearer", "PRIVATE KEY-----"):
             self.assertNotIn(forbidden, text)
 
     def test_rollback_only_disables_automation_timers(self):
