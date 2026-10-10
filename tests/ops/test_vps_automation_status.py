@@ -4,7 +4,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts" / "ops"))
-from vps_automation_status import evaluate, TIMERS, EXPECTED_BRANCH, EXPECTED_REMOTE, EXPECTED_PRODUCT_ORIGIN, EXPECTED_PRODUCT_SCOPE
+from vps_automation_status import evaluate, TIMERS, EXPECTED_BRANCH, EXPECTED_REMOTE, EXPECTED_PRODUCT_ORIGIN, EXPECTED_PRODUCT_SCOPE, INITIAL_PROPOSAL_SHA
 
 
 def healthy_report(schedule_status="FAIL", product_healthy=True):
@@ -19,7 +19,7 @@ def healthy_report(schedule_status="FAIL", product_healthy=True):
         "timers": timers,
         "flow_workspace": {
             "branch": EXPECTED_BRANCH,
-            "head": "1" * 40,
+            "head": INITIAL_PROPOSAL_SHA,
             "remote": EXPECTED_REMOTE,
             "agent_cannot_read_git": True,
         },
@@ -30,7 +30,7 @@ def healthy_report(schedule_status="FAIL", product_healthy=True):
             "agent_cannot_read_git_key": True,
             "agent_cannot_read_known_hosts": True,
         },
-        "engineering_checkpoint": {"status": "task_verified", "synced_sha": "1" * 40},
+        "engineering_checkpoint": {"status": "task_verified", "synced_sha": INITIAL_PROPOSAL_SHA},
         "engineering_heartbeat": {"status": "idle"},
         "product_watch": {
             "origin": EXPECTED_PRODUCT_ORIGIN,
@@ -71,6 +71,40 @@ class StatusEvaluationTests(unittest.TestCase):
         self.assertEqual(result["installation_integrity"], "FAIL")
         self.assertIn("flow_workspace:wrong_branch", result["integrity_failures"])
         self.assertIn("flow_workspace:wrong_remote", result["integrity_failures"])
+
+    def test_workspace_head_must_match_synced_checkpoint(self):
+        report = healthy_report()
+        report["engineering_checkpoint"] = {
+            "status": "task_verified",
+            "synced_sha": "2" * 40,
+            "source_commit": INITIAL_PROPOSAL_SHA,
+        }
+        result = evaluate(report)
+        self.assertEqual(result["installation_integrity"], "FAIL")
+        self.assertIn("flow_workspace:head_checkpoint_mismatch", result["integrity_failures"])
+        self.assertFalse(result["observed_health"]["workspace_head_consistent"])
+        self.assertEqual(result["controller_consistency"]["expected_head"], "2" * 40)
+
+    def test_awaiting_sync_uses_sync_sha_as_expected_head(self):
+        report = healthy_report()
+        report["flow_workspace"]["head"] = "3" * 40
+        report["engineering_checkpoint"] = {
+            "status": "awaiting_sync",
+            "source_commit": INITIAL_PROPOSAL_SHA,
+            "sync_sha": "3" * 40,
+        }
+        result = evaluate(report)
+        self.assertEqual(result["installation_integrity"], "PASS")
+        self.assertTrue(result["observed_health"]["workspace_head_consistent"])
+
+    def test_pre_first_cycle_requires_initial_proposal_sha(self):
+        report = healthy_report()
+        report["engineering_checkpoint"] = {"state": "MISSING"}
+        report["engineering_heartbeat"] = {"state": "MISSING"}
+        report["flow_workspace"]["head"] = "4" * 40
+        result = evaluate(report)
+        self.assertEqual(result["installation_integrity"], "FAIL")
+        self.assertEqual(result["controller_consistency"]["expected_head"], INITIAL_PROPOSAL_SHA)
 
     def test_agent_transport_access_fails_installation_integrity(self):
         report = healthy_report()
