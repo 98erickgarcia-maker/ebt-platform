@@ -52,6 +52,15 @@ root_private_file(){
   [[ "$mode" == "600" || "$mode" == "400" ]] || fail "File must be mode 0600 or 0400: $path"
 }
 
+trusted_root_path(){
+  local path="$1"
+  [[ -e "$path" && ! -L "$path" ]] || fail "Missing or unsafe privileged bootstrap path: $path"
+  [[ "$(stat -c %u "$path")" == "0" ]] || fail "Privileged bootstrap path must be owned by root: $path"
+  local mode
+  mode="$((8#$(stat -c %a "$path")))"
+  (( (mode & 8#022) == 0 )) || fail "Privileged bootstrap path must not be group/other writable: $path"
+}
+
 [[ "$EUID" -eq 0 ]] || fail "Run with sudo/root."
 [[ -d /run/systemd/system ]] || fail "systemd is not running on this host."
 for binary in git bash python3 systemctl stat mktemp grep id runuser install awk chmod cat rm; do need "$binary"; done
@@ -64,6 +73,12 @@ id ebt-scout >/dev/null 2>&1 || fail "Required user ebt-scout is missing."
 [[ -d /var/lib/ebt-scout/.codex ]] || fail "Codex profile /var/lib/ebt-scout/.codex is missing."
 root_private_file "$GIT_KEY_PATH"
 root_private_file "$KNOWN_HOSTS_PATH"
+
+if (( CHECK_ONLY == 0 )); then
+  for path in     "$BUNDLE_ROOT"     "$BUNDLE_ROOT/.git"     "$BUNDLE_ROOT/scripts/ops/install_ebt_vps_automation_bundle.sh"     "$BUNDLE_ROOT/scripts/ops/vps_automation_status.py"     "$BUNDLE_ROOT/scripts/ops/disable_ebt_vps_automation.sh"; do
+    trusted_root_path "$path"
+  done
+fi
 
 STAGING="$(mktemp -d /var/tmp/ebt-vps-bootstrap.XXXXXX)"
 on_exit(){
