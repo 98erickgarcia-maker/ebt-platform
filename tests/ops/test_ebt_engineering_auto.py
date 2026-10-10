@@ -36,17 +36,27 @@ class LinuxAutomationTests(unittest.TestCase):
         text = INSTALLER.read_text(encoding="utf-8")
         for marker in (
             "EXPECTED_SOURCE_SHA",
+            "EXPECTED_PROPOSAL_SHA",
             "GIT_KEY_PATH",
             "KNOWN_HOSTS_PATH",
             "root_private_file",
             'SSH_REMOTE="git@github.com:${REPOSITORY}.git"',
-            "merge --ff-only",
+            "Remote proposal branch moved during installation.",
+            "Workspace proposal SHA differs from approved SHA.",
             'chmod 0700 "$WORKSPACE/.git"',
             'install -d -o root -g "$SERVICE_USER" -m 0770 "$STATE/model-io"',
         ):
             self.assertIn(marker, text)
         for forbidden in ("push --force", "reset --hard", "az containerapp", "sqlcmd", "PRIVATE KEY-----", "github_pat_"):
             self.assertNotIn(forbidden, text)
+
+    def test_proposal_sha_is_rechecked_before_systemd_enable(self):
+        text = INSTALLER.read_text(encoding="utf-8")
+        remote_check = text.index('Remote proposal branch moved during installation.')
+        enable = text.index('systemctl enable --now ebt-engineering-runner.timer')
+        self.assertLess(remote_check, enable)
+        self.assertIn('[[ "$remote_proposal" == "$EXPECTED_PROPOSAL_SHA" ]]', text)
+        self.assertIn('[[ "$workspace_head" == "$EXPECTED_PROPOSAL_SHA" ]]', text)
 
     def test_only_native_fifteen_minute_timers_are_used(self):
         runner = RUNNER_TIMER.read_text(encoding="utf-8")
