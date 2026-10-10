@@ -5,7 +5,7 @@ O bootstrap `scripts/ops/install_ebt_vps_automation_bundle.sh` reduz a ativaçã
 ## Fontes imutáveis
 
 O script exige e confere:
-- Flow/controller source: `9dc3b5ff647aa2453e18cc3148f13d1364145741`;
+- Flow/controller source: `532a3301c6de60f99d431e1f9d4f8294bf0ab8b5`;
 - Flow proposal initial SHA: `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0`;
 - watchdog do cron: head `e6a112f4db0d0bec02f623c968c579116b7dfe9c`, fonte de runtime `56a659ac1fc7597f7e453bd7e39042742e8f408e`;
 - monitor direto do produto: `3820d0edd5126ae416ea569b3dc30b5b0ce1a215`;
@@ -75,3 +75,15 @@ Ao final da instalação íntegra, o bootstrap instala:
 - `/opt/ebt-vps-automation/vps_automation_status.py`.
 
 Assim status e rollback não dependem da permanência do checkout usado para instalar.
+
+
+## Liberação do primeiro FLOW
+
+O bundle instala o controlador Flow com `EBT_DEFER_TIMER_START=1`. Nesse momento:
+- units e workspace estão instalados;
+- `ebt-engineering-runner.timer` e `ebt-engineering-watch.timer` permanecem inativos/desabilitados;
+- o serviço `ebt-engineering-runner.service` não pode estar ativo.
+
+Depois o bundle instala os helpers persistentes e só então habilita os timers Flow.
+
+O runner usa `OnActiveSec=2min`, não `OnBootSec`. Assim, mesmo numa VPS com horas de uptime, o primeiro agente não dispara imediatamente ao habilitar o timer. Há uma janela determinística para o veredito final de integridade antes do primeiro ciclo.
