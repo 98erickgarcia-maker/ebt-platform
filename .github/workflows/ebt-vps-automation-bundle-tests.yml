@@ -6,8 +6,10 @@ on:
     paths:
       - scripts/ops/install_ebt_vps_automation_bundle.sh
       - scripts/ops/collect_ebt_vps_automation_status.sh
+      - scripts/ops/vps_automation_status.py
       - scripts/ops/disable_ebt_vps_automation.sh
       - tests/ops/test_install_ebt_vps_automation_bundle.py
+      - tests/ops/test_vps_automation_status.py
       - .github/workflows/ebt-vps-automation-bundle-tests.yml
 permissions:
   contents: read
@@ -24,8 +26,10 @@ jobs:
           python-version: '3.12'
       - run: bash -n scripts/ops/install_ebt_vps_automation_bundle.sh
       - run: bash -n scripts/ops/collect_ebt_vps_automation_status.sh
+      - run: python -m py_compile scripts/ops/vps_automation_status.py
       - run: bash -n scripts/ops/disable_ebt_vps_automation.sh
       - run: python -m unittest discover -s tests/ops -p 'test_install_ebt_vps_automation_bundle.py' -v
+      - run: python -m unittest discover -s tests/ops -p 'test_vps_automation_status.py' -v
       - name: Execute real public preflight with dummy root-only transport files
         run: |
           if ! id -u ebt-scout >/dev/null 2>&1; then
