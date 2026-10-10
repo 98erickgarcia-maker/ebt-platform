@@ -5,10 +5,10 @@ O bootstrap `scripts/ops/install_ebt_vps_automation_bundle.sh` reduz a ativaçã
 ## Fontes imutáveis
 
 O script exige e confere:
-- Flow/controller: `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0`;
+- Flow/controller source: `9dc3b5ff647aa2453e18cc3148f13d1364145741`;\n- Flow proposal initial SHA: `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0`;
 - watchdog do cron: head `e6a112f4db0d0bec02f623c968c579116b7dfe9c`, fonte de runtime `56a659ac1fc7597f7e453bd7e39042742e8f408e`;
 - monitor direto do produto: `3820d0edd5126ae416ea569b3dc30b5b0ce1a215`;
-- branch Flow operacional: `codex/flow-history-proposal-vps-20261009`, que deve continuar no SHA Flow aprovado.
+- branch Flow operacional: `codex/flow-history-proposal-vps-20261009`, que deve continuar no proposal SHA `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0` durante a ativação inicial. O instalador relê o remoto autenticado antes de habilitar os timers.
 
 Se qualquer branch tiver mudado, o bootstrap falha antes de instalar unidades.
 
