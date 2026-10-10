@@ -53,7 +53,10 @@ class BundleTests(unittest.TestCase):
         self.assertIn('INSTALL_STARTED=1', text)
         self.assertIn('INSTALL_STARTED=0', text)
         self.assertIn('systemctl disable --now "$unit"', text)
-        self.assertLess(text.index('INSTALL_STARTED=1'), text.index('install_ebt_watchdog_vps.sh'))
+        self.assertLess(
+            text.index('INSTALL_STARTED=1'),
+            text.index('bash "$WATCHDOG_SOURCE/scripts/ops/install_ebt_watchdog_vps.sh"'),
+        )
 
     def test_bundle_has_no_dangerous_product_operations(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
