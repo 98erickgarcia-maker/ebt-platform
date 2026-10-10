@@ -30,6 +30,7 @@ jobs:
       - run: dotnet run --project tests/WazVox.ProtocolTests --no-build -c Release -- --mail
       - run: npm ci
         working-directory: src/frontend
+      - run: python -m unittest discover -s tests/ops -v
       - run: python scripts/verify_sql_runtime.py
       - run: npm run test:unit
         working-directory: src/frontend
@@ -160,4 +161,12 @@ jobs:
             evidencias/testes_scanner_real_ci.json
             evidencias/testes_restore_ci.json
             evidencias/testes_restore_ci_integridade.json
+          if-no-files-found: ignore
+      - name: Save synthetic FLOW AURA screenshots for independent visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flow-aura-visual-review
+          path: tmp/e2e/visual-review/*.png
+          retention-days: 7
           if-no-files-found: ignore

@@ -30,6 +30,7 @@ import {
 import { parseContactsCsv, downloadContactsTemplate } from "./csv";
 import { Brand } from "./Brand";
 import { PlatformApplications } from "./PlatformApplications";
+import { FlowPanel } from "./FlowPanel";
 import { ApiKeyPanel, InvitationAcceptance } from "./AccessTools";
 import { CommercialTemplates } from "./CommercialTemplates";
 import { MailPanel } from "./MailPanel";
@@ -38,6 +39,7 @@ import { QuickSearch, DuplicateHints } from "./QuickSearch";
 type View =
   | "applications"
   | "daily"
+  | "flow"
   | "contacts"
   | "tasks"
   | "messages"
@@ -56,6 +58,7 @@ function mergeMessages(current: Message[], incoming: Message[]) {
 const views: { id: View; name: string; icon: string }[] = [
   { id: "applications", name: "Aplicativos", icon: "grid" },
   { id: "daily", name: "Meu dia", icon: "grid" },
+  { id: "flow", name: "EBT Flow", icon: "check" },
   { id: "contacts", name: "Relacionamentos", icon: "people" },
   { id: "tasks", name: "Tarefas", icon: "check" },
   { id: "messages", name: "Conversas", icon: "message" },
@@ -499,6 +502,18 @@ export function App() {
   useEffect(() => {
     if (me) setAccess(me);
   }, [me]);
+  const mobileMenuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!menu) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenu(false);
+        mobileMenuButton.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", dismiss);
+    return () => window.removeEventListener("keydown", dismiss);
+  }, [menu]);
   const selectedId = selected?.id;
   const load = useCallback(async () => {
     if (!me) return;
@@ -694,6 +709,7 @@ export function App() {
     setWithoutNext(false);
     // The same view must replace a load invalidated by navigation too.
     setRefresh((current) => current + 1);
+    if (menu) mobileMenuButton.current?.focus();
     setMenu(false);
     setSelected(null);
     setError("");
@@ -1161,7 +1177,7 @@ export function App() {
   const currentView = views.find((v) => v.id === view)!;
   return (
     <div className="workspace">
-      <aside className={"sidebar " + (menu ? "mobile-open" : "")}>
+      <aside id="ebt-sidebar-navigation" className={"sidebar " + (menu ? "mobile-open" : "")}>
         <a
           className="brand"
           href="#"
@@ -1218,8 +1234,11 @@ export function App() {
       <div className="main-area">
         <header className="topbar">
           <button
+            ref={mobileMenuButton}
             className="mobile-menu icon-button"
-            aria-label="Abrir navegação"
+            aria-label={menu ? "Fechar navegação" : "Abrir navegação"}
+            aria-expanded={menu}
+            aria-controls="ebt-sidebar-navigation"
             onClick={() => setMenu(!menu)}
           >
             <Icon name="grid" />
@@ -1227,7 +1246,7 @@ export function App() {
           <div className="breadcrumb">
             EBT Platform <span>/</span>{" "}
             <strong>
-              {view === "applications" ? "Aplicativos" : "Connect"}
+              {view === "applications" ? "Aplicativos" : view === "flow" ? "Flow" : "Connect"}
             </strong>
           </div>
           <QuickSearch
@@ -1273,6 +1292,7 @@ export function App() {
                       applications:
                         "Seus aplicativos e o trabalho da sua empresa em um só lugar.",
                       daily: "Uma visão clara do que importa agora.",
+                      flow: "Protocolos com etapas, responsáveis e rastreabilidade.",
                       contacts:
                         "Cada relacionamento com contexto e continuidade.",
                       tasks: "Compromissos com responsável, prazo e resultado.",
@@ -1346,8 +1366,10 @@ export function App() {
                 refresh,
               ].join("|")}
               onOpenConnect={() => navigate("daily")}
+              onOpenFlow={() => navigate("flow")}
             />
           )}
+          {view === "flow" && <FlowPanel key={[me.userId,me.tenantId,me.role,me.portfolio].join("|")} identity={[me.userId,me.tenantId,me.role,me.portfolio].join("|")} writable={writable} />}
           {view === "mail" && (
             <MailPanel
               key={[
@@ -1366,10 +1388,10 @@ export function App() {
             />
           )}
           {view === "daily" && (
-            <>
-              <div className="welcome-card">
+            <div className="flow-aura-daily">
+              <div className="welcome-card flow-aura-hero">
                 <div>
-                  <span className="eyebrow">SEU DIA, COM DIREÇÃO</span>
+                  <span className="eyebrow">EBT FLOW · SEU DIA COM DIREÇÃO</span>
                   <h2>
                     Olá, {me.name.split(" ")[0]}.<br />
                     Vamos dar o próximo passo.
@@ -1379,12 +1401,15 @@ export function App() {
                       ? `${summary.overdue} compromisso(s) precisam de atenção.`
                       : "Acompanhe seus compromissos e avance suas conversas."}
                   </p>
-                  <button
-                    className="text-button"
-                    onClick={() => navigate("tasks")}
-                  >
-                    Ver minha agenda <Icon name="arrow" />
-                  </button>
+                  <div className="flow-hero-actions">
+                    <button
+                      className="text-button flow-hero-cta"
+                      onClick={() => navigate("tasks")}
+                    >
+                      Ver minha agenda <Icon name="arrow" />
+                    </button>
+                    <span className="flow-hero-status">Indicadores da carteira selecionada</span>
+                  </div>
                 </div>
                 <div className="welcome-graphic" aria-hidden="true">
                   <div className="orbit">
@@ -1400,6 +1425,13 @@ export function App() {
                     </span>
                   </div>
                 </div>
+              </div>
+              <div className="flow-section-heading">
+                <div>
+                  <span className="eyebrow">PANORAMA OPERACIONAL</span>
+                  <h2>Seu dia em movimento</h2>
+                </div>
+                <span>Selecione um indicador para abrir seus registros.</span>
               </div>
               <div className="metrics">
                 <button onClick={() => navigate("contacts")}>
@@ -1451,6 +1483,12 @@ export function App() {
                   </small>
                 </button>
               </div>
+              <div className="flow-section-heading flow-section-heading-lower">
+                <div>
+                  <span className="eyebrow">CONTINUIDADE</span>
+                  <h2>Próximas decisões</h2>
+                </div>
+              </div>
               <div className="dashboard-grid">
                 <section className="card">
                   <header>
@@ -1495,7 +1533,7 @@ export function App() {
                   </div>
                 </section>
               </div>
-            </>
+            </div>
           )}
           {view === "contacts" && !selected && (
             <section className="card">
@@ -1648,8 +1686,32 @@ export function App() {
               >
                 ← Voltar aos relacionamentos
               </button>
-              <div className="detail-grid">
-                <section className="card contact-card">
+              <section className="contact-360-strip" aria-label="Panorama do contato">
+                <div className="contact-360-intro">
+                  <span className="eyebrow">EBT AURA · CONTATO 360</span>
+                  <h2>Uma relação, todo o contexto.</h2>
+                  <p>Informações, histórico e próximos passos conectados ao mesmo registro.</p>
+                </div>
+                <dl className="contact-360-facts">
+                  <div>
+                    <dt>Etapa atual</dt>
+                    <dd><Badge value={selected.stage} /></dd>
+                  </div>
+                  <div>
+                    <dt>Organização</dt>
+                    <dd>{selected.organizationName ??
+                      (selected.organizationId ? "Organização vinculada" : "Não vinculada")}</dd>
+                  </div>
+                  <div>
+                    <dt>Próximo passo</dt>
+                    <dd>{selected.nextAction
+                      ? `Previsto para ${date(selected.nextAction.dueAt)}`
+                      : "A definir"}</dd>
+                  </div>
+                </dl>
+              </section>
+              <div className="detail-grid flow-contact-360">
+                <section className="card contact-card contact-360-profile">
                   <span className="avatar large">{selected.name[0]}</span>
                   <h2>{selected.name}</h2>
                   <Badge value={selected.stage} />
@@ -1741,7 +1803,7 @@ export function App() {
                     )}
                   </div>
                 </section>
-                <div className="detail-content">
+                <div className="detail-content contact-360-content">
                   <CommercialTemplates
                     key={
                       me.tenantId +

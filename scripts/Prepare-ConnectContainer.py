@@ -12,6 +12,8 @@ sources += [p for p in api.rglob('*') if p.is_file() and not any(x in ('bin','ob
 front=root/'src/frontend'
 sources += [p for p in (front/'src').rglob('*') if p.is_file() and p.suffix in ('.ts','.tsx','.css')]
 sources += [front/name for name in ('package.json','package-lock.json','index.html','tsconfig.json','vite.config.ts')]
+# Explicit public brand asset referenced by Brand.tsx; never copy arbitrary public files.
+sources += [front/'public/assets/ebt-logo-240.webp']
 records=[]
 for path in sources:
     relative=Path('Dockerfile') if path.name=='Dockerfile' else path.relative_to(root)

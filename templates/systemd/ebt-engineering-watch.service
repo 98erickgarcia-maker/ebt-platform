@@ -1,0 +1,22 @@
+[Unit]
+Description=EBT local engineering heartbeat observer
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ebt-scout
+Group=ebt-scout
+EnvironmentFile=/etc/ebt-engineering-watch.env
+ExecStart=/usr/bin/python3 -B /opt/ebt-engineering/engineering_watch.py --heartbeat ${EBT_ENGINEERING_HEARTBEAT} --state /var/lib/ebt-engineering-watch/state.json
+StateDirectory=ebt-engineering-watch
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/var/lib/ebt-engineering
+TimeoutStartSec=30
+StandardOutput=journal
+StandardError=journal

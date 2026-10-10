@@ -23,3 +23,7 @@ O usuario pediu area exclusiva da EBT Platform no banco compartilhado e publicac
 ## Correções comerciais autorizadas em 09/10/2026
 
 O usuário autorizou adaptar melhorias de CASST, Vikings e Mail no Connect, retirar simulação, melhorar templates e substituir a dependência MongoDB pelo SQL existente. Connect acompanha prospecção, qualificação, venda e cliente ativo, incluindo relacionamento comercial. Não expandir para pedidos, execução ou financeiro. Integração Outlook registra o retorno do provedor automaticamente; abertura externa não prova envio, e aceite não prova entrega/leitura. Preservar fontes históricas, sem importar dados reais por inferência. Publicação no host existente já foi solicitada, condicionada à verificação do candidato e isolamento do schema. Orçamento 180h + 20h permanece; horas reais desconhecidas.
+
+## Execução por blocos autorizada em 09/10/2026
+
+Pedido direto posterior: continuar desenvolvimento dos dez papéis da EBT Enterprise por blocos, publicar o próximo módulo e verificar progresso na VPS a cada 15 minutos. Próximo bloco: Flow de protocolos fixos, com SQL QA exclusivo, negativos A/B/carteira, concorrência, histórico e restore. Host EBT existente, schema ebt_flow aditivo com grants por objeto; sem custo/plano novo, dados de cliente ou modificação de outros produtos. Runner VPS trabalha em proposta isolada com dez funções sequenciais; publicação depende dos gates do SHA. Checkpoint terminal de uma função não aprova produto nem Enterprise completa.

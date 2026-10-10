@@ -71,6 +71,10 @@ if (args.Contains("--platform-database"))
 {
     await PlatformDatabaseAdmin.Run(connection, builder.Configuration); return;
 }
+if (args.Contains("--flow-database"))
+{
+    await FlowDatabaseAdmin.Run(connection, builder.Configuration); return;
+}
 if (args.Contains("--apply-reviewed-schema"))
 {
     await SqlDeployment.Run(connection, builder.Configuration); return;
@@ -106,6 +110,12 @@ if (args.Contains("--init-qa"))
         if (!catalogSql.StartsWith("-- EBT Platform only.", StringComparison.Ordinal)) throw new InvalidOperationException("QA catalog script differs from the dedicated platform script.");
         await db.Database.ExecuteSqlRawAsync(catalogSql);
     }
+    if (builder.Configuration["Qa:FlowScript"] is { Length: > 0 } flowScript)
+    {
+        var flowSql = await File.ReadAllTextAsync(flowScript);
+        if (!flowSql.StartsWith("-- EBT Flow only.", StringComparison.Ordinal)) throw new InvalidOperationException("Unexpected Flow QA script.");
+        for (var repeat = 0; repeat < 2; repeat++) await db.Database.ExecuteSqlRawAsync(flowSql);
+    }
     await QaSeed.Run(db, builder.Configuration); return;
 }
 app.Use(async (http, next) =>
@@ -136,13 +146,13 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseDefaultFiles(); app.UseStaticFiles(); app.UseRouting(); app.UseRateLimiter(); app.UseAuthentication();
 app.Use(Security.ValidateContext);
-app.MapGet("/health/live", () => Results.Ok(new { status = "alive", service = "EBT Platform", application = "Connect", version = "0.3.0" }));
+app.MapGet("/health/live", () => Results.Ok(new { status = "alive", service = "EBT Platform", application = "Connect", version = "0.4.0" }));
 app.MapGet("/health/ready", async (PlatformDb db) =>
 {
-    try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); var catalog = await PlatformCatalog.Read(db); if (!catalog.Any(x => x.Code == "connect")) return Results.StatusCode(503); return Results.Ok(new { status = "ready", schema = "ebt_connect", platformSchema = "ebt_platform", version = "0.3.0" }); }
+    try { await db.Tenants.AsNoTracking().OrderBy(x => x.Id).Select(x => x.Id).Take(1).ToListAsync(); await db.Database.SqlQueryRaw<int>("SELECT COUNT(*) AS Value FROM ebt_flow.Protocols WHERE 1=0").SingleAsync(); var catalog = await PlatformCatalog.Read(db); if (!catalog.Any(x => x.Code == "connect")) return Results.StatusCode(503); return Results.Ok(new { status = "ready", schema = "ebt_connect", platformSchema = "ebt_platform", version = "0.4.0" }); }
     catch { return Results.StatusCode(503); }
 });
-PlatformCatalog.Map(app); Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
+PlatformCatalog.Map(app); FlowProtocol.Map(app); Security.Map(app); CrmEndpoints.Map(app); MessagingEndpoints.Map(app); DocumentEndpoints.Map(app);
 MailEndpoints.Map(app);
 ConnectImprovements.Map(app);
 WazVoxEndpoints.Map(app);

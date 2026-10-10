@@ -1,0 +1,12 @@
+[Unit]
+Description=Observe EBT engineering heartbeat every fifteen minutes
+
+[Timer]
+OnBootSec=1min
+OnCalendar=*-*-* *:0/15:00
+Persistent=true
+AccuracySec=15s
+Unit=ebt-engineering-watch.service
+
+[Install]
+WantedBy=timers.target

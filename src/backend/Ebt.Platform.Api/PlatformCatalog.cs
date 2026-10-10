@@ -27,8 +27,8 @@ public static class PlatformCatalog
             var rows = await Read(db, http.RequestAborted);
             return Results.Ok(new { family = "EBT Enterprise", platform = "EBT Platform", tenantId = access.TenantId,
                 applications = rows.Select(x => new { x.Code, x.Name, x.Description,
-                    state = x.State == "available" && x.Code != "connect" ? "planned" : x.State,
-                    available = x.Code == "connect" && x.State == "available" }) });
+                    state = x.State == "available" && x.Code is not ("connect" or "flow") ? "planned" : x.State,
+                    available = x.Code is ("connect" or "flow") && x.State == "available" }) });
         });
     }
 }

@@ -1,0 +1,81 @@
+{
+  "generatedUtc": "2026-10-09T21:22:47.338Z",
+  "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
+  "version": "0.4.0",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Published logo asset returns image HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Desktop brand image has positive natural width",
+      "passed": true
+    },
+    {
+      "name": "Synthetic QA tenant A selected",
+      "passed": true
+    },
+    {
+      "name": "Published Flow opens from application catalog",
+      "passed": true
+    },
+    {
+      "name": "Protocol created through published UI",
+      "passed": true
+    },
+    {
+      "name": "Start and completion through published UI",
+      "passed": true
+    },
+    {
+      "name": "Persisted result visible in history",
+      "passed": true
+    },
+    {
+      "name": "Browser reload retains protocol",
+      "passed": true
+    },
+    {
+      "name": "Published Flow no horizontal overflow 320",
+      "passed": true
+    },
+    {
+      "name": "Published Flow no horizontal overflow 390",
+      "passed": true
+    },
+    {
+      "name": "Published Flow no horizontal overflow 768",
+      "passed": true
+    },
+    {
+      "name": "Published Flow no horizontal overflow 1366",
+      "passed": true
+    },
+    {
+      "name": "No browser page errors",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "evidencias/flow-online-qa-390.png",
+    "evidencias/flow-online-qa-1366.png"
+  ],
+  "syntheticOnly": true,
+  "credentialsSaved": false,
+  "visualReview": {
+    "reviewed": true,
+    "logoAssetAvailable": true,
+    "logoNaturalWidthPositive": true,
+    "notes": [
+      "Desktop logo and layout inspected; malformed old synthetic fixture label came from test encoding, corrected in harness."
+    ]
+  },
+  "realMessagesSent": 0,
+  "limits": [
+    "User business acceptance remains separate",
+    "Screenshots contain only newly provisioned synthetic QA tenant"
+  ],
+  "sourceCommit": "558740f77ab09ae518b623cc730fdbac33c7b13f",
+  "imageDigest": "sha256:55b1845b0ff4c19c3da387c356b43fa1675414f96b14b57301ab2d572ede8195"
+}

@@ -5,7 +5,7 @@
   "family": "EBT Enterprise",
   "foundation": "EBT Platform",
   "first_product": "EBT Connect",
-  "current_scope": "Autorizado explicitamente: criar area exclusiva ebt_platform no mesmo banco compartilhado, reunir aplicativos sob a Platform e publicar a versao revisada; Connect operacional, demais aplicativos planejados.",
+  "current_scope": "Flow fixed protocol MVP published and tested; sequential ten-role history pagination proposal with 15-minute VPS supervision.",
   "budget": {
     "delivery_hours": 180,
     "reserve_hours": 20,
@@ -18,7 +18,7 @@
     "evidencias/connect_wazvox_real_015.json",
     "evidencias/manifesto_connect_local.json"
   ],
-  "review_status": "Connect 0.3.0 publicado e verificado: qualificação, cliente ativo no mesmo ID, modelos por canal, e-mail e fila SQL, sem MongoDB no runtime suportado. CI da fonte aprovado, 22 browser, SQL idempotente aplicado duas vezes em QA, ClamAV real e restore isolado CI. Online: 34 checks HTTP e desktop/mobile; sessão, contatos e configuração preservados. Outlook real ainda pendente.",
+  "review_status": "Flow0.4 published:21 authenticated HTTP checks and13 browser checks, localSQL28. Other schema fingerprints preserved. VPS timers active; actual engineering invocation blocked by quota, no completed role claimed.",
   "no_product_gate_promotion": true,
   "product_limits": [
     "Microsoft Graph app-only ainda sem configuração/homologação de envio real neste Connect; aplicativo de e-mail consultado declara Scope delegado",
@@ -27,7 +27,7 @@
     "Pacotes Mail/Emergent históricos e app-mail separado são fontes preservadas; o runtime EBT suportado usa SQL sem MongoDB",
     "Dois tenants do Connect não demonstram Core universal"
   ],
-  "next_authorized_step": "Definir vínculo Microsoft da caixa pretendida e homologar envio de teste autorizado; scanner/restore Azure e aceite operacional precisam de provas próprias. Demais aplicativos mantidos no planejamento. Revisar cada incremento antes de salvar.",
+  "next_authorized_step": "Resume FLOW-01 after included account quota is available; verify each proposal before publishing.",
   "next_product_steps_require_scope": [
     "scanner privado com prova por versão",
     "restauração Azure isolada e comparação de hashes",
@@ -44,18 +44,18 @@
   "scheduler_source": "evidencias/revisao_github_incremental_20261008.json",
   "online": {
     "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
-    "version": "0.3.0",
-    "source_commit": "bde34225781702f08158f9d832956c4ec326b469",
-    "revision": "ebt-connect-hml--connect030-bde3422",
-    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:f419f17ce2dfbd9de98f4267ca1073ceecd9a6af80534833f7f9772b80746825",
-    "evidence": "evidencias/connect_commercial_online_20261009.json",
-    "database_evidence": "evidencias/connect_commercial_azure_apply_20261009.json",
+    "version": "0.4.0",
+    "source_commit": "558740f77ab09ae518b623cc730fdbac33c7b13f",
+    "revision": "ebt-connect-hml--flow040-558740f",
+    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:55b1845b0ff4c19c3da387c356b43fa1675414f96b14b57301ab2d572ede8195",
+    "evidence": "evidencias/flow_online_qa_20261009.json",
+    "database_evidence": "evidencias/flow_azure_apply_20261009.json",
     "status": "published_verified",
     "available_applications": [
-      "connect"
+      "connect",
+      "flow"
     ],
     "planned_applications": [
-      "flow",
       "portal",
       "sites",
       "contracts",
@@ -73,7 +73,7 @@
     "product_status_unchanged": true,
     "new_modules_authorized_by_review": false
   },
-  "summary": "Connect 0.3.0 publicado e verificado: qualificação, cliente ativo no mesmo ID, modelos por canal, e-mail e fila SQL, sem MongoDB no runtime suportado. CI da fonte aprovado, 22 browser, SQL idempotente aplicado duas vezes em QA, ClamAV real e restore isolado CI. Online: 34 checks HTTP e desktop/mobile; sessão, contatos e configuração preservados. Outlook real ainda pendente.",
+  "summary": "Flow0.4 published:21 authenticated HTTP checks and13 browser checks, localSQL28. Other schema fingerprints preserved. VPS timers active; actual engineering invocation blocked by quota, no completed role claimed.",
   "commercial_scope": [
     "prospeccao",
     "qualificacao",
@@ -85,18 +85,18 @@
   "real_hours": null,
   "previous_online": {
     "url": "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io",
-    "version": "0.3.0",
-    "source_commit": "bde34225781702f08158f9d832956c4ec326b469",
-    "revision": "ebt-connect-hml--connect030-bde3422",
-    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:f419f17ce2dfbd9de98f4267ca1073ceecd9a6af80534833f7f9772b80746825",
-    "evidence": "evidencias/connect_commercial_online_20261009.json",
-    "database_evidence": "evidencias/connect_commercial_azure_apply_20261009.json",
+    "version": "0.4.0",
+    "source_commit": "558740f77ab09ae518b623cc730fdbac33c7b13f",
+    "revision": "ebt-connect-hml--flow040-558740f",
+    "image": "acrcrmcasstprod2608.azurecr.io/ebt-platform@sha256:55b1845b0ff4c19c3da387c356b43fa1675414f96b14b57301ab2d572ede8195",
+    "evidence": "evidencias/flow_online_qa_20261009.json",
+    "database_evidence": "evidencias/flow_azure_apply_20261009.json",
     "status": "published_verified",
     "available_applications": [
-      "connect"
+      "connect",
+      "flow"
     ],
     "planned_applications": [
-      "flow",
       "portal",
       "sites",
       "contracts",
@@ -106,5 +106,14 @@
       "saude"
     ]
   },
-  "current_product_version": "0.3.0"
+  "current_product_version": "0.4.0",
+  "engineering": {
+    "roles": 10,
+    "concurrency": 1,
+    "watch_minutes": 15,
+    "state": "blocked_quota",
+    "completed": 0,
+    "purchase_authorized": false,
+    "automatic_retry_after_cooldown": true
+  }
 }

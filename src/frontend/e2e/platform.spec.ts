@@ -53,3 +53,45 @@ test("Catalog error exposes retry; successful retry restores real applications",
   failed=false;await page.getByRole("button",{name:"Tentar novamente",exact:true}).click();
   await expect(page.locator(".application-card")).toHaveCount(9);
 });
+
+test("Platform navigation stays accessible across breakpoints and mobile menu state", async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await enter(page);
+
+  for (const width of [320, 390, 768, 1366]) {
+    await page.setViewportSize({width,height:844});
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+      "No document-wide horizontal overflow at " + width + "px"
+    ).toBe(true);
+  }
+
+  await page.setViewportSize({width:390,height:844});
+  const sidebar = page.locator("#ebt-sidebar-navigation");
+  const open = page.getByRole("button", {name:"Abrir navegação"});
+  await expect(open).toHaveAttribute("aria-expanded", "false");
+  await expect(open).toHaveAttribute("aria-controls", "ebt-sidebar-navigation");
+  await expect(sidebar).toBeHidden();
+
+  await open.click();
+  const close = page.getByRole("button", {name:"Fechar navegação"});
+  await expect(close).toHaveAttribute("aria-expanded", "true");
+  const nav = page.getByRole("navigation", {name:"Navegação principal"});
+  await expect(nav).toBeVisible();
+
+  await page.keyboard.press("Escape");
+  await expect(sidebar).toBeHidden();
+  await expect(open).toBeFocused();
+  await expect(open).toHaveAttribute("aria-expanded", "false");
+
+  await open.click();
+  await nav.getByRole("button", {name:"Meu dia",exact:true}).click();
+  await expect(page.getByRole("heading", {name:"Meu dia",exact:true})).toBeVisible();
+  await expect(sidebar).toBeHidden();
+  await expect(open).toBeFocused();
+
+  await open.click();
+  await nav.getByRole("button", {name:"Aplicativos",exact:true}).click();
+  await expect(page.getByRole("heading", {name:"Aplicativos",exact:true})).toBeVisible();
+  await expect(page.getByRole("button", {name:"Acessar Connect",exact:true})).toBeVisible();
+});
