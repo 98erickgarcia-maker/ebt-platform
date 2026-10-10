@@ -5,7 +5,8 @@ O bootstrap `scripts/ops/install_ebt_vps_automation_bundle.sh` reduz a ativaçã
 ## Fontes imutáveis
 
 O script exige e confere:
-- Flow/controller source: `9dc3b5ff647aa2453e18cc3148f13d1364145741`;\n- Flow proposal initial SHA: `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0`;
+- Flow/controller source: `9dc3b5ff647aa2453e18cc3148f13d1364145741`;
+- Flow proposal initial SHA: `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0`;
 - watchdog do cron: head `e6a112f4db0d0bec02f623c968c579116b7dfe9c`, fonte de runtime `56a659ac1fc7597f7e453bd7e39042742e8f408e`;
 - monitor direto do produto: `3820d0edd5126ae416ea569b3dc30b5b0ce1a215`;
 - branch Flow operacional: `codex/flow-history-proposal-vps-20261009`, que deve continuar no proposal SHA `0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0` durante a ativação inicial. O instalador relê o remoto autenticado antes de habilitar os timers.
@@ -45,7 +46,14 @@ O bootstrap é destinado a uma ativação limpa. Se algum timer EBT já estiver 
 sudo scripts/ops/collect_ebt_vps_automation_status.sh
 ```
 
-O coletor não lê nem imprime chaves/tokens. Ele mostra estado dos timers, branch/SHA do workspace e subconjuntos sanitizados dos arquivos de estado.
+O coletor não lê nem imprime chaves/tokens. Ele retorna um JSON sanitizado com dois níveis separados:
+
+- `installation_integrity`: PASS/FAIL da instalação e isolamento;
+- `observed_health`: saúde observada do produto, scheduler GitHub e engenharia.
+
+Isso evita confundir incidente externo com instalação quebrada. Por exemplo, o watchdog pode reportar `github_schedule=FAIL` por `schedule_gap` e, ao mesmo tempo, `installation_integrity=PASS` se os timers, branch, remote, isolamento da chave e monitores estiverem corretamente instalados.
+
+O bootstrap executa esse coletor no fim da instalação. Se `installation_integrity` falhar, o comando retorna erro e o rollback automático desabilita os quatro timers. A primeira execução do agente pode ainda aparecer como `PENDING_FIRST_CYCLE` sem invalidar a instalação.
 
 ## Rollback
 
