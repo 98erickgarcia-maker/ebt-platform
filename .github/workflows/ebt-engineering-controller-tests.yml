@@ -1,0 +1,52 @@
+name: EBT engineering controller Linux tests
+on:
+  push:
+    branches: [codex/enterprise-blocks-15min-20261009]
+    paths:
+      - scripts/ops/install_ebt_engineering_auto.sh
+      - scripts/ops/engineering_runner.py
+      - scripts/ops/engineering_watch.py
+      - templates/systemd/ebt-engineering-runner.service
+      - templates/systemd/ebt-engineering-runner.timer
+      - templates/systemd/ebt-engineering-watch.service
+      - templates/systemd/ebt-engineering-watch.timer
+      - planejamento/engineering_blocks.json
+      - tests/ops/test_ebt_engineering_auto.py
+      - tests/ops/test_engineering_runner.py
+      - tests/ops/test_engineering_task_scope.py
+      - tests/ops/test_engineering_watch_runner.py
+      - .github/workflows/ebt-engineering-controller-tests.yml
+  pull_request:
+    paths:
+      - scripts/ops/install_ebt_engineering_auto.sh
+      - scripts/ops/engineering_runner.py
+      - scripts/ops/engineering_watch.py
+      - templates/systemd/ebt-engineering-runner.service
+      - templates/systemd/ebt-engineering-runner.timer
+      - templates/systemd/ebt-engineering-watch.service
+      - templates/systemd/ebt-engineering-watch.timer
+      - planejamento/engineering_blocks.json
+      - tests/ops/test_ebt_engineering_auto.py
+      - tests/ops/test_engineering_runner.py
+      - tests/ops/test_engineering_task_scope.py
+      - tests/ops/test_engineering_watch_runner.py
+      - .github/workflows/ebt-engineering-controller-tests.yml
+permissions:
+  contents: read
+jobs:
+  controller:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - run: bash -n scripts/ops/install_ebt_engineering_auto.sh
+      - run: python -m unittest discover -s tests/ops -p 'test_ebt_engineering_auto.py' -v
+      - run: python -m unittest discover -s tests/ops -p 'test_engineering_runner.py' -v
+      - run: python -m unittest discover -s tests/ops -p 'test_engineering_task_scope.py' -v
+      - run: python -m unittest discover -s tests/ops -p 'test_engineering_watch_runner.py' -v
+      - run: git diff --check
