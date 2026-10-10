@@ -4,52 +4,60 @@ Data de referência: 10/10/2026.
 
 ## Objetivo
 
-Executar a fila `FLOW-01..FLOW-10` em uma VPS Linux por ciclos de 15 minutos usando o runner existente, sem autorizar merge, deploy, migration, mensagens externas ou force-push.
+Executar a fila `FLOW-01..FLOW-10` em uma VPS Linux a cada 15 minutos com um único controlador verificável. O agente não recebe credencial Git e não pode fazer commit/push diretamente. Merge, deploy, migration e mensagens externas continuam proibidos.
 
-## Componentes
+## Arquitetura escolhida
 
-- `scripts/ops/ebt_engineering_auto.sh`: ciclo seguro, lock, sincronização fast-forward, execução do runner, commit verificado e push somente da branch de proposta.
-- `scripts/ops/install_ebt_engineering_auto.sh`: instalador systemd.
-- `deployment/systemd/ebt-engineering-auto.service`: serviço oneshot.
-- `deployment/systemd/ebt-engineering-auto.timer`: agenda em 00/15/30/45 minutos.
-- `scripts/ops/EBT_AUTO_LINUX.bat`: atalho opcional para iniciar/consultar o serviço via WSL.
+A automação usa o mecanismo nativo de `scripts/ops/engineering_runner.py`.
 
-## Branch e fronteira de segurança
+- O serviço `ebt-engineering-runner.service` roda como `root` somente para proteger metadados Git, checkpoint e transporte.
+- Toda invocação Codex e os checks `dotnet/npm` são rebaixados pelo runner para o usuário sem privilégio `ebt-scout`.
+- A chave SSH e o `known_hosts` ficam em arquivos root-only e seus caminhos chegam ao controlador por `/etc/ebt-engineering-controller.env`.
+- O ambiente passado ao agente não contém `EBT_ENGINEERING_GIT_KEY` nem credenciais de banco/cloud.
+- Depois dos checks, o próprio controlador cria o commit e sincroniza somente `codex/flow-history-proposal-vps-20261009`.
+- O push é normal, nunca `--force`. Falha de rede deixa o checkpoint em `awaiting_sync`; o mesmo commit é tentado novamente antes de qualquer novo agente.
+- `proposal_review_ready` encerra a fila de proposta. Não autoriza merge, release ou deploy.
 
-A automação trabalha somente em `codex/flow-history-proposal-vps-20261009`. A branch base configurada é `codex/enterprise-blocks-15min-20261009`.
+Isso substitui a ideia anterior de um segundo wrapper com credencial Git no usuário do agente.
 
-O wrapper mantém `allow_push=false` no runner. Depois de `task_verified`, ele valida os caminhos modificados contra `allowed_paths`, executa `git diff --check`, cria commit e salva `pending-push.json` antes da tentativa de rede. O push é não-forçado e aponta exclusivamente para a branch de proposta.
+## Pré-requisitos
 
-Se o push falhar, a próxima rodada tenta primeiro sincronizar o mesmo SHA. Se o remoto mudou, o ciclo bloqueia; não há reset, rebase automático, force-push ou sobrescrita.
+1. Usuário Linux `ebt-scout` existente e perfil Codex em `/var/lib/ebt-scout/.codex`.
+2. `codex`, `dotnet` e `npm` disponíveis no PATH definido pelo service.
+3. Chave SSH com escrita somente neste repositório e `known_hosts` já verificado. O instalador não gera, copia nem imprime segredo.
+4. Branch remota `codex/flow-history-proposal-vps-20261009` criada a partir de um SHA de CI aprovado.
+5. Checkout fonte limpo no SHA revisado, informado em `EXPECTED_SOURCE_SHA`.
 
 ## Instalação
 
-O usuário de serviço esperado é `ebt-scout`. Ele precisa ter o login do Codex exigido pelo runner, escrita no worktree e uma credencial SSH GitHub com escrita adequada ao repositório. Chaves privadas não pertencem ao repositório.
+Exemplo, substituindo o SHA pelo candidato realmente aprovado:
 
 ```bash
-chmod +x scripts/ops/ebt_engineering_auto.sh scripts/ops/install_ebt_engineering_auto.sh
-sudo scripts/ops/install_ebt_engineering_auto.sh
+sudo install -d -m 0700 /etc/ebt-engineering
+sudo install -o root -g root -m 0600 /caminho/seguro/chave_ed25519 /etc/ebt-engineering/controller_ed25519
+sudo install -o root -g root -m 0600 /caminho/seguro/known_hosts /etc/ebt-engineering/known_hosts
+
+sudo EXPECTED_SOURCE_SHA=<sha-aprovado> \
+  GIT_KEY_PATH=/etc/ebt-engineering/controller_ed25519 \
+  KNOWN_HOSTS_PATH=/etc/ebt-engineering/known_hosts \
+  scripts/ops/install_ebt_engineering_auto.sh
 ```
 
-Para desativar push automático da proposta:
-
-```bash
-AUTO_PUSH_PROPOSAL=0 sudo scripts/ops/install_ebt_engineering_auto.sh
-```
+O script valida SHA, checkout limpo, permissões dos arquivos de transporte, branch, manifesto, binários e unidades systemd antes de habilitar os timers.
 
 ## Operação
 
 ```bash
-systemctl list-timers ebt-engineering-auto.timer --no-pager
-journalctl -u ebt-engineering-auto.service -n 100 --no-pager
-sudo systemctl start ebt-engineering-auto.service
-sudo systemctl disable --now ebt-engineering-auto.timer
+systemctl list-timers ebt-engineering-runner.timer ebt-engineering-watch.timer --no-pager
+sudo systemctl start ebt-engineering-runner.service
+sudo journalctl -u ebt-engineering-runner.service -n 100 --no-pager
+sudo systemctl disable --now ebt-engineering-runner.timer ebt-engineering-watch.timer
 ```
 
-## Estados
+O atalho `scripts/ops/EBT_AUTO_LINUX.bat` apenas aciona/consulta essas unidades via WSL; a automação real é Linux/systemd.
 
-`task_verified` permite empacotar e sincronizar somente a tarefa verificada. `proposal_review_ready` indica fim da fila de proposta; não significa release-ready. Release continua dependendo de CI do SHA exato e das evidências SQL/browser exigidas pelo risco.
+## Limites de segurança
 
-## Evidência de teste do wrapper
+O controlador só aceita o repositório `98erickgarcia-maker/ebt-platform` e a branch de proposta fixada no código/manifesto. Alteração de remote, branch, `.git`, SHA durante a tarefa, arquivo fora da allowlist, segredo aparente, check falho ou divergência de evidência interrompe a fila.
 
-Antes de adicionar estes arquivos ao repositório, o wrapper foi exercitado com repositório Git remoto sintético: criação da branch de proposta, commit de tarefa verificada, push/readback do SHA e recuperação de push interrompido por checkpoint. Isso não comprova instalação na VPS real nem credenciais do host.
+Nenhuma dessas provas representa release. CI no SHA composto, SQL/browser quando exigidos, rollback e aceite operacional continuam gates separados.
