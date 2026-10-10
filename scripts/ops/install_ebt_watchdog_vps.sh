@@ -5,7 +5,7 @@ set -Eeuo pipefail
 umask 077
 
 REPO='98erickgarcia-maker/ebt-platform'
-SOURCE_SHA='9435a6d034da75a57c7676ca6ccfecd5a2bbc1ed'
+SOURCE_SHA='56a659ac1fc7597f7e453bd7e39042742e8f408e'
 RAW="https://raw.githubusercontent.com/$REPO/$SOURCE_SHA"
 APP_DIR='/opt/ebt-watchdog'
 SERVICE='/etc/systemd/system/ebt-schedule-watchdog.service'
