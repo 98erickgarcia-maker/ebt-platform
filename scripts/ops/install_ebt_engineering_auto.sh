@@ -7,6 +7,7 @@ SSH_REMOTE="git@github.com:${REPOSITORY}.git"
 PROPOSAL_BRANCH="${PROPOSAL_BRANCH:-codex/flow-history-proposal-vps-20261009}"
 SOURCE_ROOT="${SOURCE_ROOT:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)}"
 EXPECTED_SOURCE_SHA="${EXPECTED_SOURCE_SHA:-}"
+EXPECTED_PROPOSAL_SHA="${EXPECTED_PROPOSAL_SHA:-}"
 WORKSPACE="/var/lib/ebt-engineering/workspace"
 STATE="/var/lib/ebt-engineering/state"
 INSTALL_ROOT="/opt/ebt-engineering"
@@ -35,6 +36,7 @@ for cmd in git python3 systemctl install stat find chown chmod; do need "$cmd"; 
 id "$SERVICE_USER" >/dev/null 2>&1 || fail "User $SERVICE_USER does not exist."
 [[ -d "$SOURCE_ROOT/.git" ]] || fail "SOURCE_ROOT must be a Git checkout."
 [[ "$EXPECTED_SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]] || fail "Set EXPECTED_SOURCE_SHA to the reviewed PR SHA."
+[[ "$EXPECTED_PROPOSAL_SHA" =~ ^[0-9a-f]{40}$ ]] || fail "Set EXPECTED_PROPOSAL_SHA to the approved proposal branch SHA."
 actual_source="$(git -C "$SOURCE_ROOT" rev-parse HEAD)"
 [[ "$actual_source" == "$EXPECTED_SOURCE_SHA" ]] || fail "SOURCE_ROOT SHA differs from EXPECTED_SOURCE_SHA."
 [[ -z "$(git -C "$SOURCE_ROOT" status --porcelain --untracked-files=all)" ]] || fail "SOURCE_ROOT must be clean."
@@ -78,6 +80,9 @@ else
   [[ -z "$(git -C "$WORKSPACE" status --porcelain --untracked-files=all)" ]] || fail "Workspace is dirty."
 fi
 
+workspace_head="$(git -C "$WORKSPACE" rev-parse HEAD)"
+[[ "$workspace_head" == "$EXPECTED_PROPOSAL_SHA" ]] || fail "Workspace proposal SHA differs from approved SHA."
+
 git -C "$WORKSPACE" remote set-url origin "$SSH_REMOTE"
 git -C "$WORKSPACE" remote set-url --push origin "$SSH_REMOTE"
 git -C "$WORKSPACE" config user.name "EBT Engineering Controller"
@@ -85,7 +90,9 @@ git -C "$WORKSPACE" config user.email "ebt-engineering@users.noreply.github.com"
 
 export GIT_SSH_COMMAND="/usr/bin/ssh -F /dev/null -i $GIT_KEY_PATH -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
 git -C "$WORKSPACE" fetch --prune origin "$PROPOSAL_BRANCH"
-git -C "$WORKSPACE" merge --ff-only "origin/$PROPOSAL_BRANCH"
+remote_proposal="$(git -C "$WORKSPACE" rev-parse "origin/$PROPOSAL_BRANCH")"
+[[ "$remote_proposal" == "$EXPECTED_PROPOSAL_SHA" ]] || fail "Remote proposal branch moved during installation."
+[[ "$(git -C "$WORKSPACE" rev-parse HEAD)" == "$EXPECTED_PROPOSAL_SHA" ]] || fail "Workspace changed before controller activation."
 unset GIT_SSH_COMMAND
 
 chown -R "$SERVICE_USER:$SERVICE_USER" "$WORKSPACE"
@@ -117,7 +124,7 @@ fi
 systemctl daemon-reload
 systemctl enable --now ebt-engineering-runner.timer ebt-engineering-watch.timer
 
-printf '\nInstalled native EBT controller. No merge/deploy/migration is enabled.\n'
+printf '\nInstalled native EBT controller at approved proposal SHA %s. No merge/deploy/migration is enabled.\n' "$EXPECTED_PROPOSAL_SHA"
 systemctl list-timers ebt-engineering-runner.timer ebt-engineering-watch.timer --no-pager || true
 printf '\nManual verified cycle: sudo systemctl start ebt-engineering-runner.service\n'
 printf 'Logs: sudo journalctl -u ebt-engineering-runner.service -n 100 --no-pager\n'
