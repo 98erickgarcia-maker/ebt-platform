@@ -25,6 +25,7 @@ class RunnerTests(unittest.TestCase):
         self.policy = {'enabled': True, 'concurrency': 1, 'roles': list(range(10)),
                        'allow_deploy': False, 'allow_migration': False,
                        'allow_external_messages': False, 'allow_push': False,
+                       'branch': 'codex/proposal',
                        'allowed_paths': ['proof.md'],
                        'tasks': [{'id': 'T1', 'instruction': 'review', 'checks': ['diff']},
                                  {'id': 'T2', 'instruction': 'review', 'checks': ['diff']}]}
@@ -48,6 +49,18 @@ class RunnerTests(unittest.TestCase):
 
     def runner(self, fake=None):
         return mod.Runner(self.workspace, self.state, self.manifest, fake or self.fake, now=lambda: 100000)
+
+    def test_wrong_proposal_branch_is_rejected(self):
+        def wrong_branch(argv, **kwargs):
+            if argv[:3] == ['git', 'branch', '--show-current']:
+                return subprocess.CompletedProcess(argv, 0, 'codex/other\n', '')
+            return self.fake(argv, **kwargs)
+        self.assertEqual(self.runner(wrong_branch).cycle()['status'], 'proposal_branch_required')
+        self.assertFalse(any(argv[:2] == ['codex', 'exec'] for argv in self.calls))
+
+    def test_flow_backend_check_is_dedicated(self):
+        self.assertEqual(mod.CHECKS['flow_backend'],
+            ['dotnet', 'run', '--project', 'tests/WazVox.ProtocolTests', '--no-restore', '--', '--flow-history'])
 
     def test_one_task_per_tick_and_no_publish(self):
         self.assertEqual(self.runner().cycle()['status'], 'task_verified')
