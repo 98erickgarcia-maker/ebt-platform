@@ -54,7 +54,7 @@ root_private_file(){
 
 [[ "$EUID" -eq 0 ]] || fail "Run with sudo/root."
 [[ -d /run/systemd/system ]] || fail "systemd is not running on this host."
-for binary in git bash python3 systemctl stat mktemp grep id runuser install; do need "$binary"; done
+for binary in git bash python3 systemctl stat mktemp grep id runuser install awk chmod cat rm; do need "$binary"; done
 [[ -d "$BUNDLE_ROOT/.git" ]] || fail "BUNDLE_ROOT must be a Git checkout."
 [[ "$EXPECTED_BUNDLE_SHA" =~ ^[0-9a-f]{40}$ ]] || fail "Set EXPECTED_BUNDLE_SHA to the reviewed bootstrap SHA."
 bundle_head="$(git -C "$BUNDLE_ROOT" rev-parse HEAD)"
