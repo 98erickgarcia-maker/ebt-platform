@@ -59,7 +59,7 @@ for binary in git bash python3 systemctl stat mktemp grep id runuser install; do
 [[ "$EXPECTED_BUNDLE_SHA" =~ ^[0-9a-f]{40}$ ]] || fail "Set EXPECTED_BUNDLE_SHA to the reviewed bootstrap SHA."
 bundle_head="$(git -C "$BUNDLE_ROOT" rev-parse HEAD)"
 [[ "$bundle_head" == "$EXPECTED_BUNDLE_SHA" ]] || fail "Bootstrap checkout SHA differs from EXPECTED_BUNDLE_SHA."
-[[ -z "$(git -C "$BUNDLE_ROOT" status --porcelain --untracked-files=all)" ]] || fail "Bootstrap checkout must be clean."
+[[ -z "$(GIT_OPTIONAL_LOCKS=0 git -C "$BUNDLE_ROOT" status --porcelain --untracked-files=all)" ]] || fail "Bootstrap checkout must be clean."
 id ebt-scout >/dev/null 2>&1 || fail "Required user ebt-scout is missing."
 [[ -d /var/lib/ebt-scout/.codex ]] || fail "Codex profile /var/lib/ebt-scout/.codex is missing."
 root_private_file "$GIT_KEY_PATH"
