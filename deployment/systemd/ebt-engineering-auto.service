@@ -1,0 +1,18 @@
+[Unit]
+Description=EBT Enterprise autonomous Flow proposal cycle
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ebt-scout
+Group=ebt-scout
+EnvironmentFile=-/etc/ebt/engineering-auto.env
+ExecStart=/usr/local/sbin/ebt-engineering-auto
+TimeoutStartSec=20min
+UMask=0027
+Nice=10
+SuccessExitStatus=20
+
+[Install]
+WantedBy=multi-user.target
