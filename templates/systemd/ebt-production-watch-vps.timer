@@ -1,0 +1,11 @@
+[Unit]
+Description=Run EBT read-only product health monitor every fifteen minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+AccuracySec=15s
+Unit=ebt-production-watch-vps.service
+
+[Install]
+WantedBy=timers.target
