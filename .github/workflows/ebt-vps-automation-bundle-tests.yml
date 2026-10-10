@@ -39,6 +39,7 @@ jobs:
           sudo install -o root -g root -m 0600 /dev/null /tmp/ebt-ci-dummy-key
           sudo install -o root -g root -m 0600 /dev/null /tmp/ebt-ci-dummy-known-hosts
           sudo env \
+            EXPECTED_BUNDLE_SHA="$GITHUB_SHA" \
             GIT_KEY_PATH=/tmp/ebt-ci-dummy-key \
             KNOWN_HOSTS_PATH=/tmp/ebt-ci-dummy-known-hosts \
             bash scripts/ops/install_ebt_vps_automation_bundle.sh --check-only
