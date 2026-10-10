@@ -35,6 +35,24 @@ CHECKS = {
     'flow_backend': ['dotnet', 'run', '--project', 'tests/WazVox.ProtocolTests', '--no-restore', '--', '--flow-history'],
     'frontend': ['npm', '--prefix', 'src/frontend', 'run', 'build'],
 }
+FLOW_GATE_MARKERS = (
+    'if(args.Contains("--flow-history"))',
+    'FLOW_HISTORY_GATE_IMPLEMENTED_V1',
+    'PASS Flow history bounded page',
+    'PASS Flow history invalid cursor',
+    'PASS Flow history stable ordering',
+    'PASS Flow history scope isolation contract',
+)
+
+
+def validate_flow_gate_source(workspace):
+    """Fail closed unless FLOW-03 installed a dedicated executable Flow history gate."""
+    path = Path(workspace) / 'tests/WazVox.ProtocolTests/Program.cs'
+    if path.is_symlink() or not path.is_file() or path.stat().st_size > 250_000:
+        raise ValueError('flow_gate_missing')
+    source = path.read_text(encoding='utf-8')
+    if any(marker not in source for marker in FLOW_GATE_MARKERS):
+        raise ValueError('flow_gate_missing')
 PUSH_REPO = '98erickgarcia-maker/ebt-platform'
 PUSH_BRANCH = 'codex/flow-history-proposal-vps-20261009'
 PUSH_REMOTE = 'git@github.com:' + PUSH_REPO + '.git'
@@ -354,6 +372,8 @@ class Runner:
                 data['status'] = 'blocked'
             else:
                 for check in task['checks']:
+                    if check == 'flow_backend':
+                        validate_flow_gate_source(self.workspace)
                     checked = self.run(CHECKS[check], cwd=self.workspace, timeout=900)
                     if checked.returncode:
                         raise ValueError('checks_failed')
@@ -418,7 +438,7 @@ class Runner:
                 'invalid_result', 'missing_evidence', 'no_progress_evidence', 'proposal_branch_required',
                 'unsafe_patch', 'untrusted_check', 'private_workspace', 'protected_git_change', 'source_commit_unavailable',
                 'commit_failed', 'unclean_after_commit', 'invalid_commit', 'unsafe_push_target', 'invalid_task_policy',
-                'dependency_missing', 'task_scope_violation', 'task_file_limit', 'invalid_model_policy'} else 'runner_error'
+                'dependency_missing', 'task_scope_violation', 'task_file_limit', 'invalid_model_policy', 'flow_gate_missing'} else 'runner_error'
             data.update(status=safe, cooldown_until=self.now() + 1800)
         self.save(data)
         return {'status': data['status']}
