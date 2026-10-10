@@ -1,24 +1,28 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-10T05:07:05.842776+00:00",
+  "created_at_utc": "2026-10-10T05:21:29.804289+00:00",
   "branch": "codex/frontend-quality-20261010",
-  "parent_checkpoint": null,
-  "base": "5a2fa10e3abcaf63a889e4883bbd738ea01ee5bc",
+  "parent_checkpoint": "9b784410cd65d7b24acfe406b3c9954cb95c8289",
+  "base": "9b784410cd65d7b24acfe406b3c9954cb95c8289",
   "source_head": "e5acff9c4e3b689941ea651c75443c95016af5ae",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
     {
       "path": "docs/qualidade/FRONTEND_QUALIDADE_20261010.md",
-      "sha256": "dfa2bff25bb4a6d07eb8c41d1d719bb23177889904b5d708aa870f4ada9809c4"
+      "sha256": "7a0416bb71258f58f1f58d3758cc81e1f405655b728596bd2dc4e07e60de86d7"
+    },
+    {
+      "path": "evidencias/frontend_quality_online_20261010.json",
+      "sha256": "90ef545ad6540a886a7a808108b60d8a153cc73bc29e454fda638797df0b9fed"
     },
     {
       "path": "planejamento/continuidade_frontend_github.json",
-      "sha256": "a1a15b3a34587c0029a29c71f480a80a72230deb1ab54900db6a7a6ecc6db9cd"
+      "sha256": "0e401137b56cc764c1a9f051333123bd912b8775f331a857e24b74875b245dd1"
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "d3dbd4557d32f96c139bc555ea7b8d8c1d416884b37dc472b256b3d9a6842b7d"
+      "sha256": "7a0377eaf307a58a44851dc5a516101032ea38f8ecc389d0eef2b156906cdc77"
     },
     {
       "path": "src/frontend/e2e/frontend-quality.spec.ts",

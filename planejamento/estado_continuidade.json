@@ -168,7 +168,7 @@
   },
   "frontend_quality": {
     "evidence": "docs/qualidade/FRONTEND_QUALIDADE_20261010.md",
-    "status": "local_build_and_ui_validated_remote_checkpoint_pending",
+    "status": "online_verified",
     "browser_tests_passed": 4,
     "api_tests_passed": 9,
     "viewport_widths": [
@@ -177,7 +177,14 @@
       1440
     ],
     "ui_test_data": "synthetic_intercepted_responses",
-    "production_deployed": false,
-    "product_gates_promoted": false
+    "production_deployed": true,
+    "product_gates_promoted": false,
+    "online_evidence": "evidencias/frontend_quality_online_20261010.json",
+    "url": "https://connect.ebtenterprise.com.br",
+    "revision": "ebt-connect-hml--frontq1010-9b78441",
+    "online_checks_passed": 11,
+    "backend_layers_preserved": true,
+    "database_changes": false,
+    "authenticated_business_journey_tested": false
   }
 }

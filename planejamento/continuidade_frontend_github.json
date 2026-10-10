@@ -29,12 +29,16 @@
     },
     {
       "path": "docs/qualidade/FRONTEND_QUALIDADE_20261010.md",
-      "reviewed_sha256": "dfa2bff25bb4a6d07eb8c41d1d719bb23177889904b5d708aa870f4ada9809c4"
+      "reviewed_sha256": "7a0416bb71258f58f1f58d3758cc81e1f405655b728596bd2dc4e07e60de86d7"
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "d3dbd4557d32f96c139bc555ea7b8d8c1d416884b37dc472b256b3d9a6842b7d"
+      "reviewed_sha256": "7a0377eaf307a58a44851dc5a516101032ea38f8ecc389d0eef2b156906cdc77"
+    },
+    {
+      "path": "evidencias/frontend_quality_online_20261010.json",
+      "reviewed_sha256": "90ef545ad6540a886a7a808108b60d8a153cc73bc29e454fda638797df0b9fed"
     }
   ],
-  "reviewed_at_utc": "2026-10-10T05:07:04.370902+00:00"
+  "reviewed_at_utc": "2026-10-10T05:21:28.304809+00:00"
 }
