@@ -333,8 +333,10 @@ class Runner:
                       '\nGlobal evidence file allowlist: ' + json.dumps(sorted(allowed)) +
                       '\nNo deploy, migrations, external messages, credentials, git commits or push. '
                       'Use synthetic data only. Never modify runtime or controller state. '
-                      'Previous completed task IDs: ' + json.dumps(data['completed']) +
-                      '\nReturn blocked if a real dependency is missing. Evidence paths must be in the allowlist.')
+                      'Controller source commit (authoritative for this invocation): ' + data['source_commit'] +
+                      '\nPrevious completed task IDs: ' + json.dumps(data['completed']) +
+                      '\nDo not read or modify .git; the controller owns Git metadata and synchronization. '
+                      'Return blocked if a real dependency is missing. Evidence paths must be in the allowlist.')
             result_file = io / 'result.json'
             if result_file.exists():
                 result_file.unlink()
