@@ -141,4 +141,3 @@ RESTORE DATABASE ["""+restored+"""] FROM DISK=@backup WITH MOVE @logicalData TO 
 finally:
  if server and server.poll() is None:server.terminate();server.wait(timeout=20)
  log.close()
-
