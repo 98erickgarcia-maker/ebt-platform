@@ -16,19 +16,21 @@ Se qualquer branch tiver mudado, o bootstrap falha antes de instalar unidades.
 ## Pré-flight sem mutação
 
 ```bash
-sudo GIT_KEY_PATH=/etc/ebt-engineering/controller_ed25519 \
+sudo EXPECTED_BUNDLE_SHA=<sha-final-do-bootstrap> \
+     GIT_KEY_PATH=/etc/ebt-engineering/controller_ed25519 \
      KNOWN_HOSTS_PATH=/etc/ebt-engineering/known_hosts \
      scripts/ops/install_ebt_vps_automation_bundle.sh --check-only
 ```
 
-Esse modo clona fontes públicas em staging temporário, verifica os SHAs, manifesto, branch remota, permissões dos arquivos root-only e exige que os quatro timers EBT estejam inativos/desabilitados. Não habilita systemd.
+Esse modo primeiro exige que o próprio checkout do bootstrap esteja limpo e exatamente em `EXPECTED_BUNDLE_SHA`. Depois clona fontes públicas em staging temporário, verifica os SHAs, manifesto, branch remota, permissões dos arquivos root-only e exige que os quatro timers EBT estejam inativos/desabilitados. Não habilita systemd.
 
 ## Instalação
 
 Depois do preflight verde:
 
 ```bash
-sudo GIT_KEY_PATH=/etc/ebt-engineering/controller_ed25519 \
+sudo EXPECTED_BUNDLE_SHA=<sha-final-do-bootstrap> \
+     GIT_KEY_PATH=/etc/ebt-engineering/controller_ed25519 \
      KNOWN_HOSTS_PATH=/etc/ebt-engineering/known_hosts \
      scripts/ops/install_ebt_vps_automation_bundle.sh
 ```
@@ -43,7 +45,7 @@ O bootstrap é destinado a uma ativação limpa. Se algum timer EBT já estiver 
 ## Evidência sanitizada
 
 ```bash
-sudo scripts/ops/collect_ebt_vps_automation_status.sh
+sudo ebt-vps-automation-status
 ```
 
 O coletor não lê nem imprime chaves/tokens. Ele retorna um JSON sanitizado com dois níveis separados:
@@ -58,7 +60,18 @@ O bootstrap executa esse coletor no fim da instalação. Se `installation_integr
 ## Rollback
 
 ```bash
-sudo scripts/ops/disable_ebt_vps_automation.sh
+sudo ebt-vps-automation-disable
 ```
 
 O rollback somente desabilita os quatro timers. Não apaga banco, aplicação, branches, commits ou evidências locais.
+
+
+## Helpers persistentes
+
+Ao final da instalação íntegra, o bootstrap instala:
+
+- `/usr/local/sbin/ebt-vps-automation-status`;
+- `/usr/local/sbin/ebt-vps-automation-disable`;
+- `/opt/ebt-vps-automation/vps_automation_status.py`.
+
+Assim status e rollback não dependem da permanência do checkout usado para instalar.
