@@ -1,0 +1,54 @@
+name: EBT VPS automation bundle tests
+on:
+  push:
+    branches: [ops/ebt-vps-automation-bundle-20261010]
+  pull_request:
+    paths:
+      - scripts/ops/install_ebt_vps_automation_bundle.sh
+      - scripts/ops/collect_ebt_vps_automation_status.sh
+      - scripts/ops/vps_automation_status.py
+      - scripts/ops/disable_ebt_vps_automation.sh
+      - tests/ops/test_install_ebt_vps_automation_bundle.py
+      - tests/ops/test_vps_automation_status.py
+      - .github/workflows/ebt-vps-automation-bundle-tests.yml
+permissions:
+  contents: read
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - run: bash -n scripts/ops/install_ebt_vps_automation_bundle.sh
+      - run: bash -n scripts/ops/collect_ebt_vps_automation_status.sh
+      - run: python -m py_compile scripts/ops/vps_automation_status.py
+      - run: bash -n scripts/ops/disable_ebt_vps_automation.sh
+      - run: python -m unittest discover -s tests/ops -p 'test_install_ebt_vps_automation_bundle.py' -v
+      - run: python -m unittest discover -s tests/ops -p 'test_vps_automation_status.py' -v
+      - name: Execute real public preflight with dummy root-only transport files
+        run: |
+          if ! id -u ebt-scout >/dev/null 2>&1; then
+            sudo useradd --system --no-create-home --shell /usr/sbin/nologin ebt-scout
+          fi
+          sudo install -d -o ebt-scout -g ebt-scout -m 0700 /var/lib/ebt-scout/.codex
+          sudo install -d -o root -g root -m 0755 /opt/ebt-engineering/node/bin /opt/ebt-engineering/dotnet
+          printf '#!/usr/bin/env bash\nexit 0\n' > /tmp/ebt-ci-fake-tool
+          sudo install -o root -g root -m 0755 /tmp/ebt-ci-fake-tool /opt/ebt-engineering/node/bin/codex
+          sudo install -o root -g root -m 0755 /tmp/ebt-ci-fake-tool /opt/ebt-engineering/node/bin/npm
+          sudo install -o root -g root -m 0755 /tmp/ebt-ci-fake-tool /opt/ebt-engineering/dotnet/dotnet
+          sudo install -o root -g root -m 0600 /dev/null /tmp/ebt-ci-dummy-key
+          sudo install -o root -g root -m 0600 /dev/null /tmp/ebt-ci-dummy-known-hosts
+          index_uid_before="$(stat -c %u .git/index)"
+          sudo env \
+            EXPECTED_BUNDLE_SHA="$GITHUB_SHA" \
+            GIT_KEY_PATH=/tmp/ebt-ci-dummy-key \
+            KNOWN_HOSTS_PATH=/tmp/ebt-ci-dummy-known-hosts \
+            bash scripts/ops/install_ebt_vps_automation_bundle.sh --check-only
+          test "$(stat -c %u .git/index)" = "$index_uid_before"
+          git status --porcelain --untracked-files=all >/dev/null
+      - run: git diff --check
