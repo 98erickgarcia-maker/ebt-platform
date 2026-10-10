@@ -4,7 +4,8 @@ using System.Text;
 using System.Text.Json;
 using Ebt.Platform.Api;
 
-if(args.Contains("--flow-history")){Console.Error.WriteLine("Flow history gate is intentionally blocked until FLOW-03 replaces this sentinel with executable pagination contract tests.");Environment.ExitCode=2;return;}\nif(args.Contains("--keyring")){SqlKeyRingChecks.Run();return;}
+if(args.Contains("--flow-history")){Console.Error.WriteLine("Flow history gate is intentionally blocked until FLOW-03 replaces this sentinel with executable pagination contract tests.");Environment.ExitCode=2;return;}
+if(args.Contains("--keyring")){SqlKeyRingChecks.Run();return;}
 if(args.Contains("--mail")){await MailChecks.Run();return;}
 if(args.Contains("--mail-sql")){await MailSqlChecks.Run();return;}
 if(args.Contains("--scanner")){await ScannerChecks.Run();return;}
