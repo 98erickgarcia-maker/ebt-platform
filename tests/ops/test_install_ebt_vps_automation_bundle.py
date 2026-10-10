@@ -24,6 +24,25 @@ class BundleTests(unittest.TestCase):
         ):
             self.assertIn(marker, text)
 
+    def test_bootstrap_self_pins_its_own_checkout(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        for marker in (
+            "EXPECTED_BUNDLE_SHA",
+            'git -C "$BUNDLE_ROOT" rev-parse HEAD',
+            'Bootstrap checkout SHA differs from EXPECTED_BUNDLE_SHA.',
+            'Bootstrap checkout must be clean.',
+        ):
+            self.assertIn(marker, text)
+
+    def test_installs_stable_status_and_rollback_helpers(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        self.assertIn('HELPER_DIR="/opt/ebt-vps-automation"', text)
+        self.assertIn('STATUS_COMMAND="/usr/local/sbin/ebt-vps-automation-status"', text)
+        self.assertIn('DISABLE_COMMAND="/usr/local/sbin/ebt-vps-automation-disable"', text)
+        self.assertIn('install -o root -g root -m 0644 "$BUNDLE_ROOT/scripts/ops/vps_automation_status.py"', text)
+        self.assertIn('Status: sudo ebt-vps-automation-status', text)
+        self.assertIn('Rollback timers only: sudo ebt-vps-automation-disable', text)
+
     def test_flow_installer_receives_distinct_source_and_proposal_pins(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         self.assertIn('EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"', text)
