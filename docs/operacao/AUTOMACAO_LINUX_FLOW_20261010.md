@@ -61,3 +61,17 @@ O atalho `scripts/ops/EBT_AUTO_LINUX.bat` apenas aciona/consulta essas unidades 
 O controlador só aceita o repositório `98erickgarcia-maker/ebt-platform` e a branch de proposta fixada no código/manifesto. Alteração de remote, branch, `.git`, SHA durante a tarefa, arquivo fora da allowlist, segredo aparente, check falho ou divergência de evidência interrompe a fila.
 
 Nenhuma dessas provas representa release. CI no SHA composto, SQL/browser quando exigidos, rollback e aceite operacional continuam gates separados.
+
+
+## Ativação diferida
+
+Para um bootstrap coordenado, o instalador aceita `EBT_DEFER_TIMER_START=1`. Nesse modo ele instala e valida o controlador, workspace, chave, units e manifesto, mas deixa `ebt-engineering-runner.timer` e `ebt-engineering-watch.timer` desabilitados/inativos.
+
+O timer do runner usa `OnActiveSec=2min` em vez de `OnBootSec`. Assim a primeira execução é contada a partir da ativação do timer, evitando disparo imediato em uma VPS que já está ligada há mais de dois minutos.
+
+O bundle da VPS deve:
+1. instalar o Flow com timers diferidos;
+2. instalar helpers/status;
+3. validar integridade pré-ativação;
+4. habilitar os timers Flow;
+5. executar o veredito final.
