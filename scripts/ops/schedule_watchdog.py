@@ -60,7 +60,8 @@ def collect(get, now):
             batch = get(PREFIX + f'actions/workflows/ebt-production-watch.yml/runs?per_page=100&page={page}')['workflow_runs']
             if not isinstance(batch, list): raise ValueError('invalid runs')
             runs.extend(batch)
-            if any(r['event'] == 'schedule' and r['head_branch'] == 'main' for r in batch) or len(batch) < 100: break
+            schedule_count = sum(1 for r in runs if r.get('event') == 'schedule' and r.get('head_branch') == 'main')
+            if schedule_count >= 2 or len(batch) < 100: break
         for page in range(1, 11):
             batch = get(PREFIX + f'issues?state=open&per_page=100&page={page}')
             if not isinstance(batch, list): raise ValueError('invalid issues')
