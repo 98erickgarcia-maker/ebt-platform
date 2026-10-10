@@ -62,6 +62,12 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(mod.CHECKS['flow_backend'],
             ['dotnet', 'run', '--project', 'tests/WazVox.ProtocolTests', '--no-restore', '--', '--flow-history'])
 
+    def test_flow_backend_gate_rejects_generic_harness(self):
+        self.policy['tasks'][0]['checks'] = ['flow_backend']
+        self.manifest.write_text(json.dumps(self.policy))
+        self.assertEqual(self.runner().cycle()['status'], 'flow_gate_missing')
+        self.assertFalse(any(argv[:2] == ['dotnet', 'run'] for argv in self.calls))
+
     def test_one_task_per_tick_and_no_publish(self):
         self.assertEqual(self.runner().cycle()['status'], 'task_verified')
         data = json.loads((self.state / 'checkpoint.json').read_text())
