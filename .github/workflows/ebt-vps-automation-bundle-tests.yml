@@ -36,6 +36,11 @@ jobs:
             sudo useradd --system --no-create-home --shell /usr/sbin/nologin ebt-scout
           fi
           sudo install -d -o ebt-scout -g ebt-scout -m 0700 /var/lib/ebt-scout/.codex
+          sudo install -d -o root -g root -m 0755 /opt/ebt-engineering/node/bin /opt/ebt-engineering/dotnet
+          printf '#!/usr/bin/env bash\nexit 0\n' > /tmp/ebt-ci-fake-tool
+          sudo install -o root -g root -m 0755 /tmp/ebt-ci-fake-tool /opt/ebt-engineering/node/bin/codex
+          sudo install -o root -g root -m 0755 /tmp/ebt-ci-fake-tool /opt/ebt-engineering/node/bin/npm
+          sudo install -o root -g root -m 0755 /tmp/ebt-ci-fake-tool /opt/ebt-engineering/dotnet/dotnet
           sudo install -o root -g root -m 0600 /dev/null /tmp/ebt-ci-dummy-key
           sudo install -o root -g root -m 0600 /dev/null /tmp/ebt-ci-dummy-known-hosts
           index_uid_before="$(stat -c %u .git/index)"
