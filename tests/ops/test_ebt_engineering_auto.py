@@ -58,10 +58,23 @@ class LinuxAutomationTests(unittest.TestCase):
         self.assertIn('[[ "$remote_proposal" == "$EXPECTED_PROPOSAL_SHA" ]]', text)
         self.assertIn('[[ "$workspace_head" == "$EXPECTED_PROPOSAL_SHA" ]]', text)
 
+    def test_installer_can_defer_timer_activation(self):
+        text = INSTALLER.read_text(encoding="utf-8")
+        self.assertIn('DEFER_TIMER_START="${EBT_DEFER_TIMER_START:-0}"', text)
+        self.assertIn('EBT_DEFER_TIMER_START must be 0 or 1.', text)
+        self.assertIn('if [[ "$DEFER_TIMER_START" == "1" ]]; then', text)
+        self.assertIn('timer activation deferred', text)
+        self.assertLess(
+            text.index('Remote proposal branch moved during installation.'),
+            text.index('if [[ "$DEFER_TIMER_START" == "1" ]]; then'),
+        )
+
     def test_only_native_fifteen_minute_timers_are_used(self):
         runner = RUNNER_TIMER.read_text(encoding="utf-8")
         watch = WATCH_TIMER.read_text(encoding="utf-8")
         bat = BAT.read_text(encoding="utf-8")
+        self.assertIn("OnActiveSec=2min", runner)
+        self.assertNotIn("OnBootSec=", runner)
         self.assertIn("OnUnitInactiveSec=15min", runner)
         self.assertIn("OnCalendar=*-*-* *:0/15:00", watch)
         self.assertIn("ebt-engineering-runner.service", bat)
