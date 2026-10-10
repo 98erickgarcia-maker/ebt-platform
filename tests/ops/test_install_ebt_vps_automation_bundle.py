@@ -31,6 +31,7 @@ class BundleTests(unittest.TestCase):
             'git -C "$BUNDLE_ROOT" rev-parse HEAD',
             'Bootstrap checkout SHA differs from EXPECTED_BUNDLE_SHA.',
             'Bootstrap checkout must be clean.',
+            'GIT_OPTIONAL_LOCKS=0 git -C "$BUNDLE_ROOT" status --porcelain --untracked-files=all',
         ):
             self.assertIn(marker, text)
 
