@@ -49,26 +49,26 @@ root_private_file(){
 
 [[ "$EUID" -eq 0 ]] || fail "Run with sudo/root."
 [[ -d /run/systemd/system ]] || fail "systemd is not running on this host."
-for binary in git bash python3 systemctl stat mktemp grep id; do need "$binary"; done
+for binary in git bash python3 systemctl stat mktemp grep id runuser; do need "$binary"; done
 id ebt-scout >/dev/null 2>&1 || fail "Required user ebt-scout is missing."
 [[ -d /var/lib/ebt-scout/.codex ]] || fail "Codex profile /var/lib/ebt-scout/.codex is missing."
 root_private_file "$GIT_KEY_PATH"
 root_private_file "$KNOWN_HOSTS_PATH"
 
 STAGING="$(mktemp -d /var/tmp/ebt-vps-bootstrap.XXXXXX)"
-cleanup(){ rm -rf -- "$STAGING"; }
-rollback_on_error(){
+on_exit(){
   local rc=$?
-  if (( INSTALL_STARTED == 1 )); then
+  trap - EXIT
+  if (( rc != 0 && INSTALL_STARTED == 1 )); then
     printf 'Installation failed; disabling EBT automation timers from this clean-host bootstrap.\n' >&2
     for unit in "${TARGET_TIMERS[@]}"; do
       systemctl disable --now "$unit" >/dev/null 2>&1 || true
     done
   fi
+  rm -rf -- "$STAGING"
   exit "$rc"
 }
-trap cleanup EXIT
-trap rollback_on_error ERR
+trap on_exit EXIT
 
 for unit in "${TARGET_TIMERS[@]}"; do
   if systemctl is-enabled --quiet "$unit" 2>/dev/null || systemctl is-active --quiet "$unit" 2>/dev/null; then
