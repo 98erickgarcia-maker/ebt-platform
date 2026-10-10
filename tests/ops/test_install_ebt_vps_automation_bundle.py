@@ -49,11 +49,14 @@ class BundleTests(unittest.TestCase):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         self.assertIn('TARGET_TIMERS=(', text)
         self.assertIn('already active/enabled; use the individual diagnostic/recovery path', text)
-        self.assertIn('rollback_on_error', text)
-        self.assertIn('trap rollback_on_error ERR', text)
+        self.assertIn('on_exit', text)
+        self.assertIn('trap on_exit EXIT', text)
+        self.assertIn('rc != 0 && INSTALL_STARTED == 1', text)
+        self.assertNotIn('trap rollback_on_error ERR', text)
         self.assertIn('INSTALL_STARTED=1', text)
         self.assertIn('INSTALL_STARTED=0', text)
         self.assertIn('systemctl disable --now "$unit"', text)
+        self.assertIn('runuser', text)
         self.assertLess(
             text.index('INSTALL_STARTED=1'),
             text.index('bash "$WATCHDOG_SOURCE/scripts/ops/install_ebt_watchdog_vps.sh"'),
