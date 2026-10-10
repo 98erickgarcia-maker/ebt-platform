@@ -15,7 +15,7 @@ class BundleTests(unittest.TestCase):
     def test_pins_all_reviewed_sources(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         for marker in (
-            'FLOW_SOURCE_SHA="9dc3b5ff647aa2453e18cc3148f13d1364145741"',
+            'FLOW_SOURCE_SHA="532a3301c6de60f99d431e1f9d4f8294bf0ab8b5"',
             'FLOW_PROPOSAL_SHA="0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"',
             'WATCHDOG_HEAD_SHA="e6a112f4db0d0bec02f623c968c579116b7dfe9c"',
             'WATCHDOG_SOURCE_SHA="56a659ac1fc7597f7e453bd7e39042742e8f408e"',
@@ -75,6 +75,21 @@ class BundleTests(unittest.TestCase):
             text.index('systemctl start ebt-schedule-watchdog.service'),
             text.index('install_ebt_production_watch_vps.sh'),
         )
+
+    def test_flow_execution_is_deferred_until_helpers_and_timer_activation(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        self.assertIn("EBT_DEFER_TIMER_START=1", text)
+        self.assertIn("activated before bundle integrity gate", text)
+        self.assertIn("Flow runner service started before bundle integrity gate", text)
+        self.assertIn("systemctl enable --now ebt-engineering-runner.timer ebt-engineering-watch.timer", text)
+        self.assertIn("Flow runner service fired before the two-minute activation delay", text)
+        flow_install = text.index('install_ebt_engineering_auto.sh')
+        helper_install = text.index('Installing stable local status/rollback helpers')
+        flow_enable = text.index('systemctl enable --now ebt-engineering-runner.timer ebt-engineering-watch.timer')
+        final_status = text.index('Final sanitized activation integrity check')
+        self.assertLess(flow_install, helper_install)
+        self.assertLess(helper_install, flow_enable)
+        self.assertLess(flow_enable, final_status)
 
     def test_install_order_puts_read_only_monitors_before_flow(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
