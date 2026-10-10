@@ -13,6 +13,7 @@ TIMERS = (
     "ebt-engineering-watch.timer",
 )
 EXPECTED_BRANCH = "codex/flow-history-proposal-vps-20261009"
+INITIAL_PROPOSAL_SHA = "0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"
 EXPECTED_REMOTE = "git@github.com:98erickgarcia-maker/ebt-platform.git"
 EXPECTED_PRODUCT_ORIGIN = "https://ebt-connect-hml.greenrock-01c2b42d.brazilsouth.azurecontainerapps.io"
 EXPECTED_PRODUCT_SCOPE = "read_only_external_checks_not_full_production_acceptance"
@@ -98,7 +99,7 @@ def collect():
     report["controller_transport"] = parse_controller_paths()
     report["engineering_checkpoint"] = selected_json(
         "/var/lib/ebt-engineering/state/checkpoint.json",
-        ["status","current_task","completed","source_commit","synced_sha","sync_task","sync_error","blocked_reason","updated_at"],
+        ["status","current_task","completed","source_commit","sync_sha","synced_sha","sync_task","sync_error","blocked_reason","updated_at"],
     )
     report["engineering_heartbeat"] = selected_json(
         "/var/lib/ebt-engineering/state/heartbeat.json",
@@ -159,6 +160,17 @@ def evaluate(report):
     heartbeat = report.get("engineering_heartbeat", {})
     engineering_status = heartbeat.get("status") or checkpoint.get("status") or "PENDING_FIRST_CYCLE"
 
+    expected_head = (
+        checkpoint.get("synced_sha")
+        or checkpoint.get("sync_sha")
+        or checkpoint.get("source_commit")
+        or INITIAL_PROPOSAL_SHA
+    )
+    actual_head = workspace.get("head")
+    head_consistent = actual_head == expected_head
+    if not head_consistent:
+        failures.append("flow_workspace:head_checkpoint_mismatch")
+
     last_schedule = watchdog.get("last_observation") if isinstance(watchdog.get("last_observation"), dict) else {}
     product_health = (
         "HEALTHY" if product.get("healthy_in_scope") is True
@@ -174,6 +186,11 @@ def evaluate(report):
             "product": product_health,
             "github_schedule": schedule_health,
             "engineering": engineering_status,
+            "workspace_head_consistent": head_consistent,
+        },
+        "controller_consistency": {
+            "expected_head": expected_head,
+            "actual_head": actual_head,
         },
         "evidence": report,
     }
