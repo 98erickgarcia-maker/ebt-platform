@@ -6,8 +6,9 @@ REPOSITORY="98erickgarcia-maker/ebt-platform"
 PUBLIC_REPO="https://github.com/${REPOSITORY}.git"
 
 FLOW_SOURCE_BRANCH="codex/enterprise-blocks-15min-20261009"
-FLOW_SOURCE_SHA="0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"
+FLOW_SOURCE_SHA="9dc3b5ff647aa2453e18cc3148f13d1364145741"
 FLOW_PROPOSAL_BRANCH="codex/flow-history-proposal-vps-20261009"
+FLOW_PROPOSAL_SHA="0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"
 
 WATCHDOG_BRANCH="ops/ebt-watchdog-vps-bootstrap-20261009"
 WATCHDOG_HEAD_SHA="e6a112f4db0d0bec02f623c968c579116b7dfe9c"
@@ -88,9 +89,9 @@ grep -Fq 'OnUnitInactiveSec=15min' "$FLOW_SOURCE/templates/systemd/ebt-engineeri
 
 git ls-remote --exit-code "$PUBLIC_REPO" "refs/heads/$FLOW_PROPOSAL_BRANCH" >/dev/null   || fail "Remote Flow proposal branch is missing."
 proposal_remote="$(git ls-remote "$PUBLIC_REPO" "refs/heads/$FLOW_PROPOSAL_BRANCH" | awk 'NR==1 {print $1}')"
-[[ "$proposal_remote" == "$FLOW_SOURCE_SHA" ]]   || fail "Remote Flow proposal branch moved: expected $FLOW_SOURCE_SHA, got $proposal_remote"
+[[ "$proposal_remote" == "$FLOW_PROPOSAL_SHA" ]]   || fail "Remote Flow proposal branch moved: expected $FLOW_PROPOSAL_SHA, got $proposal_remote"
 
-printf 'PRECHECK_OK flow=%s watchdog=%s product=%s proposal=%s\n'   "$FLOW_SOURCE_SHA" "$WATCHDOG_HEAD_SHA" "$PRODUCT_SHA" "$proposal_remote"
+printf 'PRECHECK_OK flow_source=%s flow_proposal=%s watchdog=%s product=%s\n'   "$FLOW_SOURCE_SHA" "$proposal_remote" "$WATCHDOG_HEAD_SHA" "$PRODUCT_SHA"
 
 if (( CHECK_ONLY == 1 )); then
   printf 'CHECK_ONLY: no systemd unit was installed or enabled.\n'
@@ -104,7 +105,7 @@ printf '\n2/3 Installing direct read-only EBT product monitor...\n'
 SOURCE_ROOT="$PRODUCT_SOURCE" EXPECTED_SOURCE_SHA="$PRODUCT_SHA"   bash "$PRODUCT_SOURCE/scripts/ops/install_ebt_production_watch_vps.sh"
 
 printf '\n3/3 Installing Flow engineering controller last...\n'
-SOURCE_ROOT="$FLOW_SOURCE" EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"   GIT_KEY_PATH="$GIT_KEY_PATH" KNOWN_HOSTS_PATH="$KNOWN_HOSTS_PATH"   bash "$FLOW_SOURCE/scripts/ops/install_ebt_engineering_auto.sh"
+SOURCE_ROOT="$FLOW_SOURCE" EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"   EXPECTED_PROPOSAL_SHA="$FLOW_PROPOSAL_SHA"   GIT_KEY_PATH="$GIT_KEY_PATH" KNOWN_HOSTS_PATH="$KNOWN_HOSTS_PATH"   bash "$FLOW_SOURCE/scripts/ops/install_ebt_engineering_auto.sh"
 
 for unit in   ebt-schedule-watchdog.timer   ebt-production-watch-vps.timer   ebt-engineering-runner.timer   ebt-engineering-watch.timer; do
   systemctl is-enabled --quiet "$unit" || fail "$unit is not enabled"
