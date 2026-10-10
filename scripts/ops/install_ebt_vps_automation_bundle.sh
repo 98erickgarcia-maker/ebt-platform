@@ -139,6 +139,10 @@ for unit in "${TARGET_TIMERS[@]}"; do
   systemctl is-active --quiet "$unit" || fail "$unit is not active"
 done
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+printf '\nFinal sanitized activation integrity check...\n'
+bash "$SCRIPT_DIR/collect_ebt_vps_automation_status.sh"
+
 INSTALL_STARTED=0
 
 printf '\nAUTOMATION_BUNDLE_INSTALLED\n'
