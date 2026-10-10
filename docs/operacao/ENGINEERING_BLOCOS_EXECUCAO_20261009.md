@@ -41,9 +41,9 @@ O registro de cada tarefa identifica tarefa/papel, branch, HEAD, horário UTC, c
 
 O controlador persiste `checkpoint.json`, `heartbeat.json`, `<task_id>.json`, `<task_id>.patch` e snapshots em `artifacts/<task_id>/`. Os caminhos concretos dependem do estado configurado pelo supervisor. Não publicar arquivos privados ou detalhes brutos de fornecedor. O documento `FLOW_HISTORY_PAGINATION_PROPOSAL.md` é um entregável futuro do bloco, não uma implementação já certificada por este detalhamento.
 
-Checks configurados: diff Git, protocolo .NET e build frontend conforme tarefa. E2E escrito é cenário-fonte; E2E aprovado exige execução. Fake de HTTP ou teste de parser não aprova SQL real, isolamento autenticado, restore, aceite ou publicação. Classificar cenário indisponível como NOT_RUN, preservando o impedimento concreto.
+Checks configurados: diff Git, `flow_backend` dedicado e build frontend conforme tarefa. O `flow_backend` chama `tests/WazVox.ProtocolTests -- --flow-history`; enquanto FLOW-03 não substituir o sentinel fail-closed por testes executáveis do contrato de paginação, esse check falha de propósito e não pode cair na suíte WazVox genérica. E2E escrito é cenário-fonte; E2E aprovado exige execução. Fake de HTTP ou teste de parser não aprova SQL real, isolamento autenticado, restore, aceite ou publicação. Classificar cenário indisponível como NOT_RUN, preservando o impedimento concreto.
 
-`task_verified` significa tarefa com artefatos e checks configurados; `proposal_ready` significa fila de proposta concluída. O papel revisão usa uma nova invocação, mas não comprova revisores humanos independentes ou equipe separada. Nenhum desses estados significa Enterprise completo.
+`task_verified` significa tarefa com artefatos e checks configurados; `proposal_review_ready` significa somente que as dez tarefas da fila de proposta foram verificadas pelos gates locais configurados. Esse estado não equivale a release-ready: CI do SHA candidato e as provas SQL/browser exigidas pelo risco continuam separadas. O papel revisão usa uma nova invocação, mas não comprova revisores humanos independentes ou equipe separada. Nenhum desses estados significa Enterprise completo.
 
 ## Continuidade e supervisor
 
@@ -53,7 +53,7 @@ Um único runner mantém lock do kernel e checkpoint. Rodada é limitada a 900s;
 
 Em queda/timeout, conservar último checkpoint e diff parcial; conferir paths/hashes antes de repetir a mesma tarefa. A retomada reconstrói contexto em nova invocação ephemeral, sem session-ID automático. Falha de checks/escopo bloqueia a fila afetada; não ampliar paths, apagar evidência ou editar completed para avançar. SHA remoto divergente exige reconciliação; nunca reset/clean/force-push.
 
-A política `allow_push` permanece conforme configuração existente, sem alteração por este detalhamento. Quando um controlador autorizado fizer sincronização, commit local e SHA remoto são provas separadas. Nenhuma sincronização de proposta autoriza merge, deploy ou migration. Depois da conclusão, novo módulo exige recorte, dependências e critérios próprios; não reexecutar a mesma revisão sem mudança verificável.
+O runner exige que o workspace esteja exatamente na `branch` declarada no manifesto; qualquer outra branch `codex/*` é recusada antes da invocação. A política `allow_push` permanece conforme configuração existente, sem alteração por este detalhamento. Quando um controlador autorizado fizer sincronização, commit local e SHA remoto são provas separadas. Nenhuma sincronização de proposta autoriza merge, deploy ou migration. Depois da conclusão, novo módulo exige recorte, dependências e critérios próprios; não reexecutar a mesma revisão sem mudança verificável.
 
 ## Passagem para publicação
 
