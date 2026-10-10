@@ -32,6 +32,19 @@ class BundleTests(unittest.TestCase):
         self.assertIn('"$BUNDLE_ROOT/scripts/ops/vps_automation_status.py"', text)
         self.assertIn('must not be group/other writable', text)
 
+    def test_preflight_checks_service_toolchain_and_codex_auth(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        self.assertIn('ENGINEERING_PATH=', text)
+        self.assertIn('runuser -u ebt-scout -- env PATH="$ENGINEERING_PATH" bash -lc', text)
+        self.assertIn('command -v codex', text)
+        self.assertIn('command -v dotnet', text)
+        self.assertIn('command -v npm', text)
+        self.assertIn('CODEX_HOME=/var/lib/ebt-scout/.codex codex login status', text)
+        self.assertLess(
+            text.index('codex login status'),
+            text.index('Preparing pinned sources...'),
+        )
+
     def test_bootstrap_self_pins_its_own_checkout(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         for marker in (
