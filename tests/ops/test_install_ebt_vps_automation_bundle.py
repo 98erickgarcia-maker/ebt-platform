@@ -14,13 +14,20 @@ class BundleTests(unittest.TestCase):
     def test_pins_all_reviewed_sources(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         for marker in (
-            'FLOW_SOURCE_SHA="0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"',
+            'FLOW_SOURCE_SHA="9dc3b5ff647aa2453e18cc3148f13d1364145741"',
+            'FLOW_PROPOSAL_SHA="0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"',
             'WATCHDOG_HEAD_SHA="e6a112f4db0d0bec02f623c968c579116b7dfe9c"',
             'WATCHDOG_SOURCE_SHA="56a659ac1fc7597f7e453bd7e39042742e8f408e"',
             'PRODUCT_SHA="3820d0edd5126ae416ea569b3dc30b5b0ce1a215"',
             'FLOW_PROPOSAL_BRANCH="codex/flow-history-proposal-vps-20261009"',
         ):
             self.assertIn(marker, text)
+
+    def test_flow_installer_receives_distinct_source_and_proposal_pins(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        self.assertIn('EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"', text)
+        self.assertIn('EXPECTED_PROPOSAL_SHA="$FLOW_PROPOSAL_SHA"', text)
+        self.assertIn('[[ "$proposal_remote" == "$FLOW_PROPOSAL_SHA" ]]', text)
 
     def test_check_only_exits_before_installers(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
