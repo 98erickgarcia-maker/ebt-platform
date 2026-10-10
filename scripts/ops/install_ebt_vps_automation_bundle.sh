@@ -138,6 +138,17 @@ INSTALL_STARTED=1
 printf '\n1/3 Installing read-only GitHub schedule watchdog...\n'
 bash "$WATCHDOG_SOURCE/scripts/ops/install_ebt_watchdog_vps.sh"
 
+printf 'Forcing one read-only watchdog observation for deterministic evidence...\n'
+set +e
+systemctl start ebt-schedule-watchdog.service
+watchdog_probe_rc=$?
+set -e
+if [[ "$watchdog_probe_rc" -ne 0 && "$watchdog_probe_rc" -ne 2 ]]; then
+  fail "Watchdog probe returned unexpected exit code: $watchdog_probe_rc"
+fi
+[[ -s /var/lib/ebt-watch/state.json ]] || fail "Watchdog did not persist its first observation."
+printf 'Watchdog observation persisted (exit=%s; 2 means detected incident).\n' "$watchdog_probe_rc"
+
 printf '\n2/3 Installing direct read-only EBT product monitor...\n'
 SOURCE_ROOT="$PRODUCT_SOURCE" EXPECTED_SOURCE_SHA="$PRODUCT_SHA"   bash "$PRODUCT_SOURCE/scripts/ops/install_ebt_production_watch_vps.sh"
 
