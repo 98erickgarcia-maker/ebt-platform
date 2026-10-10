@@ -32,6 +32,7 @@ def controller_git(argv, cwd):
 CHECKS = {
     'diff': ['git', 'diff', '--check'],
     'backend': ['dotnet', 'run', '--project', 'tests/WazVox.ProtocolTests', '--no-restore'],
+    'flow_backend': ['dotnet', 'run', '--project', 'tests/WazVox.ProtocolTests', '--no-restore', '--', '--flow-history'],
     'frontend': ['npm', '--prefix', 'src/frontend', 'run', 'build'],
 }
 PUSH_REPO = '98erickgarcia-maker/ebt-platform'
@@ -147,11 +148,14 @@ class Runner:
         if (self.state.is_relative_to(self.workspace) or not (self.workspace / '.git').is_dir()
                 or (self.workspace / '.git').is_symlink()):
             raise ValueError('isolated_git_workspace_required')
+        proposal_branch = self.manifest.get('branch')
         if (self.manifest.get('concurrency') != 1 or len(self.manifest.get('roles', [])) != 10
                 or self.manifest.get('allow_deploy') is not False
                 or self.manifest.get('allow_migration') is not False
                 or self.manifest.get('allow_external_messages') is not False
-                or type(self.manifest.get('allow_push')) is not bool):
+                or type(self.manifest.get('allow_push')) is not bool
+                or not isinstance(proposal_branch, str)
+                or not re.fullmatch(r'codex/[A-Za-z0-9._/-]{1,180}', proposal_branch)):
             raise ValueError('unsafe_policy')
         if self.manifest['allow_push'] and (self.manifest.get('repository') != PUSH_REPO
                 or self.manifest.get('branch') != PUSH_BRANCH):
@@ -176,7 +180,7 @@ class Runner:
         if not valid_source:
             heartbeat_status, reason = 'blocked', 'configuration'
             source = '0' * 40
-        elif status in ('task_verified', 'proposal_ready'):
+        elif status in ('task_verified', 'proposal_review_ready'):
             heartbeat_status = 'succeeded'
         elif status in ('running', 'starting'):
             heartbeat_status = 'running' if progress is not None else 'starting'
@@ -231,9 +235,9 @@ class Runner:
             return {'status': 'daily_limit'}
         pending = [t for t in self.manifest['tasks'] if t['id'] not in data['completed']]
         if not pending:
-            data['status'] = 'proposal_ready'
+            data['status'] = 'proposal_review_ready'
             self.save(data)
-            return {'status': 'proposal_ready'}
+            return {'status': 'proposal_review_ready'}
         task = pending[0]
         allowed = set(self.manifest['allowed_paths'])
         try:
@@ -269,7 +273,7 @@ class Runner:
             self.isolation_guard()
             selected_model = model_route(self.manifest, task)
             branch = self.run(['git', 'branch', '--show-current'], cwd=self.workspace)
-            if branch.returncode or not branch.stdout.strip().startswith('codex/'):
+            if branch.returncode or branch.stdout.strip() != self.manifest['branch']:
                 raise ValueError('proposal_branch_required')
             validate_paths(self.workspace, changed_paths(self.workspace, self.run), allowed)
             for private in self.workspace.rglob('.env*'):
@@ -520,7 +524,7 @@ def main():
     args = parser.parse_args()
     report = Runner(args.workspace, args.state, args.manifest).tick()
     print(json.dumps(report))
-    return 0 if report['status'] in ('task_verified', 'proposal_ready', 'cooldown', 'locked', 'daily_limit', 'paused') else 2
+    return 0 if report['status'] in ('task_verified', 'proposal_review_ready', 'cooldown', 'locked', 'daily_limit', 'paused') else 2
 
 
 if __name__ == '__main__':
