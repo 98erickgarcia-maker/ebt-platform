@@ -6,7 +6,7 @@ REPOSITORY="98erickgarcia-maker/ebt-platform"
 PUBLIC_REPO="https://github.com/${REPOSITORY}.git"
 
 FLOW_SOURCE_BRANCH="codex/enterprise-blocks-15min-20261009"
-FLOW_SOURCE_SHA="9dc3b5ff647aa2453e18cc3148f13d1364145741"
+FLOW_SOURCE_SHA="532a3301c6de60f99d431e1f9d4f8294bf0ab8b5"
 FLOW_PROPOSAL_BRANCH="codex/flow-history-proposal-vps-20261009"
 FLOW_PROPOSAL_SHA="0b2b21813658ccc693e4bc870fa3f0b5d09f8bb0"
 
@@ -135,7 +135,9 @@ PY
 grep -Fq "SOURCE_SHA='$WATCHDOG_SOURCE_SHA'" "$WATCHDOG_SOURCE/scripts/ops/install_ebt_watchdog_vps.sh"   || fail "Watchdog installer source pin differs from reviewed source."
 grep -Fq 'Environment=EBT_NOTIFY=false' "$PRODUCT_SOURCE/templates/systemd/ebt-production-watch-vps.service"   || fail "Product monitor notifications are not disabled."
 grep -Fq 'OnUnitActiveSec=15min' "$PRODUCT_SOURCE/templates/systemd/ebt-production-watch-vps.timer"   || fail "Product monitor timer interval is unexpected."
+grep -Fq 'OnActiveSec=2min' "$FLOW_SOURCE/templates/systemd/ebt-engineering-runner.timer"   || fail "Flow runner first-cycle delay is unexpected."
 grep -Fq 'OnUnitInactiveSec=15min' "$FLOW_SOURCE/templates/systemd/ebt-engineering-runner.timer"   || fail "Flow runner timer interval is unexpected."
+if grep -Fq 'OnBootSec=' "$FLOW_SOURCE/templates/systemd/ebt-engineering-runner.timer"; then fail "Flow runner must not schedule first cycle from host boot time."; fi
 
 git ls-remote --exit-code "$PUBLIC_REPO" "refs/heads/$FLOW_PROPOSAL_BRANCH" >/dev/null   || fail "Remote Flow proposal branch is missing."
 proposal_remote="$(git ls-remote "$PUBLIC_REPO" "refs/heads/$FLOW_PROPOSAL_BRANCH" | awk 'NR==1 {print $1}')"
@@ -167,13 +169,17 @@ printf 'Watchdog observation persisted (exit=%s; 2 means detected incident).\n' 
 printf '\n2/3 Installing direct read-only EBT product monitor...\n'
 SOURCE_ROOT="$PRODUCT_SOURCE" EXPECTED_SOURCE_SHA="$PRODUCT_SHA"   bash "$PRODUCT_SOURCE/scripts/ops/install_ebt_production_watch_vps.sh"
 
-printf '\n3/3 Installing Flow engineering controller last...\n'
-SOURCE_ROOT="$FLOW_SOURCE" EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"   EXPECTED_PROPOSAL_SHA="$FLOW_PROPOSAL_SHA"   GIT_KEY_PATH="$GIT_KEY_PATH" KNOWN_HOSTS_PATH="$KNOWN_HOSTS_PATH"   bash "$FLOW_SOURCE/scripts/ops/install_ebt_engineering_auto.sh"
+printf '\n3/3 Installing Flow engineering controller last with execution deferred...\n'
+SOURCE_ROOT="$FLOW_SOURCE" EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"   EXPECTED_PROPOSAL_SHA="$FLOW_PROPOSAL_SHA"   EBT_DEFER_TIMER_START=1   GIT_KEY_PATH="$GIT_KEY_PATH" KNOWN_HOSTS_PATH="$KNOWN_HOSTS_PATH"   bash "$FLOW_SOURCE/scripts/ops/install_ebt_engineering_auto.sh"
 
-for unit in "${TARGET_TIMERS[@]}"; do
-  systemctl is-enabled --quiet "$unit" || fail "$unit is not enabled"
-  systemctl is-active --quiet "$unit" || fail "$unit is not active"
+for unit in ebt-engineering-runner.timer ebt-engineering-watch.timer; do
+  if systemctl is-enabled --quiet "$unit" 2>/dev/null || systemctl is-active --quiet "$unit" 2>/dev/null; then
+    fail "$unit activated before bundle integrity gate"
+  fi
 done
+if systemctl is-active --quiet ebt-engineering-runner.service 2>/dev/null; then
+  fail "Flow runner service started before bundle integrity gate"
+fi
 
 printf '\nInstalling stable local status/rollback helpers...\n'
 install -d -o root -g root -m 0755 "$HELPER_DIR"
@@ -185,6 +191,17 @@ exec python3 /opt/ebt-vps-automation/vps_automation_status.py
 SH
 chmod 0755 "$STATUS_COMMAND"
 install -o root -g root -m 0755 "$BUNDLE_ROOT/scripts/ops/disable_ebt_vps_automation.sh" "$DISABLE_COMMAND"
+
+printf '\nActivating Flow timers only after controller/helpers are installed...\n'
+systemctl enable --now ebt-engineering-runner.timer ebt-engineering-watch.timer
+if systemctl is-active --quiet ebt-engineering-runner.service 2>/dev/null; then
+  fail "Flow runner service fired before the two-minute activation delay"
+fi
+
+for unit in "${TARGET_TIMERS[@]}"; do
+  systemctl is-enabled --quiet "$unit" || fail "$unit is not enabled"
+  systemctl is-active --quiet "$unit" || fail "$unit is not active"
+done
 
 printf '\nFinal sanitized activation integrity check...\n'
 "$STATUS_COMMAND"
