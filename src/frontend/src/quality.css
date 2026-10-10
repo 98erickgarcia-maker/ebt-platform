@@ -1,0 +1,80 @@
+/* Shared presentation layer. Product-specific layouts and API behavior stay intact. */
+:root {
+  --border: #dfe2df;
+  --muted: #565d64;
+  --muted-on-light: #565d64;
+  --focus: #923d0c;
+  --shadow-card: 0 2px 8px #17212b05;
+}
+body { line-height: 1.5; }
+button, input, select, textarea { line-height: 1.45; }
+button:focus-visible, a:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed; top: 12px; left: 12px; z-index: 1000;
+  padding: 12px 20px; border-radius: 10px; background: #fff;
+  color: #16202b; box-shadow: 0 8px 24px #10111226;
+  font-weight: 650; transform: translateY(-180%);
+}
+.skip-link:focus { transform: translateY(0); }
+.sidebar { background: #141618; }
+.sidebar-brand-row {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0; gap: 12px; margin: 0 12px 28px;
+}
+.sidebar .brand { margin: 0; }
+.sidebar-close { display: none; color: #fff; }
+.sidebar .nav-label { font-size: 10px; flex-shrink: 0; }
+.sidebar nav {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: #757b80 #141618;
+  padding: 4px; margin: -4px;
+}
+.sidebar nav button { flex-shrink: 0; min-height: 46px; border-radius: 10px; }
+.sidebar nav button.active { font-weight: 650; }
+.sidebar nav button:focus-visible, .sidebar .icon-button:focus-visible,
+.sidebar .brand:focus-visible { outline-color: #ffc39b; outline-offset: -3px; }
+.sidebar-bottom { flex-shrink: 0; margin-top: 22px; }
+.primary, .secondary, .compact, .icon-button { min-height: 44px; }
+.icon-button { min-width: 44px; }
+.topbar {
+  height: auto; min-height: 76px; flex-wrap: wrap;
+  padding-top: 14px; padding-bottom: 14px; gap: 16px;
+}
+.context-picker { min-width: 0; }
+.context-picker select { min-height: 44px; }
+.main-area { min-width: 0; }
+.main-area main { min-width: 0; scroll-margin-top: 16px; }
+.main-area main:focus-visible { outline: 3px solid var(--focus); outline-offset: -4px; }
+.page-heading { gap: 20px; }
+.page-heading h1 { font-size: clamp(27px, 2.4vw, 34px); letter-spacing: -.035em; }
+.heading-actions { flex-wrap: wrap; }
+.card, .application-card { box-shadow: var(--shadow-card); }
+.card { border-radius: 14px; }
+.card > header { flex-wrap: wrap; }
+.application-card { gap: 12px; padding: 26px; border-radius: 18px; }
+.application-card h3 { margin: 4px 0 0; line-height: 1.3; }
+.application-card .primary { margin-top: 12px; }
+.application-card:focus-within { border-color: var(--focus); }
+.empty { min-height: 160px; padding: 28px 20px; text-align: center; }
+.badge { font-weight: 650; }
+input::placeholder, textarea::placeholder { color: #69717a; opacity: 1; }
+.modal { box-shadow: 0 24px 80px #10111233; }
+@media (max-width: 680px) {
+  .sidebar-brand-row { margin-left: 0; margin-right: 0; margin-bottom: 20px; }
+  .sidebar-close { display: inline-flex; align-items: center; justify-content: center; }
+  .sidebar { padding-top: 20px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  .sidebar-bottom { margin-top: 16px; padding-top: 12px; }
+  .topbar { gap: 12px; }
+  .heading-actions .primary, .heading-actions .secondary { min-height: 44px; }
+  .heading-actions { justify-content: flex-start; gap: 8px; }
+  .context-picker select { font-size: 12px; }
+  .application-card { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; }
+}
+@media print { .skip-link, .sidebar-close { display: none; } }

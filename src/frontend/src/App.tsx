@@ -505,14 +505,34 @@ export function App() {
   const mobileMenuButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!menu) return;
+    const sidebar = document.getElementById("ebt-sidebar-navigation");
+    sidebar?.querySelector<HTMLElement>(".sidebar-close")?.focus();
+    const desktop = window.matchMedia("(min-width: 681px)");
+    const resized = () => { if (desktop.matches) setMenu(false); };
     const dismiss = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenu(false);
         mobileMenuButton.current?.focus();
       }
+      if (event.key === "Tab") {
+        const controls = Array.from(sidebar?.querySelectorAll<HTMLElement>("a[href],button:not([disabled])") ?? [])
+          .filter(element => element.getClientRects().length > 0);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (!first || !last) return;
+        if (!sidebar?.contains(document.activeElement) ||
+            (event.shiftKey && document.activeElement === first) ||
+            (!event.shiftKey && document.activeElement === last)) {
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        }
+      }
     };
     window.addEventListener("keydown", dismiss);
-    return () => window.removeEventListener("keydown", dismiss);
+    desktop.addEventListener("change", resized);
+    return () => {
+      window.removeEventListener("keydown", dismiss);
+      desktop.removeEventListener("change", resized);
+    };
   }, [menu]);
   const selectedId = selected?.id;
   const load = useCallback(async () => {
@@ -1177,7 +1197,9 @@ export function App() {
   const currentView = views.find((v) => v.id === view)!;
   return (
     <div className="workspace">
+      <a className="skip-link" href="#ebt-main-content">Ir para o conteúdo principal</a>
       <aside id="ebt-sidebar-navigation" className={"sidebar " + (menu ? "mobile-open" : "")}>
+        <div className="sidebar-brand-row">
         <a
           className="brand"
           href="#"
@@ -1188,6 +1210,11 @@ export function App() {
         >
           <Brand />
         </a>
+        <button className="sidebar-close icon-button" aria-label="Fechar menu"
+          onClick={() => { setMenu(false); mobileMenuButton.current?.focus(); }}>
+          <Icon name="close" />
+        </button>
+        </div>
         <span className="nav-label">PLATAFORMA E APLICATIVOS</span>
         <nav aria-label="Navegação principal">
           {views.map((v) => (
@@ -1274,7 +1301,7 @@ export function App() {
           </label>
           <span className="portfolio">Carteira: {me.portfolio}</span>
         </header>
-        <main>
+        <main id="ebt-main-content" tabIndex={-1} aria-labelledby="ebt-page-title">
           <div className="page-heading">
             <div>
               <span className="eyebrow">
@@ -1284,7 +1311,7 @@ export function App() {
                     ? "EBT PLATFORM"
                     : "EBT CONNECT"}
               </span>
-              <h1>{selected ? selected.name : currentView.name}</h1>
+              <h1 id="ebt-page-title">{selected ? selected.name : currentView.name}</h1>
               <p>
                 {selected
                   ? "Um contato, um histórico e próximos passos claros."

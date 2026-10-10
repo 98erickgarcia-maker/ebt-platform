@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "remote": "origin",
+  "repository_url": "https://github.com/98erickgarcia-maker/ebt-platform.git",
+  "branch": "codex/frontend-quality-20261010",
+  "initial_base_ref": "5a2fa10e3abcaf63a889e4883bbd738ea01ee5bc",
+  "hash_mode": "SHA-256; LF for UTF-8 text",
+  "automated_approval": false,
+  "files": [
+    {
+      "path": "src/frontend/src/App.tsx",
+      "reviewed_sha256": "4293695c7c7b034d9084d35653930379a16aa4d789f3ef9d80d263c420b13eb0"
+    },
+    {
+      "path": "src/frontend/src/main.tsx",
+      "reviewed_sha256": "224e4141b5a93c8c02430cf6af076c8490777c5e882def0d33c175f20f30fab3"
+    },
+    {
+      "path": "src/frontend/src/quality.css",
+      "reviewed_sha256": "ea9c3a093a0860accbbf88781d6d792b9771019c04e95c128017b1511d65ead4"
+    },
+    {
+      "path": "src/frontend/e2e/frontend-quality.spec.ts",
+      "reviewed_sha256": "fc0963ffccf6042efcd190f562d3320c2763c7e63679bb06f38315d7358dd14f"
+    },
+    {
+      "path": "src/frontend/playwright.frontend-quality.config.ts",
+      "reviewed_sha256": "f0777ae95648faabdc817b9d713c9ccb533b003d302a335c62d0760f71131c01"
+    },
+    {
+      "path": "docs/qualidade/FRONTEND_QUALIDADE_20261010.md",
+      "reviewed_sha256": "dfa2bff25bb4a6d07eb8c41d1d719bb23177889904b5d708aa870f4ada9809c4"
+    },
+    {
+      "path": "planejamento/estado_continuidade.json",
+      "reviewed_sha256": "d3dbd4557d32f96c139bc555ea7b8d8c1d416884b37dc472b256b3d9a6842b7d"
+    }
+  ],
+  "reviewed_at_utc": "2026-10-10T05:07:04.370902+00:00"
+}

@@ -165,5 +165,19 @@
       "uncertain_send": "no_automatic_retry",
       "task_completion_verified": false
     }
+  },
+  "frontend_quality": {
+    "evidence": "docs/qualidade/FRONTEND_QUALIDADE_20261010.md",
+    "status": "local_build_and_ui_validated_remote_checkpoint_pending",
+    "browser_tests_passed": 4,
+    "api_tests_passed": 9,
+    "viewport_widths": [
+      320,
+      768,
+      1440
+    ],
+    "ui_test_data": "synthetic_intercepted_responses",
+    "production_deployed": false,
+    "product_gates_promoted": false
   }
 }

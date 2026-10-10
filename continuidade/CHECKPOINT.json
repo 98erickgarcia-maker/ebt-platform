@@ -1,140 +1,44 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-10-10T01:17:25.080750+00:00",
-  "branch": "codex/mcp-linux-reviewed-20261009",
-  "parent_checkpoint": "e957aefda3cc1c1de8a0074c5160ba298fe88a34",
-  "base": "e957aefda3cc1c1de8a0074c5160ba298fe88a34",
+  "created_at_utc": "2026-10-10T05:07:05.842776+00:00",
+  "branch": "codex/frontend-quality-20261010",
+  "parent_checkpoint": null,
+  "base": "5a2fa10e3abcaf63a889e4883bbd738ea01ee5bc",
   "source_head": "e5acff9c4e3b689941ea651c75443c95016af5ae",
   "validation": "checkpoint de conteúdo revisado; não promove gates do produto",
   "next_step_source": "planejamento/estado_continuidade.json",
   "files": [
     {
-      "path": "deployment/linux-chat/compose.yaml",
-      "sha256": "13db8c91280402158e3ad9b0ef93c9aae8eb43b25230d2b702efd6f8a8c4b87a"
+      "path": "docs/qualidade/FRONTEND_QUALIDADE_20261010.md",
+      "sha256": "dfa2bff25bb4a6d07eb8c41d1d719bb23177889904b5d708aa870f4ada9809c4"
     },
     {
-      "path": "deployment/linux-chat/launch-chrome.sh",
-      "sha256": "5f2b1016c5bf5ad0ca63bc0996eb1188d519dfa3651b851326af64c779ec8b78"
-    },
-    {
-      "path": "deployment/linux-chat/supervisor/desktop.conf",
-      "sha256": "69b6dc60390a737e6b2e1f05d1c52fd8265f7c48a9174748fba5d701f0978c35"
-    },
-    {
-      "path": "deployment/manual-chat/ABRIR_EBT_MANUAL.cmd",
-      "sha256": "606e1af8199b0c83b3a28fe002fe40e4505c16ff1708a8dc9f08f3b4da2420aa"
-    },
-    {
-      "path": "deployment/manual-chat/LEIA_PRIMEIRO.md",
-      "sha256": "425087bb7bc92f8401730299924c6205585871c13966caeccb38eab3e1826c15"
-    },
-    {
-      "path": "deployment/manual-chat/ebt-chat-continue.service",
-      "sha256": "1a0162616e212f11a24e8063b6a952999739c89c7f0e8d335e4c720d7a87f8f3"
-    },
-    {
-      "path": "deployment/manual-chat/ebt-chat-continue.timer",
-      "sha256": "7045fcae7daf2b3bac3bfccf0210eacf35fa6e9eb59ad27a80729fdf8a1bc3f5"
-    },
-    {
-      "path": "deployment/manual-chat/ebt-manual-chat.service",
-      "sha256": "4df3c9e2feea819d3b6123ac3219d2daaa684bf408bc88f8f40cb24304561732"
-    },
-    {
-      "path": "deployment/manual-chat/instalar-vps.sh",
-      "sha256": "d7b0b39102fedbb1e0b048ac357bc9c97437ba3bb7aa897c2b505c27567d592b"
-    },
-    {
-      "path": "deployment/manual-chat/recover_profile.py",
-      "sha256": "30c8442f0b8fed4b8451e623fcc59b5b1f44fe1d83debd368d0bd156c03fb8fb"
-    },
-    {
-      "path": "deployment/manual-chat/web/app.js",
-      "sha256": "ea8c5e23fa1e40b72fefbc2e166efda3783afcebd187b15e4f4710346b59a944"
-    },
-    {
-      "path": "deployment/manual-chat/web/index.html",
-      "sha256": "714168be33cfffd99903386382f8b926e39998bfbb8460026e57eb4524219171"
-    },
-    {
-      "path": "deployment/mcp-gateway/Caddyfile",
-      "sha256": "3e582ae9874776cb0e9295dfb70268aacda4e5603d36f1ea0b9f2bcae319786c"
-    },
-    {
-      "path": "deployment/mcp-gateway/compose.yaml",
-      "sha256": "3863835ae356a0e5ac7768cfa6e83ee9f96877b52c22e299dbfaf325a0aa1bbc"
-    },
-    {
-      "path": "deployment/mcp-gateway/ebt-mcp-cert-renew.service",
-      "sha256": "81d0bc4765193551bef4d8cf003e4c06ac150e45213853a019dc70f081e07892"
-    },
-    {
-      "path": "deployment/mcp-gateway/ebt-mcp-cert-renew.timer",
-      "sha256": "34aef38de3c6a26d08f8a5570e8254e61b2fdb3a9c2e3ceaa627febbb3f16a81"
-    },
-    {
-      "path": "deployment/mcp-gateway/reload-after-renew.sh",
-      "sha256": "6fe9bafaa5412d2e335e62021b583589bdb8e485ac3864ed4ac01e0e6de711bd"
-    },
-    {
-      "path": "deployment/n8n/compose.yaml",
-      "sha256": "9d87c70a7fbb3d6adf56f4ecfb975fadf2d8c8632496977dc66470cc5ce3febc"
-    },
-    {
-      "path": "docs/operacao/CHATGPT_NO_LINUX_20261009.md",
-      "sha256": "d44ed216edec709ba2df2604557e2275d7321f9c9a4ca9e30f9dba50571021c9"
-    },
-    {
-      "path": "docs/operacao/CHAT_CONTINUE_15MIN_20261009.md",
-      "sha256": "74ff4bddeb212f63e72c69053a4fd28d7b683425060a151c15e75a0834ed4762"
-    },
-    {
-      "path": "docs/operacao/CLAUDE_MCP_EMERGENT_20261009.md",
-      "sha256": "eec27cce3d885396eb4dba0f873c38b44a5602985060083ff42ff94c3188acaf"
-    },
-    {
-      "path": "docs/operacao/N8N_MODELOS_GITHUB_EBT.md",
-      "sha256": "c9fc2dfa13c777bd2eb5671c0f8e519569b3dff19ca9cc30b47dcc01c0d3d212"
-    },
-    {
-      "path": "planejamento/continuidade_mcp_github.json",
-      "sha256": "8b6bbf149f9c52859892b65d59ebf47f0f7b9e61433aad834d8b8b63583a7416"
+      "path": "planejamento/continuidade_frontend_github.json",
+      "sha256": "a1a15b3a34587c0029a29c71f480a80a72230deb1ab54900db6a7a6ecc6db9cd"
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "sha256": "41ed1d2619250a633e669683ad477f9eeabfb5705fc73e293e587736098c6758"
+      "sha256": "d3dbd4557d32f96c139bc555ea7b8d8c1d416884b37dc472b256b3d9a6842b7d"
     },
     {
-      "path": "scripts/ops/continue_chat.py",
-      "sha256": "45788836c982869d5b5447c7de92cd25603f76b739712c9e7c7722a1bbf941ca"
+      "path": "src/frontend/e2e/frontend-quality.spec.ts",
+      "sha256": "fc0963ffccf6042efcd190f562d3320c2763c7e63679bb06f38315d7358dd14f"
     },
     {
-      "path": "scripts/ops/insert_chat.mjs",
-      "sha256": "6cd4bb13df2f519454883e3ac186130d9290bfb2c82161ce7a6ceb38e6b70429"
+      "path": "src/frontend/playwright.frontend-quality.config.ts",
+      "sha256": "f0777ae95648faabdc817b9d713c9ccb533b003d302a335c62d0760f71131c01"
     },
     {
-      "path": "scripts/ops/linux_chat.py",
-      "sha256": "d8a6d2b4e416905e954614a6cc7aee63a2f21bb5fd1f26c175f0b30392514d52"
+      "path": "src/frontend/src/App.tsx",
+      "sha256": "4293695c7c7b034d9084d35653930379a16aa4d789f3ef9d80d263c420b13eb0"
     },
     {
-      "path": "scripts/ops/manual_chat.py",
-      "sha256": "16f9ad0c658f3710a0510f79b9df10c3858d94a18bbb3da265e58112be91bd6c"
+      "path": "src/frontend/src/main.tsx",
+      "sha256": "224e4141b5a93c8c02430cf6af076c8490777c5e882def0d33c175f20f30fab3"
     },
     {
-      "path": "tests/ops/test_continue_chat.py",
-      "sha256": "f9f7fd9100f7f346c2ae69a8a7ca9a2d5d494364ba1732b78b3b4828e2bb08cb"
-    },
-    {
-      "path": "tests/ops/test_insert_chat.mjs",
-      "sha256": "c96ee2f6c6fac6575b4e21ee5f5ba3326f8f3cd1708b8387c540834af0807bb4"
-    },
-    {
-      "path": "tests/ops/test_linux_chat.py",
-      "sha256": "5912d8f4220742c5a22ae4eecefbbb83a8342df1ecfcebee2f06cbfda9eb242b"
-    },
-    {
-      "path": "tests/ops/test_manual_chat.py",
-      "sha256": "20279ece225fc35646266dd157a9c4191eb22ec2d179dbcba2b09c267ff2133b"
+      "path": "src/frontend/src/quality.css",
+      "sha256": "ea9c3a093a0860accbbf88781d6d792b9771019c04e95c128017b1511d65ead4"
     }
   ]
 }
