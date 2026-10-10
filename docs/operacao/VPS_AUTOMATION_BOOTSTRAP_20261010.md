@@ -20,7 +20,7 @@ sudo GIT_KEY_PATH=/etc/ebt-engineering/controller_ed25519 \
      scripts/ops/install_ebt_vps_automation_bundle.sh --check-only
 ```
 
-Esse modo clona fontes públicas em staging temporário, verifica os SHAs, manifesto, branch remota e permissões dos arquivos root-only. Não habilita systemd.
+Esse modo clona fontes públicas em staging temporário, verifica os SHAs, manifesto, branch remota, permissões dos arquivos root-only e exige que os quatro timers EBT estejam inativos/desabilitados. Não habilita systemd.
 
 ## Instalação
 
@@ -36,6 +36,8 @@ A ordem é proposital:
 1. watchdog read-only do scheduler GitHub;
 2. monitor read-only do produto;
 3. executor Flow por último.
+
+O bootstrap é destinado a uma ativação limpa. Se algum timer EBT já estiver ativo/habilitado, ele falha antes de instalar. Depois que a instalação começa, qualquer erro dispara rollback automático dos quatro timers para evitar estado parcial ativo.
 
 ## Evidência sanitizada
 
