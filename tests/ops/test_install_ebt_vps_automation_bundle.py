@@ -24,6 +24,14 @@ class BundleTests(unittest.TestCase):
         ):
             self.assertIn(marker, text)
 
+    def test_privileged_install_requires_root_owned_nonwritable_bundle(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        self.assertIn("trusted_root_path", text)
+        self.assertIn('if (( CHECK_ONLY == 0 )); then', text)
+        self.assertIn('"$BUNDLE_ROOT/.git"', text)
+        self.assertIn('"$BUNDLE_ROOT/scripts/ops/vps_automation_status.py"', text)
+        self.assertIn('must not be group/other writable', text)
+
     def test_bootstrap_self_pins_its_own_checkout(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         for marker in (
