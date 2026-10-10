@@ -1,0 +1,11 @@
+[Unit]
+Description=Run EBT Enterprise Flow proposal cycle every 15 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,15,30,45:00
+Persistent=true
+AccuracySec=30s
+Unit=ebt-engineering-auto.service
+
+[Install]
+WantedBy=timers.target
