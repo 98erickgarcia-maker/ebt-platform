@@ -56,6 +56,17 @@ class BundleTests(unittest.TestCase):
         self.assertLess(check_pos, watchdog_install)
         self.assertIn("CHECK_ONLY: no systemd unit was installed or enabled.", text)
 
+    def test_watchdog_probe_is_forced_and_exit_two_is_accepted(self):
+        text = BOOTSTRAP.read_text(encoding="utf-8")
+        self.assertIn('systemctl start ebt-schedule-watchdog.service', text)
+        self.assertIn('watchdog_probe_rc', text)
+        self.assertIn('"$watchdog_probe_rc" -ne 0 && "$watchdog_probe_rc" -ne 2', text)
+        self.assertIn('[[ -s /var/lib/ebt-watch/state.json ]]', text)
+        self.assertLess(
+            text.index('systemctl start ebt-schedule-watchdog.service'),
+            text.index('install_ebt_production_watch_vps.sh'),
+        )
+
     def test_install_order_puts_read_only_monitors_before_flow(self):
         text = BOOTSTRAP.read_text(encoding="utf-8")
         watchdog = text.index('install_ebt_watchdog_vps.sh')
