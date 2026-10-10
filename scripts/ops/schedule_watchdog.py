@@ -11,6 +11,9 @@ import urllib.request
 REPO = '98erickgarcia-maker/ebt-platform'
 PREFIX = f'https://api.github.com/repos/{REPO}/'
 BRASILIA = timezone(timedelta(hours=-3))
+MAX_SCHEDULE_AGE = timedelta(minutes=45)
+MAX_SCHEDULE_GAP = timedelta(minutes=45)
+RECENT_FAILURE_WINDOW = timedelta(minutes=90)
 
 def evaluate(runs, issues, now):
     schedules = [r for r in runs if r['event'] == 'schedule' and r['head_branch'] == 'main']
@@ -20,20 +23,34 @@ def evaluate(runs, issues, now):
         return stamp
     schedules.sort(key=timestamp, reverse=True)
     latest = schedules[0] if schedules else None
+    previous = schedules[1] if len(schedules) > 1 else None
     alerts = []
     if latest is None:
         alerts.append('schedule_missing')
     else:
-        if (now - timestamp(latest)).total_seconds() > 90 * 60: alerts.append('schedule_stale')
+        if now - timestamp(latest) > MAX_SCHEDULE_AGE: alerts.append('schedule_stale')
         if latest['status'] != 'completed': alerts.append('schedule_incomplete')
         elif latest['conclusion'] != 'success': alerts.append('schedule_' + str(latest['conclusion']))
+        if previous is None:
+            alerts.append('schedule_history_insufficient')
+        elif timestamp(latest) - timestamp(previous) > MAX_SCHEDULE_GAP:
+            alerts.append('schedule_gap')
     for row in runs:
-        if row['head_branch'] == 'main' and row['conclusion'] in ('failure', 'cancelled', 'timed_out'):
+        if row.get('head_branch') != 'main' or row.get('conclusion') not in ('failure', 'cancelled', 'timed_out'):
+            continue
+        try:
+            observed = timestamp(row)
+        except (ValueError, KeyError, TypeError, AttributeError):
+            alerts.append('run_timestamp_invalid')
+            continue
+        if now - observed <= RECENT_FAILURE_WINDOW:
             alerts.append(f"run_{row['id']}_{row['conclusion']}")
     incidents = sorted(i['number'] for i in issues if i['state'] == 'open' and i['title'].startswith('[EBT OPS]') and 'pull_request' not in i)
     return dict(status='FAIL' if alerts else 'PASS', utc=now.isoformat(), brasilia=now.astimezone(BRASILIA).isoformat(),
                 alerts=sorted(set(alerts)), incidents=incidents, latest_schedule=None if latest is None else
-                {k: latest[k] for k in ('id', 'created_at', 'head_sha', 'html_url', 'status', 'conclusion')})
+                {**{k: latest[k] for k in ('id', 'created_at', 'head_sha', 'html_url', 'status', 'conclusion')},
+                 'previous_created_at': None if previous is None else previous['created_at'],
+                 'gap_seconds': None if previous is None else int((timestamp(latest) - timestamp(previous)).total_seconds())})
 
 def collect(get, now):
     try:
@@ -43,7 +60,8 @@ def collect(get, now):
             batch = get(PREFIX + f'actions/workflows/ebt-production-watch.yml/runs?per_page=100&page={page}')['workflow_runs']
             if not isinstance(batch, list): raise ValueError('invalid runs')
             runs.extend(batch)
-            if any(r['event'] == 'schedule' and r['head_branch'] == 'main' for r in batch) or len(batch) < 100: break
+            schedule_count = sum(1 for r in runs if r.get('event') == 'schedule' and r.get('head_branch') == 'main')
+            if schedule_count >= 2 or len(batch) < 100: break
         for page in range(1, 11):
             batch = get(PREFIX + f'issues?state=open&per_page=100&page={page}')
             if not isinstance(batch, list): raise ValueError('invalid issues')
