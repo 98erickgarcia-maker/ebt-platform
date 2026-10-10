@@ -1,0 +1,33 @@
+services:
+  browser:
+    image: selenium/standalone-chrome@sha256:7efe71e7e4a83bdf574b26bd354690928075e8f443223d2ced16a2c208eae1d7
+    container_name: ebt-linux-chat
+    user: "1200:1201"
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5800:7900"
+    environment:
+      TZ: "America/Sao_Paulo"
+      LANGUAGE: "pt_BR"
+      SE_SCREEN_WIDTH: "1280"
+      SE_SCREEN_HEIGHT: "800"
+      SE_VNC_NO_PASSWORD: "true"
+      SE_ENABLE_TRACING: "false"
+    volumes:
+      - /var/lib/ebt-linux-chat-chrome:/home/seluser/ebt-profile
+      - ./supervisor:/etc/supervisor/conf.d:ro
+      - ./launch-chrome.sh:/opt/ebt-launch-chat.sh:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:7900/ >/dev/null && pgrep -x chrome >/dev/null"]
+      interval: 15s
+      timeout: 3s
+      start_period: 30s
+      retries: 4
+    mem_limit: 2g
+    cpus: 1.5
+    pids_limit: 1024
+    shm_size: 2g

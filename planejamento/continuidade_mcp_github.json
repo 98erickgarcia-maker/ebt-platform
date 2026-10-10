@@ -45,8 +45,34 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "56f07f171b114b23329d0792464d7416a1878d42ab6412199f10f9000d0ce85e"
+      "reviewed_sha256": "b181be5e76595c506411dfe70fe64a60321e5bf898899408f5fd90e792ddb47d"
+    },
+    {
+      "path": "deployment/linux-chat/compose.yaml",
+      "reviewed_sha256": "7b9f1aa4deeb97e6c8a4d0ac237a8ba6967cebf6210e7d7e10f3b52f34a1a4a5"
+    },
+    {
+      "path": "deployment/linux-chat/launch-chrome.sh",
+      "reviewed_sha256": "f9b35131acb9c80f1a9089bee77245e52e6870aa06c33e84f9e8e4d3f62c50d1",
+      "binary_sha256": "f9b35131acb9c80f1a9089bee77245e52e6870aa06c33e84f9e8e4d3f62c50d1"
+    },
+    {
+      "path": "deployment/linux-chat/supervisor/desktop.conf",
+      "reviewed_sha256": "69b6dc60390a737e6b2e1f05d1c52fd8265f7c48a9174748fba5d701f0978c35",
+      "binary_sha256": "69b6dc60390a737e6b2e1f05d1c52fd8265f7c48a9174748fba5d701f0978c35"
+    },
+    {
+      "path": "scripts/ops/linux_chat.py",
+      "reviewed_sha256": "d8a6d2b4e416905e954614a6cc7aee63a2f21bb5fd1f26c175f0b30392514d52"
+    },
+    {
+      "path": "tests/ops/test_linux_chat.py",
+      "reviewed_sha256": "35a57dd924138725d55513b1ab89b8e828d74b9a5c8e1de7bcacf5770b7b85e6"
+    },
+    {
+      "path": "docs/operacao/CHATGPT_NO_LINUX_20261009.md",
+      "reviewed_sha256": "16b09b9617b33aa1c337abe817d01001fd6cabf1cd8f9495c7fbd795d76e7767"
     }
   ],
-  "reviewed_at_utc": "2026-10-09T23:56:28.416461+00:00"
+  "reviewed_at_utc": "2026-10-10T00:33:30.997718+00:00"
 }

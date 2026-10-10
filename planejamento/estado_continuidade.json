@@ -128,6 +128,17 @@
     "vps_watch_minutes": 15,
     "chat_ai_heartbeat": "paused_to_save_credits",
     "automatic_chat_alerts": false,
+    "linux_chat": {
+      "evidence": "docs/operacao/CHATGPT_NO_LINUX_20261009.md",
+      "manual_command": "ebt-abrir-chat",
+      "browser": "chrome_private_vps_container",
+      "visual_verification": "chatgpt_home_signed_out_observed_20261009",
+      "viewer": "http://127.0.0.1:5800/vnc.html?autoconnect=1&resize=scale",
+      "memory_limit_gib": 2,
+      "authentication": "pending_user_sign_in_in_linux_profile",
+      "automatic_prompt_submission": false,
+      "automatic_runner_fallback": false
+    },
     "product_gate_promotion": false
   }
 }
