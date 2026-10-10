@@ -20,6 +20,13 @@ PRODUCT_SHA="3820d0edd5126ae416ea569b3dc30b5b0ce1a215"
 GIT_KEY_PATH="${GIT_KEY_PATH:-/etc/ebt-engineering/controller_ed25519}"
 KNOWN_HOSTS_PATH="${KNOWN_HOSTS_PATH:-/etc/ebt-engineering/known_hosts}"
 CHECK_ONLY=0
+INSTALL_STARTED=0
+TARGET_TIMERS=(
+  ebt-schedule-watchdog.timer
+  ebt-production-watch-vps.timer
+  ebt-engineering-runner.timer
+  ebt-engineering-watch.timer
+)
 
 if [[ "${1:-}" == "--check-only" ]]; then
   CHECK_ONLY=1
@@ -49,7 +56,25 @@ root_private_file "$GIT_KEY_PATH"
 root_private_file "$KNOWN_HOSTS_PATH"
 
 STAGING="$(mktemp -d /var/tmp/ebt-vps-bootstrap.XXXXXX)"
-trap 'rm -rf -- "$STAGING"' EXIT
+cleanup(){ rm -rf -- "$STAGING"; }
+rollback_on_error(){
+  local rc=$?
+  if (( INSTALL_STARTED == 1 )); then
+    printf 'Installation failed; disabling EBT automation timers from this clean-host bootstrap.\n' >&2
+    for unit in "${TARGET_TIMERS[@]}"; do
+      systemctl disable --now "$unit" >/dev/null 2>&1 || true
+    done
+  fi
+  exit "$rc"
+}
+trap cleanup EXIT
+trap rollback_on_error ERR
+
+for unit in "${TARGET_TIMERS[@]}"; do
+  if systemctl is-enabled --quiet "$unit" 2>/dev/null || systemctl is-active --quiet "$unit" 2>/dev/null; then
+    fail "$unit already active/enabled; use the individual diagnostic/recovery path instead of clean-host bootstrap."
+  fi
+done
 
 clone_pinned(){
   local name="$1" branch="$2" sha="$3"
@@ -98,6 +123,8 @@ if (( CHECK_ONLY == 1 )); then
   exit 0
 fi
 
+INSTALL_STARTED=1
+
 printf '\n1/3 Installing read-only GitHub schedule watchdog...\n'
 bash "$WATCHDOG_SOURCE/scripts/ops/install_ebt_watchdog_vps.sh"
 
@@ -107,10 +134,12 @@ SOURCE_ROOT="$PRODUCT_SOURCE" EXPECTED_SOURCE_SHA="$PRODUCT_SHA"   bash "$PRODUC
 printf '\n3/3 Installing Flow engineering controller last...\n'
 SOURCE_ROOT="$FLOW_SOURCE" EXPECTED_SOURCE_SHA="$FLOW_SOURCE_SHA"   EXPECTED_PROPOSAL_SHA="$FLOW_PROPOSAL_SHA"   GIT_KEY_PATH="$GIT_KEY_PATH" KNOWN_HOSTS_PATH="$KNOWN_HOSTS_PATH"   bash "$FLOW_SOURCE/scripts/ops/install_ebt_engineering_auto.sh"
 
-for unit in   ebt-schedule-watchdog.timer   ebt-production-watch-vps.timer   ebt-engineering-runner.timer   ebt-engineering-watch.timer; do
+for unit in "${TARGET_TIMERS[@]}"; do
   systemctl is-enabled --quiet "$unit" || fail "$unit is not enabled"
   systemctl is-active --quiet "$unit" || fail "$unit is not active"
 done
+
+INSTALL_STARTED=0
 
 printf '\nAUTOMATION_BUNDLE_INSTALLED\n'
 printf 'All four timers are enabled and active.\n'
