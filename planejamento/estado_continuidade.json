@@ -132,13 +132,38 @@
       "evidence": "docs/operacao/CHATGPT_NO_LINUX_20261009.md",
       "manual_command": "ebt-abrir-chat",
       "browser": "chrome_private_vps_container",
-      "visual_verification": "chatgpt_home_signed_out_observed_20261009",
+      "visual_verification": "signed_in_extra_high_selected_conversation_observed_20261009",
       "viewer": "http://127.0.0.1:5800/vnc.html?autoconnect=1&resize=scale",
       "memory_limit_gib": 2,
-      "authentication": "pending_user_sign_in_in_linux_profile",
-      "automatic_prompt_submission": false,
+      "authentication": "signed_in_observed_20261009_session_can_expire",
+      "automatic_prompt_submission": true,
       "automatic_runner_fallback": false
     },
-    "product_gate_promotion": false
+    "manual_chat_gate": {
+      "evidence": "deployment/manual-chat/LEIA_PRIMEIRO.md",
+      "status": "vps_service_active_preview_verified_live_send_pending_human_approval",
+      "local_panel": "http://127.0.0.1:5810/",
+      "approval": "exact_text_exact_conversation_single_use_300_seconds",
+      "submission": "linux_script_only_after_explicit_human_button",
+      "automatic_model_api_calls": false,
+      "automatic_followup": false,
+      "queue_completion_updated": false,
+      "extra_high": "observed_in_selected_linux_conversation",
+      "quota_limits_still_apply": true
+    },
+    "product_gate_promotion": false,
+    "chat_continue_schedule": {
+      "evidence": "docs/operacao/CHAT_CONTINUE_15MIN_20261009.md",
+      "authorization": "user_explicit_CONTINUE_every_15_minutes_20261009",
+      "status": "timer_active_preflight_ready_first_submission_pending",
+      "interval_minutes": 15,
+      "message": "CONTINUE",
+      "target": "single_private_conversation_config_not_committed",
+      "paid_model_api_calls": false,
+      "busy": "skip_without_queue",
+      "limit_draft_auth_or_error": "pause_until_manual_review",
+      "uncertain_send": "no_automatic_retry",
+      "task_completion_verified": false
+    }
   }
 }

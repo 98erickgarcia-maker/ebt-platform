@@ -9,4 +9,4 @@ until xdpyinfo >/dev/null 2>&1; do
     fi
     sleep 1
 done
-exec /usr/bin/google-chrome --user-data-dir=/home/seluser/ebt-profile --no-first-run --start-maximized https://chatgpt.com/
+exec /usr/bin/google-chrome --user-data-dir=/home/seluser/ebt-profile --remote-debugging-port=9222 --no-first-run --start-maximized https://chatgpt.com/

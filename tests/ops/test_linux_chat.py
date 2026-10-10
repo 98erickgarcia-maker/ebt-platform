@@ -12,7 +12,7 @@ spec.loader.exec_module(chat)
 
 class LinuxChatTests(unittest.TestCase):
     def test_chat_url_requires_exact_https_origin_without_secrets(self):
-        for url in ['https://chatgpt.com/', 'https://chatgpt.com/c/6ac958a1-8264-83e9-b19e-15d7c4e5ff7e']:
+        for url in ['https://chatgpt.com/', 'https://chatgpt.com/c/00000000-0000-4000-8000-000000000001']:
             self.assertEqual(chat.validate_url(url), url)
         for url in ['http://chatgpt.com/', 'https://chatgpt.com.evil.invalid/',
                     'https://' + 'user:password@' + 'chatgpt.com/', 'https://chatgpt.com:444/',
@@ -57,3 +57,4 @@ class LinuxChatTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

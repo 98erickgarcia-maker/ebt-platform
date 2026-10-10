@@ -2,6 +2,7 @@ services:
   browser:
     image: selenium/standalone-chrome@sha256:7efe71e7e4a83bdf574b26bd354690928075e8f443223d2ced16a2c208eae1d7
     container_name: ebt-linux-chat
+    hostname: ebt-linux-chat
     user: "1200:1201"
     restart: unless-stopped
     ports:
@@ -17,6 +18,8 @@ services:
       - /var/lib/ebt-linux-chat-chrome:/home/seluser/ebt-profile
       - ./supervisor:/etc/supervisor/conf.d:ro
       - ./launch-chrome.sh:/opt/ebt-launch-chat.sh:ro
+      - /opt/ebt-engineering/node/bin/node:/opt/ebt-node:ro
+      - /opt/ebt-engineering/manual-chat/insert_chat.mjs:/opt/ebt-insert-chat.mjs:ro
     security_opt:
       - no-new-privileges:true
     cap_drop:

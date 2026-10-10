@@ -1,0 +1,24 @@
+[Unit]
+Description=EBT explicitly authorized CONTINUE in one ChatGPT conversation
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -B /opt/ebt-engineering/manual-chat/continue_chat.py
+StateDirectory=ebt-chat-continue
+StateDirectoryMode=0700
+Environment=DOCKER_CONFIG=/var/lib/ebt-chat-continue/docker
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_UNIX
+MemoryMax=128M
+TasksMax=32
+TimeoutStartSec=80
+StandardOutput=journal
+StandardError=journal

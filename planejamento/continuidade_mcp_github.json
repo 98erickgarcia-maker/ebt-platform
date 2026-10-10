@@ -45,16 +45,16 @@
     },
     {
       "path": "planejamento/estado_continuidade.json",
-      "reviewed_sha256": "b181be5e76595c506411dfe70fe64a60321e5bf898899408f5fd90e792ddb47d"
+      "reviewed_sha256": "41ed1d2619250a633e669683ad477f9eeabfb5705fc73e293e587736098c6758"
     },
     {
       "path": "deployment/linux-chat/compose.yaml",
-      "reviewed_sha256": "7b9f1aa4deeb97e6c8a4d0ac237a8ba6967cebf6210e7d7e10f3b52f34a1a4a5"
+      "reviewed_sha256": "13db8c91280402158e3ad9b0ef93c9aae8eb43b25230d2b702efd6f8a8c4b87a"
     },
     {
       "path": "deployment/linux-chat/launch-chrome.sh",
-      "reviewed_sha256": "f9b35131acb9c80f1a9089bee77245e52e6870aa06c33e84f9e8e4d3f62c50d1",
-      "binary_sha256": "f9b35131acb9c80f1a9089bee77245e52e6870aa06c33e84f9e8e4d3f62c50d1"
+      "reviewed_sha256": "5f2b1016c5bf5ad0ca63bc0996eb1188d519dfa3651b851326af64c779ec8b78",
+      "binary_sha256": "5f2b1016c5bf5ad0ca63bc0996eb1188d519dfa3651b851326af64c779ec8b78"
     },
     {
       "path": "deployment/linux-chat/supervisor/desktop.conf",
@@ -67,12 +67,81 @@
     },
     {
       "path": "tests/ops/test_linux_chat.py",
-      "reviewed_sha256": "35a57dd924138725d55513b1ab89b8e828d74b9a5c8e1de7bcacf5770b7b85e6"
+      "reviewed_sha256": "5912d8f4220742c5a22ae4eecefbbb83a8342df1ecfcebee2f06cbfda9eb242b"
     },
     {
       "path": "docs/operacao/CHATGPT_NO_LINUX_20261009.md",
-      "reviewed_sha256": "16b09b9617b33aa1c337abe817d01001fd6cabf1cd8f9495c7fbd795d76e7767"
+      "reviewed_sha256": "d44ed216edec709ba2df2604557e2275d7321f9c9a4ca9e30f9dba50571021c9"
+    },
+    {
+      "path": "scripts/ops/manual_chat.py",
+      "reviewed_sha256": "16f9ad0c658f3710a0510f79b9df10c3858d94a18bbb3da265e58112be91bd6c"
+    },
+    {
+      "path": "scripts/ops/insert_chat.mjs",
+      "reviewed_sha256": "6cd4bb13df2f519454883e3ac186130d9290bfb2c82161ce7a6ceb38e6b70429"
+    },
+    {
+      "path": "tests/ops/test_manual_chat.py",
+      "reviewed_sha256": "20279ece225fc35646266dd157a9c4191eb22ec2d179dbcba2b09c267ff2133b"
+    },
+    {
+      "path": "tests/ops/test_insert_chat.mjs",
+      "reviewed_sha256": "c96ee2f6c6fac6575b4e21ee5f5ba3326f8f3cd1708b8387c540834af0807bb4"
+    },
+    {
+      "path": "deployment/manual-chat/web/index.html",
+      "reviewed_sha256": "714168be33cfffd99903386382f8b926e39998bfbb8460026e57eb4524219171"
+    },
+    {
+      "path": "deployment/manual-chat/web/app.js",
+      "reviewed_sha256": "ea8c5e23fa1e40b72fefbc2e166efda3783afcebd187b15e4f4710346b59a944"
+    },
+    {
+      "path": "deployment/manual-chat/ebt-manual-chat.service",
+      "reviewed_sha256": "4df3c9e2feea819d3b6123ac3219d2daaa684bf408bc88f8f40cb24304561732",
+      "binary_sha256": "4df3c9e2feea819d3b6123ac3219d2daaa684bf408bc88f8f40cb24304561732"
+    },
+    {
+      "path": "deployment/manual-chat/ABRIR_EBT_MANUAL.cmd",
+      "reviewed_sha256": "606e1af8199b0c83b3a28fe002fe40e4505c16ff1708a8dc9f08f3b4da2420aa",
+      "binary_sha256": "606e1af8199b0c83b3a28fe002fe40e4505c16ff1708a8dc9f08f3b4da2420aa"
+    },
+    {
+      "path": "deployment/manual-chat/instalar-vps.sh",
+      "reviewed_sha256": "d7b0b39102fedbb1e0b048ac357bc9c97437ba3bb7aa897c2b505c27567d592b",
+      "binary_sha256": "d7b0b39102fedbb1e0b048ac357bc9c97437ba3bb7aa897c2b505c27567d592b"
+    },
+    {
+      "path": "deployment/manual-chat/recover_profile.py",
+      "reviewed_sha256": "30c8442f0b8fed4b8451e623fcc59b5b1f44fe1d83debd368d0bd156c03fb8fb"
+    },
+    {
+      "path": "deployment/manual-chat/LEIA_PRIMEIRO.md",
+      "reviewed_sha256": "425087bb7bc92f8401730299924c6205585871c13966caeccb38eab3e1826c15"
+    },
+    {
+      "path": "scripts/ops/continue_chat.py",
+      "reviewed_sha256": "45788836c982869d5b5447c7de92cd25603f76b739712c9e7c7722a1bbf941ca"
+    },
+    {
+      "path": "tests/ops/test_continue_chat.py",
+      "reviewed_sha256": "f9f7fd9100f7f346c2ae69a8a7ca9a2d5d494364ba1732b78b3b4828e2bb08cb"
+    },
+    {
+      "path": "deployment/manual-chat/ebt-chat-continue.service",
+      "reviewed_sha256": "1a0162616e212f11a24e8063b6a952999739c89c7f0e8d335e4c720d7a87f8f3",
+      "binary_sha256": "1a0162616e212f11a24e8063b6a952999739c89c7f0e8d335e4c720d7a87f8f3"
+    },
+    {
+      "path": "deployment/manual-chat/ebt-chat-continue.timer",
+      "reviewed_sha256": "7045fcae7daf2b3bac3bfccf0210eacf35fa6e9eb59ad27a80729fdf8a1bc3f5",
+      "binary_sha256": "7045fcae7daf2b3bac3bfccf0210eacf35fa6e9eb59ad27a80729fdf8a1bc3f5"
+    },
+    {
+      "path": "docs/operacao/CHAT_CONTINUE_15MIN_20261009.md",
+      "reviewed_sha256": "74ff4bddeb212f63e72c69053a4fd28d7b683425060a151c15e75a0834ed4762"
     }
   ],
-  "reviewed_at_utc": "2026-10-10T00:33:30.997718+00:00"
+  "reviewed_at_utc": "2026-10-10T01:17:23.002392+00:00"
 }

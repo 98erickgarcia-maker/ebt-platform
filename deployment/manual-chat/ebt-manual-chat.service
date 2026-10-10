@@ -1,0 +1,30 @@
+[Unit]
+Description=EBT human-approved single ChatGPT message, no model API calls
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -B /opt/ebt-engineering/manual-chat/manual_chat.py --checkpoint /run/ebt-manual-chat/state/checkpoint.json
+RuntimeDirectory=ebt-manual-chat
+RuntimeDirectoryMode=0700
+BindReadOnlyPaths=/var/lib/ebt-engineering/state:/run/ebt-manual-chat/state
+Environment=DOCKER_CONFIG=/run/ebt-manual-chat/docker
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/opt/ebt-engineering /var/lib/ebt-engineering/state
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_UNIX
+MemoryMax=128M
+TasksMax=32
+StandardOutput=null
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
