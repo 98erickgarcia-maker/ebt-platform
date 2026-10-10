@@ -31,8 +31,8 @@ runuser -u "$SERVICE_USER" -- test -w "$REPO_DIR" || { echo "$SERVICE_USER canno
 runuser -u "$SERVICE_USER" -- git -C "$REPO_DIR" remote set-url --push origin "$PUSH_REPOSITORY_URL"
 
 install -m 0755 "$SCRIPT_DIR/ebt_engineering_auto.sh" /usr/local/sbin/ebt-engineering-auto
-install -m 0644 "$SCRIPT_DIR/../../../deployment/systemd/ebt-engineering-auto.service" /etc/systemd/system/ebt-engineering-auto.service
-install -m 0644 "$SCRIPT_DIR/../../../deployment/systemd/ebt-engineering-auto.timer" /etc/systemd/system/ebt-engineering-auto.timer
+install -m 0644 "$SCRIPT_DIR/../../deployment/systemd/ebt-engineering-auto.service" /etc/systemd/system/ebt-engineering-auto.service
+install -m 0644 "$SCRIPT_DIR/../../deployment/systemd/ebt-engineering-auto.timer" /etc/systemd/system/ebt-engineering-auto.timer
 
 cat > /etc/ebt/engineering-auto.env <<ENV
 REPO_DIR=$REPO_DIR
